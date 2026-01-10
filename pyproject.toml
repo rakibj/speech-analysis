@@ -1,0 +1,10 @@
+[project]
+name = "speech-analysis"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "openai-whisper>=20250625",
+    "pandas>=2.3.3",
+]
