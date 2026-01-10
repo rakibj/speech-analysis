@@ -10,4 +10,5 @@ dependencies = [
     "openai>=2.15.0",
     "openai-whisper>=20250625",
     "pandas>=2.3.3",
+    "python-dotenv>=1.2.1",
 ]
