@@ -1,0 +1,517 @@
+# src/metrics.py
+"""Fluency metrics calculation and scoring."""
+import pandas as pd
+from typing import Tuple, Dict, List
+
+from .config import (
+    WPM_TOO_SLOW,
+    WPM_SLOW_THRESHOLD,
+    WPM_OPTIMAL_MAX,
+    WPM_FAST_DECAY_RANGE,
+    MAX_LONG_PAUSES_PER_MIN,
+    MAX_FILLERS_PER_MIN,
+    BASE_PAUSE_VARIABILITY,
+    PAUSE_SCORE_BLOCK_THRESHOLD,
+    FILLER_SCORE_BLOCK_THRESHOLD,
+    STABILITY_SCORE_WARN_THRESHOLD,
+    LEXICAL_LOW_THRESHOLD,
+    WEIGHT_PAUSE,
+    WEIGHT_FILLER,
+    WEIGHT_STABILITY,
+    WEIGHT_SPEECH_RATE,
+    WEIGHT_LEXICAL,
+    MIN_ANALYSIS_DURATION_SEC,
+    CONTEXT_CONFIG,
+    INSTRUCTIONS,
+)
+
+
+def clamp01(x: float) -> float:
+    """Clamp value to [0, 1] range."""
+    return max(0.0, min(1.0, x))
+
+
+def filler_weight(duration: float) -> float:
+    """Weight fillers by perceptual impact."""
+    if duration < 0.08:
+        return 0.2      # micro hesitation
+    elif duration < 0.3:
+        return 0.6      # subtle filler
+    else:
+        return 1.0      # real filler
+
+
+def overlaps_filler(
+    start: float,
+    end: float,
+    fillers: pd.DataFrame,
+    tol: float = 0.05
+) -> bool:
+    """Check if time range overlaps any filler event."""
+    for _, f in fillers.iterrows():
+        if start < f["end"] + tol and end > f["start"] - tol:
+            return True
+    return False
+
+
+def calculate_normalized_metrics(
+    df_words: pd.DataFrame,
+    df_segments: pd.DataFrame,
+    df_fillers: pd.DataFrame,
+    total_duration: float
+) -> dict:
+    """
+    Calculate normalized fluency metrics.
+    
+    Args:
+        df_words: Word-level timestamps
+        df_segments: Segment-level timestamps
+        df_fillers: Filler/stutter events
+        total_duration: Total audio duration in seconds
+        
+    Returns:
+        Dictionary of normalized metrics
+    """
+    duration_min = max(total_duration / 60.0, 0.5)
+    
+    # Words per minute
+    words_per_minute = (len(df_words) * 60) / total_duration
+    
+    # Filler metrics
+    filler_events = df_fillers[df_fillers["type"] == "filler"]
+    stutter_events = df_fillers[df_fillers["type"] == "stutter"]
+    
+    fillers_per_min = (
+        filler_events["duration"]
+        .apply(filler_weight)
+        .sum()
+        / duration_min
+    )
+    
+    stutters_per_min = len(stutter_events) / duration_min
+    
+    # Pause detection
+    pause_durations = []
+    
+    for i in range(1, len(df_words)):
+        gap_start = df_words.iloc[i - 1]["end"]
+        gap_end = df_words.iloc[i]["start"]
+        gap = gap_end - gap_start
+        
+        if gap > 0.3 and not overlaps_filler(gap_start, gap_end, df_fillers):
+            pause_durations.append(gap)
+    
+    pause_durations = pd.Series(pause_durations, dtype="float")
+    
+    # Pause metrics
+    long_pauses = pause_durations[pause_durations > 1.0]
+    very_long_pauses = pause_durations[pause_durations > 2.0]
+    
+    long_pauses_per_min = len(long_pauses) / duration_min
+    very_long_pauses_per_min = len(very_long_pauses) / duration_min
+    
+    pause_time_ratio = (
+        pause_durations.sum() / total_duration
+        if pause_durations.size > 0
+        else 0.0
+    )
+    
+    pause_variability = (
+        pause_durations.std()
+        if pause_durations.size > 5
+        else 0.0
+    )
+    
+    # Lexical metrics
+    words_clean = df_words["word"].str.lower()
+    
+    vocab_richness = words_clean.nunique() / len(words_clean)
+    repetition_ratio = (
+        words_clean.value_counts().iloc[0] / len(words_clean)
+        if len(words_clean) > 0
+        else 0.0
+    )
+    
+    return {
+        "wpm": words_per_minute,
+        "fillers_per_min": fillers_per_min,
+        "stutters_per_min": stutters_per_min,
+        "long_pauses_per_min": long_pauses_per_min,
+        "very_long_pauses_per_min": very_long_pauses_per_min,
+        "pause_time_ratio": pause_time_ratio,
+        "pause_variability": pause_variability,
+        "vocab_richness": vocab_richness,
+        "repetition_ratio": repetition_ratio,
+    }
+
+
+def calculate_subscores(
+    metrics: dict,
+    context_config: dict
+) -> Tuple[dict, dict]:
+    """
+    Calculate fluency subscores.
+    
+    Args:
+        metrics: Normalized metrics dictionary
+        context_config: Context-specific tolerance settings
+        
+    Returns:
+        Tuple of (subscores dict, context dict)
+    """
+    wpm = metrics["wpm"]
+    
+    # Speech rate score
+    if wpm < WPM_SLOW_THRESHOLD:
+        speech_rate_score = clamp01(
+            (wpm - WPM_TOO_SLOW) / (WPM_SLOW_THRESHOLD - WPM_TOO_SLOW)
+        )
+    elif wpm <= WPM_OPTIMAL_MAX:
+        speech_rate_score = 1.0
+    else:
+        speech_rate_score = clamp01(
+            1 - (wpm - WPM_OPTIMAL_MAX) / WPM_FAST_DECAY_RANGE
+        )
+    
+    # Pause structure score
+    pause_score = clamp01(
+        1 - (
+            metrics["long_pauses_per_min"]
+            / (MAX_LONG_PAUSES_PER_MIN * context_config["pause_tolerance"])
+        )
+    )
+    
+    # Filler dependency score
+    filler_score = clamp01(
+        1 - (metrics["fillers_per_min"] / MAX_FILLERS_PER_MIN)
+    )
+    
+    # Rhythmic stability score
+    stability_score = clamp01(
+        1 - (
+            metrics["pause_variability"]
+            / (BASE_PAUSE_VARIABILITY * context_config["pause_variability_tolerance"])
+        )
+    )
+    
+    # Lexical quality score
+    lexical_score = clamp01(
+        0.65 * metrics["vocab_richness"]
+        + 0.35 * (1 - metrics["repetition_ratio"])
+    )
+    
+    subscores = {
+        "speech_rate": speech_rate_score,
+        "pause": pause_score,
+        "filler": filler_score,
+        "stability": stability_score,
+        "lexical": lexical_score,
+    }
+    
+    return subscores, context_config
+
+
+def calculate_fluency_score(
+    subscores: dict
+) -> int:
+    """
+    Calculate overall fluency score (0-100).
+    
+    Args:
+        subscores: Dictionary of individual subscores
+        
+    Returns:
+        Fluency score as integer
+    """
+    raw_score = (
+        WEIGHT_PAUSE * subscores["pause"] +
+        WEIGHT_FILLER * subscores["filler"] +
+        WEIGHT_STABILITY * subscores["stability"] +
+        WEIGHT_SPEECH_RATE * subscores["speech_rate"] +
+        WEIGHT_LEXICAL * subscores["lexical"]
+    )
+    
+    return int(round(100 * clamp01(raw_score)))
+
+
+def detect_issues(
+    subscores: dict,
+    metrics: dict
+) -> List[dict]:
+    """
+    Detect and categorize fluency issues.
+    
+    Args:
+        subscores: Dictionary of subscores
+        metrics: Normalized metrics
+        
+    Returns:
+        List of issue dictionaries sorted by score impact
+    """
+    issues = []
+    
+    def issue(severity: str, issue_id: str, root_cause: str, score_impact: int):
+        return {
+            "issue": issue_id,
+            "severity": severity,
+            "root_cause": root_cause,
+            "score_impact": score_impact,
+        }
+    
+    # Structural blockers
+    if subscores["pause"] < PAUSE_SCORE_BLOCK_THRESHOLD:
+        issues.append(issue(
+            "high",
+            "hesitation_structure",
+            "Pauses frequently interrupt sentence flow.",
+            int((1 - subscores["pause"]) * 30),
+        ))
+    
+    if subscores["filler"] < FILLER_SCORE_BLOCK_THRESHOLD:
+        issues.append(issue(
+            "high",
+            "filler_dependency",
+            "Fillers replace silent planning pauses.",
+            int((1 - subscores["filler"]) * 25),
+        ))
+    
+    if subscores["stability"] < STABILITY_SCORE_WARN_THRESHOLD:
+        issues.append(issue(
+            "medium",
+            "delivery_instability",
+            "Speech rhythm varies unpredictably.",
+            int((1 - subscores["stability"]) * 20),
+        ))
+    
+    # Style issues
+    if subscores["speech_rate"] < 0.7:
+        issues.append(issue(
+            "medium",
+            "delivery_pacing",
+            "Speech rate deviates from optimal clarity range.",
+            int((1 - subscores["speech_rate"]) * 15),
+        ))
+    
+    if subscores["lexical"] < LEXICAL_LOW_THRESHOLD:
+        issues.append(issue(
+            "low",
+            "lexical_simplicity",
+            "Frequent reuse of common vocabulary.",
+            int((1 - subscores["lexical"]) * 10),
+        ))
+    
+    return sorted(issues, key=lambda x: x["score_impact"], reverse=True)
+
+
+def determine_readiness(
+    fluency_score: int,
+    issues: List[dict]
+) -> str:
+    """
+    Determine speaker readiness based on score and issues.
+    
+    Args:
+        fluency_score: Overall fluency score
+        issues: List of detected issues
+        
+    Returns:
+        Readiness status: 'ready', 'borderline', or 'not_ready'
+    """
+    high_issues = [i for i in issues if i["severity"] == "high"]
+    medium_issues = [i for i in issues if i["severity"] == "medium"]
+    
+    if len(high_issues) >= 2:
+        return "not_ready"
+    elif len(high_issues) == 1:
+        return "borderline"
+    elif len(medium_issues) >= 2:
+        return "borderline"
+    elif fluency_score >= 80:
+        return "ready"
+    else:
+        return "borderline"
+
+
+def calculate_benchmarking(
+    fluency_score: int,
+    readiness: str
+) -> dict:
+    """
+    Calculate benchmarking metrics and practice estimates.
+    
+    Args:
+        fluency_score: Overall fluency score
+        readiness: Readiness status
+        
+    Returns:
+        Dictionary with percentile, target, and practice hours
+    """
+    # Estimate percentile
+    if fluency_score >= 85:
+        percentile = 80
+    elif fluency_score >= 75:
+        percentile = 65
+    elif fluency_score >= 65:
+        percentile = 50
+    else:
+        percentile = 30
+    
+    # Calculate score gap
+    score_gap = (
+        max(0, 80 - fluency_score)
+        if readiness != "ready"
+        else 0
+    )
+    
+    return {
+        "percentile": percentile,
+        "target_score": 80,
+        "score_gap": score_gap,
+        "estimated_guided_practice_hours": score_gap * 0.6,
+    }
+
+
+def generate_action_plan(
+    issues: List[dict],
+    score_gap: int
+) -> List[dict]:
+    """
+    Generate prioritized action plan with expected gains.
+    
+    Args:
+        issues: List of detected issues
+        score_gap: Points needed to reach target
+        
+    Returns:
+        List of action items with priorities and expected gains
+    """
+    action_plan = []
+    
+    # Normalize gains to match score gap
+    max_gain = sum(i["score_impact"] for i in issues[:3]) or 1
+    scale = score_gap / max_gain if score_gap > 0 else 1.0
+    
+    for idx, issue in enumerate(issues[:3]):
+        action_plan.append({
+            "priority": idx + 1,
+            "focus": issue["issue"],
+            "instruction": INSTRUCTIONS.get(
+                issue["issue"],
+                "Focus on improving this aspect."
+            ),
+            "expected_score_gain": int(issue["score_impact"] * scale),
+        })
+    
+    return action_plan
+
+
+def analyze_fluency(
+    df_words: pd.DataFrame,
+    df_segments: pd.DataFrame,
+    df_fillers: pd.DataFrame,
+    total_duration: float,
+    speech_context: str = "conversational"
+) -> dict:
+    """
+    Complete fluency analysis pipeline.
+    
+    Args:
+        df_words: Word-level timestamps
+        df_segments: Segment-level timestamps
+        df_fillers: Filler/stutter events
+        total_duration: Total audio duration in seconds
+        speech_context: Type of speech context
+        
+    Returns:
+        Complete analysis dictionary with verdict, metrics, and opinions
+    """
+    # Check minimum duration
+    if total_duration < MIN_ANALYSIS_DURATION_SEC:
+        return {
+            "verdict": {
+                "fluency_score": None,
+                "readiness": "insufficient_sample",
+            },
+            "benchmarking": None,
+            "normalized_metrics": None,
+            "opinions": None,
+        }
+    
+    # Get context configuration
+    context_config = CONTEXT_CONFIG.get(
+        speech_context,
+        CONTEXT_CONFIG["conversational"]
+    )
+    
+    # Calculate metrics
+    metrics = calculate_normalized_metrics(
+        df_words,
+        df_segments,
+        df_fillers,
+        total_duration
+    )
+    
+    # Calculate subscores
+    subscores, _ = calculate_subscores(metrics, context_config)
+    
+    # Calculate fluency score
+    fluency_score = calculate_fluency_score(subscores)
+    
+    # Detect issues
+    issues = detect_issues(subscores, metrics)
+    
+    # Determine readiness
+    readiness = determine_readiness(fluency_score, issues)
+    
+    # Calculate benchmarking
+    benchmarking = calculate_benchmarking(fluency_score, readiness)
+    
+    # Generate action plan
+    action_plan = generate_action_plan(issues, benchmarking["score_gap"])
+    
+    return {
+        "verdict": {
+            "fluency_score": fluency_score,
+            "readiness": readiness,
+        },
+        "benchmarking": benchmarking,
+        "normalized_metrics": metrics,
+        "opinions": {
+            "primary_issues": issues,
+            "action_plan": action_plan,
+        },
+    }
+
+
+if __name__ == "__main__":
+    # Quick test with dummy data
+    import numpy as np
+    
+    # Create dummy data
+    df_words = pd.DataFrame({
+        "word": ["hello", "world", "this", "is", "test"],
+        "start": [0.0, 0.5, 1.0, 1.5, 2.0],
+        "end": [0.4, 0.9, 1.4, 1.9, 2.4],
+        "duration": [0.4, 0.4, 0.4, 0.4, 0.4],
+        "confidence": [0.9, 0.9, 0.9, 0.9, 0.9],
+    })
+    
+    df_segments = pd.DataFrame({
+        "text": ["hello world this is test"],
+        "start": [0.0],
+        "end": [2.4],
+        "duration": [2.4],
+        "avg_word_confidence": [0.9],
+    })
+    
+    df_fillers = pd.DataFrame({
+        "type": ["filler", "stutter"],
+        "text": ["uh", "t"],
+        "start": [0.45, 1.45],
+        "end": [0.48, 1.48],
+        "duration": [0.03, 0.03],
+    })
+    
+    result = analyze_fluency(df_words, df_segments, df_fillers, 2.4)
+    print(f"Fluency Score: {result['verdict']['fluency_score']}")
+    print(f"Readiness: {result['verdict']['readiness']}")
