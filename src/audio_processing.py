@@ -59,6 +59,7 @@ def transcribe_with_whisper(
         task="transcribe",
         word_timestamps=True,
         fp16=False,
+        language="en"
     )
     
     return result
@@ -93,6 +94,7 @@ def transcribe_verbatim_fillers(
             "false starts, repetitions, and hesitations."
         ),
         fp16=False,
+        language="en"
     )
     
     return result
