@@ -19,6 +19,30 @@ This file defines:
 # FILLER & STUTTER DETECTION CONFIGURATION
 # ============================================================
 
+FILLER_PATTERNS = {
+    # Basic fillers
+    'um', 'umm', 'ummm', 'uhm', 'uhhmm',
+    'uh', 'uhh', 'uhhh', 'er', 'err', 'errr',
+    'ah', 'ahh', 'ahhh', 'eh', 'ehh', 'ehhh',
+    
+    # British/formal variants
+    'erm', 'errm', 'errmm',
+    
+    # Elongated versions
+    'uuuh', 'uuum', 'aaah', 'mmm', 'hmm', 'hmmm',
+    
+}
+
+# More conservative set (exclude discourse markers)
+CORE_FILLERS = {
+    'um', 'umm', 'ummm', 'uhm', 'uhhmm',
+    'uh', 'uhh', 'uhhh', 'er', 'err', 'errr',
+    'ah', 'ahh', 'ahhh', 'eh', 'ehh', 'ehhh',
+    'erm', 'errm', 'errmm',
+    'uuuh', 'uuum', 'aaah', 'mmm', 'hmm', 'hmmm',
+}
+
+
 # Mapping from raw phoneme labels (from wav2vec / CTC output)
 # to normalized human-readable filler text.
 #

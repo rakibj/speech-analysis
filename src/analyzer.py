@@ -4,7 +4,11 @@ import pandas as pd
 from dotenv import load_dotenv
 
 from .audio_processing import (
+    CORE_FILLERS,
+    get_content_words,
     load_audio,
+    mark_filler_segments,
+    mark_filler_words,
     transcribe_with_whisper,
     transcribe_verbatim_fillers,
     align_words_whisperx,
@@ -55,43 +59,55 @@ def analyze_speech(
     print(f"Analyzing audio: {audio_path}")
     print(f"Context: {speech_context}")
     
-    # Step 1: Load and transcribe audio
-    print("\n[1/6] Transcribing with Whisper...")
-    result = transcribe_with_whisper(audio_path, device=device)
-    df_words = extract_words_dataframe(result)
-    df_segments = extract_segments_dataframe(result)
+    # Step 1: Verbatim transcription (source of truth)
+    print("\n[1/5] Transcribing with Whisper (verbatim)...")
+    verbatim_result = transcribe_verbatim_fillers(audio_path, device=device)
     
+    # Extract words and segments
+    df_words = extract_words_dataframe(verbatim_result)
+    df_segments = extract_segments_dataframe(verbatim_result)
+
     total_duration = float(df_segments.iloc[-1]["end"])
     print(f"  Duration: {total_duration:.2f}s")
     print(f"  Words: {len(df_words)}")
     
-    # Step 2: Align words with WhisperX
-    print("\n[2/6] Aligning words with WhisperX...")
+    # Step 2: Mark fillers in words and segments
+    print("\n[2/5] Marking filler words...")
+    df_words = mark_filler_words(df_words, CORE_FILLERS)
+    df_segments = mark_filler_segments(df_segments, CORE_FILLERS)
+    
+    filler_count = df_words['is_filler'].sum()
+    print(f"  Marked: {filler_count} filler words")
+    
+    # Get content-only words
+    df_content_words = get_content_words(df_words)
+    print(f"  Content words: {len(df_content_words)}")
+    
+    # Step 3: Align words with WhisperX
+    print("\n[3/5] Aligning words with WhisperX...")
     audio, _ = load_audio(audio_path)
-    df_aligned_words = align_words_whisperx(result["segments"], audio, device=device)
+    df_aligned_words = align_words_whisperx(verbatim_result["segments"], audio, device=device)
     print(f"  Aligned: {len(df_aligned_words)} words")
     
-    # Step 3: Detect fillers with Wav2Vec2
-    print("\n[3/6] Detecting fillers with Wav2Vec2...")
+    # Step 4: Detect fillers with Wav2Vec2
+    print("\n[4/5] Detecting subtle fillers with Wav2Vec2...")
     df_wav2vec_fillers = detect_fillers_wav2vec(audio_path, df_aligned_words)
-    print(f"  Detected: {len(df_wav2vec_fillers)} events")
     
-    # Step 4: Detect fillers with Whisper verbatim
-    print("\n[4/6] Detecting fillers with Whisper (verbatim)...")
-    verbatim_result = transcribe_verbatim_fillers(audio_path, device=device)
-    df_whisper_fillers = detect_fillers_whisper(verbatim_result)
-    print(f"  Detected: {len(df_whisper_fillers)} fillers")
+    # Whisper already detected fillers - extract them
+    df_whisper_fillers = df_words[df_words['is_filler']].copy()
+    df_whisper_fillers['type'] = 'filler'
+    df_whisper_fillers['text'] = df_whisper_fillers['word'].str.lower()
+    df_whisper_fillers = df_whisper_fillers[['type', 'text', 'start', 'end', 'duration']]
     
-    # Step 5: Merge and group detections
-    print("\n[5/6] Merging detections...")
+    # Merge detections
     df_merged_fillers = merge_filler_detections(df_whisper_fillers, df_wav2vec_fillers)
     df_final_fillers = group_stutters(df_merged_fillers)
     print(f"  Total events: {len(df_final_fillers)}")
     
-    # Step 6: Calculate fluency metrics and score
-    print("\n[6/6] Calculating fluency score...")
+    # Step 5: Calculate fluency metrics
+    print("\n[5/5] Calculating fluency score...")
     analysis = analyze_fluency(
-        df_words,
+        df_content_words,  # Use content words for WPM calculation
         df_segments,
         df_final_fillers,
         total_duration,
@@ -104,13 +120,32 @@ def analyze_speech(
     else:
         print(f"\n✗ {analysis['verdict']['readiness']}")
     
-    # Build complete response
+    # Build response with multiple word views
     final_response = {
         **analysis,
+        
+        # Complete timeline with filler markers
         "word_timestamps": df_words.to_dict(orient="records"),
+        
+        # Content words only (for clean display)
+        "content_words": df_content_words.to_dict(orient="records"),
+        
+        # Segments with filler flags
         "segment_timestamps": df_segments.to_dict(orient="records"),
+        
+        # Detected filler events (including stutters)
         "filler_events": df_final_fillers.to_dict(orient="records"),
+        
+        # WhisperX aligned words (for advanced use)
         "aligned_words": df_aligned_words.to_dict(orient="records"),
+        
+        # Statistics
+        "statistics": {
+            "total_words": len(df_words),
+            "content_words": len(df_content_words),
+            "filler_words": filler_count,
+            "filler_percentage": round(100 * filler_count / len(df_words), 2) if len(df_words) > 0 else 0,
+        }
     }
     
     return final_response

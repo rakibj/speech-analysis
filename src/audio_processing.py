@@ -170,6 +170,7 @@ def extract_words_dataframe(result: dict) -> pd.DataFrame:
     return pd.DataFrame(words)
 
 
+
 def extract_segments_dataframe(result: dict) -> pd.DataFrame:
     """
     Extract segment-level data from Whisper result.
@@ -193,6 +194,191 @@ def extract_segments_dataframe(result: dict) -> pd.DataFrame:
         })
     
     return pd.DataFrame(segments)
+# Add to audio_processing.py or create a new utility file
+
+import re
+import pandas as pd
+from typing import Set
+
+# Comprehensive filler patterns
+FILLER_PATTERNS = {
+    # Basic fillers
+    'um', 'umm', 'ummm', 'uhm', 'uhhmm',
+    'uh', 'uhh', 'uhhh', 'er', 'err', 'errr',
+    'ah', 'ahh', 'ahhh', 'eh', 'ehh', 'ehhh',
+    
+    # British/formal variants
+    'erm', 'errm', 'errmm',
+    
+    # Elongated versions
+    'uuuh', 'uuum', 'aaah', 'mmm', 'hmm', 'hmmm',
+    
+    # False starts / discourse markers (optional - tune based on your needs)
+    'like', 'you know', 'i mean', 'sort of', 'kind of',
+    'basically', 'actually', 'literally', 'right', 'okay', 'ok',
+    'so', 'well', 'yeah', 'yep', 'yup', 'nope',
+}
+
+# More conservative set (exclude discourse markers)
+CORE_FILLERS = {
+    'um', 'umm', 'ummm', 'uhm', 'uhhmm',
+    'uh', 'uhh', 'uhhh', 'er', 'err', 'errr',
+    'ah', 'ahh', 'ahhh', 'eh', 'ehh', 'ehhh',
+    'erm', 'errm', 'errmm',
+    'uuuh', 'uuum', 'aaah', 'mmm', 'hmm', 'hmmm',
+}
+
+
+def normalize_word(word: str) -> str:
+    """
+    Normalize a word for filler detection.
+    
+    - Strips punctuation
+    - Converts to lowercase
+    - Removes extra whitespace
+    
+    Args:
+        word: Raw word string from transcription
+        
+    Returns:
+        Normalized word string
+    """
+    # Remove leading/trailing punctuation and whitespace
+    word = re.sub(r'^[^\w]+|[^\w]+$', '', word.lower().strip())
+    
+    # Collapse multiple spaces
+    word = re.sub(r'\s+', ' ', word)
+    
+    return word
+
+
+def is_filler_word(
+    word: str,
+    filler_set: Set[str] = CORE_FILLERS,
+    include_pattern_match: bool = True
+) -> bool:
+    """
+    Determine if a word is a filler with high confidence.
+    
+    Args:
+        word: Word to check
+        filler_set: Set of known filler words
+        include_pattern_match: Also check regex patterns for variations
+        
+    Returns:
+        True if word is a filler
+    """
+    normalized = normalize_word(word)
+    
+    if not normalized:
+        return False
+    
+    # Direct lookup in filler set
+    if normalized in filler_set:
+        return True
+    
+    # Pattern matching for variations
+    if include_pattern_match:
+        # Repeated vowels: uhhhhh, ummmm, ahhhhh
+        if re.fullmatch(r'[uea]h{2,}', normalized):
+            return True
+        if re.fullmatch(r'[ume]{2,}', normalized):
+            return True
+        
+        # Elongated nasals: mmmmm, nnnn
+        if re.fullmatch(r'[mn]{2,}', normalized):
+            return True
+        
+        # Um/uh variants with extra letters
+        if re.fullmatch(r'u+h*m+', normalized):  # um, umm, uhhm
+            return True
+        if re.fullmatch(r'u+h+', normalized):  # uh, uhh, uhhh
+            return True
+        if re.fullmatch(r'e+r+m*', normalized):  # er, err, erm
+            return True
+    
+    return False
+
+
+def mark_filler_words(
+    df_words: pd.DataFrame,
+    filler_set: Set[str] = CORE_FILLERS,
+    word_column: str = 'word'
+) -> pd.DataFrame:
+    """
+    Add 'is_filler' column to word DataFrame.
+    
+    Args:
+        df_words: DataFrame with word timestamps
+        filler_set: Set of filler words to detect
+        word_column: Name of column containing words
+        
+    Returns:
+        DataFrame with added 'is_filler' column
+    """
+    df = df_words.copy()
+    
+    df['is_filler'] = df[word_column].apply(
+        lambda w: is_filler_word(w, filler_set)
+    )
+    
+    return df
+
+
+def get_content_words(df_words: pd.DataFrame) -> pd.DataFrame:
+    """
+    Extract only content words (non-fillers).
+    
+    Args:
+        df_words: DataFrame with 'is_filler' column
+        
+    Returns:
+        Filtered DataFrame with only content words
+    """
+    if 'is_filler' not in df_words.columns:
+        raise ValueError("DataFrame must have 'is_filler' column. Run mark_filler_words() first.")
+    
+    return df_words[~df_words['is_filler']].copy().reset_index(drop=True)
+
+
+def segment_contains_filler(segment_text: str, filler_set: Set[str] = CORE_FILLERS) -> bool:
+    """
+    Check if a segment contains any filler words.
+    
+    Args:
+        segment_text: Full segment text
+        filler_set: Set of filler words
+        
+    Returns:
+        True if segment contains fillers
+    """
+    words = segment_text.lower().split()
+    return any(is_filler_word(w, filler_set) for w in words)
+
+
+def mark_filler_segments(
+    df_segments: pd.DataFrame,
+    filler_set: Set[str] = CORE_FILLERS,
+    text_column: str = 'text'
+) -> pd.DataFrame:
+    """
+    Add 'contains_filler' column to segment DataFrame.
+    
+    Args:
+        df_segments: DataFrame with segment timestamps
+        filler_set: Set of filler words to detect
+        text_column: Name of column containing segment text
+        
+    Returns:
+        DataFrame with added 'contains_filler' column
+    """
+    df = df_segments.copy()
+    
+    df['contains_filler'] = df[text_column].apply(
+        lambda text: segment_contains_filler(text, filler_set)
+    )
+    
+    return df
 
 
 if __name__ == "__main__":
