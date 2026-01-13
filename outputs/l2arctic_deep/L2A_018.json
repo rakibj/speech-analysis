@@ -1,0 +1,778 @@
+{
+  "meta": {
+    "sample_id": "L2A_018",
+    "filename": "L2A_018.wav",
+    "duration_sec": 58.56,
+    "word_count": 109,
+    "filler_event_count": 13
+  },
+  "verdict": {
+    "fluency_score": 34,
+    "readiness": "not_ready"
+  },
+  "benchmarking": {
+    "percentile": 30,
+    "target_score": 80,
+    "score_gap": 46,
+    "estimated_guided_practice_hours": 27.599999999999998
+  },
+  "metrics": {
+    "wpm": 111.68032786885246,
+    "fillers_per_min": 2.6639344262295084,
+    "stutters_per_min": 0.0,
+    "long_pauses_per_min": 4.098360655737705,
+    "very_long_pauses_per_min": 0.0,
+    "pause_time_ratio": 0.13114754098360665,
+    "pause_variability": 0.3661966684720113,
+    "vocab_richness": 0.6788990825688074,
+    "repetition_ratio": 0.07339449541284404
+  },
+  "sub_analysis": {
+    "primary_issues": [
+      {
+        "issue": "hesitation_structure",
+        "severity": "high",
+        "root_cause": "Pauses frequently interrupt sentence flow.",
+        "score_impact": 30
+      },
+      {
+        "issue": "filler_dependency",
+        "severity": "high",
+        "root_cause": "Fillers replace silent planning pauses.",
+        "score_impact": 11
+      },
+      {
+        "issue": "delivery_instability",
+        "severity": "medium",
+        "root_cause": "Speech rhythm varies unpredictably.",
+        "score_impact": 10
+      }
+    ],
+    "action_plan": [
+      {
+        "priority": 1,
+        "focus": "hesitation_structure",
+        "instruction": "Pause only after completing full clauses or ideas.",
+        "expected_score_gain": 27
+      },
+      {
+        "priority": 2,
+        "focus": "filler_dependency",
+        "instruction": "Replace filler words with silent pauses under 300 ms.",
+        "expected_score_gain": 9
+      },
+      {
+        "priority": 3,
+        "focus": "delivery_instability",
+        "instruction": "Practice steady pacing using metronome or rhythm drills.",
+        "expected_score_gain": 9
+      }
+    ]
+  },
+  "transcript": {
+    "text": "In a sunny, nice day, a lady and a man living in a big city was preparing to go for a trip. These two people do not know each other. So they were walking on the street and by coincidence, they hit each other, their bags fell down and so do them. And after that by coincidence also they had the same type of bag so everyone took any bag from the ground and moved back to his home. After that they only reached home, they discovered that they picked up the wrong one, the wrong bag. So I think they they were thinking now of returning these bags.",
+    "segments": [
+      {
+        "text": "In a sunny, nice day, a lady and a man living in a big city was preparing to go for a trip.",
+        "start": 0.0,
+        "end": 10.6
+      },
+      {
+        "text": "These two people do not know each other. So they were walking on the street and by coincidence,",
+        "start": 11.78,
+        "end": 20.92
+      },
+      {
+        "text": "they hit each other, their bags fell down and so do them. And after that by",
+        "start": 20.92,
+        "end": 31.28
+      },
+      {
+        "text": "coincidence also they had the same type of bag so everyone took any bag from",
+        "start": 31.28,
+        "end": 39.0
+      },
+      {
+        "text": "the ground and moved back to his home. After that they only reached home, they",
+        "start": 39.0,
+        "end": 46.44
+      },
+      {
+        "text": "discovered that they picked up the wrong one, the wrong bag. So I think they",
+        "start": 46.44,
+        "end": 55.78
+      },
+      {
+        "text": "they were thinking now of returning these bags.",
+        "start": 55.78,
+        "end": 58.56
+      }
+    ],
+    "words": [
+      {
+        "word": "In",
+        "start": 0.0,
+        "end": 0.48
+      },
+      {
+        "word": "a",
+        "start": 0.48,
+        "end": 0.72
+      },
+      {
+        "word": "sunny,",
+        "start": 0.72,
+        "end": 1.24
+      },
+      {
+        "word": "nice",
+        "start": 1.54,
+        "end": 1.7
+      },
+      {
+        "word": "day,",
+        "start": 1.7,
+        "end": 2.26
+      },
+      {
+        "word": "a",
+        "start": 3.32,
+        "end": 3.78
+      },
+      {
+        "word": "lady",
+        "start": 3.78,
+        "end": 4.14
+      },
+      {
+        "word": "and",
+        "start": 4.14,
+        "end": 4.42
+      },
+      {
+        "word": "a",
+        "start": 4.42,
+        "end": 4.5
+      },
+      {
+        "word": "man",
+        "start": 4.5,
+        "end": 4.76
+      },
+      {
+        "word": "living",
+        "start": 4.76,
+        "end": 5.72
+      },
+      {
+        "word": "in",
+        "start": 5.72,
+        "end": 5.98
+      },
+      {
+        "word": "a",
+        "start": 5.98,
+        "end": 6.34
+      },
+      {
+        "word": "big",
+        "start": 6.34,
+        "end": 6.96
+      },
+      {
+        "word": "city",
+        "start": 6.96,
+        "end": 7.32
+      },
+      {
+        "word": "was",
+        "start": 7.32,
+        "end": 8.5
+      },
+      {
+        "word": "preparing",
+        "start": 8.5,
+        "end": 9.08
+      },
+      {
+        "word": "to",
+        "start": 9.08,
+        "end": 9.42
+      },
+      {
+        "word": "go",
+        "start": 9.42,
+        "end": 9.92
+      },
+      {
+        "word": "for",
+        "start": 9.92,
+        "end": 10.12
+      },
+      {
+        "word": "a",
+        "start": 10.12,
+        "end": 10.26
+      },
+      {
+        "word": "trip.",
+        "start": 10.26,
+        "end": 10.6
+      },
+      {
+        "word": "These",
+        "start": 11.78,
+        "end": 11.92
+      },
+      {
+        "word": "two",
+        "start": 11.92,
+        "end": 13.36
+      },
+      {
+        "word": "people",
+        "start": 13.36,
+        "end": 13.72
+      },
+      {
+        "word": "do",
+        "start": 13.72,
+        "end": 14.32
+      },
+      {
+        "word": "not",
+        "start": 14.32,
+        "end": 14.46
+      },
+      {
+        "word": "know",
+        "start": 14.46,
+        "end": 14.7
+      },
+      {
+        "word": "each",
+        "start": 14.7,
+        "end": 14.98
+      },
+      {
+        "word": "other.",
+        "start": 14.98,
+        "end": 15.22
+      },
+      {
+        "word": "So",
+        "start": 16.1,
+        "end": 16.24
+      },
+      {
+        "word": "they",
+        "start": 16.24,
+        "end": 17.86
+      },
+      {
+        "word": "were",
+        "start": 17.86,
+        "end": 18.06
+      },
+      {
+        "word": "walking",
+        "start": 18.06,
+        "end": 18.44
+      },
+      {
+        "word": "on",
+        "start": 18.44,
+        "end": 18.58
+      },
+      {
+        "word": "the",
+        "start": 18.58,
+        "end": 18.64
+      },
+      {
+        "word": "street",
+        "start": 18.64,
+        "end": 18.96
+      },
+      {
+        "word": "and",
+        "start": 18.96,
+        "end": 20.24
+      },
+      {
+        "word": "by",
+        "start": 20.24,
+        "end": 20.44
+      },
+      {
+        "word": "coincidence,",
+        "start": 20.44,
+        "end": 20.92
+      },
+      {
+        "word": "they",
+        "start": 20.92,
+        "end": 21.62
+      },
+      {
+        "word": "hit",
+        "start": 21.62,
+        "end": 22.34
+      },
+      {
+        "word": "each",
+        "start": 22.34,
+        "end": 22.76
+      },
+      {
+        "word": "other,",
+        "start": 22.76,
+        "end": 23.04
+      },
+      {
+        "word": "their",
+        "start": 23.82,
+        "end": 25.52
+      },
+      {
+        "word": "bags",
+        "start": 25.52,
+        "end": 25.76
+      },
+      {
+        "word": "fell",
+        "start": 25.76,
+        "end": 26.5
+      },
+      {
+        "word": "down",
+        "start": 26.5,
+        "end": 26.88
+      },
+      {
+        "word": "and",
+        "start": 26.88,
+        "end": 27.62
+      },
+      {
+        "word": "so",
+        "start": 27.62,
+        "end": 27.88
+      },
+      {
+        "word": "do",
+        "start": 27.88,
+        "end": 28.06
+      },
+      {
+        "word": "them.",
+        "start": 28.06,
+        "end": 28.44
+      },
+      {
+        "word": "And",
+        "start": 29.24,
+        "end": 29.44
+      },
+      {
+        "word": "after",
+        "start": 29.44,
+        "end": 29.92
+      },
+      {
+        "word": "that",
+        "start": 29.92,
+        "end": 30.52
+      },
+      {
+        "word": "by",
+        "start": 30.52,
+        "end": 31.28
+      },
+      {
+        "word": "coincidence",
+        "start": 31.28,
+        "end": 31.66
+      },
+      {
+        "word": "also",
+        "start": 31.66,
+        "end": 32.24
+      },
+      {
+        "word": "they",
+        "start": 32.24,
+        "end": 32.9
+      },
+      {
+        "word": "had",
+        "start": 32.9,
+        "end": 33.08
+      },
+      {
+        "word": "the",
+        "start": 33.08,
+        "end": 33.26
+      },
+      {
+        "word": "same",
+        "start": 33.26,
+        "end": 33.7
+      },
+      {
+        "word": "type",
+        "start": 33.7,
+        "end": 34.24
+      },
+      {
+        "word": "of",
+        "start": 34.24,
+        "end": 34.48
+      },
+      {
+        "word": "bag",
+        "start": 34.48,
+        "end": 34.72
+      },
+      {
+        "word": "so",
+        "start": 34.72,
+        "end": 35.58
+      },
+      {
+        "word": "everyone",
+        "start": 35.58,
+        "end": 36.94
+      },
+      {
+        "word": "took",
+        "start": 36.94,
+        "end": 37.56
+      },
+      {
+        "word": "any",
+        "start": 37.56,
+        "end": 38.58
+      },
+      {
+        "word": "bag",
+        "start": 38.58,
+        "end": 38.8
+      },
+      {
+        "word": "from",
+        "start": 38.8,
+        "end": 39.0
+      },
+      {
+        "word": "the",
+        "start": 39.0,
+        "end": 39.16
+      },
+      {
+        "word": "ground",
+        "start": 39.16,
+        "end": 39.44
+      },
+      {
+        "word": "and",
+        "start": 39.44,
+        "end": 39.86
+      },
+      {
+        "word": "moved",
+        "start": 39.86,
+        "end": 40.24
+      },
+      {
+        "word": "back",
+        "start": 40.24,
+        "end": 40.48
+      },
+      {
+        "word": "to",
+        "start": 40.48,
+        "end": 40.66
+      },
+      {
+        "word": "his",
+        "start": 40.66,
+        "end": 40.82
+      },
+      {
+        "word": "home.",
+        "start": 40.82,
+        "end": 41.12
+      },
+      {
+        "word": "After",
+        "start": 42.36,
+        "end": 43.2
+      },
+      {
+        "word": "that",
+        "start": 43.2,
+        "end": 43.64
+      },
+      {
+        "word": "they",
+        "start": 43.64,
+        "end": 44.74
+      },
+      {
+        "word": "only",
+        "start": 44.74,
+        "end": 45.02
+      },
+      {
+        "word": "reached",
+        "start": 45.02,
+        "end": 45.46
+      },
+      {
+        "word": "home,",
+        "start": 45.46,
+        "end": 45.88
+      },
+      {
+        "word": "they",
+        "start": 46.38,
+        "end": 46.44
+      },
+      {
+        "word": "discovered",
+        "start": 46.44,
+        "end": 46.92
+      },
+      {
+        "word": "that",
+        "start": 46.92,
+        "end": 47.4
+      },
+      {
+        "word": "they",
+        "start": 47.4,
+        "end": 48.64
+      },
+      {
+        "word": "picked",
+        "start": 48.64,
+        "end": 48.96
+      },
+      {
+        "word": "up",
+        "start": 48.96,
+        "end": 49.5
+      },
+      {
+        "word": "the",
+        "start": 49.5,
+        "end": 50.36
+      },
+      {
+        "word": "wrong",
+        "start": 50.36,
+        "end": 51.04
+      },
+      {
+        "word": "one,",
+        "start": 51.04,
+        "end": 51.44
+      },
+      {
+        "word": "the",
+        "start": 51.9,
+        "end": 52.04
+      },
+      {
+        "word": "wrong",
+        "start": 52.04,
+        "end": 52.5
+      },
+      {
+        "word": "bag.",
+        "start": 52.5,
+        "end": 53.06
+      },
+      {
+        "word": "So",
+        "start": 54.34,
+        "end": 54.6
+      },
+      {
+        "word": "I",
+        "start": 54.6,
+        "end": 55.4
+      },
+      {
+        "word": "think",
+        "start": 55.4,
+        "end": 55.56
+      },
+      {
+        "word": "they",
+        "start": 55.56,
+        "end": 55.78
+      },
+      {
+        "word": "they",
+        "start": 55.78,
+        "end": 55.86
+      },
+      {
+        "word": "were",
+        "start": 55.86,
+        "end": 55.92
+      },
+      {
+        "word": "thinking",
+        "start": 55.92,
+        "end": 56.56
+      },
+      {
+        "word": "now",
+        "start": 56.56,
+        "end": 57.0
+      },
+      {
+        "word": "of",
+        "start": 57.0,
+        "end": 57.42
+      },
+      {
+        "word": "returning",
+        "start": 57.42,
+        "end": 57.82
+      },
+      {
+        "word": "these",
+        "start": 57.82,
+        "end": 58.2
+      },
+      {
+        "word": "bags.",
+        "start": 58.2,
+        "end": 58.56
+      }
+    ]
+  },
+  "disfluency_events": [
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 0.62,
+      "end": 0.64,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 3.92,
+      "end": 3.94,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 6.12,
+      "end": 6.14,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 19.94,
+      "end": 20.0,
+      "duration": 0.06,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 29.26,
+      "end": 29.3,
+      "duration": 0.04,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 32.0,
+      "end": 32.02,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 38.46,
+      "end": 38.48,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 39.78,
+      "end": 39.8,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 43.04,
+      "end": 43.06,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 44.86,
+      "end": 44.88,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 49.46,
+      "end": 49.48,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "um",
+      "style": "subtle",
+      "start": 52.82,
+      "end": 52.84,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 55.32,
+      "end": 55.34,
+      "duration": 0.02,
+      "count": NaN
+    }
+  ]
+}

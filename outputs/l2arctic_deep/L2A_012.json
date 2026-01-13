@@ -1,0 +1,691 @@
+{
+  "meta": {
+    "sample_id": "L2A_012",
+    "filename": "L2A_012.wav",
+    "duration_sec": 53.68,
+    "word_count": 111,
+    "filler_event_count": 6
+  },
+  "verdict": {
+    "fluency_score": 65,
+    "readiness": "borderline"
+  },
+  "benchmarking": {
+    "percentile": 50,
+    "target_score": 80,
+    "score_gap": 15,
+    "estimated_guided_practice_hours": 9.0
+  },
+  "metrics": {
+    "wpm": 122.95081967213115,
+    "fillers_per_min": 1.7883755588673622,
+    "stutters_per_min": 0.0,
+    "long_pauses_per_min": 3.3532041728763042,
+    "very_long_pauses_per_min": 0.0,
+    "pause_time_ratio": 0.10692995529061103,
+    "pause_variability": 0.0,
+    "vocab_richness": 0.6545454545454545,
+    "repetition_ratio": 0.05454545454545454
+  },
+  "sub_analysis": {
+    "primary_issues": [
+      {
+        "issue": "hesitation_structure",
+        "severity": "high",
+        "root_cause": "Pauses frequently interrupt sentence flow.",
+        "score_impact": 25
+      }
+    ],
+    "action_plan": [
+      {
+        "priority": 1,
+        "focus": "hesitation_structure",
+        "instruction": "Pause only after completing full clauses or ideas.",
+        "expected_score_gain": 15
+      }
+    ]
+  },
+  "transcript": {
+    "text": "So I see a busy New York CTD on the Monday and, uh, two people after their big vacation coming back to the New York and walking in the parking lot. They don't see each other near the pavement and they just collide. After that, they're trying to adjust their clothes and later after saying sorry to each other, they take their back. and go away. It seems both of their bags are of same color and same pattern. So after going home they check the clothes inside their bag and it seems their bags are exchanged now. So there was a miscommunication, a misunderstanding while day picking up the bags.",
+    "segments": [
+      {
+        "text": "So I see a busy New York CTD on the Monday and, uh, two people after their big vacation coming back to the New York and walking in the parking lot. They don't see each other near the pavement and they just collide. After that, they're trying to adjust their clothes and later after saying sorry to each other, they take their back.",
+        "start": 0.0,
+        "end": 29.98
+      },
+      {
+        "text": "and go away. It seems both of their bags are of same color and same pattern. So",
+        "start": 29.98,
+        "end": 37.44
+      },
+      {
+        "text": "after going home they check the clothes inside their bag and it seems their",
+        "start": 37.44,
+        "end": 44.46
+      },
+      {
+        "text": "bags are exchanged now. So there was a miscommunication, a misunderstanding while",
+        "start": 44.46,
+        "end": 51.76
+      },
+      {
+        "text": "day picking up the bags.",
+        "start": 51.76,
+        "end": 53.68
+      }
+    ],
+    "words": [
+      {
+        "word": "So",
+        "start": 0.0,
+        "end": 0.36
+      },
+      {
+        "word": "I",
+        "start": 0.36,
+        "end": 0.58
+      },
+      {
+        "word": "see",
+        "start": 0.58,
+        "end": 0.9
+      },
+      {
+        "word": "a",
+        "start": 0.9,
+        "end": 1.22
+      },
+      {
+        "word": "busy",
+        "start": 1.22,
+        "end": 1.6
+      },
+      {
+        "word": "New",
+        "start": 1.6,
+        "end": 2.16
+      },
+      {
+        "word": "York",
+        "start": 2.16,
+        "end": 2.38
+      },
+      {
+        "word": "CTD",
+        "start": 2.38,
+        "end": 3.02
+      },
+      {
+        "word": "on",
+        "start": 3.02,
+        "end": 3.24
+      },
+      {
+        "word": "the",
+        "start": 3.24,
+        "end": 3.38
+      },
+      {
+        "word": "Monday",
+        "start": 3.38,
+        "end": 3.76
+      },
+      {
+        "word": "and,",
+        "start": 3.76,
+        "end": 4.82
+      },
+      {
+        "word": "uh,",
+        "start": 5.06,
+        "end": 5.34
+      },
+      {
+        "word": "two",
+        "start": 5.88,
+        "end": 6.12
+      },
+      {
+        "word": "people",
+        "start": 6.12,
+        "end": 6.52
+      },
+      {
+        "word": "after",
+        "start": 6.52,
+        "end": 7.34
+      },
+      {
+        "word": "their",
+        "start": 7.34,
+        "end": 7.64
+      },
+      {
+        "word": "big",
+        "start": 7.64,
+        "end": 8.18
+      },
+      {
+        "word": "vacation",
+        "start": 8.18,
+        "end": 8.72
+      },
+      {
+        "word": "coming",
+        "start": 8.72,
+        "end": 9.3
+      },
+      {
+        "word": "back",
+        "start": 9.3,
+        "end": 10.22
+      },
+      {
+        "word": "to",
+        "start": 10.22,
+        "end": 10.46
+      },
+      {
+        "word": "the",
+        "start": 10.46,
+        "end": 10.6
+      },
+      {
+        "word": "New",
+        "start": 10.6,
+        "end": 10.82
+      },
+      {
+        "word": "York",
+        "start": 10.82,
+        "end": 11.1
+      },
+      {
+        "word": "and",
+        "start": 11.1,
+        "end": 11.62
+      },
+      {
+        "word": "walking",
+        "start": 11.62,
+        "end": 12.18
+      },
+      {
+        "word": "in",
+        "start": 12.18,
+        "end": 13.08
+      },
+      {
+        "word": "the",
+        "start": 13.08,
+        "end": 13.22
+      },
+      {
+        "word": "parking",
+        "start": 13.22,
+        "end": 13.64
+      },
+      {
+        "word": "lot.",
+        "start": 13.64,
+        "end": 15.1
+      },
+      {
+        "word": "They",
+        "start": 16.64,
+        "end": 17.28
+      },
+      {
+        "word": "don't",
+        "start": 17.28,
+        "end": 17.5
+      },
+      {
+        "word": "see",
+        "start": 17.5,
+        "end": 17.74
+      },
+      {
+        "word": "each",
+        "start": 17.74,
+        "end": 18.06
+      },
+      {
+        "word": "other",
+        "start": 18.06,
+        "end": 18.32
+      },
+      {
+        "word": "near",
+        "start": 18.32,
+        "end": 18.64
+      },
+      {
+        "word": "the",
+        "start": 18.64,
+        "end": 18.88
+      },
+      {
+        "word": "pavement",
+        "start": 18.88,
+        "end": 19.3
+      },
+      {
+        "word": "and",
+        "start": 19.3,
+        "end": 19.82
+      },
+      {
+        "word": "they",
+        "start": 19.82,
+        "end": 20.06
+      },
+      {
+        "word": "just",
+        "start": 20.06,
+        "end": 20.48
+      },
+      {
+        "word": "collide.",
+        "start": 20.48,
+        "end": 21.04
+      },
+      {
+        "word": "After",
+        "start": 22.0,
+        "end": 22.64
+      },
+      {
+        "word": "that,",
+        "start": 22.64,
+        "end": 22.88
+      },
+      {
+        "word": "they're",
+        "start": 22.88,
+        "end": 23.14
+      },
+      {
+        "word": "trying",
+        "start": 23.14,
+        "end": 23.36
+      },
+      {
+        "word": "to",
+        "start": 23.36,
+        "end": 23.56
+      },
+      {
+        "word": "adjust",
+        "start": 23.56,
+        "end": 23.9
+      },
+      {
+        "word": "their",
+        "start": 23.9,
+        "end": 24.24
+      },
+      {
+        "word": "clothes",
+        "start": 24.24,
+        "end": 24.56
+      },
+      {
+        "word": "and",
+        "start": 24.56,
+        "end": 25.3
+      },
+      {
+        "word": "later",
+        "start": 25.3,
+        "end": 26.8
+      },
+      {
+        "word": "after",
+        "start": 26.8,
+        "end": 27.42
+      },
+      {
+        "word": "saying",
+        "start": 27.42,
+        "end": 27.76
+      },
+      {
+        "word": "sorry",
+        "start": 27.76,
+        "end": 28.28
+      },
+      {
+        "word": "to",
+        "start": 28.28,
+        "end": 28.52
+      },
+      {
+        "word": "each",
+        "start": 28.52,
+        "end": 28.76
+      },
+      {
+        "word": "other,",
+        "start": 28.76,
+        "end": 29.0
+      },
+      {
+        "word": "they",
+        "start": 29.18,
+        "end": 29.26
+      },
+      {
+        "word": "take",
+        "start": 29.26,
+        "end": 29.52
+      },
+      {
+        "word": "their",
+        "start": 29.52,
+        "end": 29.76
+      },
+      {
+        "word": "back.",
+        "start": 29.76,
+        "end": 29.98
+      },
+      {
+        "word": "and",
+        "start": 29.98,
+        "end": 30.42
+      },
+      {
+        "word": "go",
+        "start": 30.42,
+        "end": 30.68
+      },
+      {
+        "word": "away.",
+        "start": 30.68,
+        "end": 30.94
+      },
+      {
+        "word": "It",
+        "start": 32.12,
+        "end": 32.22
+      },
+      {
+        "word": "seems",
+        "start": 32.22,
+        "end": 32.48
+      },
+      {
+        "word": "both",
+        "start": 32.48,
+        "end": 32.9
+      },
+      {
+        "word": "of",
+        "start": 32.9,
+        "end": 33.08
+      },
+      {
+        "word": "their",
+        "start": 33.08,
+        "end": 33.26
+      },
+      {
+        "word": "bags",
+        "start": 33.26,
+        "end": 33.6
+      },
+      {
+        "word": "are",
+        "start": 33.6,
+        "end": 34.48
+      },
+      {
+        "word": "of",
+        "start": 34.48,
+        "end": 34.62
+      },
+      {
+        "word": "same",
+        "start": 34.62,
+        "end": 34.9
+      },
+      {
+        "word": "color",
+        "start": 34.9,
+        "end": 35.34
+      },
+      {
+        "word": "and",
+        "start": 35.34,
+        "end": 35.76
+      },
+      {
+        "word": "same",
+        "start": 35.76,
+        "end": 36.08
+      },
+      {
+        "word": "pattern.",
+        "start": 36.08,
+        "end": 36.5
+      },
+      {
+        "word": "So",
+        "start": 37.38,
+        "end": 37.44
+      },
+      {
+        "word": "after",
+        "start": 37.44,
+        "end": 37.82
+      },
+      {
+        "word": "going",
+        "start": 37.82,
+        "end": 38.12
+      },
+      {
+        "word": "home",
+        "start": 38.12,
+        "end": 38.62
+      },
+      {
+        "word": "they",
+        "start": 38.62,
+        "end": 39.02
+      },
+      {
+        "word": "check",
+        "start": 39.02,
+        "end": 39.34
+      },
+      {
+        "word": "the",
+        "start": 39.34,
+        "end": 39.82
+      },
+      {
+        "word": "clothes",
+        "start": 39.82,
+        "end": 41.42
+      },
+      {
+        "word": "inside",
+        "start": 41.42,
+        "end": 42.26
+      },
+      {
+        "word": "their",
+        "start": 42.26,
+        "end": 42.62
+      },
+      {
+        "word": "bag",
+        "start": 42.62,
+        "end": 42.88
+      },
+      {
+        "word": "and",
+        "start": 42.88,
+        "end": 43.3
+      },
+      {
+        "word": "it",
+        "start": 43.3,
+        "end": 43.44
+      },
+      {
+        "word": "seems",
+        "start": 43.44,
+        "end": 43.84
+      },
+      {
+        "word": "their",
+        "start": 43.84,
+        "end": 44.46
+      },
+      {
+        "word": "bags",
+        "start": 44.46,
+        "end": 44.8
+      },
+      {
+        "word": "are",
+        "start": 44.8,
+        "end": 45.32
+      },
+      {
+        "word": "exchanged",
+        "start": 45.32,
+        "end": 45.94
+      },
+      {
+        "word": "now.",
+        "start": 45.94,
+        "end": 46.52
+      },
+      {
+        "word": "So",
+        "start": 47.7,
+        "end": 47.94
+      },
+      {
+        "word": "there",
+        "start": 47.94,
+        "end": 48.14
+      },
+      {
+        "word": "was",
+        "start": 48.14,
+        "end": 48.3
+      },
+      {
+        "word": "a",
+        "start": 48.3,
+        "end": 48.44
+      },
+      {
+        "word": "miscommunication,",
+        "start": 48.44,
+        "end": 49.46
+      },
+      {
+        "word": "a",
+        "start": 49.74,
+        "end": 49.8
+      },
+      {
+        "word": "misunderstanding",
+        "start": 49.8,
+        "end": 51.14
+      },
+      {
+        "word": "while",
+        "start": 51.14,
+        "end": 51.76
+      },
+      {
+        "word": "day",
+        "start": 51.76,
+        "end": 52.28
+      },
+      {
+        "word": "picking",
+        "start": 52.28,
+        "end": 53.0
+      },
+      {
+        "word": "up",
+        "start": 53.0,
+        "end": 53.18
+      },
+      {
+        "word": "the",
+        "start": 53.18,
+        "end": 53.36
+      },
+      {
+        "word": "bags.",
+        "start": 53.36,
+        "end": 53.68
+      }
+    ]
+  },
+  "disfluency_events": [
+    {
+      "type": "filler",
+      "text": "uh,",
+      "style": "clear",
+      "start": 5.06,
+      "end": 5.34,
+      "duration": 0.28,
+      "count": 1
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 11.48,
+      "end": 11.52,
+      "duration": 0.04,
+      "count": 1
+    },
+    {
+      "type": "filler",
+      "text": "um",
+      "style": "subtle",
+      "start": 18.54,
+      "end": 18.58,
+      "duration": 0.04,
+      "count": 1
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 22.42,
+      "end": 22.46,
+      "duration": 0.04,
+      "count": 1
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 35.62,
+      "end": 35.66,
+      "duration": 0.04,
+      "count": 1
+    },
+    {
+      "type": "filler",
+      "text": "um",
+      "style": "subtle",
+      "start": 43.26,
+      "end": 43.3,
+      "duration": 0.04,
+      "count": 1
+    }
+  ]
+}

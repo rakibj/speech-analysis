@@ -1,0 +1,911 @@
+{
+  "meta": {
+    "sample_id": "L2A_007",
+    "filename": "L2A_007.wav",
+    "duration_sec": 72.74,
+    "word_count": 107,
+    "filler_event_count": 26
+  },
+  "verdict": {
+    "fluency_score": 25,
+    "readiness": "not_ready"
+  },
+  "benchmarking": {
+    "percentile": 30,
+    "target_score": 80,
+    "score_gap": 55,
+    "estimated_guided_practice_hours": 33.0
+  },
+  "metrics": {
+    "wpm": 86.60984327742645,
+    "fillers_per_min": 4.4542205114105045,
+    "stutters_per_min": 2.474566950783613,
+    "long_pauses_per_min": 1.6497113005224087,
+    "very_long_pauses_per_min": 0.8248556502612043,
+    "pause_time_ratio": 0.10860599395105852,
+    "pause_variability": 0.9343550954773278,
+    "vocab_richness": 0.6,
+    "repetition_ratio": 0.12380952380952381
+  },
+  "sub_analysis": {
+    "primary_issues": [
+      {
+        "issue": "delivery_instability",
+        "severity": "medium",
+        "root_cause": "Speech rhythm varies unpredictably.",
+        "score_impact": 20
+      },
+      {
+        "issue": "filler_dependency",
+        "severity": "high",
+        "root_cause": "Fillers replace silent planning pauses.",
+        "score_impact": 18
+      },
+      {
+        "issue": "hesitation_structure",
+        "severity": "high",
+        "root_cause": "Pauses frequently interrupt sentence flow.",
+        "score_impact": 12
+      },
+      {
+        "issue": "delivery_pacing",
+        "severity": "medium",
+        "root_cause": "Speech rate deviates from optimal clarity range.",
+        "score_impact": 8
+      }
+    ],
+    "action_plan": [
+      {
+        "priority": 1,
+        "focus": "delivery_instability",
+        "instruction": "Practice steady pacing using metronome or rhythm drills.",
+        "expected_score_gain": 22
+      },
+      {
+        "priority": 2,
+        "focus": "filler_dependency",
+        "instruction": "Replace filler words with silent pauses under 300 ms.",
+        "expected_score_gain": 19
+      },
+      {
+        "priority": 3,
+        "focus": "hesitation_structure",
+        "instruction": "Pause only after completing full clauses or ideas.",
+        "expected_score_gain": 13
+      }
+    ]
+  },
+  "transcript": {
+    "text": "The Ingol city, uh, woman and the men are hurrying to work with a big bag in their hands. But, uh, at around the corner, they cry together and the bags in their hands fall on the ground. and they apologize to each other for the crush. By finally, they smell to each other and get their bags and leaves. After they get home, the men find their warm, the girls dresses in the bag and he finally figured out that they had to switch the bags and mistreating the warmlands bags. And also, the warmlands found there are mains closed in the bag. Hold on tight.",
+    "segments": [
+      {
+        "text": "The Ingol city, uh, woman and the men are hurrying to work with a big bag in their hands. But, uh, at around the corner, they cry together and the bags in their hands fall on the ground.",
+        "start": 0.0,
+        "end": 16.58
+      },
+      {
+        "text": "and they apologize to each other for the crush.",
+        "start": 30.0,
+        "end": 34.72
+      },
+      {
+        "text": "By finally, they smell to each other",
+        "start": 38.4,
+        "end": 40.82
+      },
+      {
+        "text": "and get their bags and leaves.",
+        "start": 40.82,
+        "end": 44.24
+      },
+      {
+        "text": "After they get home, the men find their warm,",
+        "start": 47.6,
+        "end": 51.8
+      },
+      {
+        "text": "the girls dresses in the bag",
+        "start": 52.04,
+        "end": 54.36
+      },
+      {
+        "text": "and he finally figured out that they had to switch the bags",
+        "start": 55.12,
+        "end": 59.72
+      },
+      {
+        "text": "and mistreating the warmlands bags.",
+        "start": 60.0,
+        "end": 63.6
+      },
+      {
+        "text": "And also, the warmlands found there are",
+        "start": 64.22,
+        "end": 67.26
+      },
+      {
+        "text": "mains closed in the bag.",
+        "start": 67.26,
+        "end": 69.5
+      },
+      {
+        "text": "Hold on tight.",
+        "start": 70.96,
+        "end": 72.74
+      }
+    ],
+    "words": [
+      {
+        "word": "The",
+        "start": 0.0,
+        "end": 0.56
+      },
+      {
+        "word": "Ingol",
+        "start": 0.56,
+        "end": 1.5
+      },
+      {
+        "word": "city,",
+        "start": 1.5,
+        "end": 1.96
+      },
+      {
+        "word": "uh,",
+        "start": 2.54,
+        "end": 2.58
+      },
+      {
+        "word": "woman",
+        "start": 2.94,
+        "end": 2.98
+      },
+      {
+        "word": "and",
+        "start": 2.98,
+        "end": 3.34
+      },
+      {
+        "word": "the",
+        "start": 3.34,
+        "end": 3.54
+      },
+      {
+        "word": "men",
+        "start": 3.54,
+        "end": 3.68
+      },
+      {
+        "word": "are",
+        "start": 3.68,
+        "end": 4.12
+      },
+      {
+        "word": "hurrying",
+        "start": 4.12,
+        "end": 4.82
+      },
+      {
+        "word": "to",
+        "start": 4.82,
+        "end": 5.0
+      },
+      {
+        "word": "work",
+        "start": 5.0,
+        "end": 5.46
+      },
+      {
+        "word": "with",
+        "start": 5.46,
+        "end": 6.04
+      },
+      {
+        "word": "a",
+        "start": 6.04,
+        "end": 6.2
+      },
+      {
+        "word": "big",
+        "start": 6.2,
+        "end": 6.44
+      },
+      {
+        "word": "bag",
+        "start": 6.44,
+        "end": 6.8
+      },
+      {
+        "word": "in",
+        "start": 6.8,
+        "end": 7.3
+      },
+      {
+        "word": "their",
+        "start": 7.3,
+        "end": 7.66
+      },
+      {
+        "word": "hands.",
+        "start": 7.66,
+        "end": 8.22
+      },
+      {
+        "word": "But,",
+        "start": 8.54,
+        "end": 9.16
+      },
+      {
+        "word": "uh,",
+        "start": 9.16,
+        "end": 9.66
+      },
+      {
+        "word": "at",
+        "start": 9.78,
+        "end": 10.08
+      },
+      {
+        "word": "around",
+        "start": 10.08,
+        "end": 10.34
+      },
+      {
+        "word": "the",
+        "start": 10.34,
+        "end": 10.56
+      },
+      {
+        "word": "corner,",
+        "start": 10.56,
+        "end": 10.92
+      },
+      {
+        "word": "they",
+        "start": 11.38,
+        "end": 11.44
+      },
+      {
+        "word": "cry",
+        "start": 11.44,
+        "end": 11.72
+      },
+      {
+        "word": "together",
+        "start": 11.72,
+        "end": 12.48
+      },
+      {
+        "word": "and",
+        "start": 12.48,
+        "end": 13.08
+      },
+      {
+        "word": "the",
+        "start": 13.08,
+        "end": 13.56
+      },
+      {
+        "word": "bags",
+        "start": 13.56,
+        "end": 13.92
+      },
+      {
+        "word": "in",
+        "start": 13.92,
+        "end": 14.18
+      },
+      {
+        "word": "their",
+        "start": 14.18,
+        "end": 14.42
+      },
+      {
+        "word": "hands",
+        "start": 14.42,
+        "end": 14.8
+      },
+      {
+        "word": "fall",
+        "start": 14.8,
+        "end": 15.1
+      },
+      {
+        "word": "on",
+        "start": 15.1,
+        "end": 15.5
+      },
+      {
+        "word": "the",
+        "start": 15.5,
+        "end": 15.82
+      },
+      {
+        "word": "ground.",
+        "start": 15.82,
+        "end": 16.58
+      },
+      {
+        "word": "and",
+        "start": 30.0,
+        "end": 30.34
+      },
+      {
+        "word": "they",
+        "start": 30.34,
+        "end": 30.68
+      },
+      {
+        "word": "apologize",
+        "start": 30.68,
+        "end": 31.28
+      },
+      {
+        "word": "to",
+        "start": 31.28,
+        "end": 31.84
+      },
+      {
+        "word": "each",
+        "start": 31.84,
+        "end": 32.16
+      },
+      {
+        "word": "other",
+        "start": 32.16,
+        "end": 32.64
+      },
+      {
+        "word": "for",
+        "start": 32.64,
+        "end": 33.98
+      },
+      {
+        "word": "the",
+        "start": 33.98,
+        "end": 34.62
+      },
+      {
+        "word": "crush.",
+        "start": 34.62,
+        "end": 34.72
+      },
+      {
+        "word": "By",
+        "start": 38.07,
+        "end": 38.48
+      },
+      {
+        "word": "finally,",
+        "start": 38.48,
+        "end": 38.98
+      },
+      {
+        "word": "they",
+        "start": 39.32,
+        "end": 39.44
+      },
+      {
+        "word": "smell",
+        "start": 39.44,
+        "end": 39.84
+      },
+      {
+        "word": "to",
+        "start": 39.84,
+        "end": 40.16
+      },
+      {
+        "word": "each",
+        "start": 40.16,
+        "end": 40.42
+      },
+      {
+        "word": "other",
+        "start": 40.42,
+        "end": 40.82
+      },
+      {
+        "word": "and",
+        "start": 40.82,
+        "end": 41.36
+      },
+      {
+        "word": "get",
+        "start": 41.36,
+        "end": 41.84
+      },
+      {
+        "word": "their",
+        "start": 41.84,
+        "end": 42.78
+      },
+      {
+        "word": "bags",
+        "start": 42.78,
+        "end": 43.1
+      },
+      {
+        "word": "and",
+        "start": 43.1,
+        "end": 43.86
+      },
+      {
+        "word": "leaves.",
+        "start": 43.86,
+        "end": 44.24
+      },
+      {
+        "word": "After",
+        "start": 47.43,
+        "end": 47.84
+      },
+      {
+        "word": "they",
+        "start": 47.84,
+        "end": 48.08
+      },
+      {
+        "word": "get",
+        "start": 48.08,
+        "end": 48.3
+      },
+      {
+        "word": "home,",
+        "start": 48.3,
+        "end": 48.72
+      },
+      {
+        "word": "the",
+        "start": 49.24,
+        "end": 49.3
+      },
+      {
+        "word": "men",
+        "start": 49.3,
+        "end": 49.6
+      },
+      {
+        "word": "find",
+        "start": 49.6,
+        "end": 50.42
+      },
+      {
+        "word": "their",
+        "start": 50.42,
+        "end": 50.96
+      },
+      {
+        "word": "warm,",
+        "start": 50.96,
+        "end": 51.8
+      },
+      {
+        "word": "the",
+        "start": 52.04,
+        "end": 52.24
+      },
+      {
+        "word": "girls",
+        "start": 52.24,
+        "end": 52.66
+      },
+      {
+        "word": "dresses",
+        "start": 52.66,
+        "end": 53.32
+      },
+      {
+        "word": "in",
+        "start": 53.32,
+        "end": 53.82
+      },
+      {
+        "word": "the",
+        "start": 53.82,
+        "end": 54.1
+      },
+      {
+        "word": "bag",
+        "start": 54.1,
+        "end": 54.36
+      },
+      {
+        "word": "and",
+        "start": 54.99,
+        "end": 55.4
+      },
+      {
+        "word": "he",
+        "start": 55.4,
+        "end": 56.16
+      },
+      {
+        "word": "finally",
+        "start": 56.16,
+        "end": 56.64
+      },
+      {
+        "word": "figured",
+        "start": 56.64,
+        "end": 57.2
+      },
+      {
+        "word": "out",
+        "start": 57.2,
+        "end": 57.6
+      },
+      {
+        "word": "that",
+        "start": 57.6,
+        "end": 58.0
+      },
+      {
+        "word": "they",
+        "start": 58.0,
+        "end": 58.32
+      },
+      {
+        "word": "had",
+        "start": 58.32,
+        "end": 58.48
+      },
+      {
+        "word": "to",
+        "start": 58.48,
+        "end": 58.74
+      },
+      {
+        "word": "switch",
+        "start": 58.74,
+        "end": 58.98
+      },
+      {
+        "word": "the",
+        "start": 58.98,
+        "end": 59.28
+      },
+      {
+        "word": "bags",
+        "start": 59.28,
+        "end": 59.72
+      },
+      {
+        "word": "and",
+        "start": 60.0,
+        "end": 61.34
+      },
+      {
+        "word": "mistreating",
+        "start": 61.34,
+        "end": 61.98
+      },
+      {
+        "word": "the",
+        "start": 61.98,
+        "end": 62.6
+      },
+      {
+        "word": "warmlands",
+        "start": 62.6,
+        "end": 63.18
+      },
+      {
+        "word": "bags.",
+        "start": 63.18,
+        "end": 63.6
+      },
+      {
+        "word": "And",
+        "start": 64.22,
+        "end": 64.38
+      },
+      {
+        "word": "also,",
+        "start": 64.38,
+        "end": 65.02
+      },
+      {
+        "word": "the",
+        "start": 65.38,
+        "end": 65.5
+      },
+      {
+        "word": "warmlands",
+        "start": 65.5,
+        "end": 65.94
+      },
+      {
+        "word": "found",
+        "start": 65.94,
+        "end": 66.3
+      },
+      {
+        "word": "there",
+        "start": 66.3,
+        "end": 66.7
+      },
+      {
+        "word": "are",
+        "start": 66.7,
+        "end": 67.26
+      },
+      {
+        "word": "mains",
+        "start": 67.26,
+        "end": 68.04
+      },
+      {
+        "word": "closed",
+        "start": 68.04,
+        "end": 68.5
+      },
+      {
+        "word": "in",
+        "start": 68.5,
+        "end": 68.92
+      },
+      {
+        "word": "the",
+        "start": 68.92,
+        "end": 69.08
+      },
+      {
+        "word": "bag.",
+        "start": 69.08,
+        "end": 69.5
+      },
+      {
+        "word": "Hold",
+        "start": 70.96,
+        "end": 71.86
+      },
+      {
+        "word": "on",
+        "start": 71.86,
+        "end": 72.44
+      },
+      {
+        "word": "tight.",
+        "start": 72.44,
+        "end": 72.74
+      }
+    ]
+  },
+  "disfluency_events": [
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 1.06,
+      "end": 1.08,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh,",
+      "style": "clear",
+      "start": 2.54,
+      "end": 2.58,
+      "duration": 0.04,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 3.22,
+      "end": 3.24,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh,",
+      "style": "clear",
+      "start": 9.16,
+      "end": 9.66,
+      "duration": 0.5,
+      "count": NaN
+    },
+    {
+      "type": "stutter",
+      "text": "l",
+      "style": "subtle",
+      "start": 18.5,
+      "end": 18.62,
+      "duration": 0.12,
+      "count": 2.0
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 21.2,
+      "end": 21.24,
+      "duration": 0.04,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 21.5,
+      "end": 21.54,
+      "duration": 0.04,
+      "count": NaN
+    },
+    {
+      "type": "stutter",
+      "text": "t",
+      "style": "subtle",
+      "start": 22.56,
+      "end": 22.76,
+      "duration": 0.2,
+      "count": 2.0
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 23.06,
+      "end": 23.1,
+      "duration": 0.04,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 23.18,
+      "end": 23.22,
+      "duration": 0.04,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 25.44,
+      "end": 25.48,
+      "duration": 0.04,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 25.82,
+      "end": 25.86,
+      "duration": 0.04,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "um",
+      "style": "subtle",
+      "start": 28.1,
+      "end": 28.14,
+      "duration": 0.04,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "um",
+      "style": "subtle",
+      "start": 28.3,
+      "end": 28.34,
+      "duration": 0.04,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 29.04,
+      "end": 29.06,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "stutter",
+      "text": "s",
+      "style": "subtle",
+      "start": 29.48,
+      "end": 29.74,
+      "duration": 0.26,
+      "count": 3.0
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 36.86,
+      "end": 36.88,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 38.26,
+      "end": 38.28,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 40.56,
+      "end": 40.6,
+      "duration": 0.04,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 42.4,
+      "end": 42.42,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 43.72,
+      "end": 43.74,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 51.4,
+      "end": 51.42,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "um",
+      "style": "subtle",
+      "start": 51.9,
+      "end": 51.92,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 53.76,
+      "end": 53.78,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 58.64,
+      "end": 58.66,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 61.4,
+      "end": 61.42,
+      "duration": 0.02,
+      "count": NaN
+    }
+  ]
+}

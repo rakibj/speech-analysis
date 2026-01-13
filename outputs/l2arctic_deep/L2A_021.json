@@ -1,0 +1,669 @@
+{
+  "meta": {
+    "sample_id": "L2A_021",
+    "filename": "L2A_021.wav",
+    "duration_sec": 45.42,
+    "word_count": 93,
+    "filler_event_count": 13
+  },
+  "verdict": {
+    "fluency_score": 54,
+    "readiness": "borderline"
+  },
+  "benchmarking": {
+    "percentile": 30,
+    "target_score": 80,
+    "score_gap": 26,
+    "estimated_guided_practice_hours": 15.6
+  },
+  "metrics": {
+    "wpm": 122.85336856010568,
+    "fillers_per_min": 3.434610303830912,
+    "stutters_per_min": 0.0,
+    "long_pauses_per_min": 1.321003963011889,
+    "very_long_pauses_per_min": 0.0,
+    "pause_time_ratio": 0.13077939233817693,
+    "pause_variability": 0.2561249694973142,
+    "vocab_richness": 0.6021505376344086,
+    "repetition_ratio": 0.0967741935483871
+  },
+  "sub_analysis": {
+    "primary_issues": [
+      {
+        "issue": "filler_dependency",
+        "severity": "high",
+        "root_cause": "Fillers replace silent planning pauses.",
+        "score_impact": 14
+      }
+    ],
+    "action_plan": [
+      {
+        "priority": 1,
+        "focus": "filler_dependency",
+        "instruction": "Replace filler words with silent pauses under 300 ms.",
+        "expected_score_gain": 26
+      }
+    ]
+  },
+  "transcript": {
+    "text": "Okay. Well, the first photo shows a high building. It seems to be a modern busy city. And then this second one shows a email and a female. Then the male is wearing a suit and the female is wearing a skirt and she's also wearing a suit. Both holding suitcases. They seems to seem to be switching their suitcases. When the man opened the suitcase, he found a woman dress. On the other hand, when the woman opened the suitcase, she found it seems to be a yellow tie, something like that.",
+    "segments": [
+      {
+        "text": "Okay. Well, the first photo shows a high building. It seems to be a modern busy city. And then",
+        "start": 0.0,
+        "end": 7.88
+      },
+      {
+        "text": "this second one shows a email and a female. Then the male is wearing a suit and the female",
+        "start": 7.88,
+        "end": 15.62
+      },
+      {
+        "text": "is wearing a skirt and she's also wearing a suit. Both holding suitcases. They seems to",
+        "start": 15.62,
+        "end": 29.98
+      },
+      {
+        "text": "seem to be switching their suitcases. When the man opened the suitcase, he found a woman",
+        "start": 29.98,
+        "end": 36.82
+      },
+      {
+        "text": "dress. On the other hand, when the woman opened the suitcase, she found it seems to be a yellow",
+        "start": 36.82,
+        "end": 43.34
+      },
+      {
+        "text": "tie, something like that.",
+        "start": 43.34,
+        "end": 45.42
+      }
+    ],
+    "words": [
+      {
+        "word": "Okay.",
+        "start": 0.0,
+        "end": 0.18
+      },
+      {
+        "word": "Well,",
+        "start": 1.28,
+        "end": 1.5
+      },
+      {
+        "word": "the",
+        "start": 1.74,
+        "end": 1.8
+      },
+      {
+        "word": "first",
+        "start": 1.8,
+        "end": 2.02
+      },
+      {
+        "word": "photo",
+        "start": 2.02,
+        "end": 2.3
+      },
+      {
+        "word": "shows",
+        "start": 2.3,
+        "end": 2.86
+      },
+      {
+        "word": "a",
+        "start": 2.86,
+        "end": 3.42
+      },
+      {
+        "word": "high",
+        "start": 3.42,
+        "end": 4.04
+      },
+      {
+        "word": "building.",
+        "start": 4.04,
+        "end": 4.4
+      },
+      {
+        "word": "It",
+        "start": 4.4,
+        "end": 4.62
+      },
+      {
+        "word": "seems",
+        "start": 4.62,
+        "end": 4.76
+      },
+      {
+        "word": "to",
+        "start": 4.76,
+        "end": 4.96
+      },
+      {
+        "word": "be",
+        "start": 4.96,
+        "end": 5.1
+      },
+      {
+        "word": "a",
+        "start": 5.1,
+        "end": 5.3
+      },
+      {
+        "word": "modern",
+        "start": 5.3,
+        "end": 5.58
+      },
+      {
+        "word": "busy",
+        "start": 5.58,
+        "end": 6.0
+      },
+      {
+        "word": "city.",
+        "start": 6.0,
+        "end": 6.44
+      },
+      {
+        "word": "And",
+        "start": 7.36,
+        "end": 7.54
+      },
+      {
+        "word": "then",
+        "start": 7.54,
+        "end": 7.88
+      },
+      {
+        "word": "this",
+        "start": 7.88,
+        "end": 8.5
+      },
+      {
+        "word": "second",
+        "start": 8.5,
+        "end": 8.88
+      },
+      {
+        "word": "one",
+        "start": 8.88,
+        "end": 9.16
+      },
+      {
+        "word": "shows",
+        "start": 9.16,
+        "end": 9.54
+      },
+      {
+        "word": "a",
+        "start": 9.54,
+        "end": 9.92
+      },
+      {
+        "word": "email",
+        "start": 9.92,
+        "end": 10.4
+      },
+      {
+        "word": "and",
+        "start": 10.4,
+        "end": 11.14
+      },
+      {
+        "word": "a",
+        "start": 11.14,
+        "end": 11.32
+      },
+      {
+        "word": "female.",
+        "start": 11.32,
+        "end": 11.62
+      },
+      {
+        "word": "Then",
+        "start": 12.04,
+        "end": 12.46
+      },
+      {
+        "word": "the",
+        "start": 12.46,
+        "end": 12.62
+      },
+      {
+        "word": "male",
+        "start": 12.62,
+        "end": 12.84
+      },
+      {
+        "word": "is",
+        "start": 12.84,
+        "end": 13.08
+      },
+      {
+        "word": "wearing",
+        "start": 13.08,
+        "end": 13.4
+      },
+      {
+        "word": "a",
+        "start": 13.4,
+        "end": 13.84
+      },
+      {
+        "word": "suit",
+        "start": 13.84,
+        "end": 14.66
+      },
+      {
+        "word": "and",
+        "start": 14.66,
+        "end": 15.14
+      },
+      {
+        "word": "the",
+        "start": 15.14,
+        "end": 15.36
+      },
+      {
+        "word": "female",
+        "start": 15.36,
+        "end": 15.62
+      },
+      {
+        "word": "is",
+        "start": 15.62,
+        "end": 15.94
+      },
+      {
+        "word": "wearing",
+        "start": 15.94,
+        "end": 16.18
+      },
+      {
+        "word": "a",
+        "start": 16.18,
+        "end": 16.4
+      },
+      {
+        "word": "skirt",
+        "start": 16.4,
+        "end": 16.58
+      },
+      {
+        "word": "and",
+        "start": 16.58,
+        "end": 17.28
+      },
+      {
+        "word": "she's",
+        "start": 17.28,
+        "end": 17.82
+      },
+      {
+        "word": "also",
+        "start": 17.82,
+        "end": 18.0
+      },
+      {
+        "word": "wearing",
+        "start": 18.0,
+        "end": 18.3
+      },
+      {
+        "word": "a",
+        "start": 18.3,
+        "end": 18.46
+      },
+      {
+        "word": "suit.",
+        "start": 18.46,
+        "end": 18.72
+      },
+      {
+        "word": "Both",
+        "start": 19.24,
+        "end": 19.74
+      },
+      {
+        "word": "holding",
+        "start": 19.74,
+        "end": 20.16
+      },
+      {
+        "word": "suitcases.",
+        "start": 20.16,
+        "end": 21.42
+      },
+      {
+        "word": "They",
+        "start": 24.38,
+        "end": 25.02
+      },
+      {
+        "word": "seems",
+        "start": 25.02,
+        "end": 29.98
+      },
+      {
+        "word": "to",
+        "start": 29.98,
+        "end": 29.98
+      },
+      {
+        "word": "seem",
+        "start": 29.98,
+        "end": 30.28
+      },
+      {
+        "word": "to",
+        "start": 30.28,
+        "end": 30.58
+      },
+      {
+        "word": "be",
+        "start": 30.58,
+        "end": 30.74
+      },
+      {
+        "word": "switching",
+        "start": 30.74,
+        "end": 31.4
+      },
+      {
+        "word": "their",
+        "start": 31.4,
+        "end": 32.02
+      },
+      {
+        "word": "suitcases.",
+        "start": 32.02,
+        "end": 32.78
+      },
+      {
+        "word": "When",
+        "start": 33.6,
+        "end": 34.02
+      },
+      {
+        "word": "the",
+        "start": 34.02,
+        "end": 34.28
+      },
+      {
+        "word": "man",
+        "start": 34.28,
+        "end": 34.46
+      },
+      {
+        "word": "opened",
+        "start": 34.46,
+        "end": 34.8
+      },
+      {
+        "word": "the",
+        "start": 34.8,
+        "end": 35.14
+      },
+      {
+        "word": "suitcase,",
+        "start": 35.14,
+        "end": 35.7
+      },
+      {
+        "word": "he",
+        "start": 36.08,
+        "end": 36.16
+      },
+      {
+        "word": "found",
+        "start": 36.16,
+        "end": 36.5
+      },
+      {
+        "word": "a",
+        "start": 36.5,
+        "end": 36.66
+      },
+      {
+        "word": "woman",
+        "start": 36.66,
+        "end": 36.82
+      },
+      {
+        "word": "dress.",
+        "start": 36.82,
+        "end": 37.2
+      },
+      {
+        "word": "On",
+        "start": 37.92,
+        "end": 38.52
+      },
+      {
+        "word": "the",
+        "start": 38.52,
+        "end": 39.1
+      },
+      {
+        "word": "other",
+        "start": 39.1,
+        "end": 39.28
+      },
+      {
+        "word": "hand,",
+        "start": 39.28,
+        "end": 39.62
+      },
+      {
+        "word": "when",
+        "start": 39.64,
+        "end": 39.8
+      },
+      {
+        "word": "the",
+        "start": 39.8,
+        "end": 39.98
+      },
+      {
+        "word": "woman",
+        "start": 39.98,
+        "end": 40.22
+      },
+      {
+        "word": "opened",
+        "start": 40.22,
+        "end": 40.56
+      },
+      {
+        "word": "the",
+        "start": 40.56,
+        "end": 40.78
+      },
+      {
+        "word": "suitcase,",
+        "start": 40.78,
+        "end": 41.14
+      },
+      {
+        "word": "she",
+        "start": 41.52,
+        "end": 41.52
+      },
+      {
+        "word": "found",
+        "start": 41.52,
+        "end": 41.82
+      },
+      {
+        "word": "it",
+        "start": 41.82,
+        "end": 42.06
+      },
+      {
+        "word": "seems",
+        "start": 42.06,
+        "end": 42.26
+      },
+      {
+        "word": "to",
+        "start": 42.26,
+        "end": 42.5
+      },
+      {
+        "word": "be",
+        "start": 42.5,
+        "end": 42.7
+      },
+      {
+        "word": "a",
+        "start": 42.7,
+        "end": 42.94
+      },
+      {
+        "word": "yellow",
+        "start": 42.94,
+        "end": 43.34
+      },
+      {
+        "word": "tie,",
+        "start": 43.34,
+        "end": 43.8
+      },
+      {
+        "word": "something",
+        "start": 44.48,
+        "end": 44.92
+      },
+      {
+        "word": "like",
+        "start": 44.92,
+        "end": 45.2
+      },
+      {
+        "word": "that.",
+        "start": 45.2,
+        "end": 45.42
+      }
+    ]
+  },
+  "disfluency_events": [
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 3.68,
+      "end": 3.7,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 5.26,
+      "end": 5.28,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 9.1,
+      "end": 9.12,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 10.1,
+      "end": 10.12,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 14.36,
+      "end": 14.38,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 15.1,
+      "end": 15.12,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 17.02,
+      "end": 17.06,
+      "duration": 0.04,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 19.32,
+      "end": 19.36,
+      "duration": 0.04,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 22.3,
+      "end": 22.34,
+      "duration": 0.04,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 38.94,
+      "end": 38.96,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 40.44,
+      "end": 40.46,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 42.0,
+      "end": 42.04,
+      "duration": 0.04,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 42.9,
+      "end": 42.94,
+      "duration": 0.04,
+      "count": NaN
+    }
+  ]
+}

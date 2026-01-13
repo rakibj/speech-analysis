@@ -1,0 +1,815 @@
+{
+  "meta": {
+    "sample_id": "L2A_011",
+    "filename": "L2A_011.wav",
+    "duration_sec": 69.58,
+    "word_count": 107,
+    "filler_event_count": 17
+  },
+  "verdict": {
+    "fluency_score": 35,
+    "readiness": "not_ready"
+  },
+  "benchmarking": {
+    "percentile": 30,
+    "target_score": 80,
+    "score_gap": 45,
+    "estimated_guided_practice_hours": 27.0
+  },
+  "metrics": {
+    "wpm": 87.0939925265881,
+    "fillers_per_min": 5.173900546133947,
+    "stutters_per_min": 0.8623167576889911,
+    "long_pauses_per_min": 1.7246335153779822,
+    "very_long_pauses_per_min": 0.8623167576889911,
+    "pause_time_ratio": 0.09715435469962633,
+    "pause_variability": 0.6813222438758321,
+    "vocab_richness": 0.6831683168316832,
+    "repetition_ratio": 0.04950495049504951
+  },
+  "sub_analysis": {
+    "primary_issues": [
+      {
+        "issue": "filler_dependency",
+        "severity": "high",
+        "root_cause": "Fillers replace silent planning pauses.",
+        "score_impact": 21
+      },
+      {
+        "issue": "delivery_instability",
+        "severity": "medium",
+        "root_cause": "Speech rhythm varies unpredictably.",
+        "score_impact": 19
+      },
+      {
+        "issue": "hesitation_structure",
+        "severity": "high",
+        "root_cause": "Pauses frequently interrupt sentence flow.",
+        "score_impact": 12
+      },
+      {
+        "issue": "delivery_pacing",
+        "severity": "medium",
+        "root_cause": "Speech rate deviates from optimal clarity range.",
+        "score_impact": 8
+      }
+    ],
+    "action_plan": [
+      {
+        "priority": 1,
+        "focus": "filler_dependency",
+        "instruction": "Replace filler words with silent pauses under 300 ms.",
+        "expected_score_gain": 18
+      },
+      {
+        "priority": 2,
+        "focus": "delivery_instability",
+        "instruction": "Practice steady pacing using metronome or rhythm drills.",
+        "expected_score_gain": 16
+      },
+      {
+        "priority": 3,
+        "focus": "hesitation_structure",
+        "instruction": "Pause only after completing full clauses or ideas.",
+        "expected_score_gain": 10
+      }
+    ]
+  },
+  "transcript": {
+    "text": "So, um, in a very big city, um, to people, um, a man and a woman were carrying, um, their suitcases, which are both green, and, um, which looked very similar. Um, however, as they were crossing the worst cornering. They bumped into each other and then they picked up their own suitcase and went separate ways. After that, after the man came back to his hotel, he found out that his suitcase contained women clothes, actually a red dress. Obviously that suitcase was not his. And similarly the women found out that she had a tie in her suitcase. So they picked up the wrong suitcase.",
+    "segments": [
+      {
+        "text": "So, um, in a very big city, um, to people, um, a man and a woman were carrying, um, their",
+        "start": 0.0,
+        "end": 10.24
+      },
+      {
+        "text": "suitcases, which are both green, and, um, which looked very similar. Um, however, as they were",
+        "start": 10.24,
+        "end": 20.84
+      },
+      {
+        "text": "crossing the worst cornering. They bumped into each other and then they picked up",
+        "start": 20.84,
+        "end": 34.08
+      },
+      {
+        "text": "their own suitcase and went separate ways. After that, after the man came back to",
+        "start": 34.08,
+        "end": 42.88
+      },
+      {
+        "text": "his hotel, he found out that his suitcase contained women clothes, actually a red dress.",
+        "start": 42.88,
+        "end": 53.54
+      },
+      {
+        "text": "Obviously that suitcase was not his.",
+        "start": 54.0,
+        "end": 56.82
+      },
+      {
+        "text": "And similarly the women found out that she had a tie in her suitcase.",
+        "start": 57.86,
+        "end": 64.74
+      },
+      {
+        "text": "So they picked up the wrong suitcase.",
+        "start": 65.24,
+        "end": 69.58
+      }
+    ],
+    "words": [
+      {
+        "word": "So,",
+        "start": 0.0,
+        "end": 0.34
+      },
+      {
+        "word": "um,",
+        "start": 0.58,
+        "end": 0.86
+      },
+      {
+        "word": "in",
+        "start": 1.5,
+        "end": 1.76
+      },
+      {
+        "word": "a",
+        "start": 1.76,
+        "end": 1.86
+      },
+      {
+        "word": "very",
+        "start": 1.86,
+        "end": 2.08
+      },
+      {
+        "word": "big",
+        "start": 2.08,
+        "end": 2.28
+      },
+      {
+        "word": "city,",
+        "start": 2.28,
+        "end": 2.74
+      },
+      {
+        "word": "um,",
+        "start": 3.16,
+        "end": 3.32
+      },
+      {
+        "word": "to",
+        "start": 3.6,
+        "end": 3.92
+      },
+      {
+        "word": "people,",
+        "start": 3.92,
+        "end": 5.2
+      },
+      {
+        "word": "um,",
+        "start": 5.76,
+        "end": 6.02
+      },
+      {
+        "word": "a",
+        "start": 6.24,
+        "end": 6.32
+      },
+      {
+        "word": "man",
+        "start": 6.32,
+        "end": 6.62
+      },
+      {
+        "word": "and",
+        "start": 6.62,
+        "end": 6.82
+      },
+      {
+        "word": "a",
+        "start": 6.82,
+        "end": 6.92
+      },
+      {
+        "word": "woman",
+        "start": 6.92,
+        "end": 7.16
+      },
+      {
+        "word": "were",
+        "start": 7.16,
+        "end": 7.48
+      },
+      {
+        "word": "carrying,",
+        "start": 7.48,
+        "end": 8.72
+      },
+      {
+        "word": "um,",
+        "start": 8.72,
+        "end": 9.38
+      },
+      {
+        "word": "their",
+        "start": 9.96,
+        "end": 10.24
+      },
+      {
+        "word": "suitcases,",
+        "start": 10.24,
+        "end": 11.42
+      },
+      {
+        "word": "which",
+        "start": 11.92,
+        "end": 12.44
+      },
+      {
+        "word": "are",
+        "start": 12.44,
+        "end": 13.18
+      },
+      {
+        "word": "both",
+        "start": 13.18,
+        "end": 14.82
+      },
+      {
+        "word": "green,",
+        "start": 14.82,
+        "end": 15.28
+      },
+      {
+        "word": "and,",
+        "start": 15.68,
+        "end": 16.06
+      },
+      {
+        "word": "um,",
+        "start": 16.18,
+        "end": 16.44
+      },
+      {
+        "word": "which",
+        "start": 16.8,
+        "end": 17.16
+      },
+      {
+        "word": "looked",
+        "start": 17.16,
+        "end": 17.44
+      },
+      {
+        "word": "very",
+        "start": 17.44,
+        "end": 17.74
+      },
+      {
+        "word": "similar.",
+        "start": 17.74,
+        "end": 18.14
+      },
+      {
+        "word": "Um,",
+        "start": 18.94,
+        "end": 19.18
+      },
+      {
+        "word": "however,",
+        "start": 19.62,
+        "end": 19.96
+      },
+      {
+        "word": "as",
+        "start": 20.28,
+        "end": 20.48
+      },
+      {
+        "word": "they",
+        "start": 20.48,
+        "end": 20.66
+      },
+      {
+        "word": "were",
+        "start": 20.66,
+        "end": 20.84
+      },
+      {
+        "word": "crossing",
+        "start": 20.84,
+        "end": 21.42
+      },
+      {
+        "word": "the",
+        "start": 21.42,
+        "end": 23.06
+      },
+      {
+        "word": "worst",
+        "start": 23.06,
+        "end": 23.26
+      },
+      {
+        "word": "cornering.",
+        "start": 23.26,
+        "end": 23.98
+      },
+      {
+        "word": "They",
+        "start": 26.38,
+        "end": 27.06
+      },
+      {
+        "word": "bumped",
+        "start": 27.06,
+        "end": 27.36
+      },
+      {
+        "word": "into",
+        "start": 27.36,
+        "end": 27.62
+      },
+      {
+        "word": "each",
+        "start": 27.62,
+        "end": 27.86
+      },
+      {
+        "word": "other",
+        "start": 27.86,
+        "end": 28.14
+      },
+      {
+        "word": "and",
+        "start": 28.14,
+        "end": 31.18
+      },
+      {
+        "word": "then",
+        "start": 31.18,
+        "end": 31.38
+      },
+      {
+        "word": "they",
+        "start": 31.38,
+        "end": 31.82
+      },
+      {
+        "word": "picked",
+        "start": 31.82,
+        "end": 33.84
+      },
+      {
+        "word": "up",
+        "start": 33.84,
+        "end": 34.08
+      },
+      {
+        "word": "their",
+        "start": 34.08,
+        "end": 34.24
+      },
+      {
+        "word": "own",
+        "start": 34.24,
+        "end": 34.66
+      },
+      {
+        "word": "suitcase",
+        "start": 34.66,
+        "end": 36.16
+      },
+      {
+        "word": "and",
+        "start": 36.16,
+        "end": 37.22
+      },
+      {
+        "word": "went",
+        "start": 37.22,
+        "end": 37.52
+      },
+      {
+        "word": "separate",
+        "start": 37.52,
+        "end": 38.48
+      },
+      {
+        "word": "ways.",
+        "start": 38.48,
+        "end": 39.0
+      },
+      {
+        "word": "After",
+        "start": 39.98,
+        "end": 40.26
+      },
+      {
+        "word": "that,",
+        "start": 40.26,
+        "end": 40.64
+      },
+      {
+        "word": "after",
+        "start": 40.86,
+        "end": 41.24
+      },
+      {
+        "word": "the",
+        "start": 41.24,
+        "end": 41.42
+      },
+      {
+        "word": "man",
+        "start": 41.42,
+        "end": 41.68
+      },
+      {
+        "word": "came",
+        "start": 41.68,
+        "end": 42.48
+      },
+      {
+        "word": "back",
+        "start": 42.48,
+        "end": 42.68
+      },
+      {
+        "word": "to",
+        "start": 42.68,
+        "end": 42.88
+      },
+      {
+        "word": "his",
+        "start": 42.88,
+        "end": 43.1
+      },
+      {
+        "word": "hotel,",
+        "start": 43.1,
+        "end": 43.66
+      },
+      {
+        "word": "he",
+        "start": 44.32,
+        "end": 44.42
+      },
+      {
+        "word": "found",
+        "start": 44.42,
+        "end": 44.64
+      },
+      {
+        "word": "out",
+        "start": 44.64,
+        "end": 45.06
+      },
+      {
+        "word": "that",
+        "start": 45.06,
+        "end": 45.74
+      },
+      {
+        "word": "his",
+        "start": 45.74,
+        "end": 46.18
+      },
+      {
+        "word": "suitcase",
+        "start": 46.18,
+        "end": 46.6
+      },
+      {
+        "word": "contained",
+        "start": 46.6,
+        "end": 47.24
+      },
+      {
+        "word": "women",
+        "start": 47.24,
+        "end": 49.84
+      },
+      {
+        "word": "clothes,",
+        "start": 49.84,
+        "end": 52.18
+      },
+      {
+        "word": "actually",
+        "start": 52.42,
+        "end": 52.7
+      },
+      {
+        "word": "a",
+        "start": 52.7,
+        "end": 53.08
+      },
+      {
+        "word": "red",
+        "start": 53.08,
+        "end": 53.22
+      },
+      {
+        "word": "dress.",
+        "start": 53.22,
+        "end": 53.54
+      },
+      {
+        "word": "Obviously",
+        "start": 54.0,
+        "end": 54.44
+      },
+      {
+        "word": "that",
+        "start": 54.44,
+        "end": 55.34
+      },
+      {
+        "word": "suitcase",
+        "start": 55.34,
+        "end": 55.7
+      },
+      {
+        "word": "was",
+        "start": 55.7,
+        "end": 56.22
+      },
+      {
+        "word": "not",
+        "start": 56.22,
+        "end": 56.44
+      },
+      {
+        "word": "his.",
+        "start": 56.44,
+        "end": 56.82
+      },
+      {
+        "word": "And",
+        "start": 57.86,
+        "end": 57.92
+      },
+      {
+        "word": "similarly",
+        "start": 57.92,
+        "end": 58.38
+      },
+      {
+        "word": "the",
+        "start": 58.38,
+        "end": 58.66
+      },
+      {
+        "word": "women",
+        "start": 58.66,
+        "end": 58.94
+      },
+      {
+        "word": "found",
+        "start": 58.94,
+        "end": 59.4
+      },
+      {
+        "word": "out",
+        "start": 59.4,
+        "end": 59.7
+      },
+      {
+        "word": "that",
+        "start": 59.7,
+        "end": 60.06
+      },
+      {
+        "word": "she",
+        "start": 60.06,
+        "end": 61.58
+      },
+      {
+        "word": "had",
+        "start": 61.58,
+        "end": 62.62
+      },
+      {
+        "word": "a",
+        "start": 62.62,
+        "end": 62.84
+      },
+      {
+        "word": "tie",
+        "start": 62.84,
+        "end": 63.1
+      },
+      {
+        "word": "in",
+        "start": 63.1,
+        "end": 64.12
+      },
+      {
+        "word": "her",
+        "start": 64.12,
+        "end": 64.32
+      },
+      {
+        "word": "suitcase.",
+        "start": 64.32,
+        "end": 64.74
+      },
+      {
+        "word": "So",
+        "start": 65.24,
+        "end": 65.24
+      },
+      {
+        "word": "they",
+        "start": 65.24,
+        "end": 67.36
+      },
+      {
+        "word": "picked",
+        "start": 67.36,
+        "end": 67.68
+      },
+      {
+        "word": "up",
+        "start": 67.68,
+        "end": 67.92
+      },
+      {
+        "word": "the",
+        "start": 67.92,
+        "end": 68.44
+      },
+      {
+        "word": "wrong",
+        "start": 68.44,
+        "end": 68.76
+      },
+      {
+        "word": "suitcase.",
+        "start": 68.76,
+        "end": 69.58
+      }
+    ]
+  },
+  "disfluency_events": [
+    {
+      "type": "filler",
+      "text": "um,",
+      "style": "clear",
+      "start": 0.58,
+      "end": 0.86,
+      "duration": 0.28,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "um,",
+      "style": "clear",
+      "start": 3.16,
+      "end": 3.32,
+      "duration": 0.16,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "um,",
+      "style": "clear",
+      "start": 5.76,
+      "end": 6.02,
+      "duration": 0.26,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "um,",
+      "style": "clear",
+      "start": 8.72,
+      "end": 9.38,
+      "duration": 0.66,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 12.98,
+      "end": 13.02,
+      "duration": 0.04,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "um,",
+      "style": "clear",
+      "start": 16.18,
+      "end": 16.44,
+      "duration": 0.26,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "um,",
+      "style": "clear",
+      "start": 18.94,
+      "end": 19.18,
+      "duration": 0.24,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "um",
+      "style": "subtle",
+      "start": 32.3,
+      "end": 32.32,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 34.0,
+      "end": 34.02,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 37.12,
+      "end": 37.14,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 40.04,
+      "end": 40.08,
+      "duration": 0.04,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 41.02,
+      "end": 41.06,
+      "duration": 0.04,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 42.14,
+      "end": 42.16,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "um",
+      "style": "subtle",
+      "start": 48.54,
+      "end": 48.58,
+      "duration": 0.04,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "um",
+      "style": "subtle",
+      "start": 51.14,
+      "end": 51.16,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 60.38,
+      "end": 60.42,
+      "duration": 0.04,
+      "count": NaN
+    },
+    {
+      "type": "stutter",
+      "text": "s",
+      "style": "subtle",
+      "start": 64.88,
+      "end": 65.06,
+      "duration": 0.18,
+      "count": 2.0
+    }
+  ]
+}

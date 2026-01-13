@@ -1,0 +1,799 @@
+{
+  "meta": {
+    "sample_id": "L2A_015",
+    "filename": "L2A_015.wav",
+    "duration_sec": 60.82,
+    "word_count": 110,
+    "filler_event_count": 18
+  },
+  "verdict": {
+    "fluency_score": 63,
+    "readiness": "borderline"
+  },
+  "benchmarking": {
+    "percentile": 30,
+    "target_score": 80,
+    "score_gap": 17,
+    "estimated_guided_practice_hours": 10.2
+  },
+  "metrics": {
+    "wpm": 105.55738243998685,
+    "fillers_per_min": 5.721802038803025,
+    "stutters_per_min": 0.9865175928970733,
+    "long_pauses_per_min": 0.9865175928970733,
+    "very_long_pauses_per_min": 0.0,
+    "pause_time_ratio": 0.048997040447221266,
+    "pause_variability": 0.0,
+    "vocab_richness": 0.5046728971962616,
+    "repetition_ratio": 0.14018691588785046
+  },
+  "sub_analysis": {
+    "primary_issues": [
+      {
+        "issue": "filler_dependency",
+        "severity": "high",
+        "root_cause": "Fillers replace silent planning pauses.",
+        "score_impact": 23
+      }
+    ],
+    "action_plan": [
+      {
+        "priority": 1,
+        "focus": "filler_dependency",
+        "instruction": "Replace filler words with silent pauses under 300 ms.",
+        "expected_score_gain": 17
+      }
+    ]
+  },
+  "transcript": {
+    "text": "So in a, a big city, there's a man and a woman who walking out of the dress and they suddenly, um, hit each other at a corner of a building. Um, and then they, they continue walking with their suitcase. Um, until they arrive at home, they figure out that all they just mix up their suitcase. They lie the man, get the suitcase of the woman and the woman, get the suitcase of the man. The man figure out that they were dressed in the suitcase, the woman dressed in the suitcase. And the woman found the yellow -cripped carvest or tides of the man in the suitcase.",
+    "segments": [
+      {
+        "text": "So in a, a big city, there's a man and a woman who walking out of the dress and they suddenly, um,",
+        "start": 0.0,
+        "end": 8.8
+      },
+      {
+        "text": "hit each other at a corner of a building. Um, and then they, they continue walking with their suitcase. Um,",
+        "start": 9.24,
+        "end": 23.4
+      },
+      {
+        "text": "until they arrive at home, they figure out that all they just mix up their suitcase.",
+        "start": 23.4,
+        "end": 34.02
+      },
+      {
+        "text": "They lie the man, get the suitcase of the woman and the woman, get the suitcase of the man.",
+        "start": 34.4,
+        "end": 41.76
+      },
+      {
+        "text": "The man figure out that they were dressed in the suitcase, the woman dressed in the suitcase.",
+        "start": 42.7,
+        "end": 52.38
+      },
+      {
+        "text": "And the woman found the yellow-cripped carvest or tides of the man in the suitcase.",
+        "start": 52.38,
+        "end": 60.82
+      }
+    ],
+    "words": [
+      {
+        "word": "So",
+        "start": 0.0,
+        "end": 0.36
+      },
+      {
+        "word": "in",
+        "start": 0.36,
+        "end": 0.62
+      },
+      {
+        "word": "a,",
+        "start": 0.62,
+        "end": 0.8
+      },
+      {
+        "word": "a",
+        "start": 0.8,
+        "end": 1.48
+      },
+      {
+        "word": "big",
+        "start": 1.48,
+        "end": 1.66
+      },
+      {
+        "word": "city,",
+        "start": 1.66,
+        "end": 2.02
+      },
+      {
+        "word": "there's",
+        "start": 2.62,
+        "end": 3.12
+      },
+      {
+        "word": "a",
+        "start": 3.12,
+        "end": 3.22
+      },
+      {
+        "word": "man",
+        "start": 3.22,
+        "end": 3.5
+      },
+      {
+        "word": "and",
+        "start": 3.5,
+        "end": 3.74
+      },
+      {
+        "word": "a",
+        "start": 3.74,
+        "end": 3.86
+      },
+      {
+        "word": "woman",
+        "start": 3.86,
+        "end": 4.16
+      },
+      {
+        "word": "who",
+        "start": 4.16,
+        "end": 4.42
+      },
+      {
+        "word": "walking",
+        "start": 4.42,
+        "end": 4.78
+      },
+      {
+        "word": "out",
+        "start": 4.78,
+        "end": 4.98
+      },
+      {
+        "word": "of",
+        "start": 4.98,
+        "end": 5.1
+      },
+      {
+        "word": "the",
+        "start": 5.1,
+        "end": 5.2
+      },
+      {
+        "word": "dress",
+        "start": 5.2,
+        "end": 5.32
+      },
+      {
+        "word": "and",
+        "start": 5.32,
+        "end": 5.64
+      },
+      {
+        "word": "they",
+        "start": 5.64,
+        "end": 5.96
+      },
+      {
+        "word": "suddenly,",
+        "start": 5.96,
+        "end": 7.06
+      },
+      {
+        "word": "um,",
+        "start": 7.76,
+        "end": 8.8
+      },
+      {
+        "word": "hit",
+        "start": 9.24,
+        "end": 9.94
+      },
+      {
+        "word": "each",
+        "start": 9.94,
+        "end": 10.24
+      },
+      {
+        "word": "other",
+        "start": 10.24,
+        "end": 10.5
+      },
+      {
+        "word": "at",
+        "start": 10.5,
+        "end": 10.76
+      },
+      {
+        "word": "a",
+        "start": 10.76,
+        "end": 10.92
+      },
+      {
+        "word": "corner",
+        "start": 10.92,
+        "end": 11.22
+      },
+      {
+        "word": "of",
+        "start": 11.22,
+        "end": 11.96
+      },
+      {
+        "word": "a",
+        "start": 11.96,
+        "end": 12.08
+      },
+      {
+        "word": "building.",
+        "start": 12.08,
+        "end": 12.38
+      },
+      {
+        "word": "Um,",
+        "start": 13.14,
+        "end": 13.72
+      },
+      {
+        "word": "and",
+        "start": 14.18,
+        "end": 15.18
+      },
+      {
+        "word": "then",
+        "start": 15.18,
+        "end": 15.38
+      },
+      {
+        "word": "they,",
+        "start": 15.38,
+        "end": 15.9
+      },
+      {
+        "word": "they",
+        "start": 16.52,
+        "end": 17.58
+      },
+      {
+        "word": "continue",
+        "start": 17.58,
+        "end": 18.28
+      },
+      {
+        "word": "walking",
+        "start": 18.28,
+        "end": 20.2
+      },
+      {
+        "word": "with",
+        "start": 20.2,
+        "end": 20.6
+      },
+      {
+        "word": "their",
+        "start": 20.6,
+        "end": 20.94
+      },
+      {
+        "word": "suitcase.",
+        "start": 20.94,
+        "end": 21.44
+      },
+      {
+        "word": "Um,",
+        "start": 22.7,
+        "end": 23.4
+      },
+      {
+        "word": "until",
+        "start": 23.4,
+        "end": 24.34
+      },
+      {
+        "word": "they",
+        "start": 24.34,
+        "end": 25.96
+      },
+      {
+        "word": "arrive",
+        "start": 25.96,
+        "end": 27.42
+      },
+      {
+        "word": "at",
+        "start": 27.42,
+        "end": 27.8
+      },
+      {
+        "word": "home,",
+        "start": 27.8,
+        "end": 28.1
+      },
+      {
+        "word": "they",
+        "start": 28.1,
+        "end": 28.38
+      },
+      {
+        "word": "figure",
+        "start": 28.38,
+        "end": 28.66
+      },
+      {
+        "word": "out",
+        "start": 28.66,
+        "end": 28.9
+      },
+      {
+        "word": "that",
+        "start": 28.9,
+        "end": 29.1
+      },
+      {
+        "word": "all",
+        "start": 29.1,
+        "end": 29.46
+      },
+      {
+        "word": "they",
+        "start": 29.46,
+        "end": 29.66
+      },
+      {
+        "word": "just",
+        "start": 29.66,
+        "end": 30.1
+      },
+      {
+        "word": "mix",
+        "start": 30.1,
+        "end": 33.08
+      },
+      {
+        "word": "up",
+        "start": 33.08,
+        "end": 33.4
+      },
+      {
+        "word": "their",
+        "start": 33.4,
+        "end": 33.64
+      },
+      {
+        "word": "suitcase.",
+        "start": 33.64,
+        "end": 34.02
+      },
+      {
+        "word": "They",
+        "start": 34.4,
+        "end": 34.4
+      },
+      {
+        "word": "lie",
+        "start": 34.4,
+        "end": 37.6
+      },
+      {
+        "word": "the",
+        "start": 37.6,
+        "end": 37.8
+      },
+      {
+        "word": "man,",
+        "start": 37.8,
+        "end": 38.12
+      },
+      {
+        "word": "get",
+        "start": 38.46,
+        "end": 38.74
+      },
+      {
+        "word": "the",
+        "start": 38.74,
+        "end": 38.92
+      },
+      {
+        "word": "suitcase",
+        "start": 38.92,
+        "end": 39.1
+      },
+      {
+        "word": "of",
+        "start": 39.1,
+        "end": 39.38
+      },
+      {
+        "word": "the",
+        "start": 39.38,
+        "end": 39.48
+      },
+      {
+        "word": "woman",
+        "start": 39.48,
+        "end": 39.78
+      },
+      {
+        "word": "and",
+        "start": 39.78,
+        "end": 40.04
+      },
+      {
+        "word": "the",
+        "start": 40.04,
+        "end": 40.14
+      },
+      {
+        "word": "woman,",
+        "start": 40.14,
+        "end": 40.42
+      },
+      {
+        "word": "get",
+        "start": 40.62,
+        "end": 40.68
+      },
+      {
+        "word": "the",
+        "start": 40.68,
+        "end": 40.8
+      },
+      {
+        "word": "suitcase",
+        "start": 40.8,
+        "end": 41.04
+      },
+      {
+        "word": "of",
+        "start": 41.04,
+        "end": 41.32
+      },
+      {
+        "word": "the",
+        "start": 41.32,
+        "end": 41.4
+      },
+      {
+        "word": "man.",
+        "start": 41.4,
+        "end": 41.76
+      },
+      {
+        "word": "The",
+        "start": 42.7,
+        "end": 43.26
+      },
+      {
+        "word": "man",
+        "start": 43.26,
+        "end": 43.44
+      },
+      {
+        "word": "figure",
+        "start": 43.44,
+        "end": 43.66
+      },
+      {
+        "word": "out",
+        "start": 43.66,
+        "end": 43.9
+      },
+      {
+        "word": "that",
+        "start": 43.9,
+        "end": 44.0
+      },
+      {
+        "word": "they",
+        "start": 44.0,
+        "end": 44.18
+      },
+      {
+        "word": "were",
+        "start": 44.18,
+        "end": 44.38
+      },
+      {
+        "word": "dressed",
+        "start": 44.38,
+        "end": 45.9
+      },
+      {
+        "word": "in",
+        "start": 45.9,
+        "end": 47.32
+      },
+      {
+        "word": "the",
+        "start": 47.32,
+        "end": 47.54
+      },
+      {
+        "word": "suitcase,",
+        "start": 47.54,
+        "end": 48.02
+      },
+      {
+        "word": "the",
+        "start": 49.06,
+        "end": 50.98
+      },
+      {
+        "word": "woman",
+        "start": 50.98,
+        "end": 51.66
+      },
+      {
+        "word": "dressed",
+        "start": 51.66,
+        "end": 51.88
+      },
+      {
+        "word": "in",
+        "start": 51.88,
+        "end": 52.08
+      },
+      {
+        "word": "the",
+        "start": 52.08,
+        "end": 52.14
+      },
+      {
+        "word": "suitcase.",
+        "start": 52.14,
+        "end": 52.38
+      },
+      {
+        "word": "And",
+        "start": 52.38,
+        "end": 52.68
+      },
+      {
+        "word": "the",
+        "start": 52.68,
+        "end": 53.12
+      },
+      {
+        "word": "woman",
+        "start": 53.12,
+        "end": 53.5
+      },
+      {
+        "word": "found",
+        "start": 53.5,
+        "end": 54.0
+      },
+      {
+        "word": "the",
+        "start": 54.0,
+        "end": 55.12
+      },
+      {
+        "word": "yellow",
+        "start": 55.12,
+        "end": 56.86
+      },
+      {
+        "word": "-cripped",
+        "start": 56.86,
+        "end": 57.46
+      },
+      {
+        "word": "carvest",
+        "start": 57.46,
+        "end": 58.36
+      },
+      {
+        "word": "or",
+        "start": 58.36,
+        "end": 58.7
+      },
+      {
+        "word": "tides",
+        "start": 58.7,
+        "end": 59.24
+      },
+      {
+        "word": "of",
+        "start": 59.24,
+        "end": 59.44
+      },
+      {
+        "word": "the",
+        "start": 59.44,
+        "end": 59.58
+      },
+      {
+        "word": "man",
+        "start": 59.58,
+        "end": 59.74
+      },
+      {
+        "word": "in",
+        "start": 59.74,
+        "end": 60.34
+      },
+      {
+        "word": "the",
+        "start": 60.34,
+        "end": 60.5
+      },
+      {
+        "word": "suitcase.",
+        "start": 60.5,
+        "end": 60.82
+      }
+    ]
+  },
+  "disfluency_events": [
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 0.52,
+      "end": 0.54,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 1.42,
+      "end": 1.44,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 3.18,
+      "end": 3.2,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 3.66,
+      "end": 3.68,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 5.78,
+      "end": 5.82,
+      "duration": 0.04,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "um,",
+      "style": "clear",
+      "start": 7.76,
+      "end": 8.8,
+      "duration": 1.04,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "um,",
+      "style": "clear",
+      "start": 13.14,
+      "end": 13.72,
+      "duration": 0.58,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "um,",
+      "style": "clear",
+      "start": 22.7,
+      "end": 23.4,
+      "duration": 0.7,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 25.38,
+      "end": 25.4,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 29.38,
+      "end": 29.4,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "um",
+      "style": "subtle",
+      "start": 35.54,
+      "end": 35.58,
+      "duration": 0.04,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 42.64,
+      "end": 42.66,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 49.16,
+      "end": 49.2,
+      "duration": 0.04,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 49.58,
+      "end": 49.6,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 51.4,
+      "end": 51.42,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "stutter",
+      "text": "t",
+      "style": "subtle",
+      "start": 53.02,
+      "end": 53.2,
+      "duration": 0.18,
+      "count": 2.0
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 60.28,
+      "end": 60.3,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 60.9,
+      "end": 60.92,
+      "duration": 0.02,
+      "count": NaN
+    }
+  ]
+}

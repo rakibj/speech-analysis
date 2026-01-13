@@ -1,0 +1,1066 @@
+{
+  "meta": {
+    "sample_id": "L2A_005",
+    "filename": "L2A_005.wav",
+    "duration_sec": 74.12,
+    "word_count": 136,
+    "filler_event_count": 30
+  },
+  "verdict": {
+    "fluency_score": 33,
+    "readiness": "not_ready"
+  },
+  "benchmarking": {
+    "percentile": 30,
+    "target_score": 80,
+    "score_gap": 47,
+    "estimated_guided_practice_hours": 28.2
+  },
+  "metrics": {
+    "wpm": 109.28224500809497,
+    "fillers_per_min": 5.5045871559633035,
+    "stutters_per_min": 0.0,
+    "long_pauses_per_min": 1.6189962223421477,
+    "very_long_pauses_per_min": 0.8094981111710738,
+    "pause_time_ratio": 0.09660010793308152,
+    "pause_variability": 0.5698050348827901,
+    "vocab_richness": 0.562962962962963,
+    "repetition_ratio": 0.1111111111111111
+  },
+  "sub_analysis": {
+    "primary_issues": [
+      {
+        "issue": "filler_dependency",
+        "severity": "high",
+        "root_cause": "Fillers replace silent planning pauses.",
+        "score_impact": 22
+      },
+      {
+        "issue": "delivery_instability",
+        "severity": "medium",
+        "root_cause": "Speech rhythm varies unpredictably.",
+        "score_impact": 16
+      },
+      {
+        "issue": "hesitation_structure",
+        "severity": "high",
+        "root_cause": "Pauses frequently interrupt sentence flow.",
+        "score_impact": 12
+      }
+    ],
+    "action_plan": [
+      {
+        "priority": 1,
+        "focus": "filler_dependency",
+        "instruction": "Replace filler words with silent pauses under 300 ms.",
+        "expected_score_gain": 20
+      },
+      {
+        "priority": 2,
+        "focus": "delivery_instability",
+        "instruction": "Practice steady pacing using metronome or rhythm drills.",
+        "expected_score_gain": 15
+      },
+      {
+        "priority": 3,
+        "focus": "hesitation_structure",
+        "instruction": "Pause only after completing full clauses or ideas.",
+        "expected_score_gain": 11
+      }
+    ]
+  },
+  "transcript": {
+    "text": "Um, okay, in the city, I think there are many skyscrapers and the many cars, not so many cars on the road. And in the corner of the building, the two people are walking into the same directions, and they're carrying the same carrier, I think. I mean, the suitcase, I think. because they did not see each other, they just bumped into each other and especially for the man he dropped to his classes. After bumping into each other, they seem to have a headache because there is the stars going around their head. and after that they said to just the I'm sorry to each other and pick up their own suitcases but and they just the went to their own tracks I mean the destinations but after that when just the open their",
+    "segments": [
+      {
+        "text": "Um, okay, in the city, I think there are many skyscrapers and the many cars, not so many cars on the road.",
+        "start": 0.0,
+        "end": 10.26
+      },
+      {
+        "text": "And in the corner of the building, the two people are walking into the same directions, and they're carrying the same carrier, I think. I mean, the suitcase, I think.",
+        "start": 11.02,
+        "end": 24.52
+      },
+      {
+        "text": "because they did not see each other, they just bumped into each other and especially for the man he dropped to his classes.",
+        "start": 26.68,
+        "end": 37.78
+      },
+      {
+        "text": "After bumping into each other, they seem to have a headache because there is the stars going around their head.",
+        "start": 40.3,
+        "end": 51.68
+      },
+      {
+        "text": "and after that they said to just the I'm sorry to each other and pick up",
+        "start": 51.68,
+        "end": 59.76
+      },
+      {
+        "text": "their own suitcases but and they just the went to their own tracks I mean the",
+        "start": 59.76,
+        "end": 68.56
+      },
+      {
+        "text": "destinations but after that when just the open their",
+        "start": 68.56,
+        "end": 74.12
+      }
+    ],
+    "words": [
+      {
+        "word": "Um,",
+        "start": 0.0,
+        "end": 0.68
+      },
+      {
+        "word": "okay,",
+        "start": 1.56,
+        "end": 2.28
+      },
+      {
+        "word": "in",
+        "start": 2.56,
+        "end": 2.64
+      },
+      {
+        "word": "the",
+        "start": 2.64,
+        "end": 2.74
+      },
+      {
+        "word": "city,",
+        "start": 2.74,
+        "end": 3.04
+      },
+      {
+        "word": "I",
+        "start": 3.42,
+        "end": 3.5
+      },
+      {
+        "word": "think",
+        "start": 3.5,
+        "end": 3.72
+      },
+      {
+        "word": "there",
+        "start": 3.72,
+        "end": 4.34
+      },
+      {
+        "word": "are",
+        "start": 4.34,
+        "end": 4.6
+      },
+      {
+        "word": "many",
+        "start": 4.6,
+        "end": 4.9
+      },
+      {
+        "word": "skyscrapers",
+        "start": 4.9,
+        "end": 6.14
+      },
+      {
+        "word": "and",
+        "start": 6.14,
+        "end": 6.42
+      },
+      {
+        "word": "the",
+        "start": 6.42,
+        "end": 6.92
+      },
+      {
+        "word": "many",
+        "start": 6.92,
+        "end": 7.58
+      },
+      {
+        "word": "cars,",
+        "start": 7.58,
+        "end": 7.98
+      },
+      {
+        "word": "not",
+        "start": 8.32,
+        "end": 8.58
+      },
+      {
+        "word": "so",
+        "start": 8.58,
+        "end": 9.12
+      },
+      {
+        "word": "many",
+        "start": 9.12,
+        "end": 9.32
+      },
+      {
+        "word": "cars",
+        "start": 9.32,
+        "end": 9.62
+      },
+      {
+        "word": "on",
+        "start": 9.62,
+        "end": 9.82
+      },
+      {
+        "word": "the",
+        "start": 9.82,
+        "end": 9.96
+      },
+      {
+        "word": "road.",
+        "start": 9.96,
+        "end": 10.26
+      },
+      {
+        "word": "And",
+        "start": 11.02,
+        "end": 11.44
+      },
+      {
+        "word": "in",
+        "start": 11.44,
+        "end": 11.94
+      },
+      {
+        "word": "the",
+        "start": 11.94,
+        "end": 12.04
+      },
+      {
+        "word": "corner",
+        "start": 12.04,
+        "end": 12.3
+      },
+      {
+        "word": "of",
+        "start": 12.3,
+        "end": 12.48
+      },
+      {
+        "word": "the",
+        "start": 12.48,
+        "end": 12.56
+      },
+      {
+        "word": "building,",
+        "start": 12.56,
+        "end": 13.08
+      },
+      {
+        "word": "the",
+        "start": 13.62,
+        "end": 14.26
+      },
+      {
+        "word": "two",
+        "start": 14.26,
+        "end": 14.6
+      },
+      {
+        "word": "people",
+        "start": 14.6,
+        "end": 14.96
+      },
+      {
+        "word": "are",
+        "start": 14.96,
+        "end": 15.52
+      },
+      {
+        "word": "walking",
+        "start": 15.52,
+        "end": 15.94
+      },
+      {
+        "word": "into",
+        "start": 15.94,
+        "end": 16.28
+      },
+      {
+        "word": "the",
+        "start": 16.28,
+        "end": 16.46
+      },
+      {
+        "word": "same",
+        "start": 16.46,
+        "end": 16.72
+      },
+      {
+        "word": "directions,",
+        "start": 16.72,
+        "end": 17.28
+      },
+      {
+        "word": "and",
+        "start": 18.18,
+        "end": 18.98
+      },
+      {
+        "word": "they're",
+        "start": 18.98,
+        "end": 19.32
+      },
+      {
+        "word": "carrying",
+        "start": 19.32,
+        "end": 19.6
+      },
+      {
+        "word": "the",
+        "start": 19.6,
+        "end": 19.8
+      },
+      {
+        "word": "same",
+        "start": 19.8,
+        "end": 20.68
+      },
+      {
+        "word": "carrier,",
+        "start": 20.68,
+        "end": 21.68
+      },
+      {
+        "word": "I",
+        "start": 21.68,
+        "end": 22.04
+      },
+      {
+        "word": "think.",
+        "start": 22.04,
+        "end": 22.3
+      },
+      {
+        "word": "I",
+        "start": 22.48,
+        "end": 22.54
+      },
+      {
+        "word": "mean,",
+        "start": 22.54,
+        "end": 22.72
+      },
+      {
+        "word": "the",
+        "start": 22.86,
+        "end": 22.94
+      },
+      {
+        "word": "suitcase,",
+        "start": 22.94,
+        "end": 23.28
+      },
+      {
+        "word": "I",
+        "start": 23.94,
+        "end": 24.08
+      },
+      {
+        "word": "think.",
+        "start": 24.08,
+        "end": 24.52
+      },
+      {
+        "word": "because",
+        "start": 26.68,
+        "end": 27.4
+      },
+      {
+        "word": "they",
+        "start": 27.4,
+        "end": 27.88
+      },
+      {
+        "word": "did",
+        "start": 27.88,
+        "end": 28.22
+      },
+      {
+        "word": "not",
+        "start": 28.22,
+        "end": 28.48
+      },
+      {
+        "word": "see",
+        "start": 28.48,
+        "end": 29.16
+      },
+      {
+        "word": "each",
+        "start": 29.16,
+        "end": 29.7
+      },
+      {
+        "word": "other,",
+        "start": 29.7,
+        "end": 30.06
+      },
+      {
+        "word": "they",
+        "start": 30.42,
+        "end": 31.0
+      },
+      {
+        "word": "just",
+        "start": 31.0,
+        "end": 31.24
+      },
+      {
+        "word": "bumped",
+        "start": 31.24,
+        "end": 31.62
+      },
+      {
+        "word": "into",
+        "start": 31.62,
+        "end": 31.96
+      },
+      {
+        "word": "each",
+        "start": 31.96,
+        "end": 32.16
+      },
+      {
+        "word": "other",
+        "start": 32.16,
+        "end": 32.52
+      },
+      {
+        "word": "and",
+        "start": 32.52,
+        "end": 33.06
+      },
+      {
+        "word": "especially",
+        "start": 33.06,
+        "end": 35.24
+      },
+      {
+        "word": "for",
+        "start": 35.24,
+        "end": 35.62
+      },
+      {
+        "word": "the",
+        "start": 35.62,
+        "end": 35.76
+      },
+      {
+        "word": "man",
+        "start": 35.76,
+        "end": 36.02
+      },
+      {
+        "word": "he",
+        "start": 36.02,
+        "end": 36.4
+      },
+      {
+        "word": "dropped",
+        "start": 36.4,
+        "end": 36.64
+      },
+      {
+        "word": "to",
+        "start": 36.64,
+        "end": 36.92
+      },
+      {
+        "word": "his",
+        "start": 36.92,
+        "end": 37.16
+      },
+      {
+        "word": "classes.",
+        "start": 37.16,
+        "end": 37.78
+      },
+      {
+        "word": "After",
+        "start": 40.3,
+        "end": 41.02
+      },
+      {
+        "word": "bumping",
+        "start": 41.02,
+        "end": 41.52
+      },
+      {
+        "word": "into",
+        "start": 41.52,
+        "end": 41.86
+      },
+      {
+        "word": "each",
+        "start": 41.86,
+        "end": 42.12
+      },
+      {
+        "word": "other,",
+        "start": 42.12,
+        "end": 42.5
+      },
+      {
+        "word": "they",
+        "start": 43.56,
+        "end": 45.48
+      },
+      {
+        "word": "seem",
+        "start": 45.48,
+        "end": 45.72
+      },
+      {
+        "word": "to",
+        "start": 45.72,
+        "end": 45.88
+      },
+      {
+        "word": "have",
+        "start": 45.88,
+        "end": 46.08
+      },
+      {
+        "word": "a",
+        "start": 46.08,
+        "end": 46.28
+      },
+      {
+        "word": "headache",
+        "start": 46.28,
+        "end": 46.66
+      },
+      {
+        "word": "because",
+        "start": 46.66,
+        "end": 47.52
+      },
+      {
+        "word": "there",
+        "start": 47.52,
+        "end": 48.42
+      },
+      {
+        "word": "is",
+        "start": 48.42,
+        "end": 48.64
+      },
+      {
+        "word": "the",
+        "start": 48.64,
+        "end": 48.88
+      },
+      {
+        "word": "stars",
+        "start": 48.88,
+        "end": 49.76
+      },
+      {
+        "word": "going",
+        "start": 49.76,
+        "end": 50.18
+      },
+      {
+        "word": "around",
+        "start": 50.18,
+        "end": 50.54
+      },
+      {
+        "word": "their",
+        "start": 50.54,
+        "end": 50.82
+      },
+      {
+        "word": "head.",
+        "start": 50.82,
+        "end": 51.68
+      },
+      {
+        "word": "and",
+        "start": 51.68,
+        "end": 52.82
+      },
+      {
+        "word": "after",
+        "start": 52.82,
+        "end": 53.12
+      },
+      {
+        "word": "that",
+        "start": 53.12,
+        "end": 53.5
+      },
+      {
+        "word": "they",
+        "start": 53.5,
+        "end": 53.94
+      },
+      {
+        "word": "said",
+        "start": 53.94,
+        "end": 54.24
+      },
+      {
+        "word": "to",
+        "start": 54.24,
+        "end": 54.58
+      },
+      {
+        "word": "just",
+        "start": 54.58,
+        "end": 56.08
+      },
+      {
+        "word": "the",
+        "start": 56.08,
+        "end": 56.42
+      },
+      {
+        "word": "I'm",
+        "start": 56.42,
+        "end": 56.84
+      },
+      {
+        "word": "sorry",
+        "start": 56.84,
+        "end": 57.08
+      },
+      {
+        "word": "to",
+        "start": 57.08,
+        "end": 57.34
+      },
+      {
+        "word": "each",
+        "start": 57.34,
+        "end": 57.56
+      },
+      {
+        "word": "other",
+        "start": 57.56,
+        "end": 57.9
+      },
+      {
+        "word": "and",
+        "start": 57.9,
+        "end": 58.92
+      },
+      {
+        "word": "pick",
+        "start": 58.92,
+        "end": 59.52
+      },
+      {
+        "word": "up",
+        "start": 59.52,
+        "end": 59.76
+      },
+      {
+        "word": "their",
+        "start": 59.76,
+        "end": 60.1
+      },
+      {
+        "word": "own",
+        "start": 60.1,
+        "end": 61.18
+      },
+      {
+        "word": "suitcases",
+        "start": 61.18,
+        "end": 61.94
+      },
+      {
+        "word": "but",
+        "start": 61.94,
+        "end": 62.36
+      },
+      {
+        "word": "and",
+        "start": 62.36,
+        "end": 63.62
+      },
+      {
+        "word": "they",
+        "start": 63.62,
+        "end": 63.8
+      },
+      {
+        "word": "just",
+        "start": 63.8,
+        "end": 64.06
+      },
+      {
+        "word": "the",
+        "start": 64.06,
+        "end": 64.44
+      },
+      {
+        "word": "went",
+        "start": 64.44,
+        "end": 66.34
+      },
+      {
+        "word": "to",
+        "start": 66.34,
+        "end": 66.72
+      },
+      {
+        "word": "their",
+        "start": 66.72,
+        "end": 67.34
+      },
+      {
+        "word": "own",
+        "start": 67.34,
+        "end": 67.7
+      },
+      {
+        "word": "tracks",
+        "start": 67.7,
+        "end": 67.98
+      },
+      {
+        "word": "I",
+        "start": 67.98,
+        "end": 68.26
+      },
+      {
+        "word": "mean",
+        "start": 68.26,
+        "end": 68.38
+      },
+      {
+        "word": "the",
+        "start": 68.38,
+        "end": 68.56
+      },
+      {
+        "word": "destinations",
+        "start": 68.56,
+        "end": 69.18
+      },
+      {
+        "word": "but",
+        "start": 69.18,
+        "end": 70.72
+      },
+      {
+        "word": "after",
+        "start": 70.72,
+        "end": 71.14
+      },
+      {
+        "word": "that",
+        "start": 71.14,
+        "end": 71.54
+      },
+      {
+        "word": "when",
+        "start": 71.54,
+        "end": 72.38
+      },
+      {
+        "word": "just",
+        "start": 72.38,
+        "end": 73.26
+      },
+      {
+        "word": "the",
+        "start": 73.26,
+        "end": 73.46
+      },
+      {
+        "word": "open",
+        "start": 73.46,
+        "end": 73.76
+      },
+      {
+        "word": "their",
+        "start": 73.76,
+        "end": 74.12
+      }
+    ]
+  },
+  "disfluency_events": [
+    {
+      "type": "filler",
+      "text": "um,",
+      "style": "clear",
+      "start": 0.0,
+      "end": 0.68,
+      "duration": 0.68,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 2.02,
+      "end": 2.04,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 2.56,
+      "end": 2.58,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 3.86,
+      "end": 3.88,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "um",
+      "style": "subtle",
+      "start": 4.04,
+      "end": 4.06,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 9.78,
+      "end": 9.8,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "um",
+      "style": "subtle",
+      "start": 11.9,
+      "end": 11.94,
+      "duration": 0.04,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 18.88,
+      "end": 18.9,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 21.96,
+      "end": 22.0,
+      "duration": 0.04,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 24.02,
+      "end": 24.06,
+      "duration": 0.04,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 32.9,
+      "end": 32.92,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 33.18,
+      "end": 33.2,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "um",
+      "style": "subtle",
+      "start": 33.36,
+      "end": 33.4,
+      "duration": 0.04,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 36.3,
+      "end": 36.34,
+      "duration": 0.04,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 39.48,
+      "end": 39.52,
+      "duration": 0.04,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "um",
+      "style": "subtle",
+      "start": 39.82,
+      "end": 39.84,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 41.64,
+      "end": 41.66,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "um",
+      "style": "subtle",
+      "start": 44.22,
+      "end": 44.26,
+      "duration": 0.04,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 46.18,
+      "end": 46.2,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 52.76,
+      "end": 52.78,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 58.76,
+      "end": 58.8,
+      "duration": 0.04,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 59.04,
+      "end": 59.06,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "um",
+      "style": "subtle",
+      "start": 59.22,
+      "end": 59.24,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 61.0,
+      "end": 61.02,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 63.5,
+      "end": 63.52,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 65.74,
+      "end": 65.76,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "um",
+      "style": "subtle",
+      "start": 65.94,
+      "end": 65.96,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 67.8,
+      "end": 67.82,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 74.66,
+      "end": 74.68,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "um",
+      "style": "subtle",
+      "start": 74.8,
+      "end": 74.84,
+      "duration": 0.04,
+      "count": NaN
+    }
+  ]
+}

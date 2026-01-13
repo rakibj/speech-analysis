@@ -1,0 +1,536 @@
+{
+  "meta": {
+    "sample_id": "L2A_014",
+    "filename": "L2A_014.wav",
+    "duration_sec": 34.08,
+    "word_count": 75,
+    "filler_event_count": 8
+  },
+  "verdict": {
+    "fluency_score": 72,
+    "readiness": "not_ready"
+  },
+  "benchmarking": {
+    "percentile": 50,
+    "target_score": 80,
+    "score_gap": 8,
+    "estimated_guided_practice_hours": 4.8
+  },
+  "metrics": {
+    "wpm": 132.04225352112678,
+    "fillers_per_min": 2.8169014084507045,
+    "stutters_per_min": 0.0,
+    "long_pauses_per_min": 1.7605633802816902,
+    "very_long_pauses_per_min": 0.0,
+    "pause_time_ratio": 0.0874413145539907,
+    "pause_variability": 0.0,
+    "vocab_richness": 0.64,
+    "repetition_ratio": 0.12
+  },
+  "sub_analysis": {
+    "primary_issues": [
+      {
+        "issue": "hesitation_structure",
+        "severity": "high",
+        "root_cause": "Pauses frequently interrupt sentence flow.",
+        "score_impact": 13
+      },
+      {
+        "issue": "filler_dependency",
+        "severity": "high",
+        "root_cause": "Fillers replace silent planning pauses.",
+        "score_impact": 11
+      }
+    ],
+    "action_plan": [
+      {
+        "priority": 1,
+        "focus": "hesitation_structure",
+        "instruction": "Pause only after completing full clauses or ideas.",
+        "expected_score_gain": 4
+      },
+      {
+        "priority": 2,
+        "focus": "filler_dependency",
+        "instruction": "Replace filler words with silent pauses under 300 ms.",
+        "expected_score_gain": 3
+      }
+    ]
+  },
+  "transcript": {
+    "text": "So this is a high building and it was busy if they work. And the woman and a man, they just turn in the corner and the pumbit is older. So there's a little bit very hard to recognize in that. The suitcase is each end together. And when they just recognize when they got home, So the men over the suitcase, wow, what that, start the woman close and the same with the woman.",
+    "segments": [
+      {
+        "text": "So this is a high building and it was busy if they work. And the woman and a man, they just turn",
+        "start": 0.0,
+        "end": 8.88
+      },
+      {
+        "text": "in the corner and the pumbit is older. So there's a little bit very hard to recognize in that.",
+        "start": 8.88,
+        "end": 18.06
+      },
+      {
+        "text": "The suitcase is each end together. And when they just recognize when they got home,",
+        "start": 18.84,
+        "end": 26.04
+      },
+      {
+        "text": "So the men over the suitcase, wow, what that, start the woman close and the same with the woman.",
+        "start": 26.04,
+        "end": 34.08
+      }
+    ],
+    "words": [
+      {
+        "word": "So",
+        "start": 0.0,
+        "end": 0.32
+      },
+      {
+        "word": "this",
+        "start": 0.32,
+        "end": 0.5
+      },
+      {
+        "word": "is",
+        "start": 0.5,
+        "end": 0.72
+      },
+      {
+        "word": "a",
+        "start": 0.72,
+        "end": 0.94
+      },
+      {
+        "word": "high",
+        "start": 0.94,
+        "end": 1.1
+      },
+      {
+        "word": "building",
+        "start": 1.1,
+        "end": 1.48
+      },
+      {
+        "word": "and",
+        "start": 1.48,
+        "end": 1.9
+      },
+      {
+        "word": "it",
+        "start": 1.9,
+        "end": 2.08
+      },
+      {
+        "word": "was",
+        "start": 2.08,
+        "end": 2.28
+      },
+      {
+        "word": "busy",
+        "start": 2.28,
+        "end": 2.76
+      },
+      {
+        "word": "if",
+        "start": 2.76,
+        "end": 3.1
+      },
+      {
+        "word": "they",
+        "start": 3.1,
+        "end": 3.22
+      },
+      {
+        "word": "work.",
+        "start": 3.22,
+        "end": 3.66
+      },
+      {
+        "word": "And",
+        "start": 4.48,
+        "end": 4.68
+      },
+      {
+        "word": "the",
+        "start": 4.68,
+        "end": 5.02
+      },
+      {
+        "word": "woman",
+        "start": 5.02,
+        "end": 5.56
+      },
+      {
+        "word": "and",
+        "start": 5.56,
+        "end": 6.12
+      },
+      {
+        "word": "a",
+        "start": 6.12,
+        "end": 6.4
+      },
+      {
+        "word": "man,",
+        "start": 6.4,
+        "end": 6.68
+      },
+      {
+        "word": "they",
+        "start": 7.44,
+        "end": 7.78
+      },
+      {
+        "word": "just",
+        "start": 7.78,
+        "end": 8.14
+      },
+      {
+        "word": "turn",
+        "start": 8.14,
+        "end": 8.88
+      },
+      {
+        "word": "in",
+        "start": 8.88,
+        "end": 9.18
+      },
+      {
+        "word": "the",
+        "start": 9.18,
+        "end": 9.36
+      },
+      {
+        "word": "corner",
+        "start": 9.36,
+        "end": 9.72
+      },
+      {
+        "word": "and",
+        "start": 9.72,
+        "end": 9.98
+      },
+      {
+        "word": "the",
+        "start": 9.98,
+        "end": 10.1
+      },
+      {
+        "word": "pumbit",
+        "start": 10.1,
+        "end": 10.6
+      },
+      {
+        "word": "is",
+        "start": 10.6,
+        "end": 11.04
+      },
+      {
+        "word": "older.",
+        "start": 11.04,
+        "end": 11.52
+      },
+      {
+        "word": "So",
+        "start": 12.54,
+        "end": 12.76
+      },
+      {
+        "word": "there's",
+        "start": 12.76,
+        "end": 13.84
+      },
+      {
+        "word": "a",
+        "start": 13.84,
+        "end": 14.14
+      },
+      {
+        "word": "little",
+        "start": 14.14,
+        "end": 14.4
+      },
+      {
+        "word": "bit",
+        "start": 14.4,
+        "end": 14.68
+      },
+      {
+        "word": "very",
+        "start": 14.68,
+        "end": 15.22
+      },
+      {
+        "word": "hard",
+        "start": 15.22,
+        "end": 15.66
+      },
+      {
+        "word": "to",
+        "start": 15.66,
+        "end": 16.0
+      },
+      {
+        "word": "recognize",
+        "start": 16.0,
+        "end": 17.38
+      },
+      {
+        "word": "in",
+        "start": 17.38,
+        "end": 17.78
+      },
+      {
+        "word": "that.",
+        "start": 17.78,
+        "end": 18.06
+      },
+      {
+        "word": "The",
+        "start": 18.84,
+        "end": 19.14
+      },
+      {
+        "word": "suitcase",
+        "start": 19.14,
+        "end": 19.74
+      },
+      {
+        "word": "is",
+        "start": 19.74,
+        "end": 20.62
+      },
+      {
+        "word": "each",
+        "start": 20.62,
+        "end": 22.06
+      },
+      {
+        "word": "end",
+        "start": 22.06,
+        "end": 22.3
+      },
+      {
+        "word": "together.",
+        "start": 22.3,
+        "end": 22.96
+      },
+      {
+        "word": "And",
+        "start": 23.2,
+        "end": 23.3
+      },
+      {
+        "word": "when",
+        "start": 23.3,
+        "end": 23.52
+      },
+      {
+        "word": "they",
+        "start": 23.52,
+        "end": 23.86
+      },
+      {
+        "word": "just",
+        "start": 23.86,
+        "end": 24.1
+      },
+      {
+        "word": "recognize",
+        "start": 24.1,
+        "end": 24.72
+      },
+      {
+        "word": "when",
+        "start": 24.72,
+        "end": 25.1
+      },
+      {
+        "word": "they",
+        "start": 25.1,
+        "end": 25.32
+      },
+      {
+        "word": "got",
+        "start": 25.32,
+        "end": 25.54
+      },
+      {
+        "word": "home,",
+        "start": 25.54,
+        "end": 26.04
+      },
+      {
+        "word": "So",
+        "start": 26.04,
+        "end": 26.94
+      },
+      {
+        "word": "the",
+        "start": 26.94,
+        "end": 27.14
+      },
+      {
+        "word": "men",
+        "start": 27.14,
+        "end": 27.4
+      },
+      {
+        "word": "over",
+        "start": 27.4,
+        "end": 27.78
+      },
+      {
+        "word": "the",
+        "start": 27.78,
+        "end": 28.0
+      },
+      {
+        "word": "suitcase,",
+        "start": 28.0,
+        "end": 28.32
+      },
+      {
+        "word": "wow,",
+        "start": 28.58,
+        "end": 29.0
+      },
+      {
+        "word": "what",
+        "start": 29.42,
+        "end": 29.5
+      },
+      {
+        "word": "that,",
+        "start": 29.5,
+        "end": 29.86
+      },
+      {
+        "word": "start",
+        "start": 30.1,
+        "end": 30.28
+      },
+      {
+        "word": "the",
+        "start": 30.28,
+        "end": 30.46
+      },
+      {
+        "word": "woman",
+        "start": 30.46,
+        "end": 30.72
+      },
+      {
+        "word": "close",
+        "start": 30.72,
+        "end": 31.2
+      },
+      {
+        "word": "and",
+        "start": 31.2,
+        "end": 32.22
+      },
+      {
+        "word": "the",
+        "start": 32.22,
+        "end": 32.38
+      },
+      {
+        "word": "same",
+        "start": 32.38,
+        "end": 32.7
+      },
+      {
+        "word": "with",
+        "start": 32.7,
+        "end": 33.5
+      },
+      {
+        "word": "the",
+        "start": 33.5,
+        "end": 33.74
+      },
+      {
+        "word": "woman.",
+        "start": 33.74,
+        "end": 34.08
+      }
+    ]
+  },
+  "disfluency_events": [
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 0.64,
+      "end": 0.66,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 1.8,
+      "end": 1.82,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 2.0,
+      "end": 2.02,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 2.96,
+      "end": 2.98,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 4.5,
+      "end": 4.52,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 6.0,
+      "end": 6.02,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 9.18,
+      "end": 9.2,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 32.14,
+      "end": 32.16,
+      "duration": 0.02,
+      "count": NaN
+    }
+  ]
+}

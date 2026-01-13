@@ -35,6 +35,8 @@ FILLER_PATTERNS = {
     
 }
 FILLER_REGEX = r"^(um+|uh+|erm+|er+|ah+|eh+|mmm+|hmm+)$"
+FILLER_IGNORE_MAX = 0.10     # <100ms → ignore
+FILLER_LIGHT_MAX = 0.30      # 100–300ms → light
 
 # More conservative set (exclude discourse markers)
 CORE_FILLERS = {

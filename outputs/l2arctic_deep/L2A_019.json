@@ -1,0 +1,724 @@
+{
+  "meta": {
+    "sample_id": "L2A_019",
+    "filename": "L2A_019.wav",
+    "duration_sec": 74.88,
+    "word_count": 101,
+    "filler_event_count": 12
+  },
+  "verdict": {
+    "fluency_score": 42,
+    "readiness": "not_ready"
+  },
+  "benchmarking": {
+    "percentile": 30,
+    "target_score": 80,
+    "score_gap": 38,
+    "estimated_guided_practice_hours": 22.8
+  },
+  "metrics": {
+    "wpm": 79.32692307692308,
+    "fillers_per_min": 2.884615384615385,
+    "stutters_per_min": 0.0,
+    "long_pauses_per_min": 1.6025641025641026,
+    "very_long_pauses_per_min": 0.0,
+    "pause_time_ratio": 0.06784188034188035,
+    "pause_variability": 0.27122297978214244,
+    "vocab_richness": 0.6363636363636364,
+    "repetition_ratio": 0.10101010101010101
+  },
+  "sub_analysis": {
+    "primary_issues": [
+      {
+        "issue": "hesitation_structure",
+        "severity": "high",
+        "root_cause": "Pauses frequently interrupt sentence flow.",
+        "score_impact": 12
+      },
+      {
+        "issue": "filler_dependency",
+        "severity": "high",
+        "root_cause": "Fillers replace silent planning pauses.",
+        "score_impact": 12
+      },
+      {
+        "issue": "delivery_pacing",
+        "severity": "medium",
+        "root_cause": "Speech rate deviates from optimal clarity range.",
+        "score_impact": 11
+      }
+    ],
+    "action_plan": [
+      {
+        "priority": 1,
+        "focus": "hesitation_structure",
+        "instruction": "Pause only after completing full clauses or ideas.",
+        "expected_score_gain": 13
+      },
+      {
+        "priority": 2,
+        "focus": "filler_dependency",
+        "instruction": "Replace filler words with silent pauses under 300 ms.",
+        "expected_score_gain": 13
+      },
+      {
+        "priority": 3,
+        "focus": "delivery_pacing",
+        "instruction": "Reduce speaking speed slightly while maintaining energy.",
+        "expected_score_gain": 11
+      }
+    ]
+  },
+  "transcript": {
+    "text": "Okay, I can see sky, sky, scraper, uh, toll buildings. And I think it looks like a big city, which is, uh, full of big buildings and rows and cars. And I guess the second thing shows the inside of the building. and in that scene a woman and a man are walking from different directions. She is wearing like green, like green, like green, not a dress but a former suit. and the man is wearing blue suit and they actually are carrying the exactly same looking suitcases or baggage. and I think they are meeting at the corner and",
+    "segments": [
+      {
+        "text": "Okay, I can see sky, sky, scraper, uh, toll buildings. And I think it looks like a big city,",
+        "start": 0.0,
+        "end": 14.3
+      },
+      {
+        "text": "which is, uh, full of big buildings and rows and cars. And I guess the second thing shows the inside of the building.",
+        "start": 14.6,
+        "end": 29.64
+      },
+      {
+        "text": "and in that scene a woman and a man are walking from different directions.",
+        "start": 29.64,
+        "end": 40.88
+      },
+      {
+        "text": "She is wearing like green, like green, like green, not a dress but a former suit.",
+        "start": 41.72,
+        "end": 51.14
+      },
+      {
+        "text": "and the man is wearing blue suit and they actually are carrying the exactly same looking suitcases or baggage.",
+        "start": 51.14,
+        "end": 67.58
+      },
+      {
+        "text": "and I think they are meeting at the corner and",
+        "start": 67.58,
+        "end": 74.88
+      }
+    ],
+    "words": [
+      {
+        "word": "Okay,",
+        "start": 0.0,
+        "end": 0.64
+      },
+      {
+        "word": "I",
+        "start": 1.0,
+        "end": 1.18
+      },
+      {
+        "word": "can",
+        "start": 1.18,
+        "end": 3.32
+      },
+      {
+        "word": "see",
+        "start": 3.32,
+        "end": 3.82
+      },
+      {
+        "word": "sky,",
+        "start": 3.82,
+        "end": 5.52
+      },
+      {
+        "word": "sky,",
+        "start": 6.58,
+        "end": 6.62
+      },
+      {
+        "word": "scraper,",
+        "start": 6.62,
+        "end": 7.04
+      },
+      {
+        "word": "uh,",
+        "start": 8.34,
+        "end": 8.64
+      },
+      {
+        "word": "toll",
+        "start": 8.78,
+        "end": 8.96
+      },
+      {
+        "word": "buildings.",
+        "start": 8.96,
+        "end": 9.34
+      },
+      {
+        "word": "And",
+        "start": 10.36,
+        "end": 10.52
+      },
+      {
+        "word": "I",
+        "start": 10.52,
+        "end": 12.38
+      },
+      {
+        "word": "think",
+        "start": 12.38,
+        "end": 12.6
+      },
+      {
+        "word": "it",
+        "start": 12.6,
+        "end": 12.86
+      },
+      {
+        "word": "looks",
+        "start": 12.86,
+        "end": 13.06
+      },
+      {
+        "word": "like",
+        "start": 13.06,
+        "end": 13.42
+      },
+      {
+        "word": "a",
+        "start": 13.42,
+        "end": 13.62
+      },
+      {
+        "word": "big",
+        "start": 13.62,
+        "end": 13.82
+      },
+      {
+        "word": "city,",
+        "start": 13.82,
+        "end": 14.3
+      },
+      {
+        "word": "which",
+        "start": 14.6,
+        "end": 15.52
+      },
+      {
+        "word": "is,",
+        "start": 15.52,
+        "end": 15.9
+      },
+      {
+        "word": "uh,",
+        "start": 16.28,
+        "end": 16.48
+      },
+      {
+        "word": "full",
+        "start": 16.94,
+        "end": 17.62
+      },
+      {
+        "word": "of",
+        "start": 17.62,
+        "end": 18.06
+      },
+      {
+        "word": "big",
+        "start": 18.06,
+        "end": 18.3
+      },
+      {
+        "word": "buildings",
+        "start": 18.3,
+        "end": 19.3
+      },
+      {
+        "word": "and",
+        "start": 19.3,
+        "end": 19.92
+      },
+      {
+        "word": "rows",
+        "start": 19.92,
+        "end": 21.7
+      },
+      {
+        "word": "and",
+        "start": 21.7,
+        "end": 22.16
+      },
+      {
+        "word": "cars.",
+        "start": 22.16,
+        "end": 22.58
+      },
+      {
+        "word": "And",
+        "start": 23.28,
+        "end": 23.96
+      },
+      {
+        "word": "I",
+        "start": 23.96,
+        "end": 24.72
+      },
+      {
+        "word": "guess",
+        "start": 24.72,
+        "end": 25.06
+      },
+      {
+        "word": "the",
+        "start": 25.06,
+        "end": 25.72
+      },
+      {
+        "word": "second",
+        "start": 25.72,
+        "end": 26.26
+      },
+      {
+        "word": "thing",
+        "start": 26.26,
+        "end": 26.88
+      },
+      {
+        "word": "shows",
+        "start": 26.88,
+        "end": 27.8
+      },
+      {
+        "word": "the",
+        "start": 27.8,
+        "end": 28.34
+      },
+      {
+        "word": "inside",
+        "start": 28.34,
+        "end": 28.9
+      },
+      {
+        "word": "of",
+        "start": 28.9,
+        "end": 29.06
+      },
+      {
+        "word": "the",
+        "start": 29.06,
+        "end": 29.2
+      },
+      {
+        "word": "building.",
+        "start": 29.2,
+        "end": 29.64
+      },
+      {
+        "word": "and",
+        "start": 29.64,
+        "end": 30.46
+      },
+      {
+        "word": "in",
+        "start": 30.46,
+        "end": 30.92
+      },
+      {
+        "word": "that",
+        "start": 30.92,
+        "end": 31.14
+      },
+      {
+        "word": "scene",
+        "start": 31.14,
+        "end": 31.68
+      },
+      {
+        "word": "a",
+        "start": 31.68,
+        "end": 32.78
+      },
+      {
+        "word": "woman",
+        "start": 32.78,
+        "end": 33.18
+      },
+      {
+        "word": "and",
+        "start": 33.18,
+        "end": 34.16
+      },
+      {
+        "word": "a",
+        "start": 34.16,
+        "end": 34.32
+      },
+      {
+        "word": "man",
+        "start": 34.32,
+        "end": 35.48
+      },
+      {
+        "word": "are",
+        "start": 35.48,
+        "end": 35.8
+      },
+      {
+        "word": "walking",
+        "start": 35.8,
+        "end": 38.38
+      },
+      {
+        "word": "from",
+        "start": 38.38,
+        "end": 38.96
+      },
+      {
+        "word": "different",
+        "start": 38.96,
+        "end": 40.14
+      },
+      {
+        "word": "directions.",
+        "start": 40.14,
+        "end": 40.88
+      },
+      {
+        "word": "She",
+        "start": 41.72,
+        "end": 42.16
+      },
+      {
+        "word": "is",
+        "start": 42.16,
+        "end": 42.36
+      },
+      {
+        "word": "wearing",
+        "start": 42.36,
+        "end": 42.8
+      },
+      {
+        "word": "like",
+        "start": 42.8,
+        "end": 44.32
+      },
+      {
+        "word": "green,",
+        "start": 44.32,
+        "end": 44.8
+      },
+      {
+        "word": "like",
+        "start": 45.48,
+        "end": 45.92
+      },
+      {
+        "word": "green,",
+        "start": 45.92,
+        "end": 46.42
+      },
+      {
+        "word": "like",
+        "start": 46.84,
+        "end": 48.4
+      },
+      {
+        "word": "green,",
+        "start": 48.4,
+        "end": 48.8
+      },
+      {
+        "word": "not",
+        "start": 49.06,
+        "end": 49.38
+      },
+      {
+        "word": "a",
+        "start": 49.38,
+        "end": 49.54
+      },
+      {
+        "word": "dress",
+        "start": 49.54,
+        "end": 49.86
+      },
+      {
+        "word": "but",
+        "start": 49.86,
+        "end": 50.24
+      },
+      {
+        "word": "a",
+        "start": 50.24,
+        "end": 50.48
+      },
+      {
+        "word": "former",
+        "start": 50.48,
+        "end": 50.68
+      },
+      {
+        "word": "suit.",
+        "start": 50.68,
+        "end": 51.14
+      },
+      {
+        "word": "and",
+        "start": 51.14,
+        "end": 51.8
+      },
+      {
+        "word": "the",
+        "start": 51.8,
+        "end": 52.0
+      },
+      {
+        "word": "man",
+        "start": 52.0,
+        "end": 52.38
+      },
+      {
+        "word": "is",
+        "start": 52.38,
+        "end": 53.26
+      },
+      {
+        "word": "wearing",
+        "start": 53.26,
+        "end": 53.76
+      },
+      {
+        "word": "blue",
+        "start": 53.76,
+        "end": 55.52
+      },
+      {
+        "word": "suit",
+        "start": 55.52,
+        "end": 57.6
+      },
+      {
+        "word": "and",
+        "start": 57.6,
+        "end": 58.48
+      },
+      {
+        "word": "they",
+        "start": 58.48,
+        "end": 58.74
+      },
+      {
+        "word": "actually",
+        "start": 58.74,
+        "end": 59.66
+      },
+      {
+        "word": "are",
+        "start": 59.66,
+        "end": 59.86
+      },
+      {
+        "word": "carrying",
+        "start": 59.86,
+        "end": 60.26
+      },
+      {
+        "word": "the",
+        "start": 60.26,
+        "end": 61.72
+      },
+      {
+        "word": "exactly",
+        "start": 61.72,
+        "end": 62.26
+      },
+      {
+        "word": "same",
+        "start": 62.26,
+        "end": 62.82
+      },
+      {
+        "word": "looking",
+        "start": 62.82,
+        "end": 63.34
+      },
+      {
+        "word": "suitcases",
+        "start": 63.34,
+        "end": 65.54
+      },
+      {
+        "word": "or",
+        "start": 65.54,
+        "end": 66.7
+      },
+      {
+        "word": "baggage.",
+        "start": 66.7,
+        "end": 67.58
+      },
+      {
+        "word": "and",
+        "start": 67.58,
+        "end": 68.84
+      },
+      {
+        "word": "I",
+        "start": 68.84,
+        "end": 69.4
+      },
+      {
+        "word": "think",
+        "start": 69.4,
+        "end": 69.7
+      },
+      {
+        "word": "they",
+        "start": 69.7,
+        "end": 70.68
+      },
+      {
+        "word": "are",
+        "start": 70.68,
+        "end": 70.98
+      },
+      {
+        "word": "meeting",
+        "start": 70.98,
+        "end": 72.46
+      },
+      {
+        "word": "at",
+        "start": 72.46,
+        "end": 73.1
+      },
+      {
+        "word": "the",
+        "start": 73.1,
+        "end": 73.26
+      },
+      {
+        "word": "corner",
+        "start": 73.26,
+        "end": 73.68
+      },
+      {
+        "word": "and",
+        "start": 73.68,
+        "end": 74.88
+      }
+    ]
+  },
+  "disfluency_events": [
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 3.06,
+      "end": 3.08,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh,",
+      "style": "clear",
+      "start": 8.34,
+      "end": 8.64,
+      "duration": 0.3,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh,",
+      "style": "clear",
+      "start": 16.28,
+      "end": 16.48,
+      "duration": 0.2,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 30.8,
+      "end": 30.84,
+      "duration": 0.04,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 35.76,
+      "end": 35.78,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 35.86,
+      "end": 35.9,
+      "duration": 0.04,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 56.5,
+      "end": 56.54,
+      "duration": 0.04,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 59.82,
+      "end": 59.84,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 61.9,
+      "end": 61.92,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 66.52,
+      "end": 66.54,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 69.94,
+      "end": 69.96,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "um",
+      "style": "subtle",
+      "start": 70.02,
+      "end": 70.04,
+      "duration": 0.02,
+      "count": NaN
+    }
+  ]
+}

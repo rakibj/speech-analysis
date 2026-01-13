@@ -1,0 +1,995 @@
+{
+  "meta": {
+    "sample_id": "L2A_000",
+    "filename": "L2A_000.wav",
+    "duration_sec": 52.66,
+    "word_count": 152,
+    "filler_event_count": 17
+  },
+  "verdict": {
+    "fluency_score": 59,
+    "readiness": "borderline"
+  },
+  "benchmarking": {
+    "percentile": 30,
+    "target_score": 80,
+    "score_gap": 21,
+    "estimated_guided_practice_hours": 12.6
+  },
+  "metrics": {
+    "wpm": 168.62894037219903,
+    "fillers_per_min": 6.1526775541207765,
+    "stutters_per_min": 0.0,
+    "long_pauses_per_min": 0.0,
+    "very_long_pauses_per_min": 0.0,
+    "pause_time_ratio": 0.05772882643372585,
+    "pause_variability": 0.16280868117722255,
+    "vocab_richness": 0.5202702702702703,
+    "repetition_ratio": 0.08108108108108109
+  },
+  "sub_analysis": {
+    "primary_issues": [
+      {
+        "issue": "filler_dependency",
+        "severity": "high",
+        "root_cause": "Fillers replace silent planning pauses.",
+        "score_impact": 25
+      }
+    ],
+    "action_plan": [
+      {
+        "priority": 1,
+        "focus": "filler_dependency",
+        "instruction": "Replace filler words with silent pauses under 300 ms.",
+        "expected_score_gain": 21
+      }
+    ]
+  },
+  "transcript": {
+    "text": "Yes, um, it seems it from the first pictures. This is like a picture of, uh, I don't town of a city with a big hotel. And two, two people, one woman and one man went to this hotel. And because there is no sign, uh, on the on the windows, each one like crashed into each others. And after that after crash, uh, they found that, surprisingly, they have the same color of the bag. And it like, it's similar bags, actually. And after crashing everyone took each other's bag and after that we went back to their rooms They found that the man took the dress of the after his opening the the bag his bag he found that he took He found like a red dress of a woman and the woman found that a Yulutai of the man and I'm not sure what sort of happened after that",
+    "segments": [
+      {
+        "text": "Yes, um, it seems it from the first pictures. This is like a picture of, uh, I don't town of a city with a big hotel. And two, two people, one woman and one man went to this hotel. And because there is no sign, uh, on the on the windows, each one like crashed into each others. And after that after crash, uh, they found that, surprisingly, they have the same color of the bag. And it like, it's similar bags, actually.",
+        "start": 0.0,
+        "end": 29.4
+      },
+      {
+        "text": "And after crashing everyone took each other's bag and after that we went back to their rooms",
+        "start": 29.4,
+        "end": 36.66
+      },
+      {
+        "text": "They found that the man took the dress of the after his opening the the bag his bag he found that he took",
+        "start": 36.66,
+        "end": 44.08
+      },
+      {
+        "text": "He found like a red dress of a woman and the woman found that a",
+        "start": 44.64,
+        "end": 48.42
+      },
+      {
+        "text": "Yulutai of the man and I'm not sure what sort of happened after that",
+        "start": 49.24,
+        "end": 52.66
+      }
+    ],
+    "words": [
+      {
+        "word": "Yes,",
+        "start": 0.0,
+        "end": 0.24
+      },
+      {
+        "word": "um,",
+        "start": 0.56,
+        "end": 1.02
+      },
+      {
+        "word": "it",
+        "start": 1.46,
+        "end": 1.7
+      },
+      {
+        "word": "seems",
+        "start": 1.7,
+        "end": 1.88
+      },
+      {
+        "word": "it",
+        "start": 1.88,
+        "end": 2.02
+      },
+      {
+        "word": "from",
+        "start": 2.02,
+        "end": 2.14
+      },
+      {
+        "word": "the",
+        "start": 2.14,
+        "end": 2.3
+      },
+      {
+        "word": "first",
+        "start": 2.3,
+        "end": 2.52
+      },
+      {
+        "word": "pictures.",
+        "start": 2.52,
+        "end": 2.94
+      },
+      {
+        "word": "This",
+        "start": 3.38,
+        "end": 3.64
+      },
+      {
+        "word": "is",
+        "start": 3.64,
+        "end": 3.78
+      },
+      {
+        "word": "like",
+        "start": 3.78,
+        "end": 3.96
+      },
+      {
+        "word": "a",
+        "start": 3.96,
+        "end": 4.08
+      },
+      {
+        "word": "picture",
+        "start": 4.08,
+        "end": 4.32
+      },
+      {
+        "word": "of,",
+        "start": 4.32,
+        "end": 4.68
+      },
+      {
+        "word": "uh,",
+        "start": 4.88,
+        "end": 5.0
+      },
+      {
+        "word": "I",
+        "start": 5.22,
+        "end": 5.32
+      },
+      {
+        "word": "don't",
+        "start": 5.32,
+        "end": 5.5
+      },
+      {
+        "word": "town",
+        "start": 5.5,
+        "end": 5.78
+      },
+      {
+        "word": "of",
+        "start": 5.78,
+        "end": 6.04
+      },
+      {
+        "word": "a",
+        "start": 6.04,
+        "end": 6.14
+      },
+      {
+        "word": "city",
+        "start": 6.14,
+        "end": 6.42
+      },
+      {
+        "word": "with",
+        "start": 6.42,
+        "end": 6.7
+      },
+      {
+        "word": "a",
+        "start": 6.7,
+        "end": 6.86
+      },
+      {
+        "word": "big",
+        "start": 6.86,
+        "end": 7.14
+      },
+      {
+        "word": "hotel.",
+        "start": 7.14,
+        "end": 7.48
+      },
+      {
+        "word": "And",
+        "start": 8.28,
+        "end": 8.68
+      },
+      {
+        "word": "two,",
+        "start": 8.68,
+        "end": 9.3
+      },
+      {
+        "word": "two",
+        "start": 9.46,
+        "end": 9.76
+      },
+      {
+        "word": "people,",
+        "start": 9.76,
+        "end": 10.22
+      },
+      {
+        "word": "one",
+        "start": 10.46,
+        "end": 10.78
+      },
+      {
+        "word": "woman",
+        "start": 10.78,
+        "end": 11.06
+      },
+      {
+        "word": "and",
+        "start": 11.06,
+        "end": 11.28
+      },
+      {
+        "word": "one",
+        "start": 11.28,
+        "end": 11.46
+      },
+      {
+        "word": "man",
+        "start": 11.46,
+        "end": 11.76
+      },
+      {
+        "word": "went",
+        "start": 11.76,
+        "end": 12.4
+      },
+      {
+        "word": "to",
+        "start": 12.4,
+        "end": 12.6
+      },
+      {
+        "word": "this",
+        "start": 12.6,
+        "end": 12.8
+      },
+      {
+        "word": "hotel.",
+        "start": 12.8,
+        "end": 13.06
+      },
+      {
+        "word": "And",
+        "start": 13.4,
+        "end": 13.72
+      },
+      {
+        "word": "because",
+        "start": 13.72,
+        "end": 13.94
+      },
+      {
+        "word": "there",
+        "start": 13.94,
+        "end": 14.16
+      },
+      {
+        "word": "is",
+        "start": 14.16,
+        "end": 14.3
+      },
+      {
+        "word": "no",
+        "start": 14.3,
+        "end": 14.5
+      },
+      {
+        "word": "sign,",
+        "start": 14.5,
+        "end": 14.88
+      },
+      {
+        "word": "uh,",
+        "start": 15.3,
+        "end": 15.44
+      },
+      {
+        "word": "on",
+        "start": 15.56,
+        "end": 15.72
+      },
+      {
+        "word": "the",
+        "start": 15.72,
+        "end": 15.84
+      },
+      {
+        "word": "on",
+        "start": 15.84,
+        "end": 16.02
+      },
+      {
+        "word": "the",
+        "start": 16.02,
+        "end": 16.18
+      },
+      {
+        "word": "windows,",
+        "start": 16.18,
+        "end": 16.58
+      },
+      {
+        "word": "each",
+        "start": 17.08,
+        "end": 17.26
+      },
+      {
+        "word": "one",
+        "start": 17.26,
+        "end": 17.46
+      },
+      {
+        "word": "like",
+        "start": 17.46,
+        "end": 17.84
+      },
+      {
+        "word": "crashed",
+        "start": 17.84,
+        "end": 18.3
+      },
+      {
+        "word": "into",
+        "start": 18.3,
+        "end": 18.78
+      },
+      {
+        "word": "each",
+        "start": 18.78,
+        "end": 19.04
+      },
+      {
+        "word": "others.",
+        "start": 19.04,
+        "end": 19.38
+      },
+      {
+        "word": "And",
+        "start": 19.78,
+        "end": 20.02
+      },
+      {
+        "word": "after",
+        "start": 20.02,
+        "end": 20.38
+      },
+      {
+        "word": "that",
+        "start": 20.38,
+        "end": 20.66
+      },
+      {
+        "word": "after",
+        "start": 20.66,
+        "end": 21.02
+      },
+      {
+        "word": "crash,",
+        "start": 21.02,
+        "end": 21.4
+      },
+      {
+        "word": "uh,",
+        "start": 21.78,
+        "end": 22.02
+      },
+      {
+        "word": "they",
+        "start": 22.32,
+        "end": 22.54
+      },
+      {
+        "word": "found",
+        "start": 22.54,
+        "end": 22.82
+      },
+      {
+        "word": "that,",
+        "start": 22.82,
+        "end": 23.22
+      },
+      {
+        "word": "surprisingly,",
+        "start": 23.36,
+        "end": 24.12
+      },
+      {
+        "word": "they",
+        "start": 24.38,
+        "end": 24.74
+      },
+      {
+        "word": "have",
+        "start": 24.74,
+        "end": 24.98
+      },
+      {
+        "word": "the",
+        "start": 24.98,
+        "end": 25.18
+      },
+      {
+        "word": "same",
+        "start": 25.18,
+        "end": 25.38
+      },
+      {
+        "word": "color",
+        "start": 25.38,
+        "end": 25.82
+      },
+      {
+        "word": "of",
+        "start": 25.82,
+        "end": 26.04
+      },
+      {
+        "word": "the",
+        "start": 26.04,
+        "end": 26.16
+      },
+      {
+        "word": "bag.",
+        "start": 26.16,
+        "end": 26.34
+      },
+      {
+        "word": "And",
+        "start": 26.58,
+        "end": 26.92
+      },
+      {
+        "word": "it",
+        "start": 26.92,
+        "end": 27.06
+      },
+      {
+        "word": "like,",
+        "start": 27.06,
+        "end": 27.4
+      },
+      {
+        "word": "it's",
+        "start": 27.6,
+        "end": 27.8
+      },
+      {
+        "word": "similar",
+        "start": 27.8,
+        "end": 28.22
+      },
+      {
+        "word": "bags,",
+        "start": 28.22,
+        "end": 28.64
+      },
+      {
+        "word": "actually.",
+        "start": 28.82,
+        "end": 29.4
+      },
+      {
+        "word": "And",
+        "start": 29.4,
+        "end": 30.1
+      },
+      {
+        "word": "after",
+        "start": 30.1,
+        "end": 30.42
+      },
+      {
+        "word": "crashing",
+        "start": 30.42,
+        "end": 30.76
+      },
+      {
+        "word": "everyone",
+        "start": 30.76,
+        "end": 31.32
+      },
+      {
+        "word": "took",
+        "start": 31.32,
+        "end": 31.72
+      },
+      {
+        "word": "each",
+        "start": 31.72,
+        "end": 32.78
+      },
+      {
+        "word": "other's",
+        "start": 32.78,
+        "end": 33.24
+      },
+      {
+        "word": "bag",
+        "start": 33.24,
+        "end": 33.4
+      },
+      {
+        "word": "and",
+        "start": 33.4,
+        "end": 34.16
+      },
+      {
+        "word": "after",
+        "start": 34.16,
+        "end": 34.46
+      },
+      {
+        "word": "that",
+        "start": 34.46,
+        "end": 34.76
+      },
+      {
+        "word": "we",
+        "start": 34.76,
+        "end": 35.04
+      },
+      {
+        "word": "went",
+        "start": 35.04,
+        "end": 35.3
+      },
+      {
+        "word": "back",
+        "start": 35.3,
+        "end": 35.6
+      },
+      {
+        "word": "to",
+        "start": 35.6,
+        "end": 35.94
+      },
+      {
+        "word": "their",
+        "start": 35.94,
+        "end": 36.16
+      },
+      {
+        "word": "rooms",
+        "start": 36.16,
+        "end": 36.66
+      },
+      {
+        "word": "They",
+        "start": 36.66,
+        "end": 37.28
+      },
+      {
+        "word": "found",
+        "start": 37.28,
+        "end": 37.58
+      },
+      {
+        "word": "that",
+        "start": 37.58,
+        "end": 38.04
+      },
+      {
+        "word": "the",
+        "start": 38.04,
+        "end": 38.66
+      },
+      {
+        "word": "man",
+        "start": 38.66,
+        "end": 38.88
+      },
+      {
+        "word": "took",
+        "start": 38.88,
+        "end": 39.28
+      },
+      {
+        "word": "the",
+        "start": 39.28,
+        "end": 39.86
+      },
+      {
+        "word": "dress",
+        "start": 39.86,
+        "end": 40.1
+      },
+      {
+        "word": "of",
+        "start": 40.1,
+        "end": 40.3
+      },
+      {
+        "word": "the",
+        "start": 40.3,
+        "end": 40.48
+      },
+      {
+        "word": "after",
+        "start": 40.48,
+        "end": 40.8
+      },
+      {
+        "word": "his",
+        "start": 40.8,
+        "end": 41.04
+      },
+      {
+        "word": "opening",
+        "start": 41.04,
+        "end": 41.34
+      },
+      {
+        "word": "the",
+        "start": 41.34,
+        "end": 41.94
+      },
+      {
+        "word": "the",
+        "start": 41.94,
+        "end": 42.24
+      },
+      {
+        "word": "bag",
+        "start": 42.24,
+        "end": 42.54
+      },
+      {
+        "word": "his",
+        "start": 42.54,
+        "end": 42.88
+      },
+      {
+        "word": "bag",
+        "start": 42.88,
+        "end": 43.12
+      },
+      {
+        "word": "he",
+        "start": 43.12,
+        "end": 43.32
+      },
+      {
+        "word": "found",
+        "start": 43.32,
+        "end": 43.48
+      },
+      {
+        "word": "that",
+        "start": 43.48,
+        "end": 43.66
+      },
+      {
+        "word": "he",
+        "start": 43.66,
+        "end": 43.84
+      },
+      {
+        "word": "took",
+        "start": 43.84,
+        "end": 44.08
+      },
+      {
+        "word": "He",
+        "start": 44.64,
+        "end": 45.12
+      },
+      {
+        "word": "found",
+        "start": 45.12,
+        "end": 45.4
+      },
+      {
+        "word": "like",
+        "start": 45.4,
+        "end": 45.7
+      },
+      {
+        "word": "a",
+        "start": 45.7,
+        "end": 45.9
+      },
+      {
+        "word": "red",
+        "start": 45.9,
+        "end": 46.04
+      },
+      {
+        "word": "dress",
+        "start": 46.04,
+        "end": 46.3
+      },
+      {
+        "word": "of",
+        "start": 46.3,
+        "end": 46.46
+      },
+      {
+        "word": "a",
+        "start": 46.46,
+        "end": 46.58
+      },
+      {
+        "word": "woman",
+        "start": 46.58,
+        "end": 46.8
+      },
+      {
+        "word": "and",
+        "start": 46.8,
+        "end": 47.44
+      },
+      {
+        "word": "the",
+        "start": 47.44,
+        "end": 47.62
+      },
+      {
+        "word": "woman",
+        "start": 47.62,
+        "end": 47.78
+      },
+      {
+        "word": "found",
+        "start": 47.78,
+        "end": 48.04
+      },
+      {
+        "word": "that",
+        "start": 48.04,
+        "end": 48.4
+      },
+      {
+        "word": "a",
+        "start": 48.4,
+        "end": 48.68
+      },
+      {
+        "word": "Yulutai",
+        "start": 49.24,
+        "end": 49.72
+      },
+      {
+        "word": "of",
+        "start": 49.72,
+        "end": 49.9
+      },
+      {
+        "word": "the",
+        "start": 49.9,
+        "end": 50.02
+      },
+      {
+        "word": "man",
+        "start": 50.02,
+        "end": 50.24
+      },
+      {
+        "word": "and",
+        "start": 50.24,
+        "end": 50.96
+      },
+      {
+        "word": "I'm",
+        "start": 50.96,
+        "end": 51.12
+      },
+      {
+        "word": "not",
+        "start": 51.12,
+        "end": 51.2
+      },
+      {
+        "word": "sure",
+        "start": 51.2,
+        "end": 51.36
+      },
+      {
+        "word": "what",
+        "start": 51.36,
+        "end": 51.56
+      },
+      {
+        "word": "sort",
+        "start": 51.56,
+        "end": 51.76
+      },
+      {
+        "word": "of",
+        "start": 51.76,
+        "end": 51.96
+      },
+      {
+        "word": "happened",
+        "start": 51.96,
+        "end": 52.1
+      },
+      {
+        "word": "after",
+        "start": 52.1,
+        "end": 52.34
+      },
+      {
+        "word": "that",
+        "start": 52.34,
+        "end": 52.66
+      }
+    ]
+  },
+  "disfluency_events": [
+    {
+      "type": "filler",
+      "text": "um,",
+      "style": "clear",
+      "start": 0.56,
+      "end": 1.02,
+      "duration": 0.46,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 1.64,
+      "end": 1.66,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 4.54,
+      "end": 4.56,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh,",
+      "style": "clear",
+      "start": 4.88,
+      "end": 5.0,
+      "duration": 0.12,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 8.52,
+      "end": 8.56,
+      "duration": 0.04,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh,",
+      "style": "clear",
+      "start": 15.3,
+      "end": 15.44,
+      "duration": 0.14,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 20.2,
+      "end": 20.24,
+      "duration": 0.04,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh,",
+      "style": "clear",
+      "start": 21.78,
+      "end": 22.02,
+      "duration": 0.24,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 29.08,
+      "end": 29.12,
+      "duration": 0.04,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 34.04,
+      "end": 34.08,
+      "duration": 0.04,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 35.04,
+      "end": 35.06,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 35.12,
+      "end": 35.14,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 40.64,
+      "end": 40.68,
+      "duration": 0.04,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 41.18,
+      "end": 41.2,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 45.12,
+      "end": 45.14,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 49.18,
+      "end": 49.2,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 51.0,
+      "end": 51.02,
+      "duration": 0.02,
+      "count": NaN
+    }
+  ]
+}

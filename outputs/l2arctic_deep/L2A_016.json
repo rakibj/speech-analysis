@@ -1,0 +1,994 @@
+{
+  "meta": {
+    "sample_id": "L2A_016",
+    "filename": "L2A_016.wav",
+    "duration_sec": 72.88,
+    "word_count": 140,
+    "filler_event_count": 20
+  },
+  "verdict": {
+    "fluency_score": 47,
+    "readiness": "borderline"
+  },
+  "benchmarking": {
+    "percentile": 30,
+    "target_score": 80,
+    "score_gap": 33,
+    "estimated_guided_practice_hours": 19.8
+  },
+  "metrics": {
+    "wpm": 111.14160263446763,
+    "fillers_per_min": 5.598243688254667,
+    "stutters_per_min": 0.0,
+    "long_pauses_per_min": 0.8232711306256861,
+    "very_long_pauses_per_min": 0.0,
+    "pause_time_ratio": 0.06462678375411644,
+    "pause_variability": 0.2896385267716927,
+    "vocab_richness": 0.6148148148148148,
+    "repetition_ratio": 0.08148148148148149
+  },
+  "sub_analysis": {
+    "primary_issues": [
+      {
+        "issue": "filler_dependency",
+        "severity": "high",
+        "root_cause": "Fillers replace silent planning pauses.",
+        "score_impact": 23
+      },
+      {
+        "issue": "delivery_instability",
+        "severity": "medium",
+        "root_cause": "Speech rhythm varies unpredictably.",
+        "score_impact": 8
+      }
+    ],
+    "action_plan": [
+      {
+        "priority": 1,
+        "focus": "filler_dependency",
+        "instruction": "Replace filler words with silent pauses under 300 ms.",
+        "expected_score_gain": 24
+      },
+      {
+        "priority": 2,
+        "focus": "delivery_instability",
+        "instruction": "Practice steady pacing using metronome or rhythm drills.",
+        "expected_score_gain": 8
+      }
+    ]
+  },
+  "transcript": {
+    "text": "As far as I can see, uh, this picture is actually showing two travelers who are actually going to the, traveling to the same city. And I can see that they are professionally dressed up. That means they were actually going for some, uh, meeting. And, uh, in a hurry, they, uh, while exiting from the airport, they accidentally collided with each other. And, uh, during During the collision, their bags caught swept and they mistakenly took each other's bag and went to their respective hotel and on reaching hotel they opened the luggage and they saw that they have mistakenly taken each other's luggage and they were actually kind of depressed because they had to actually go to the meeting immediately and now they were not having the clothes which actually they decided to wear on the meeting day.",
+    "segments": [
+      {
+        "text": "As far as I can see, uh, this picture is actually showing two travelers who are actually going",
+        "start": 0.0,
+        "end": 7.36
+      },
+      {
+        "text": "to the, traveling to the same city. And I can see that they are professionally dressed up.",
+        "start": 7.36,
+        "end": 12.48
+      },
+      {
+        "text": "That means they were actually going for some, uh, meeting. And, uh, in a hurry, they, uh,",
+        "start": 12.58,
+        "end": 21.02
+      },
+      {
+        "text": "while exiting from the airport, they accidentally collided with each other. And, uh, during",
+        "start": 21.14,
+        "end": 28.86
+      },
+      {
+        "text": "During the collision, their bags caught swept and they mistakenly took each other's bag",
+        "start": 28.86,
+        "end": 37.24
+      },
+      {
+        "text": "and went to their respective hotel and on reaching hotel they opened the luggage and they",
+        "start": 37.24,
+        "end": 45.44
+      },
+      {
+        "text": "saw that they have mistakenly taken each other's luggage and they were actually kind of",
+        "start": 46.64,
+        "end": 56.62
+      },
+      {
+        "text": "depressed because they had to actually go to the meeting immediately and now they were",
+        "start": 57.72,
+        "end": 64.58
+      },
+      {
+        "text": "not having the clothes which actually they decided to wear on the meeting day.",
+        "start": 64.58,
+        "end": 72.88
+      }
+    ],
+    "words": [
+      {
+        "word": "As",
+        "start": 0.0,
+        "end": 0.44
+      },
+      {
+        "word": "far",
+        "start": 0.44,
+        "end": 0.6
+      },
+      {
+        "word": "as",
+        "start": 0.6,
+        "end": 0.88
+      },
+      {
+        "word": "I",
+        "start": 0.88,
+        "end": 1.02
+      },
+      {
+        "word": "can",
+        "start": 1.02,
+        "end": 1.2
+      },
+      {
+        "word": "see,",
+        "start": 1.2,
+        "end": 1.52
+      },
+      {
+        "word": "uh,",
+        "start": 1.92,
+        "end": 1.98
+      },
+      {
+        "word": "this",
+        "start": 2.34,
+        "end": 2.6
+      },
+      {
+        "word": "picture",
+        "start": 2.6,
+        "end": 2.98
+      },
+      {
+        "word": "is",
+        "start": 2.98,
+        "end": 3.2
+      },
+      {
+        "word": "actually",
+        "start": 3.2,
+        "end": 3.56
+      },
+      {
+        "word": "showing",
+        "start": 3.56,
+        "end": 3.92
+      },
+      {
+        "word": "two",
+        "start": 3.92,
+        "end": 4.48
+      },
+      {
+        "word": "travelers",
+        "start": 4.48,
+        "end": 5.48
+      },
+      {
+        "word": "who",
+        "start": 5.48,
+        "end": 6.32
+      },
+      {
+        "word": "are",
+        "start": 6.32,
+        "end": 6.62
+      },
+      {
+        "word": "actually",
+        "start": 6.62,
+        "end": 7.06
+      },
+      {
+        "word": "going",
+        "start": 7.06,
+        "end": 7.36
+      },
+      {
+        "word": "to",
+        "start": 7.36,
+        "end": 7.54
+      },
+      {
+        "word": "the,",
+        "start": 7.54,
+        "end": 7.74
+      },
+      {
+        "word": "traveling",
+        "start": 7.84,
+        "end": 8.08
+      },
+      {
+        "word": "to",
+        "start": 8.08,
+        "end": 8.28
+      },
+      {
+        "word": "the",
+        "start": 8.28,
+        "end": 8.48
+      },
+      {
+        "word": "same",
+        "start": 8.48,
+        "end": 8.86
+      },
+      {
+        "word": "city.",
+        "start": 8.86,
+        "end": 9.32
+      },
+      {
+        "word": "And",
+        "start": 9.94,
+        "end": 10.32
+      },
+      {
+        "word": "I",
+        "start": 10.32,
+        "end": 10.54
+      },
+      {
+        "word": "can",
+        "start": 10.54,
+        "end": 10.68
+      },
+      {
+        "word": "see",
+        "start": 10.68,
+        "end": 10.88
+      },
+      {
+        "word": "that",
+        "start": 10.88,
+        "end": 11.06
+      },
+      {
+        "word": "they",
+        "start": 11.06,
+        "end": 11.24
+      },
+      {
+        "word": "are",
+        "start": 11.24,
+        "end": 11.34
+      },
+      {
+        "word": "professionally",
+        "start": 11.34,
+        "end": 11.82
+      },
+      {
+        "word": "dressed",
+        "start": 11.82,
+        "end": 12.16
+      },
+      {
+        "word": "up.",
+        "start": 12.16,
+        "end": 12.48
+      },
+      {
+        "word": "That",
+        "start": 12.58,
+        "end": 12.8
+      },
+      {
+        "word": "means",
+        "start": 12.8,
+        "end": 13.04
+      },
+      {
+        "word": "they",
+        "start": 13.04,
+        "end": 13.54
+      },
+      {
+        "word": "were",
+        "start": 13.54,
+        "end": 13.66
+      },
+      {
+        "word": "actually",
+        "start": 13.66,
+        "end": 14.04
+      },
+      {
+        "word": "going",
+        "start": 14.04,
+        "end": 14.78
+      },
+      {
+        "word": "for",
+        "start": 14.78,
+        "end": 15.12
+      },
+      {
+        "word": "some,",
+        "start": 15.12,
+        "end": 15.86
+      },
+      {
+        "word": "uh,",
+        "start": 15.92,
+        "end": 16.5
+      },
+      {
+        "word": "meeting.",
+        "start": 17.12,
+        "end": 17.54
+      },
+      {
+        "word": "And,",
+        "start": 18.5,
+        "end": 18.74
+      },
+      {
+        "word": "uh,",
+        "start": 18.74,
+        "end": 19.24
+      },
+      {
+        "word": "in",
+        "start": 19.36,
+        "end": 19.54
+      },
+      {
+        "word": "a",
+        "start": 19.54,
+        "end": 19.68
+      },
+      {
+        "word": "hurry,",
+        "start": 19.68,
+        "end": 19.96
+      },
+      {
+        "word": "they,",
+        "start": 20.44,
+        "end": 20.56
+      },
+      {
+        "word": "uh,",
+        "start": 20.9,
+        "end": 21.02
+      },
+      {
+        "word": "while",
+        "start": 21.14,
+        "end": 21.3
+      },
+      {
+        "word": "exiting",
+        "start": 21.3,
+        "end": 21.66
+      },
+      {
+        "word": "from",
+        "start": 21.66,
+        "end": 21.98
+      },
+      {
+        "word": "the",
+        "start": 21.98,
+        "end": 22.24
+      },
+      {
+        "word": "airport,",
+        "start": 22.24,
+        "end": 22.7
+      },
+      {
+        "word": "they",
+        "start": 23.04,
+        "end": 23.06
+      },
+      {
+        "word": "accidentally",
+        "start": 23.06,
+        "end": 23.68
+      },
+      {
+        "word": "collided",
+        "start": 23.68,
+        "end": 24.24
+      },
+      {
+        "word": "with",
+        "start": 24.24,
+        "end": 24.88
+      },
+      {
+        "word": "each",
+        "start": 24.88,
+        "end": 25.18
+      },
+      {
+        "word": "other.",
+        "start": 25.18,
+        "end": 25.46
+      },
+      {
+        "word": "And,",
+        "start": 26.28,
+        "end": 26.92
+      },
+      {
+        "word": "uh,",
+        "start": 26.96,
+        "end": 27.3
+      },
+      {
+        "word": "during",
+        "start": 28.32,
+        "end": 28.86
+      },
+      {
+        "word": "During",
+        "start": 28.86,
+        "end": 29.0
+      },
+      {
+        "word": "the",
+        "start": 29.0,
+        "end": 29.22
+      },
+      {
+        "word": "collision,",
+        "start": 29.22,
+        "end": 29.86
+      },
+      {
+        "word": "their",
+        "start": 30.26,
+        "end": 30.5
+      },
+      {
+        "word": "bags",
+        "start": 30.5,
+        "end": 31.02
+      },
+      {
+        "word": "caught",
+        "start": 31.02,
+        "end": 31.56
+      },
+      {
+        "word": "swept",
+        "start": 31.56,
+        "end": 32.12
+      },
+      {
+        "word": "and",
+        "start": 32.12,
+        "end": 33.52
+      },
+      {
+        "word": "they",
+        "start": 33.52,
+        "end": 33.84
+      },
+      {
+        "word": "mistakenly",
+        "start": 33.84,
+        "end": 34.96
+      },
+      {
+        "word": "took",
+        "start": 34.96,
+        "end": 35.36
+      },
+      {
+        "word": "each",
+        "start": 35.36,
+        "end": 36.56
+      },
+      {
+        "word": "other's",
+        "start": 36.56,
+        "end": 37.02
+      },
+      {
+        "word": "bag",
+        "start": 37.02,
+        "end": 37.24
+      },
+      {
+        "word": "and",
+        "start": 37.24,
+        "end": 38.0
+      },
+      {
+        "word": "went",
+        "start": 38.0,
+        "end": 38.24
+      },
+      {
+        "word": "to",
+        "start": 38.24,
+        "end": 38.5
+      },
+      {
+        "word": "their",
+        "start": 38.5,
+        "end": 38.74
+      },
+      {
+        "word": "respective",
+        "start": 38.74,
+        "end": 39.24
+      },
+      {
+        "word": "hotel",
+        "start": 39.24,
+        "end": 39.7
+      },
+      {
+        "word": "and",
+        "start": 39.7,
+        "end": 40.7
+      },
+      {
+        "word": "on",
+        "start": 40.7,
+        "end": 40.94
+      },
+      {
+        "word": "reaching",
+        "start": 40.94,
+        "end": 41.36
+      },
+      {
+        "word": "hotel",
+        "start": 41.36,
+        "end": 41.9
+      },
+      {
+        "word": "they",
+        "start": 41.9,
+        "end": 42.24
+      },
+      {
+        "word": "opened",
+        "start": 42.24,
+        "end": 42.9
+      },
+      {
+        "word": "the",
+        "start": 42.9,
+        "end": 43.62
+      },
+      {
+        "word": "luggage",
+        "start": 43.62,
+        "end": 44.08
+      },
+      {
+        "word": "and",
+        "start": 44.08,
+        "end": 45.02
+      },
+      {
+        "word": "they",
+        "start": 45.02,
+        "end": 45.44
+      },
+      {
+        "word": "saw",
+        "start": 46.53,
+        "end": 47.02
+      },
+      {
+        "word": "that",
+        "start": 47.02,
+        "end": 47.42
+      },
+      {
+        "word": "they",
+        "start": 47.42,
+        "end": 48.82
+      },
+      {
+        "word": "have",
+        "start": 48.82,
+        "end": 49.06
+      },
+      {
+        "word": "mistakenly",
+        "start": 49.06,
+        "end": 50.16
+      },
+      {
+        "word": "taken",
+        "start": 50.16,
+        "end": 50.62
+      },
+      {
+        "word": "each",
+        "start": 50.62,
+        "end": 51.12
+      },
+      {
+        "word": "other's",
+        "start": 51.12,
+        "end": 52.02
+      },
+      {
+        "word": "luggage",
+        "start": 52.02,
+        "end": 52.82
+      },
+      {
+        "word": "and",
+        "start": 52.82,
+        "end": 53.8
+      },
+      {
+        "word": "they",
+        "start": 53.8,
+        "end": 54.2
+      },
+      {
+        "word": "were",
+        "start": 54.2,
+        "end": 54.32
+      },
+      {
+        "word": "actually",
+        "start": 54.32,
+        "end": 54.86
+      },
+      {
+        "word": "kind",
+        "start": 54.86,
+        "end": 56.14
+      },
+      {
+        "word": "of",
+        "start": 56.14,
+        "end": 56.62
+      },
+      {
+        "word": "depressed",
+        "start": 57.72,
+        "end": 58.42
+      },
+      {
+        "word": "because",
+        "start": 58.42,
+        "end": 59.12
+      },
+      {
+        "word": "they",
+        "start": 59.12,
+        "end": 59.94
+      },
+      {
+        "word": "had",
+        "start": 59.94,
+        "end": 60.18
+      },
+      {
+        "word": "to",
+        "start": 60.18,
+        "end": 60.44
+      },
+      {
+        "word": "actually",
+        "start": 60.44,
+        "end": 60.86
+      },
+      {
+        "word": "go",
+        "start": 60.86,
+        "end": 61.28
+      },
+      {
+        "word": "to",
+        "start": 61.28,
+        "end": 61.5
+      },
+      {
+        "word": "the",
+        "start": 61.5,
+        "end": 61.76
+      },
+      {
+        "word": "meeting",
+        "start": 61.76,
+        "end": 63.04
+      },
+      {
+        "word": "immediately",
+        "start": 63.04,
+        "end": 63.56
+      },
+      {
+        "word": "and",
+        "start": 63.56,
+        "end": 63.98
+      },
+      {
+        "word": "now",
+        "start": 63.98,
+        "end": 64.26
+      },
+      {
+        "word": "they",
+        "start": 64.26,
+        "end": 64.48
+      },
+      {
+        "word": "were",
+        "start": 64.48,
+        "end": 64.58
+      },
+      {
+        "word": "not",
+        "start": 64.58,
+        "end": 64.76
+      },
+      {
+        "word": "having",
+        "start": 64.76,
+        "end": 65.08
+      },
+      {
+        "word": "the",
+        "start": 65.08,
+        "end": 65.78
+      },
+      {
+        "word": "clothes",
+        "start": 65.78,
+        "end": 69.16
+      },
+      {
+        "word": "which",
+        "start": 69.16,
+        "end": 69.66
+      },
+      {
+        "word": "actually",
+        "start": 69.66,
+        "end": 70.34
+      },
+      {
+        "word": "they",
+        "start": 70.34,
+        "end": 70.56
+      },
+      {
+        "word": "decided",
+        "start": 70.56,
+        "end": 70.88
+      },
+      {
+        "word": "to",
+        "start": 70.88,
+        "end": 71.14
+      },
+      {
+        "word": "wear",
+        "start": 71.14,
+        "end": 71.42
+      },
+      {
+        "word": "on",
+        "start": 71.42,
+        "end": 71.74
+      },
+      {
+        "word": "the",
+        "start": 71.74,
+        "end": 71.96
+      },
+      {
+        "word": "meeting",
+        "start": 71.96,
+        "end": 72.38
+      },
+      {
+        "word": "day.",
+        "start": 72.38,
+        "end": 72.88
+      }
+    ]
+  },
+  "disfluency_events": [
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 0.96,
+      "end": 1.0,
+      "duration": 0.04,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh,",
+      "style": "clear",
+      "start": 1.92,
+      "end": 1.98,
+      "duration": 0.06,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 3.1,
+      "end": 3.12,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 6.54,
+      "end": 6.58,
+      "duration": 0.04,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 10.48,
+      "end": 10.52,
+      "duration": 0.04,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh,",
+      "style": "clear",
+      "start": 15.92,
+      "end": 16.5,
+      "duration": 0.58,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh,",
+      "style": "clear",
+      "start": 18.74,
+      "end": 19.24,
+      "duration": 0.5,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh,",
+      "style": "clear",
+      "start": 20.9,
+      "end": 21.02,
+      "duration": 0.12,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh,",
+      "style": "clear",
+      "start": 26.96,
+      "end": 27.3,
+      "duration": 0.34,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 33.2,
+      "end": 33.24,
+      "duration": 0.04,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 40.58,
+      "end": 40.6,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 40.86,
+      "end": 40.88,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 44.94,
+      "end": 44.96,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 48.36,
+      "end": 48.38,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 53.78,
+      "end": 53.8,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 54.26,
+      "end": 54.28,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 57.24,
+      "end": 57.28,
+      "duration": 0.04,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 63.9,
+      "end": 63.92,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 70.06,
+      "end": 70.1,
+      "duration": 0.04,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 71.66,
+      "end": 71.7,
+      "duration": 0.04,
+      "count": NaN
+    }
+  ]
+}

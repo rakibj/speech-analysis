@@ -1,0 +1,915 @@
+{
+  "meta": {
+    "sample_id": "L2A_002",
+    "filename": "L2A_002.wav",
+    "duration_sec": 72.14,
+    "word_count": 135,
+    "filler_event_count": 14
+  },
+  "verdict": {
+    "fluency_score": 55,
+    "readiness": "borderline"
+  },
+  "benchmarking": {
+    "percentile": 30,
+    "target_score": 80,
+    "score_gap": 25,
+    "estimated_guided_practice_hours": 15.0
+  },
+  "metrics": {
+    "wpm": 110.618242306626,
+    "fillers_per_min": 2.994177987247021,
+    "stutters_per_min": 0.0,
+    "long_pauses_per_min": 0.8317161075686166,
+    "very_long_pauses_per_min": 0.0,
+    "pause_time_ratio": 0.06459661768782927,
+    "pause_variability": 0.40488975571840996,
+    "vocab_richness": 0.6015037593984962,
+    "repetition_ratio": 0.06015037593984962
+  },
+  "sub_analysis": {
+    "primary_issues": [
+      {
+        "issue": "filler_dependency",
+        "severity": "high",
+        "root_cause": "Fillers replace silent planning pauses.",
+        "score_impact": 12
+      },
+      {
+        "issue": "delivery_instability",
+        "severity": "medium",
+        "root_cause": "Speech rhythm varies unpredictably.",
+        "score_impact": 11
+      }
+    ],
+    "action_plan": [
+      {
+        "priority": 1,
+        "focus": "filler_dependency",
+        "instruction": "Replace filler words with silent pauses under 300 ms.",
+        "expected_score_gain": 13
+      },
+      {
+        "priority": 2,
+        "focus": "delivery_instability",
+        "instruction": "Practice steady pacing using metronome or rhythm drills.",
+        "expected_score_gain": 11
+      }
+    ]
+  },
+  "transcript": {
+    "text": "This is a history like it happened in a big city. It's probably New York or something like that. There are two kinds of house. One, a big apartment, our buildings for business. Um, uh, a small house there. There's a history from one man and one woman like they across each other in a way, in a corner. And they confuse their suitcase each others like instead they crush each other and after that when they get home they feel out like their suitcase like get everyone is not the they're real they're real suitcase and one and the man look at one red dress and the woman yellow tea. And it happens when the people are really go from somewhere and they really, it doesn't matter because they don't want that they wanted.",
+    "segments": [
+      {
+        "text": "This is a history like it happened in a big city. It's probably New York or something like that. There are two kinds of",
+        "start": 0.0,
+        "end": 7.74
+      },
+      {
+        "text": "house. One, a big apartment, our buildings for business. Um, uh, a small house there. There's a history",
+        "start": 7.74,
+        "end": 16.76
+      },
+      {
+        "text": "from one man and one woman like they across each other in a way, in a corner. And they confuse their",
+        "start": 16.76,
+        "end": 26.76
+      },
+      {
+        "text": "suitcase each others like instead they crush each other and after that when they",
+        "start": 26.76,
+        "end": 35.98
+      },
+      {
+        "text": "get home they feel out like their suitcase like get everyone is not the",
+        "start": 35.98,
+        "end": 44.54
+      },
+      {
+        "text": "they're real they're real suitcase and one and the man look at one red dress",
+        "start": 44.54,
+        "end": 52.48
+      },
+      {
+        "text": "and the woman yellow tea.",
+        "start": 52.48,
+        "end": 55.1
+      },
+      {
+        "text": "And it happens when the people are really go from somewhere",
+        "start": 56.64,
+        "end": 65.18
+      },
+      {
+        "text": "and they really, it doesn't matter because they don't want that they wanted.",
+        "start": 65.18,
+        "end": 72.14
+      }
+    ],
+    "words": [
+      {
+        "word": "This",
+        "start": 0.0,
+        "end": 0.26
+      },
+      {
+        "word": "is",
+        "start": 0.26,
+        "end": 0.4
+      },
+      {
+        "word": "a",
+        "start": 0.4,
+        "end": 0.58
+      },
+      {
+        "word": "history",
+        "start": 0.58,
+        "end": 0.92
+      },
+      {
+        "word": "like",
+        "start": 0.92,
+        "end": 1.36
+      },
+      {
+        "word": "it",
+        "start": 1.36,
+        "end": 1.84
+      },
+      {
+        "word": "happened",
+        "start": 1.84,
+        "end": 2.2
+      },
+      {
+        "word": "in",
+        "start": 2.2,
+        "end": 2.48
+      },
+      {
+        "word": "a",
+        "start": 2.48,
+        "end": 2.62
+      },
+      {
+        "word": "big",
+        "start": 2.62,
+        "end": 2.78
+      },
+      {
+        "word": "city.",
+        "start": 2.78,
+        "end": 3.24
+      },
+      {
+        "word": "It's",
+        "start": 3.72,
+        "end": 4.06
+      },
+      {
+        "word": "probably",
+        "start": 4.06,
+        "end": 4.32
+      },
+      {
+        "word": "New",
+        "start": 4.32,
+        "end": 4.74
+      },
+      {
+        "word": "York",
+        "start": 4.74,
+        "end": 5.0
+      },
+      {
+        "word": "or",
+        "start": 5.0,
+        "end": 5.22
+      },
+      {
+        "word": "something",
+        "start": 5.22,
+        "end": 5.54
+      },
+      {
+        "word": "like",
+        "start": 5.54,
+        "end": 5.72
+      },
+      {
+        "word": "that.",
+        "start": 5.72,
+        "end": 6.06
+      },
+      {
+        "word": "There",
+        "start": 6.36,
+        "end": 6.62
+      },
+      {
+        "word": "are",
+        "start": 6.62,
+        "end": 6.76
+      },
+      {
+        "word": "two",
+        "start": 6.76,
+        "end": 7.1
+      },
+      {
+        "word": "kinds",
+        "start": 7.1,
+        "end": 7.34
+      },
+      {
+        "word": "of",
+        "start": 7.34,
+        "end": 7.74
+      },
+      {
+        "word": "house.",
+        "start": 7.74,
+        "end": 8.28
+      },
+      {
+        "word": "One,",
+        "start": 8.62,
+        "end": 9.02
+      },
+      {
+        "word": "a",
+        "start": 9.26,
+        "end": 9.36
+      },
+      {
+        "word": "big",
+        "start": 9.36,
+        "end": 9.64
+      },
+      {
+        "word": "apartment,",
+        "start": 9.64,
+        "end": 10.46
+      },
+      {
+        "word": "our",
+        "start": 11.12,
+        "end": 11.46
+      },
+      {
+        "word": "buildings",
+        "start": 11.46,
+        "end": 12.04
+      },
+      {
+        "word": "for",
+        "start": 12.04,
+        "end": 12.38
+      },
+      {
+        "word": "business.",
+        "start": 12.38,
+        "end": 12.86
+      },
+      {
+        "word": "Um,",
+        "start": 13.52,
+        "end": 13.7
+      },
+      {
+        "word": "uh,",
+        "start": 14.2,
+        "end": 14.28
+      },
+      {
+        "word": "a",
+        "start": 14.28,
+        "end": 14.42
+      },
+      {
+        "word": "small",
+        "start": 14.42,
+        "end": 14.56
+      },
+      {
+        "word": "house",
+        "start": 14.56,
+        "end": 14.96
+      },
+      {
+        "word": "there.",
+        "start": 14.96,
+        "end": 15.28
+      },
+      {
+        "word": "There's",
+        "start": 15.82,
+        "end": 16.3
+      },
+      {
+        "word": "a",
+        "start": 16.3,
+        "end": 16.48
+      },
+      {
+        "word": "history",
+        "start": 16.48,
+        "end": 16.76
+      },
+      {
+        "word": "from",
+        "start": 16.76,
+        "end": 17.18
+      },
+      {
+        "word": "one",
+        "start": 17.18,
+        "end": 17.42
+      },
+      {
+        "word": "man",
+        "start": 17.42,
+        "end": 17.68
+      },
+      {
+        "word": "and",
+        "start": 17.68,
+        "end": 18.06
+      },
+      {
+        "word": "one",
+        "start": 18.06,
+        "end": 18.42
+      },
+      {
+        "word": "woman",
+        "start": 18.42,
+        "end": 18.96
+      },
+      {
+        "word": "like",
+        "start": 18.96,
+        "end": 19.32
+      },
+      {
+        "word": "they",
+        "start": 19.32,
+        "end": 20.02
+      },
+      {
+        "word": "across",
+        "start": 20.02,
+        "end": 20.88
+      },
+      {
+        "word": "each",
+        "start": 20.88,
+        "end": 21.3
+      },
+      {
+        "word": "other",
+        "start": 21.3,
+        "end": 21.64
+      },
+      {
+        "word": "in",
+        "start": 21.64,
+        "end": 22.32
+      },
+      {
+        "word": "a",
+        "start": 22.32,
+        "end": 22.5
+      },
+      {
+        "word": "way,",
+        "start": 22.5,
+        "end": 22.8
+      },
+      {
+        "word": "in",
+        "start": 22.94,
+        "end": 23.08
+      },
+      {
+        "word": "a",
+        "start": 23.08,
+        "end": 23.16
+      },
+      {
+        "word": "corner.",
+        "start": 23.16,
+        "end": 23.5
+      },
+      {
+        "word": "And",
+        "start": 23.96,
+        "end": 24.48
+      },
+      {
+        "word": "they",
+        "start": 24.48,
+        "end": 24.8
+      },
+      {
+        "word": "confuse",
+        "start": 24.8,
+        "end": 25.68
+      },
+      {
+        "word": "their",
+        "start": 25.68,
+        "end": 26.76
+      },
+      {
+        "word": "suitcase",
+        "start": 26.76,
+        "end": 27.48
+      },
+      {
+        "word": "each",
+        "start": 27.48,
+        "end": 28.3
+      },
+      {
+        "word": "others",
+        "start": 28.3,
+        "end": 28.64
+      },
+      {
+        "word": "like",
+        "start": 28.64,
+        "end": 29.58
+      },
+      {
+        "word": "instead",
+        "start": 29.58,
+        "end": 30.2
+      },
+      {
+        "word": "they",
+        "start": 30.2,
+        "end": 31.12
+      },
+      {
+        "word": "crush",
+        "start": 31.12,
+        "end": 32.14
+      },
+      {
+        "word": "each",
+        "start": 32.14,
+        "end": 33.16
+      },
+      {
+        "word": "other",
+        "start": 33.16,
+        "end": 33.48
+      },
+      {
+        "word": "and",
+        "start": 33.48,
+        "end": 34.28
+      },
+      {
+        "word": "after",
+        "start": 34.28,
+        "end": 34.7
+      },
+      {
+        "word": "that",
+        "start": 34.7,
+        "end": 35.14
+      },
+      {
+        "word": "when",
+        "start": 35.14,
+        "end": 35.7
+      },
+      {
+        "word": "they",
+        "start": 35.7,
+        "end": 35.98
+      },
+      {
+        "word": "get",
+        "start": 35.98,
+        "end": 36.22
+      },
+      {
+        "word": "home",
+        "start": 36.22,
+        "end": 36.56
+      },
+      {
+        "word": "they",
+        "start": 36.56,
+        "end": 37.0
+      },
+      {
+        "word": "feel",
+        "start": 37.0,
+        "end": 37.32
+      },
+      {
+        "word": "out",
+        "start": 37.32,
+        "end": 37.68
+      },
+      {
+        "word": "like",
+        "start": 37.68,
+        "end": 39.04
+      },
+      {
+        "word": "their",
+        "start": 39.04,
+        "end": 40.42
+      },
+      {
+        "word": "suitcase",
+        "start": 40.42,
+        "end": 40.92
+      },
+      {
+        "word": "like",
+        "start": 40.92,
+        "end": 41.34
+      },
+      {
+        "word": "get",
+        "start": 41.34,
+        "end": 41.66
+      },
+      {
+        "word": "everyone",
+        "start": 41.66,
+        "end": 42.94
+      },
+      {
+        "word": "is",
+        "start": 42.94,
+        "end": 43.66
+      },
+      {
+        "word": "not",
+        "start": 43.66,
+        "end": 43.94
+      },
+      {
+        "word": "the",
+        "start": 43.94,
+        "end": 44.54
+      },
+      {
+        "word": "they're",
+        "start": 44.54,
+        "end": 45.14
+      },
+      {
+        "word": "real",
+        "start": 45.14,
+        "end": 45.44
+      },
+      {
+        "word": "they're",
+        "start": 45.44,
+        "end": 46.24
+      },
+      {
+        "word": "real",
+        "start": 46.24,
+        "end": 46.9
+      },
+      {
+        "word": "suitcase",
+        "start": 46.9,
+        "end": 47.84
+      },
+      {
+        "word": "and",
+        "start": 47.84,
+        "end": 48.74
+      },
+      {
+        "word": "one",
+        "start": 48.74,
+        "end": 49.14
+      },
+      {
+        "word": "and",
+        "start": 49.14,
+        "end": 49.7
+      },
+      {
+        "word": "the",
+        "start": 49.7,
+        "end": 49.82
+      },
+      {
+        "word": "man",
+        "start": 49.82,
+        "end": 49.96
+      },
+      {
+        "word": "look",
+        "start": 49.96,
+        "end": 50.6
+      },
+      {
+        "word": "at",
+        "start": 50.6,
+        "end": 50.9
+      },
+      {
+        "word": "one",
+        "start": 50.9,
+        "end": 51.58
+      },
+      {
+        "word": "red",
+        "start": 51.58,
+        "end": 52.08
+      },
+      {
+        "word": "dress",
+        "start": 52.08,
+        "end": 52.48
+      },
+      {
+        "word": "and",
+        "start": 52.48,
+        "end": 52.96
+      },
+      {
+        "word": "the",
+        "start": 52.96,
+        "end": 53.04
+      },
+      {
+        "word": "woman",
+        "start": 53.04,
+        "end": 53.34
+      },
+      {
+        "word": "yellow",
+        "start": 53.34,
+        "end": 54.68
+      },
+      {
+        "word": "tea.",
+        "start": 54.68,
+        "end": 55.1
+      },
+      {
+        "word": "And",
+        "start": 56.64,
+        "end": 56.9
+      },
+      {
+        "word": "it",
+        "start": 56.9,
+        "end": 57.12
+      },
+      {
+        "word": "happens",
+        "start": 57.12,
+        "end": 57.4
+      },
+      {
+        "word": "when",
+        "start": 57.4,
+        "end": 57.92
+      },
+      {
+        "word": "the",
+        "start": 57.92,
+        "end": 58.2
+      },
+      {
+        "word": "people",
+        "start": 58.2,
+        "end": 58.88
+      },
+      {
+        "word": "are",
+        "start": 58.88,
+        "end": 59.14
+      },
+      {
+        "word": "really",
+        "start": 59.14,
+        "end": 60.26
+      },
+      {
+        "word": "go",
+        "start": 60.26,
+        "end": 61.28
+      },
+      {
+        "word": "from",
+        "start": 61.28,
+        "end": 62.56
+      },
+      {
+        "word": "somewhere",
+        "start": 62.56,
+        "end": 65.18
+      },
+      {
+        "word": "and",
+        "start": 65.18,
+        "end": 65.84
+      },
+      {
+        "word": "they",
+        "start": 65.84,
+        "end": 66.32
+      },
+      {
+        "word": "really,",
+        "start": 66.32,
+        "end": 66.86
+      },
+      {
+        "word": "it",
+        "start": 67.2,
+        "end": 68.2
+      },
+      {
+        "word": "doesn't",
+        "start": 68.2,
+        "end": 68.5
+      },
+      {
+        "word": "matter",
+        "start": 68.5,
+        "end": 68.68
+      },
+      {
+        "word": "because",
+        "start": 68.68,
+        "end": 69.0
+      },
+      {
+        "word": "they",
+        "start": 69.0,
+        "end": 69.34
+      },
+      {
+        "word": "don't",
+        "start": 69.34,
+        "end": 69.64
+      },
+      {
+        "word": "want",
+        "start": 69.64,
+        "end": 69.84
+      },
+      {
+        "word": "that",
+        "start": 69.84,
+        "end": 70.64
+      },
+      {
+        "word": "they",
+        "start": 70.64,
+        "end": 71.84
+      },
+      {
+        "word": "wanted.",
+        "start": 71.84,
+        "end": 72.14
+      }
+    ]
+  },
+  "disfluency_events": [
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 1.78,
+      "end": 1.8,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "um",
+      "style": "subtle",
+      "start": 3.9,
+      "end": 3.92,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 11.26,
+      "end": 11.3,
+      "duration": 0.04,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "um,",
+      "style": "clear",
+      "start": 13.52,
+      "end": 13.7,
+      "duration": 0.18,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh,",
+      "style": "clear",
+      "start": 14.2,
+      "end": 14.28,
+      "duration": 0.08,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 18.38,
+      "end": 18.4,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 34.18,
+      "end": 34.2,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 34.48,
+      "end": 34.52,
+      "duration": 0.04,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 42.5,
+      "end": 42.52,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "um",
+      "style": "subtle",
+      "start": 43.82,
+      "end": 43.84,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 48.58,
+      "end": 48.62,
+      "duration": 0.04,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 49.1,
+      "end": 49.12,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 49.58,
+      "end": 49.6,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 50.78,
+      "end": 50.8,
+      "duration": 0.02,
+      "count": NaN
+    }
+  ]
+}

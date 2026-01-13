@@ -1,0 +1,625 @@
+{
+  "meta": {
+    "sample_id": "L2A_003",
+    "filename": "L2A_003.wav",
+    "duration_sec": 74.98,
+    "word_count": 84,
+    "filler_event_count": 11
+  },
+  "verdict": {
+    "fluency_score": 42,
+    "readiness": "borderline"
+  },
+  "benchmarking": {
+    "percentile": 30,
+    "target_score": 80,
+    "score_gap": 38,
+    "estimated_guided_practice_hours": 22.8
+  },
+  "metrics": {
+    "wpm": 67.21792477994131,
+    "fillers_per_min": 1.7604694585222727,
+    "stutters_per_min": 0.0,
+    "long_pauses_per_min": 1.6004267804747931,
+    "very_long_pauses_per_min": 0.0,
+    "pause_time_ratio": 0.07468658308882366,
+    "pause_variability": 0.3489030428834546,
+    "vocab_richness": 0.7261904761904762,
+    "repetition_ratio": 0.09523809523809523
+  },
+  "sub_analysis": {
+    "primary_issues": [
+      {
+        "issue": "delivery_pacing",
+        "severity": "medium",
+        "root_cause": "Speech rate deviates from optimal clarity range.",
+        "score_impact": 15
+      },
+      {
+        "issue": "hesitation_structure",
+        "severity": "high",
+        "root_cause": "Pauses frequently interrupt sentence flow.",
+        "score_impact": 12
+      },
+      {
+        "issue": "delivery_instability",
+        "severity": "medium",
+        "root_cause": "Speech rhythm varies unpredictably.",
+        "score_impact": 9
+      }
+    ],
+    "action_plan": [
+      {
+        "priority": 1,
+        "focus": "delivery_pacing",
+        "instruction": "Reduce speaking speed slightly while maintaining energy.",
+        "expected_score_gain": 15
+      },
+      {
+        "priority": 2,
+        "focus": "hesitation_structure",
+        "instruction": "Pause only after completing full clauses or ideas.",
+        "expected_score_gain": 12
+      },
+      {
+        "priority": 3,
+        "focus": "delivery_instability",
+        "instruction": "Practice steady pacing using metronome or rhythm drills.",
+        "expected_score_gain": 9
+      }
+    ]
+  },
+  "transcript": {
+    "text": "Okay, it seems like a regular day in the downtown of a big city. So at one corner, two persons just cross each other, actually they crashed. And curious thing was that each one of them was carrying exactly the same kind of back, a green one with golden filaments. So they crashed, they got confused, they take their backs and returned to whatever they were doing. But when they arrive to their places to work or home, they opened the back and they",
+    "segments": [
+      {
+        "text": "Okay, it seems like a regular day in the downtown of a big city. So at one corner, two persons",
+        "start": 0.0,
+        "end": 14.44
+      },
+      {
+        "text": "just cross each other, actually they crashed. And curious thing was that each one of them",
+        "start": 15.24,
+        "end": 24.9
+      },
+      {
+        "text": "was carrying exactly the same kind of back, a green one with golden filaments.",
+        "start": 24.9,
+        "end": 34.56
+      },
+      {
+        "text": "So they crashed, they got confused, they take their backs and returned to whatever they were doing.",
+        "start": 37.42,
+        "end": 49.6
+      },
+      {
+        "text": "But when they arrive to their places to work or home, they opened the back and they",
+        "start": 49.6,
+        "end": 74.98
+      }
+    ],
+    "words": [
+      {
+        "word": "Okay,",
+        "start": 0.0,
+        "end": 0.62
+      },
+      {
+        "word": "it",
+        "start": 0.7,
+        "end": 0.8
+      },
+      {
+        "word": "seems",
+        "start": 0.8,
+        "end": 0.94
+      },
+      {
+        "word": "like",
+        "start": 0.94,
+        "end": 1.16
+      },
+      {
+        "word": "a",
+        "start": 1.16,
+        "end": 1.7
+      },
+      {
+        "word": "regular",
+        "start": 1.7,
+        "end": 2.96
+      },
+      {
+        "word": "day",
+        "start": 2.96,
+        "end": 3.3
+      },
+      {
+        "word": "in",
+        "start": 3.3,
+        "end": 4.78
+      },
+      {
+        "word": "the",
+        "start": 4.78,
+        "end": 6.1
+      },
+      {
+        "word": "downtown",
+        "start": 6.1,
+        "end": 6.48
+      },
+      {
+        "word": "of",
+        "start": 6.48,
+        "end": 7.24
+      },
+      {
+        "word": "a",
+        "start": 7.24,
+        "end": 8.1
+      },
+      {
+        "word": "big",
+        "start": 8.1,
+        "end": 8.24
+      },
+      {
+        "word": "city.",
+        "start": 8.24,
+        "end": 8.62
+      },
+      {
+        "word": "So",
+        "start": 9.94,
+        "end": 10.32
+      },
+      {
+        "word": "at",
+        "start": 10.32,
+        "end": 10.88
+      },
+      {
+        "word": "one",
+        "start": 10.88,
+        "end": 11.12
+      },
+      {
+        "word": "corner,",
+        "start": 11.12,
+        "end": 11.54
+      },
+      {
+        "word": "two",
+        "start": 12.18,
+        "end": 14.02
+      },
+      {
+        "word": "persons",
+        "start": 14.02,
+        "end": 14.44
+      },
+      {
+        "word": "just",
+        "start": 15.24,
+        "end": 15.66
+      },
+      {
+        "word": "cross",
+        "start": 15.66,
+        "end": 17.64
+      },
+      {
+        "word": "each",
+        "start": 17.64,
+        "end": 17.96
+      },
+      {
+        "word": "other,",
+        "start": 17.96,
+        "end": 18.2
+      },
+      {
+        "word": "actually",
+        "start": 18.36,
+        "end": 18.62
+      },
+      {
+        "word": "they",
+        "start": 18.62,
+        "end": 18.82
+      },
+      {
+        "word": "crashed.",
+        "start": 18.82,
+        "end": 19.3
+      },
+      {
+        "word": "And",
+        "start": 20.5,
+        "end": 20.74
+      },
+      {
+        "word": "curious",
+        "start": 20.74,
+        "end": 22.26
+      },
+      {
+        "word": "thing",
+        "start": 22.26,
+        "end": 22.56
+      },
+      {
+        "word": "was",
+        "start": 22.56,
+        "end": 22.82
+      },
+      {
+        "word": "that",
+        "start": 22.82,
+        "end": 23.18
+      },
+      {
+        "word": "each",
+        "start": 23.18,
+        "end": 24.14
+      },
+      {
+        "word": "one",
+        "start": 24.14,
+        "end": 24.36
+      },
+      {
+        "word": "of",
+        "start": 24.36,
+        "end": 24.58
+      },
+      {
+        "word": "them",
+        "start": 24.58,
+        "end": 24.9
+      },
+      {
+        "word": "was",
+        "start": 24.9,
+        "end": 26.0
+      },
+      {
+        "word": "carrying",
+        "start": 26.0,
+        "end": 26.44
+      },
+      {
+        "word": "exactly",
+        "start": 26.44,
+        "end": 28.12
+      },
+      {
+        "word": "the",
+        "start": 28.12,
+        "end": 28.52
+      },
+      {
+        "word": "same",
+        "start": 28.52,
+        "end": 28.88
+      },
+      {
+        "word": "kind",
+        "start": 28.88,
+        "end": 29.14
+      },
+      {
+        "word": "of",
+        "start": 29.14,
+        "end": 29.48
+      },
+      {
+        "word": "back,",
+        "start": 29.48,
+        "end": 29.92
+      },
+      {
+        "word": "a",
+        "start": 30.34,
+        "end": 31.14
+      },
+      {
+        "word": "green",
+        "start": 31.14,
+        "end": 31.42
+      },
+      {
+        "word": "one",
+        "start": 31.42,
+        "end": 31.72
+      },
+      {
+        "word": "with",
+        "start": 31.72,
+        "end": 32.54
+      },
+      {
+        "word": "golden",
+        "start": 32.54,
+        "end": 33.26
+      },
+      {
+        "word": "filaments.",
+        "start": 33.26,
+        "end": 34.56
+      },
+      {
+        "word": "So",
+        "start": 37.42,
+        "end": 38.3
+      },
+      {
+        "word": "they",
+        "start": 38.3,
+        "end": 39.18
+      },
+      {
+        "word": "crashed,",
+        "start": 39.18,
+        "end": 40.2
+      },
+      {
+        "word": "they",
+        "start": 40.64,
+        "end": 40.78
+      },
+      {
+        "word": "got",
+        "start": 40.78,
+        "end": 40.96
+      },
+      {
+        "word": "confused,",
+        "start": 40.96,
+        "end": 41.4
+      },
+      {
+        "word": "they",
+        "start": 42.18,
+        "end": 43.38
+      },
+      {
+        "word": "take",
+        "start": 43.38,
+        "end": 43.94
+      },
+      {
+        "word": "their",
+        "start": 43.94,
+        "end": 44.72
+      },
+      {
+        "word": "backs",
+        "start": 44.72,
+        "end": 45.18
+      },
+      {
+        "word": "and",
+        "start": 45.18,
+        "end": 46.52
+      },
+      {
+        "word": "returned",
+        "start": 46.52,
+        "end": 46.86
+      },
+      {
+        "word": "to",
+        "start": 46.86,
+        "end": 47.28
+      },
+      {
+        "word": "whatever",
+        "start": 47.28,
+        "end": 48.92
+      },
+      {
+        "word": "they",
+        "start": 48.92,
+        "end": 49.18
+      },
+      {
+        "word": "were",
+        "start": 49.18,
+        "end": 49.3
+      },
+      {
+        "word": "doing.",
+        "start": 49.3,
+        "end": 49.6
+      },
+      {
+        "word": "But",
+        "start": 49.6,
+        "end": 51.88
+      },
+      {
+        "word": "when",
+        "start": 51.88,
+        "end": 53.9
+      },
+      {
+        "word": "they",
+        "start": 53.9,
+        "end": 54.18
+      },
+      {
+        "word": "arrive",
+        "start": 54.18,
+        "end": 56.72
+      },
+      {
+        "word": "to",
+        "start": 56.72,
+        "end": 58.2
+      },
+      {
+        "word": "their",
+        "start": 58.2,
+        "end": 59.3
+      },
+      {
+        "word": "places",
+        "start": 59.3,
+        "end": 59.7
+      },
+      {
+        "word": "to",
+        "start": 59.7,
+        "end": 61.16
+      },
+      {
+        "word": "work",
+        "start": 61.16,
+        "end": 61.48
+      },
+      {
+        "word": "or",
+        "start": 61.48,
+        "end": 61.84
+      },
+      {
+        "word": "home,",
+        "start": 61.84,
+        "end": 62.48
+      },
+      {
+        "word": "they",
+        "start": 62.58,
+        "end": 65.64
+      },
+      {
+        "word": "opened",
+        "start": 65.64,
+        "end": 66.2
+      },
+      {
+        "word": "the",
+        "start": 66.2,
+        "end": 67.76
+      },
+      {
+        "word": "back",
+        "start": 67.76,
+        "end": 68.06
+      },
+      {
+        "word": "and",
+        "start": 68.06,
+        "end": 74.98
+      },
+      {
+        "word": "they",
+        "start": 74.98,
+        "end": 74.98
+      }
+    ]
+  },
+  "disfluency_events": [
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 1.28,
+      "end": 1.3,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "um",
+      "style": "subtle",
+      "start": 4.72,
+      "end": 4.74,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 7.08,
+      "end": 7.1,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 10.78,
+      "end": 10.8,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 18.38,
+      "end": 18.4,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 20.56,
+      "end": 20.58,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "um",
+      "style": "subtle",
+      "start": 34.62,
+      "end": 34.64,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 35.32,
+      "end": 35.34,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 46.5,
+      "end": 46.52,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "um",
+      "style": "subtle",
+      "start": 57.9,
+      "end": 57.94,
+      "duration": 0.04,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "um",
+      "style": "subtle",
+      "start": 62.78,
+      "end": 62.8,
+      "duration": 0.02,
+      "count": NaN
+    }
+  ]
+}

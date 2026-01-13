@@ -1,0 +1,844 @@
+{
+  "meta": {
+    "sample_id": "L2A_010",
+    "filename": "L2A_010.wav",
+    "duration_sec": 60.14,
+    "word_count": 127,
+    "filler_event_count": 10
+  },
+  "verdict": {
+    "fluency_score": 36,
+    "readiness": "borderline"
+  },
+  "benchmarking": {
+    "percentile": 30,
+    "target_score": 80,
+    "score_gap": 44,
+    "estimated_guided_practice_hours": 26.4
+  },
+  "metrics": {
+    "wpm": 125.70668440305953,
+    "fillers_per_min": 1.995344196873961,
+    "stutters_per_min": 0.0,
+    "long_pauses_per_min": 3.990688393747922,
+    "very_long_pauses_per_min": 0.0,
+    "pause_time_ratio": 0.12703691386764215,
+    "pause_variability": 0.38687350789516556,
+    "vocab_richness": 0.5634920634920635,
+    "repetition_ratio": 0.07936507936507936
+  },
+  "sub_analysis": {
+    "primary_issues": [
+      {
+        "issue": "hesitation_structure",
+        "severity": "high",
+        "root_cause": "Pauses frequently interrupt sentence flow.",
+        "score_impact": 29
+      },
+      {
+        "issue": "delivery_instability",
+        "severity": "medium",
+        "root_cause": "Speech rhythm varies unpredictably.",
+        "score_impact": 11
+      }
+    ],
+    "action_plan": [
+      {
+        "priority": 1,
+        "focus": "hesitation_structure",
+        "instruction": "Pause only after completing full clauses or ideas.",
+        "expected_score_gain": 31
+      },
+      {
+        "priority": 2,
+        "focus": "delivery_instability",
+        "instruction": "Practice steady pacing using metronome or rhythm drills.",
+        "expected_score_gain": 12
+      }
+    ]
+  },
+  "transcript": {
+    "text": "Oh, it's one day in the morning. There were two people traveling to their families, and they bump into each other at the corner of the street. When they bump into each other, um, they had, they hit their heads. After they recover from the bump, they said I'm sorry, and they took their own suitcase. and they parted their own ways. When the man got to the hotel and opened his suitcase, he realized that he had women's clothes. When the woman opened her suitcase at her hotel, she realized that she had men's clothes. What had happened is that when these two people bumped into each other at the corner of the street, they accidentally swapped their suitcases and therefore they got the wrong suitcase.",
+    "segments": [
+      {
+        "text": "Oh, it's one day in the morning. There were two people traveling to their families, and they bump into each other at the corner of the street. When they bump into each other, um, they had, they hit their heads. After they recover from the bump, they said I'm sorry, and they took their own suitcase.",
+        "start": 0.0,
+        "end": 29.88
+      },
+      {
+        "text": "and they parted their own ways.",
+        "start": 29.88,
+        "end": 32.98
+      },
+      {
+        "text": "When the man got to the hotel and opened his suitcase,",
+        "start": 34.44,
+        "end": 37.6
+      },
+      {
+        "text": "he realized that he had women's clothes.",
+        "start": 37.84,
+        "end": 39.84
+      },
+      {
+        "text": "When the woman opened her suitcase at her hotel,",
+        "start": 40.96,
+        "end": 44.24
+      },
+      {
+        "text": "she realized that she had men's clothes.",
+        "start": 44.24,
+        "end": 47.0
+      },
+      {
+        "text": "What had happened is that when these two people",
+        "start": 47.72,
+        "end": 50.92
+      },
+      {
+        "text": "bumped into each other at the corner of the street,",
+        "start": 50.92,
+        "end": 54.08
+      },
+      {
+        "text": "they accidentally swapped their suitcases",
+        "start": 54.5,
+        "end": 57.76
+      },
+      {
+        "text": "and therefore they got the wrong suitcase.",
+        "start": 57.76,
+        "end": 60.14
+      }
+    ],
+    "words": [
+      {
+        "word": "Oh,",
+        "start": 0.0,
+        "end": 0.34
+      },
+      {
+        "word": "it's",
+        "start": 0.36,
+        "end": 0.58
+      },
+      {
+        "word": "one",
+        "start": 0.58,
+        "end": 0.9
+      },
+      {
+        "word": "day",
+        "start": 0.9,
+        "end": 1.3
+      },
+      {
+        "word": "in",
+        "start": 1.3,
+        "end": 2.16
+      },
+      {
+        "word": "the",
+        "start": 2.16,
+        "end": 2.32
+      },
+      {
+        "word": "morning.",
+        "start": 2.32,
+        "end": 2.72
+      },
+      {
+        "word": "There",
+        "start": 3.08,
+        "end": 3.12
+      },
+      {
+        "word": "were",
+        "start": 3.12,
+        "end": 3.26
+      },
+      {
+        "word": "two",
+        "start": 3.26,
+        "end": 3.66
+      },
+      {
+        "word": "people",
+        "start": 3.66,
+        "end": 4.06
+      },
+      {
+        "word": "traveling",
+        "start": 4.06,
+        "end": 4.64
+      },
+      {
+        "word": "to",
+        "start": 4.64,
+        "end": 5.1
+      },
+      {
+        "word": "their",
+        "start": 5.1,
+        "end": 5.48
+      },
+      {
+        "word": "families,",
+        "start": 5.48,
+        "end": 7.7
+      },
+      {
+        "word": "and",
+        "start": 8.4,
+        "end": 9.08
+      },
+      {
+        "word": "they",
+        "start": 9.08,
+        "end": 9.32
+      },
+      {
+        "word": "bump",
+        "start": 9.32,
+        "end": 9.6
+      },
+      {
+        "word": "into",
+        "start": 9.6,
+        "end": 10.02
+      },
+      {
+        "word": "each",
+        "start": 10.02,
+        "end": 10.28
+      },
+      {
+        "word": "other",
+        "start": 10.28,
+        "end": 10.56
+      },
+      {
+        "word": "at",
+        "start": 10.56,
+        "end": 10.78
+      },
+      {
+        "word": "the",
+        "start": 10.78,
+        "end": 10.92
+      },
+      {
+        "word": "corner",
+        "start": 10.92,
+        "end": 11.36
+      },
+      {
+        "word": "of",
+        "start": 11.36,
+        "end": 12.12
+      },
+      {
+        "word": "the",
+        "start": 12.12,
+        "end": 13.9
+      },
+      {
+        "word": "street.",
+        "start": 13.9,
+        "end": 14.32
+      },
+      {
+        "word": "When",
+        "start": 15.36,
+        "end": 15.86
+      },
+      {
+        "word": "they",
+        "start": 15.86,
+        "end": 16.02
+      },
+      {
+        "word": "bump",
+        "start": 16.02,
+        "end": 16.26
+      },
+      {
+        "word": "into",
+        "start": 16.26,
+        "end": 16.6
+      },
+      {
+        "word": "each",
+        "start": 16.6,
+        "end": 16.84
+      },
+      {
+        "word": "other,",
+        "start": 16.84,
+        "end": 17.24
+      },
+      {
+        "word": "um,",
+        "start": 18.06,
+        "end": 18.12
+      },
+      {
+        "word": "they",
+        "start": 18.74,
+        "end": 18.9
+      },
+      {
+        "word": "had,",
+        "start": 18.9,
+        "end": 19.96
+      },
+      {
+        "word": "they",
+        "start": 20.26,
+        "end": 20.44
+      },
+      {
+        "word": "hit",
+        "start": 20.44,
+        "end": 20.72
+      },
+      {
+        "word": "their",
+        "start": 20.72,
+        "end": 21.02
+      },
+      {
+        "word": "heads.",
+        "start": 21.02,
+        "end": 21.52
+      },
+      {
+        "word": "After",
+        "start": 22.56,
+        "end": 23.24
+      },
+      {
+        "word": "they",
+        "start": 23.24,
+        "end": 23.58
+      },
+      {
+        "word": "recover",
+        "start": 23.58,
+        "end": 24.12
+      },
+      {
+        "word": "from",
+        "start": 24.12,
+        "end": 24.64
+      },
+      {
+        "word": "the",
+        "start": 24.64,
+        "end": 24.88
+      },
+      {
+        "word": "bump,",
+        "start": 24.88,
+        "end": 25.28
+      },
+      {
+        "word": "they",
+        "start": 25.76,
+        "end": 26.58
+      },
+      {
+        "word": "said",
+        "start": 26.58,
+        "end": 27.82
+      },
+      {
+        "word": "I'm",
+        "start": 27.82,
+        "end": 28.06
+      },
+      {
+        "word": "sorry,",
+        "start": 28.06,
+        "end": 28.32
+      },
+      {
+        "word": "and",
+        "start": 28.54,
+        "end": 28.7
+      },
+      {
+        "word": "they",
+        "start": 28.7,
+        "end": 28.86
+      },
+      {
+        "word": "took",
+        "start": 28.86,
+        "end": 29.1
+      },
+      {
+        "word": "their",
+        "start": 29.1,
+        "end": 29.28
+      },
+      {
+        "word": "own",
+        "start": 29.28,
+        "end": 29.44
+      },
+      {
+        "word": "suitcase.",
+        "start": 29.44,
+        "end": 29.88
+      },
+      {
+        "word": "and",
+        "start": 29.88,
+        "end": 30.86
+      },
+      {
+        "word": "they",
+        "start": 30.86,
+        "end": 31.86
+      },
+      {
+        "word": "parted",
+        "start": 31.86,
+        "end": 32.32
+      },
+      {
+        "word": "their",
+        "start": 32.32,
+        "end": 32.5
+      },
+      {
+        "word": "own",
+        "start": 32.5,
+        "end": 32.68
+      },
+      {
+        "word": "ways.",
+        "start": 32.68,
+        "end": 32.98
+      },
+      {
+        "word": "When",
+        "start": 34.44,
+        "end": 35.08
+      },
+      {
+        "word": "the",
+        "start": 35.08,
+        "end": 35.22
+      },
+      {
+        "word": "man",
+        "start": 35.22,
+        "end": 35.42
+      },
+      {
+        "word": "got",
+        "start": 35.42,
+        "end": 35.68
+      },
+      {
+        "word": "to",
+        "start": 35.68,
+        "end": 35.88
+      },
+      {
+        "word": "the",
+        "start": 35.88,
+        "end": 36.0
+      },
+      {
+        "word": "hotel",
+        "start": 36.0,
+        "end": 36.32
+      },
+      {
+        "word": "and",
+        "start": 36.32,
+        "end": 36.68
+      },
+      {
+        "word": "opened",
+        "start": 36.68,
+        "end": 36.94
+      },
+      {
+        "word": "his",
+        "start": 36.94,
+        "end": 37.2
+      },
+      {
+        "word": "suitcase,",
+        "start": 37.2,
+        "end": 37.6
+      },
+      {
+        "word": "he",
+        "start": 37.84,
+        "end": 37.84
+      },
+      {
+        "word": "realized",
+        "start": 37.84,
+        "end": 38.2
+      },
+      {
+        "word": "that",
+        "start": 38.2,
+        "end": 38.72
+      },
+      {
+        "word": "he",
+        "start": 38.72,
+        "end": 38.86
+      },
+      {
+        "word": "had",
+        "start": 38.86,
+        "end": 39.04
+      },
+      {
+        "word": "women's",
+        "start": 39.04,
+        "end": 39.68
+      },
+      {
+        "word": "clothes.",
+        "start": 39.68,
+        "end": 39.84
+      },
+      {
+        "word": "When",
+        "start": 40.96,
+        "end": 41.36
+      },
+      {
+        "word": "the",
+        "start": 41.36,
+        "end": 41.62
+      },
+      {
+        "word": "woman",
+        "start": 41.62,
+        "end": 41.9
+      },
+      {
+        "word": "opened",
+        "start": 41.9,
+        "end": 42.42
+      },
+      {
+        "word": "her",
+        "start": 42.42,
+        "end": 42.84
+      },
+      {
+        "word": "suitcase",
+        "start": 42.84,
+        "end": 43.34
+      },
+      {
+        "word": "at",
+        "start": 43.34,
+        "end": 43.66
+      },
+      {
+        "word": "her",
+        "start": 43.66,
+        "end": 43.82
+      },
+      {
+        "word": "hotel,",
+        "start": 43.82,
+        "end": 44.24
+      },
+      {
+        "word": "she",
+        "start": 44.24,
+        "end": 44.6
+      },
+      {
+        "word": "realized",
+        "start": 44.6,
+        "end": 45.0
+      },
+      {
+        "word": "that",
+        "start": 45.0,
+        "end": 45.52
+      },
+      {
+        "word": "she",
+        "start": 45.52,
+        "end": 45.72
+      },
+      {
+        "word": "had",
+        "start": 45.72,
+        "end": 46.0
+      },
+      {
+        "word": "men's",
+        "start": 46.0,
+        "end": 46.72
+      },
+      {
+        "word": "clothes.",
+        "start": 46.72,
+        "end": 47.0
+      },
+      {
+        "word": "What",
+        "start": 47.72,
+        "end": 47.98
+      },
+      {
+        "word": "had",
+        "start": 47.98,
+        "end": 48.14
+      },
+      {
+        "word": "happened",
+        "start": 48.14,
+        "end": 48.6
+      },
+      {
+        "word": "is",
+        "start": 48.6,
+        "end": 48.88
+      },
+      {
+        "word": "that",
+        "start": 48.88,
+        "end": 49.04
+      },
+      {
+        "word": "when",
+        "start": 49.04,
+        "end": 49.34
+      },
+      {
+        "word": "these",
+        "start": 49.34,
+        "end": 49.74
+      },
+      {
+        "word": "two",
+        "start": 49.74,
+        "end": 50.06
+      },
+      {
+        "word": "people",
+        "start": 50.06,
+        "end": 50.92
+      },
+      {
+        "word": "bumped",
+        "start": 50.92,
+        "end": 51.58
+      },
+      {
+        "word": "into",
+        "start": 51.58,
+        "end": 51.84
+      },
+      {
+        "word": "each",
+        "start": 51.84,
+        "end": 52.08
+      },
+      {
+        "word": "other",
+        "start": 52.08,
+        "end": 52.38
+      },
+      {
+        "word": "at",
+        "start": 52.38,
+        "end": 52.94
+      },
+      {
+        "word": "the",
+        "start": 52.94,
+        "end": 53.1
+      },
+      {
+        "word": "corner",
+        "start": 53.1,
+        "end": 53.34
+      },
+      {
+        "word": "of",
+        "start": 53.34,
+        "end": 53.56
+      },
+      {
+        "word": "the",
+        "start": 53.56,
+        "end": 53.68
+      },
+      {
+        "word": "street,",
+        "start": 53.68,
+        "end": 54.08
+      },
+      {
+        "word": "they",
+        "start": 54.5,
+        "end": 54.56
+      },
+      {
+        "word": "accidentally",
+        "start": 54.56,
+        "end": 55.3
+      },
+      {
+        "word": "swapped",
+        "start": 55.3,
+        "end": 56.34
+      },
+      {
+        "word": "their",
+        "start": 56.34,
+        "end": 56.94
+      },
+      {
+        "word": "suitcases",
+        "start": 56.94,
+        "end": 57.76
+      },
+      {
+        "word": "and",
+        "start": 57.76,
+        "end": 58.06
+      },
+      {
+        "word": "therefore",
+        "start": 58.06,
+        "end": 58.4
+      },
+      {
+        "word": "they",
+        "start": 58.4,
+        "end": 58.66
+      },
+      {
+        "word": "got",
+        "start": 58.66,
+        "end": 58.94
+      },
+      {
+        "word": "the",
+        "start": 58.94,
+        "end": 59.42
+      },
+      {
+        "word": "wrong",
+        "start": 59.42,
+        "end": 59.68
+      },
+      {
+        "word": "suitcase.",
+        "start": 59.68,
+        "end": 60.14
+      }
+    ]
+  },
+  "disfluency_events": [
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 0.8,
+      "end": 0.84,
+      "duration": 0.04,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 2.02,
+      "end": 2.04,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 8.94,
+      "end": 8.96,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "um,",
+      "style": "clear",
+      "start": 18.06,
+      "end": 18.12,
+      "duration": 0.06,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 36.06,
+      "end": 36.1,
+      "duration": 0.04,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 36.78,
+      "end": 36.8,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 37.76,
+      "end": 37.78,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 43.96,
+      "end": 44.0,
+      "duration": 0.04,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 52.9,
+      "end": 52.92,
+      "duration": 0.02,
+      "count": NaN
+    },
+    {
+      "type": "filler",
+      "text": "uh",
+      "style": "subtle",
+      "start": 60.18,
+      "end": 60.2,
+      "duration": 0.02,
+      "count": NaN
+    }
+  ]
+}
