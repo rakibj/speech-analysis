@@ -219,9 +219,34 @@ def calculate_subscores(
     
     return subscores, context_config
 
+def apply_compound_penalties(subscores: dict, metrics: dict) -> float:
+    """
+    Penalize combinations of issues that humans perceive
+    as 'loss of control', even if each metric alone is acceptable.
+    """
+    penalty = 0.0
+
+    # Lost-control pattern: hesitation + instability + repetition
+    if (
+        subscores["filler"] < 0.75 and
+        subscores["stability"] < 0.75 and
+        metrics["repetition_ratio"] > 0.06
+    ):
+        penalty += 0.12  # ≈12 points
+
+    # Fluent-but-annoying: smooth but filler-heavy
+    if (
+        subscores["pause"] > 0.8 and
+        metrics["fillers_per_min"] > 3.0
+    ):
+        penalty += 0.08
+
+    return penalty
+
+
 
 def calculate_fluency_score(
-    subscores: dict
+    subscores: dict, metrics: dict
 ) -> int:
     """
     Calculate overall fluency score (0-100).
@@ -239,6 +264,9 @@ def calculate_fluency_score(
         WEIGHT_SPEECH_RATE * subscores["speech_rate"] +
         WEIGHT_LEXICAL * subscores["lexical"]
     )
+
+    penalty = apply_compound_penalties(subscores, metrics)
+    raw_score = max(0.0, raw_score - penalty)
     
     return int(round(100 * clamp01(raw_score)))
 
@@ -469,7 +497,7 @@ def analyze_fluency(
     subscores, _ = calculate_subscores(metrics, context_config)
     
     # Calculate fluency score
-    fluency_score = calculate_fluency_score(subscores)
+    fluency_score = calculate_fluency_score(subscores, metrics)
     
     # Detect issues
     issues = detect_issues(subscores, metrics)

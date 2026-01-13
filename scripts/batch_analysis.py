@@ -1,3 +1,4 @@
+# uv run python .\scripts\batch_analysis.py
 import csv
 import json
 from pathlib import Path
