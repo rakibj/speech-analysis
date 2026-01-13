@@ -55,7 +55,8 @@ def overlaps_filler(
 
 
 def calculate_normalized_metrics(
-    df_words: pd.DataFrame,
+    df_words_full: pd.DataFrame,      # CHANGED: Full timeline
+    df_words_content: pd.DataFrame,   # NEW: Content words only
     df_segments: pd.DataFrame,
     df_fillers: pd.DataFrame,
     total_duration: float
@@ -64,7 +65,8 @@ def calculate_normalized_metrics(
     Calculate normalized fluency metrics.
     
     Args:
-        df_words: Word-level timestamps
+        df_words_full: Complete word timeline (includes fillers with is_filler flag)
+        df_words_content: Content words only (fillers removed)
         df_segments: Segment-level timestamps
         df_fillers: Filler/stutter events
         total_duration: Total audio duration in seconds
@@ -74,8 +76,8 @@ def calculate_normalized_metrics(
     """
     duration_min = max(total_duration / 60.0, 0.5)
     
-    # Words per minute
-    words_per_minute = (len(df_words) * 60) / total_duration
+    # Words per minute - use CONTENT words only
+    words_per_minute = (len(df_words_content) * 60) / total_duration
     
     # Filler metrics
     filler_events = df_fillers[df_fillers["type"] == "filler"]
@@ -90,14 +92,17 @@ def calculate_normalized_metrics(
     
     stutters_per_min = len(stutter_events) / duration_min
     
-    # Pause detection
+    # Pause detection - use FULL timeline to get accurate gaps
     pause_durations = []
     
-    for i in range(1, len(df_words)):
-        gap_start = df_words.iloc[i - 1]["end"]
-        gap_end = df_words.iloc[i]["start"]
+    for i in range(1, len(df_words_full)):
+        gap_start = df_words_full.iloc[i - 1]["end"]
+        gap_end = df_words_full.iloc[i]["start"]
         gap = gap_end - gap_start
         
+        # Only count as pause if:
+        # 1. Gap is significant (>0.3s)
+        # 2. Gap doesn't overlap with detected filler events
         if gap > 0.3 and not overlaps_filler(gap_start, gap_end, df_fillers):
             pause_durations.append(gap)
     
@@ -122,15 +127,19 @@ def calculate_normalized_metrics(
         else 0.0
     )
     
-    # Lexical metrics
-    words_clean = df_words["word"].str.lower()
-    
-    vocab_richness = words_clean.nunique() / len(words_clean)
-    repetition_ratio = (
-        words_clean.value_counts().iloc[0] / len(words_clean)
-        if len(words_clean) > 0
-        else 0.0
-    )
+    # Lexical metrics - use CONTENT words only
+    if len(df_words_content) == 0:
+        vocab_richness = 0.0
+        repetition_ratio = 0.0
+    else:
+        words_clean = df_words_content["word"].str.lower()
+        
+        vocab_richness = words_clean.nunique() / len(words_clean)
+        repetition_ratio = (
+            words_clean.value_counts().iloc[0] / len(words_clean)
+            if len(words_clean) > 0
+            else 0.0
+        )
     
     return {
         "wpm": words_per_minute,
@@ -406,7 +415,8 @@ def generate_action_plan(
 
 
 def analyze_fluency(
-    df_words: pd.DataFrame,
+    df_words_full: pd.DataFrame,      # CHANGED: Full timeline with is_filler column
+    df_words_content: pd.DataFrame,   # NEW: Content words only (no fillers)
     df_segments: pd.DataFrame,
     df_fillers: pd.DataFrame,
     total_duration: float,
@@ -416,7 +426,8 @@ def analyze_fluency(
     Complete fluency analysis pipeline.
     
     Args:
-        df_words: Word-level timestamps
+        df_words_full: Complete word-level timestamps (includes fillers marked with is_filler)
+        df_words_content: Content words only (fillers removed) for WPM calculation
         df_segments: Segment-level timestamps
         df_fillers: Filler/stutter events
         total_duration: Total audio duration in seconds
@@ -437,15 +448,18 @@ def analyze_fluency(
             "opinions": None,
         }
     
-    # Get context configuration
-    context_config = CONTEXT_CONFIG.get(
-        speech_context,
-        CONTEXT_CONFIG["conversational"]
-    )
+    # Validate context
+    if speech_context not in CONTEXT_CONFIG:
+        print(f"⚠️  Warning: Invalid context '{speech_context}'. Using 'conversational'.")
+        speech_context = "conversational"
     
-    # Calculate metrics
+    # Get context configuration
+    context_config = CONTEXT_CONFIG[speech_context]
+    
+    # Calculate metrics (CHANGED: pass both word DataFrames)
     metrics = calculate_normalized_metrics(
-        df_words,
+        df_words_full,      # For pause detection (full timeline)
+        df_words_content,   # For WPM and lexical metrics
         df_segments,
         df_fillers,
         total_duration

@@ -15,6 +15,8 @@ This file defines:
 - Treat this file as product policy, not just engineering config.
 """
 
+VALID_CONTEXTS = {"conversational", "narrative", "presentation", "interview"}
+
 # ============================================================
 # FILLER & STUTTER DETECTION CONFIGURATION
 # ============================================================
@@ -32,6 +34,7 @@ FILLER_PATTERNS = {
     'uuuh', 'uuum', 'aaah', 'mmm', 'hmm', 'hmmm',
     
 }
+FILLER_REGEX = r"^(um+|uh+|erm+|er+|ah+|eh+|mmm+|hmm+)$"
 
 # More conservative set (exclude discourse markers)
 CORE_FILLERS = {

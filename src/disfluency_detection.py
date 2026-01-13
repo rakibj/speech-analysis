@@ -10,6 +10,7 @@ from typing import Tuple
 
 from .config import (
     FILLER_MAP,
+    FILLER_REGEX,
     WORD_ONSET_WINDOW,
     MIN_FILLER_DURATION,
     STUTTER_CONSONANTS,
@@ -301,10 +302,6 @@ def detect_fillers_whisper(verbatim_result: dict) -> pd.DataFrame:
     Returns:
         DataFrame with detected filler words
     """
-    FILLER_PATTERN = re.compile(
-        r"^(um+|uh+|erm+|er+|ah+|eh+)$",
-        re.IGNORECASE
-    )
     
     def normalize_whisper_token(token: str) -> str:
         token = token.lower().strip()
@@ -315,7 +312,7 @@ def detect_fillers_whisper(verbatim_result: dict) -> pd.DataFrame:
     for seg in verbatim_result.get("segments", []):
         for w in seg.get("words", []):
             norm = normalize_whisper_token(w["word"])
-            if norm and FILLER_PATTERN.match(norm):
+            if norm and FILLER_REGEX.match(norm):
                 whisper_fillers.append({
                     "style": "clear",
                     "type": "filler",

@@ -183,14 +183,20 @@ def extract_segments_dataframe(result: dict) -> pd.DataFrame:
     """
     segments = []
     for seg in result["segments"]:
+        # Handle empty word list
+        if len(seg["words"]) > 0:
+            avg_confidence = sum(
+                [float(w["probability"]) for w in seg["words"]]
+            ) / len(seg["words"])
+        else:
+            avg_confidence = 0.0
+        
         segments.append({
             "text": seg["text"].strip(),
             "start": float(seg["start"]),
             "end": float(seg["end"]),
             "duration": float(seg["end"] - seg["start"]),
-            "avg_word_confidence": sum(
-                [float(w["probability"]) for w in seg["words"]]
-            ) / (len(seg["words"]) if len(seg["words"]) > 0 else 0.0)
+            "avg_word_confidence": avg_confidence
         })
     
     return pd.DataFrame(segments)
