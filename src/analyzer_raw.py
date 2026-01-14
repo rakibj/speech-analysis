@@ -21,8 +21,7 @@ from .disfluency_detection import (
     merge_filler_detections,
     group_stutters,
 )
-from .fluency_metrics import analyze_fluency
-from .config import VALID_CONTEXTS
+from .metrics import calculate_normalized_metrics
 
 
 # Load environment variables
@@ -110,45 +109,37 @@ def analyze_speech(
     df_final_fillers = group_stutters(df_merged_fillers)
     print(f"  Total events: {len(df_final_fillers)}")
     
-    # Step 5: Calculate fluency metrics
-    print("\n[5/5] Calculating fluency score...")
-    analysis = analyze_fluency(
-        df_words,          # Full timeline (with is_filler column)
-        df_content_words,  # Content words only (for WPM)
-        df_segments,
-        df_final_fillers,
-        total_duration,
-        speech_context
+    print("\n[5/5] Calculating raw score...")
+    normalized_metrics = calculate_normalized_metrics(
+        df_words_raw=df_words,
+        df_words_cleaned=df_content_words,
+        df_segments=df_segments,
+        df_fillers=df_final_fillers,
+        total_duration=total_duration
     )
-    
-    if analysis["verdict"]["fluency_score"] is not None:
-        print(f"\n✓ Fluency Score: {analysis['verdict']['fluency_score']}/100")
-        print(f"✓ Readiness: {analysis['verdict']['readiness']}")
-    else:
-        print(f"\n✗ {analysis['verdict']['readiness']}")
     
     # Build response with multiple word views
     final_response = {
-        **analysis,
-        
-        # Complete timeline with filler markers
-        "word_timestamps": df_words.to_dict(orient="records"),
-        
-        # Content words only (for clean display)
-        "content_words": df_content_words.to_dict(orient="records"),
-        
-        # Segments with filler flags
-        "segment_timestamps": df_segments.to_dict(orient="records"),
-        
-        # Detected filler events (including stutters)
-        "filler_events": df_final_fillers.to_dict(orient="records"),
-        
+        **normalized_metrics,
         # Statistics
         "statistics": {
             "total_words_transcribed": len(df_words),
             "content_words": len(df_content_words),
             "filler_words_detected": filler_count,
             "filler_percentage": round(100 * filler_count / len(df_words), 2) if len(df_words) > 0 else 0,
+        }, 
+        "timestamps": {
+            # Complete timeline with filler markers
+            "words_timestamps_raw": df_words.to_dict(orient="records"),
+            
+            # Content words only (for clean display)
+            "words_timestamps_cleaned": df_content_words.to_dict(orient="records"),
+            
+            # Segments with filler flags
+            "segment_timestamps": df_segments.to_dict(orient="records"),
+            
+            # Detected filler events (including stutters)
+            "filler_timestamps": df_final_fillers.to_dict(orient="records"),
         }
     }
     

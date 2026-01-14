@@ -7,6 +7,7 @@ import whisper
 import whisperx
 import pandas as pd
 from typing import Tuple
+from .config import CORE_FILLERS, FILLER_PATTERNS
 
 
 def load_audio(path: str) -> Tuple[any, int]:
@@ -207,34 +208,6 @@ def extract_segments_dataframe(result: dict) -> pd.DataFrame:
 import re
 import pandas as pd
 from typing import Set
-
-# Comprehensive filler patterns
-FILLER_PATTERNS = {
-    # Basic fillers
-    'um', 'umm', 'ummm', 'uhm', 'uhhmm',
-    'uh', 'uhh', 'uhhh', 'er', 'err', 'errr',
-    'ah', 'ahh', 'ahhh', 'eh', 'ehh', 'ehhh',
-    
-    # British/formal variants
-    'erm', 'errm', 'errmm',
-    
-    # Elongated versions
-    'uuuh', 'uuum', 'aaah', 'mmm', 'hmm', 'hmmm',
-    
-    # False starts / discourse markers (optional - tune based on your needs)
-    'like', 'you know', 'i mean', 'sort of', 'kind of',
-    'basically', 'actually', 'literally', 'right', 'okay', 'ok',
-    'so', 'well', 'yeah', 'yep', 'yup', 'nope',
-}
-
-# More conservative set (exclude discourse markers)
-CORE_FILLERS = {
-    'um', 'umm', 'ummm', 'uhm', 'uhhmm',
-    'uh', 'uhh', 'uhhh', 'er', 'err', 'errr',
-    'ah', 'ahh', 'ahhh', 'eh', 'ehh', 'ehhh',
-    'erm', 'errm', 'errmm',
-    'uuuh', 'uuum', 'aaah', 'mmm', 'hmm', 'hmmm',
-}
 
 
 def normalize_word(word: str) -> str:
