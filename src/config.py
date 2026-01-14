@@ -17,6 +17,106 @@ This file defines:
 
 VALID_CONTEXTS = {"conversational", "narrative", "presentation", "interview"}
 
+STOPWORDS = {
+    # ------------------------------------------------------------------
+    # Articles & determiners (no lexical choice signal)
+    # ------------------------------------------------------------------
+    "a", "an", "the",
+    "this", "that", "these", "those",
+
+    # ------------------------------------------------------------------
+    # Personal pronouns (unavoidable repetition in speech)
+    # ------------------------------------------------------------------
+    "i", "me", "my", "mine", "myself",
+    "you", "your", "yours", "yourself",
+    "he", "him", "his", "himself",
+    "she", "her", "hers", "herself",
+    "it", "its", "itself",
+    "we", "us", "our", "ours", "ourselves",
+    "they", "them", "their", "theirs", "themselves",
+
+    # ------------------------------------------------------------------
+    # Auxiliary & copular verbs (grammatical scaffolding)
+    # ------------------------------------------------------------------
+    "am", "is", "are", "was", "were",
+    "be", "been", "being",
+
+    # ------------------------------------------------------------------
+    # Modal verbs (high frequency, low lexical information)
+    # ------------------------------------------------------------------
+    "can", "could", "may", "might",
+    "must", "shall", "should",
+    "will", "would",
+
+    # ------------------------------------------------------------------
+    # Function verbs (do/have — repetition is not lexical weakness)
+    # ------------------------------------------------------------------
+    "do", "does", "did", "done", "doing",
+    "have", "has", "had", "having",
+
+    # ------------------------------------------------------------------
+    # Prepositions (mandatory grammar glue)
+    # ------------------------------------------------------------------
+    "to", "of", "in", "on", "at", "for", "with",
+    "about", "from", "by", "into", "onto",
+    "over", "under", "after", "before",
+    "between", "among", "through", "during",
+    "without", "within", "against", "around",
+    "towards", "upon",
+
+    # ------------------------------------------------------------------
+    # Conjunctions & subordinators (structural, not lexical)
+    # ------------------------------------------------------------------
+    "and", "but", "or", "so", "yet",
+    "because", "although", "though", "while",
+    "if", "unless", "until", "since",
+
+    # ------------------------------------------------------------------
+    # Relative & complementizers (clause formation)
+    # ------------------------------------------------------------------
+    "that", "which", "who", "whom", "whose",
+    "where", "when",
+
+    # ------------------------------------------------------------------
+    # Quantifiers & generalizers (very common, vague)
+    # ------------------------------------------------------------------
+    "some", "any", "many", "much",
+    "few", "little", "more", "most",
+    "less", "least", "all", "both",
+    "either", "neither", "each", "every",
+    "enough",
+
+    # ------------------------------------------------------------------
+    # Negation & polarity (grammatical necessity)
+    # ------------------------------------------------------------------
+    "not", "no", "nor", "never",
+    "none", "nothing", "nobody", "nowhere",
+
+    # ------------------------------------------------------------------
+    # Existentials & placeholders (low semantic value)
+    # ------------------------------------------------------------------
+    "there", "here",
+    "something", "anything", "everything",
+    "someone", "anyone", "everyone",
+    "somewhere", "anywhere", "everywhere",
+
+    # ------------------------------------------------------------------
+    # Spoken fillers & discourse glue (NOT lexical choice)
+    # ------------------------------------------------------------------
+    "uh", "um", "erm", "ah", "eh", "hmm",
+    "like",           # filler usage (IELTS-relevant)
+    "well", "okay", "ok", "right",
+    "you know", "i mean",
+    "kind of", "sort of",
+    "basically", "actually", "literally",
+
+    # ------------------------------------------------------------------
+    # Temporal / sequencing glue (narrative structure, not vocabulary)
+    # ------------------------------------------------------------------
+    "then", "now", "today", "yesterday", "tomorrow",
+    "later", "first", "second", "third", "next", "finally",
+}
+
 # ============================================================
 # FILLER & STUTTER DETECTION CONFIGURATION
 # ============================================================
@@ -37,7 +137,6 @@ FILLER_PATTERNS = {
 FILLER_REGEX = r"^(um+|uh+|erm+|er+|ah+|eh+|mmm+|hmm+)$"
 FILLER_IGNORE_MAX = 0.10     # <100ms → ignore
 FILLER_LIGHT_MAX = 0.30      # 100–300ms → light
-
 # More conservative set (exclude discourse markers)
 CORE_FILLERS = {
     'um', 'umm', 'ummm', 'uhm', 'uhhmm',
