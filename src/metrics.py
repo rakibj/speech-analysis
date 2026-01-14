@@ -205,6 +205,7 @@ def calculate_normalized_metrics(
         pause_after_filler / total_fillers if total_fillers > 0 else 0.0
     )
 
+
     mean_word_confidence = (
         df_words_raw["confidence"].mean()
         if "confidence" in df_words_raw.columns and len(df_words_raw) > 0
@@ -224,6 +225,8 @@ def calculate_normalized_metrics(
     )
 
     raw_transcript = build_raw_transcript(df_words_raw)
+    audio_duration_sec = total_duration
+    speaking_time_sec = audio_duration_sec - pause_durations.sum()
     
     return {
         "raw_transcript": raw_transcript,
@@ -244,4 +247,6 @@ def calculate_normalized_metrics(
         "mean_word_confidence": mean_word_confidence,
         "low_confidence_ratio": low_confidence_ratio,
         "lexical_density": lexical_density,
+        "audio_duration_sec": audio_duration_sec,
+        "speaking_time_sec": speaking_time_sec,
     }
