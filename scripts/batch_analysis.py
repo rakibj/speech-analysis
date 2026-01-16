@@ -9,7 +9,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from src.analyzer import analyze_speech
+from src.analyzer_old import analyze_speech
 
 
 AUDIO_DIR = Path("data/l2arctic_spontaneous")

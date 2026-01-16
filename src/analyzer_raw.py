@@ -22,7 +22,8 @@ from .disfluency_detection import (
     group_stutters,
 )
 from .metrics import calculate_normalized_metrics
-
+from src.llm_processing import extract_llm_annotations, aggregate_llm_metrics
+from src.prosody_extraction import is_monotone_speech
 
 # Load environment variables
 load_dotenv()
@@ -46,6 +47,7 @@ def analyze_speech(
     # Step 1: Verbatim transcription (source of truth)
     print("\n[1/5] Transcribing with Whisper (verbatim)...")
     verbatim_result = transcribe_verbatim_fillers(audio_path, device=device)
+    is_monotone = is_monotone_speech(audio_path)
     
     # Extract words and segments
     df_words = extract_words_dataframe(verbatim_result)
@@ -127,6 +129,7 @@ def analyze_speech(
             "content_words": len(df_content_words),
             "filler_words_detected": filler_count,
             "filler_percentage": round(100 * filler_count / len(df_words), 2) if len(df_words) > 0 else 0,
+            "is_monotone": is_monotone
         }, 
         "timestamps": {
             # Complete timeline with filler markers

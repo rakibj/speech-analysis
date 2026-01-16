@@ -141,3 +141,13 @@ def aggregate_llm_metrics(llm_result) -> dict:
         "meaning_blocking_error_ratio": round(meaning_blocking_error_ratio, 3),
     }
 
+def analyze_llm_metrics(
+    raw_transcript: str,
+    speech_context: str = "conversational"
+) -> dict:
+    """
+    Analyze speech using LLM and return aggregated metrics.
+    """
+    llm_result = extract_llm_annotations(raw_transcript, speech_context)
+    llm_metrics = aggregate_llm_metrics(llm_result)
+    return llm_metrics
