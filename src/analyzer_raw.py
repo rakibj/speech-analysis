@@ -17,6 +17,7 @@ from .audio_processing import (
 )
 from .disfluency_detection import (
     detect_fillers_wav2vec,
+    detect_phonemes_wav2vec,
     detect_fillers_whisper,
     merge_filler_detections,
     group_stutters,
@@ -97,7 +98,8 @@ def analyze_speech(
     
     # Step 4: Detect fillers with Wav2Vec2
     print("\n[4/5] Detecting subtle fillers with Wav2Vec2...")
-    df_wav2vec_fillers = detect_fillers_wav2vec(audio_path, df_aligned_words)
+    df_wav2vec = detect_phonemes_wav2vec(audio_path)
+    df_wav2vec_fillers = detect_fillers_wav2vec(df_wav2vec, df_aligned_words)
     
     # Extract Whisper-detected fillers (already marked in df_words)
     df_whisper_fillers = df_words[df_words['is_filler']].copy()
@@ -121,7 +123,7 @@ def analyze_speech(
     )
     
     # Build response with multiple word views
-    final_response = {
+    response = {
         **normalized_metrics,
         # Statistics
         "statistics": {
@@ -146,7 +148,7 @@ def analyze_speech(
         }
     }
     
-    return final_response
+    return response
 
 
 def main():

@@ -226,21 +226,20 @@ def classify_non_word_event(row: pd.Series) -> dict:
 
 
 def detect_fillers_wav2vec(
-    audio_path: str,
+    df_wav2vec: pd.DataFrame,
     aligned_words: pd.DataFrame
 ) -> pd.DataFrame:
     """
     Detect fillers and stutters using Wav2Vec2 phoneme detection.
     
     Args:
-        audio_path: Path to audio file
+        df_wav2vec: wav to vec phoneme events
         aligned_words: DataFrame with aligned word timestamps
         
     Returns:
         DataFrame with detected filler/stutter events
     """
     # Get phoneme-level events
-    df_wav2vec = detect_phonemes_wav2vec(audio_path)
     
     if df_wav2vec.empty:
         return pd.DataFrame()
