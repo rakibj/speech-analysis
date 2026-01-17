@@ -6,6 +6,19 @@
       "pronunciation": 8.5,
       "lexical_resource": 6.5,
       "grammatical_range_accuracy": 7.5
+    },
+    "descriptors": {
+      "fluency_coherence": "Fluent with only very occasional repetition. Hesitation may occur mid-sentence but won't affect coherence.",
+      "pronunciation": "Wide range of phonological features. Can sustain appropriate rhythm with occasional lapses.",
+      "lexical_resource": "Resource flexibly used. Some ability to use less common and idiomatic items.",
+      "grammatical_range_accuracy": "Range of structures flexibly used. Error-free sentences frequent."
+    },
+    "feedback": {
+      "fluency_coherence": "Excellent fluency. Speech flows naturally with minimal hesitation.",
+      "pronunciation": "Clear pronunciation. Speech is easily understood with consistent clarity.",
+      "lexical_resource": "Adequate vocabulary. Can discuss topics at length. 1 word choice errors noted.",
+      "grammatical_range_accuracy": "Good grammatical control. Mostly accurate structures. 1 errors in complex sentences.",
+      "overall_recommendation": "Good overall performance. Minor areas for refinement in accuracy and range."
     }
   },
   "analysis": {
@@ -14,7 +27,7 @@
       "speaking_time_sec": 109.78,
       "total_words_transcribed": 327,
       "content_word_count": 324,
-      "analysis_timestamp": "2026-01-17T17:51:37.306993Z"
+      "analysis_timestamp": "2026-01-17T18:01:29.238122Z"
     },
     "fluency_analysis": {
       "verdict": {

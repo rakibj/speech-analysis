@@ -6,6 +6,19 @@
       "pronunciation": 6.5,
       "lexical_resource": 7.5,
       "grammatical_range_accuracy": 6.0
+    },
+    "descriptors": {
+      "fluency_coherence": "Able to keep going and demonstrates willingness. Coherence may be lost due to hesitation.",
+      "pronunciation": "Range of phonological features with variable control. Individual words may be mispronounced.",
+      "lexical_resource": "Resource sufficient to discuss topics. Vocabulary use may be inappropriate.",
+      "grammatical_range_accuracy": "Mix of structures with limited flexibility. Errors frequent but rarely impede communication."
+    },
+    "feedback": {
+      "fluency_coherence": "Limited fluency. Frequent pauses and repetitions affect speech flow.",
+      "pronunciation": "Adequate pronunciation. Generally understood but occasional clarity issues.",
+      "lexical_resource": "Good vocabulary range. Uses 1 advanced items and 0 idiomatic expressions.",
+      "grammatical_range_accuracy": "Adequate control. 2 errors noted but meaning usually clear.",
+      "overall_recommendation": "Adequate performance. Focus on fluency and reducing hesitations would help."
     }
   },
   "analysis": {
@@ -14,7 +27,7 @@
       "speaking_time_sec": 91.8,
       "total_words_transcribed": 163,
       "content_word_count": 162,
-      "analysis_timestamp": "2026-01-17T17:51:37.288973Z"
+      "analysis_timestamp": "2026-01-17T18:00:39.264822Z"
     },
     "fluency_analysis": {
       "verdict": {

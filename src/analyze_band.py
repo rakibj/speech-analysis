@@ -114,8 +114,15 @@ async def analyze_band_from_audio(audio_path: str) -> dict:
 async def analyze_band_from_analysis(raw_analysis: dict) -> dict:
     analysis = build_analysis(raw_analysis)
     
-    # Score using the extracted metrics
-    scorer = IELTSBandScorer()
-    band_scores = scorer.score_overall(analysis["metrics_for_scoring"])
+    # Get raw transcript for LLM
+    transcript = raw_analysis.get("raw_transcript", "")
+    
+    # Score using extracted metrics + LLM for semantic evaluation
+    from src.ielts_band_scorer import score_ielts_speaking
+    band_scores = score_ielts_speaking(
+        metrics=analysis["metrics_for_scoring"],
+        transcript=transcript,
+        use_llm=True,  # Enable LLM for semantic evaluation
+    )
     
     return {"band_scores": band_scores, "analysis": analysis}
