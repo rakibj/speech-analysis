@@ -1,6 +1,48 @@
 {
   "raw_analysis": {
-    "raw_transcript": "Okay, so the first phone that I uh owned was when I was in year six. It uh was actually uh a gift from my godmother for my birthday, and it was a pink, Nokia flip phone. And uh I'm the, when I first got it, I was so happy because it was my first phone and I could call and text my friends and it was really exciting. Um, um, and the phone had a call retro design. Um, um, and And so I uh loved my phone so much and um I used it all the time. And then I remember as the iPhone came out, uh all of my friends in your six were getting iPhones, which was ridiculous, now that I look back at it. But I remember being so jealous of all my friends who had these grubby, cutting edge iPhones with touch screens. and uh I uh um uh had my little cute retro Nokia, but uh um I uh look back at it and uh I almost want to have a Nokia again now. I uh kind of miss my phone because uh I think it was really nice to be able to uh focus just on contacting friends and I think that's what phones originally that's what their purpose was so you couldn't contact anyone from anywhere. They're just staying contact and connected with everyone uh and I kind of missed that aspect. I think that phones are very convenient now but I think there's almost too many things that you can do on um a phone. So yeah, I think it would always be nice to have the technology revert a little bit and um go back in time a little bit and get back to those basics. Yeah. Yeah, so I think that if I uh had my time again, I would have kept my original Nokia phone for as long as possible. uh And I'm glad that my parents did keep me me with the same phone for the following I think two or three years. So yeah, thank you. No worries.",
+    "raw_transcript": "Okay, so the first phone that I owned was when I was in year six. It was actually a gift from my godmother for my birthday, and it was a pink, Nokia flip phone. And I'm the, when I first got it, I was so happy because it was my first phone and I could call and text my friends and it was really exciting. Um, and the phone had a call retro design. Um, and And so I loved my phone so much and I used it all the time. And then I remember as the iPhone came out, all of my friends in your six were getting iPhones, which was ridiculous, now that I look back at it. But I remember being so jealous of all my friends who had these grubby, cutting edge iPhones with touch screens. and I had my little cute retro Nokia, but I look back at it and I almost want to have a Nokia again now. I kind of miss my phone because I think it was really nice to be able to focus just on contacting friends and I think that's what phones originally that's what their purpose was so you couldn't contact anyone from anywhere. They're just staying contact and connected with everyone and I kind of missed that aspect. I think that phones are very convenient now but I think there's almost too many things that you can do on a phone. So yeah, I think it would always be nice to have the technology revert a little bit and go back in time a little bit and get back to those basics. Yeah. Yeah, so I think that if I had my time again, I would have kept my original Nokia phone for as long as possible. And I'm glad that my parents did keep me with the same phone for the following I think two or three years. So yeah, thank you. No worries.",
+    "fluency_analysis": {
+      "verdict": {
+        "fluency_score": 59,
+        "readiness": "borderline"
+      },
+      "benchmarking": {
+        "percentile": 30,
+        "target_score": 80,
+        "score_gap": 21,
+        "estimated_guided_practice_hours": 12.6
+      },
+      "opinions": {
+        "primary_issues": [
+          {
+            "issue": "delivery_instability",
+            "severity": "medium",
+            "root_cause": "Speech rhythm varies unpredictably.",
+            "score_impact": 15
+          },
+          {
+            "issue": "filler_dependency",
+            "severity": "high",
+            "root_cause": "Fillers replace silent planning pauses.",
+            "score_impact": 14
+          }
+        ],
+        "action_plan": [
+          {
+            "priority": 1,
+            "focus": "delivery_instability",
+            "instruction": "Practice steady pacing using metronome or rhythm drills.",
+            "expected_score_gain": 10
+          },
+          {
+            "priority": 2,
+            "focus": "filler_dependency",
+            "instruction": "Replace filler words with silent pauses under 300 ms.",
+            "expected_score_gain": 10
+          }
+        ]
+      }
+    },
     "wpm": 158.23,
     "unique_word_count": 155,
     "fillers_per_min": 3.52,
@@ -5674,14 +5716,18 @@
       ]
     }
   },
-  "llm_metrics": {
-    "coherence_breaks": 0,
-    "topic_relevance": true,
-    "word_choice_errors": 1,
-    "advanced_vocabulary_count": 0,
-    "complex_structures_attempted": 1,
-    "complex_structures_accurate": 0,
-    "grammar_errors": 1,
-    "meaning_blocking_error_ratio": 0.0
+  "rubric_estimations": {
+    "rubric_estimations": {
+      "fluency_coherence": {
+        "allowed_bands": [7, 8],
+        "confidence": "high",
+        "reasons": ["fluent delivery with occasional natural pauses"]
+      },
+      "pronunciation": {
+        "allowed_bands": [8, 9],
+        "confidence": "high",
+        "reasons": ["consistently clear and intelligible pronunciation"]
+      }
+    }
   }
 }

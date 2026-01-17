@@ -1,6 +1,66 @@
 {
   "raw_analysis": {
-    "raw_transcript": "Um, um, my time, I uh didn't have to save money for it, uh but I uh wanted to save money for traveling. um When I was a university student, I loved traveling. I uh could use whole summer vacation for traveling, So I uh saved my money for that. So every uh summer vacation I go somewhere. So about 10 -11 months, I had time to save money for next travel. uh um And it wasn't easy uh to save money, but mentally, very mentally, I uh wasn't feel sad or uh feel difficult for you because I just think of traveling somewhere. uh So yeah, that was good. Saving money experience. And to save my money, every day I made Onigiri and I uh bring it to university and I uh hit Onigiri. So every uh day my lunch was Onigiri, rice bowl, but it uh was good memory. and uh still now I make my open -toed lunchbox every day to save money and uh also for fun but I'm doing it uh now so lovely and what did you learn?",
+    "raw_transcript": "Um, my time, I didn't have to save money for it, but I wanted to save money for traveling. When I was a university student, I loved traveling. I could use whole summer vacation for traveling, So I saved my money for that. So every summer vacation I go somewhere. So about 10 -11 months, I had time to save money for next travel. And it wasn't easy to save money, but mentally, very mentally, I wasn't feel sad or feel difficult for you because I just think of traveling somewhere. So yeah, that was good. Saving money experience. And to save my money, every day I made Onigiri and I bring it to university and I hit Onigiri. So every day my lunch was Onigiri, rice bowl, but it was good memory. and still now I make my open -toed lunchbox every day to save money and also for fun but I'm doing it now so lovely and what did you learn?",
+    "fluency_analysis": {
+      "verdict": {
+        "fluency_score": 29,
+        "readiness": "not_ready"
+      },
+      "benchmarking": {
+        "percentile": 30,
+        "target_score": 80,
+        "score_gap": 51,
+        "estimated_guided_practice_hours": 30.599999999999998
+      },
+      "opinions": {
+        "primary_issues": [
+          {
+            "issue": "delivery_instability",
+            "severity": "medium",
+            "root_cause": "Speech rhythm varies unpredictably.",
+            "score_impact": 20
+          },
+          {
+            "issue": "hesitation_structure",
+            "severity": "high",
+            "root_cause": "Pauses frequently interrupt sentence flow.",
+            "score_impact": 16
+          },
+          {
+            "issue": "filler_dependency",
+            "severity": "high",
+            "root_cause": "Fillers replace silent planning pauses.",
+            "score_impact": 11
+          },
+          {
+            "issue": "delivery_pacing",
+            "severity": "medium",
+            "root_cause": "Speech rate deviates from optimal clarity range.",
+            "score_impact": 7
+          }
+        ],
+        "action_plan": [
+          {
+            "priority": 1,
+            "focus": "delivery_instability",
+            "instruction": "Practice steady pacing using metronome or rhythm drills.",
+            "expected_score_gain": 21
+          },
+          {
+            "priority": 2,
+            "focus": "hesitation_structure",
+            "instruction": "Pause only after completing full clauses or ideas.",
+            "expected_score_gain": 17
+          },
+          {
+            "priority": 3,
+            "focus": "filler_dependency",
+            "instruction": "Replace filler words with silent pauses under 300 ms.",
+            "expected_score_gain": 11
+          }
+        ]
+      }
+    },
     "wpm": 88.73,
     "unique_word_count": 87,
     "fillers_per_min": 2.74,
@@ -2960,14 +3020,28 @@
       ]
     }
   },
-  "llm_metrics": {
-    "coherence_breaks": 1,
-    "topic_relevance": true,
-    "word_choice_errors": 3,
-    "advanced_vocabulary_count": 1,
-    "complex_structures_attempted": 2,
-    "complex_structures_accurate": 1,
-    "grammar_errors": 2,
-    "meaning_blocking_error_ratio": 0.0
+  "rubric_estimations": {
+    "rubric_estimations": {
+      "fluency_coherence": {
+        "allowed_bands": [
+          5,
+          6
+        ],
+        "confidence": "high",
+        "reasons": [
+          "noticeable fluency breakdown with listener effort required"
+        ]
+      },
+      "pronunciation": {
+        "allowed_bands": [
+          6,
+          7
+        ],
+        "confidence": "high",
+        "reasons": [
+          "generally clear with minor intelligibility lapses"
+        ]
+      }
+    }
   }
 }

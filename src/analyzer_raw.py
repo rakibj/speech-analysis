@@ -4,6 +4,8 @@ import asyncio
 import pandas as pd
 from dotenv import load_dotenv
 
+from .fluency_metrics import analyze_fluency
+
 from .audio_processing import (
     CORE_FILLERS,
     get_content_words,
@@ -40,7 +42,7 @@ def generate_transcript_raw(
 ) -> str:
     if df_words_raw.empty:
         return ""
-    return " ".join(df_words_raw["text"].astype(str))
+    return " ".join(df_words_raw["word"].astype(str))
 
 def combine_words_and_fillers(
     df_words_raw: pd.DataFrame,
@@ -190,7 +192,8 @@ async def analyze_speech(
     print(f"  Total events: {len(df_final_fillers)}")
 
     df_words_raw = combine_words_and_fillers(df_words_whisper_raw, df_final_fillers)
-    transcript_raw = generate_transcript_raw(df_words_raw)
+    transcript_raw = generate_transcript_raw(df_words_whisper_raw)
+    # transcript_raw = generate_transcript_raw(df_words_raw)
     print(f"  Transcript: {transcript_raw}")
     
     print("\n[5/5] Calculating raw score...")
@@ -202,10 +205,20 @@ async def analyze_speech(
         total_duration=total_duration,
         # df_tokens_enriched=df_tokens_enriched  # optional, not used yet
     )
+
+    fluency_analysis = analyze_fluency(
+        df_words_whisper_raw,          # Full timeline (with is_filler column)
+        df_words_content,  # Content words only (for WPM)
+        df_segments,
+        df_final_fillers,
+        total_duration,
+        speech_context
+    )
     
     # Build response with multiple word views
     response = {
         "raw_transcript": transcript_raw,
+        "fluency_analysis": fluency_analysis,
         **normalized_metrics,
         # Statistics
         "statistics": {

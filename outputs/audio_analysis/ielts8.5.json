@@ -1,6 +1,22 @@
 {
   "raw_analysis": {
-    "raw_transcript": "Well, an advertisement that has stuck to me me a uh lot is, I don't know if you remember it, the 2016, I um uh believe, the Pepsi advertisement with Kendall Jenner. Basically, she breaks up uh a protest between the protesters and the cops by handing a uh can of Pepsi. And uh this was a video, and it went viral across the internet because of uh the racial backlash that it faced after, you went so popular because I think the idea was that it trivialized the ideas uh of race and uh protesting and uh things that people might believe in. uh And also just the social values of culture, race, everything. And basically, by dissolving uh a protest and dissolving tension by the kind of Pepsi, it uh just trivialized things like the Black Lives Matter, any uh sort of protest, whether it was racial, cultural, sexual, anything. uh And this went viral, and I do remember it because people still talk about it today, and I was actually having a conversation recently about how even uh though this was so long ago, and people have apologized, Kendall Jenner has apologized, Pepsi has apologized, it It has not taken away from just how iconic it was and how it commemorated how people saw, how people trivialized racial tension. uh And so that's an advertisement that I fully remember very, very vividly. And that's it, uh yes. And where were you when you first saw the other one? I think I was in...",
+    "raw_transcript": "Well, an advertisement that has stuck to me a lot is, I don't know if you remember it, the 2016, I believe, the Pepsi advertisement with Kendall Jenner. Basically, she breaks up a protest between the protesters and the cops by handing a can of Pepsi. And this was a video, and it went viral across the internet because of the racial backlash that it faced after, you went so popular because I think the idea was that it trivialized the ideas of race and protesting and things that people might believe in. And also just the social values of culture, race, everything. And basically, by dissolving a protest and dissolving tension by the kind of Pepsi, it just trivialized things like the Black Lives Matter, any sort of protest, whether it was racial, cultural, sexual, anything. And this went viral, and I do remember it because people still talk about it today, and I was actually having a conversation recently about how even though this was so long ago, and people have apologized, Kendall Jenner has apologized, Pepsi has apologized, it It has not taken away from just how iconic it was and how it commemorated how people saw, how people trivialized racial tension. And so that's an advertisement that I fully remember very, very vividly. And that's it, yes. And where were you when you first saw the other one? I think I was in...",
+    "fluency_analysis": {
+      "verdict": {
+        "fluency_score": 76,
+        "readiness": "borderline"
+      },
+      "benchmarking": {
+        "percentile": 65,
+        "target_score": 80,
+        "score_gap": 4,
+        "estimated_guided_practice_hours": 2.4
+      },
+      "opinions": {
+        "primary_issues": [],
+        "action_plan": []
+      }
+    },
     "wpm": 133.51,
     "unique_word_count": 127,
     "fillers_per_min": 2.38,
@@ -4180,14 +4196,28 @@
       ]
     }
   },
-  "llm_metrics": {
-    "coherence_breaks": 3,
-    "topic_relevance": true,
-    "word_choice_errors": 1,
-    "advanced_vocabulary_count": 2,
-    "complex_structures_attempted": 3,
-    "complex_structures_accurate": 1,
-    "grammar_errors": 2,
-    "meaning_blocking_error_ratio": 0.0
+  "rubric_estimations": {
+    "rubric_estimations": {
+      "fluency_coherence": {
+        "allowed_bands": [
+          7,
+          8
+        ],
+        "confidence": "high",
+        "reasons": [
+          "fluent delivery with occasional natural pauses"
+        ]
+      },
+      "pronunciation": {
+        "allowed_bands": [
+          8,
+          9
+        ],
+        "confidence": "high",
+        "reasons": [
+          "consistently clear and intelligible pronunciation"
+        ]
+      }
+    }
   }
 }

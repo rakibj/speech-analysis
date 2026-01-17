@@ -3,6 +3,8 @@
 import pandas as pd
 from typing import Tuple, Dict, List
 
+from .metrics import calculate_normalized_metrics
+
 from .config import (
     WPM_TOO_SLOW,
     WPM_SLOW_THRESHOLD,
@@ -386,7 +388,6 @@ def analyze_fluency(
             "readiness": readiness,
         },
         "benchmarking": benchmarking,
-        "normalized_metrics": metrics,
         "opinions": {
             "primary_issues": issues,
             "action_plan": action_plan,

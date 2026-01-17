@@ -10,10 +10,9 @@ import numpy as np
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(PROJECT_ROOT))
 
+from src.rubric_from_metrics import generate_constraints
 from src.analyzer_raw import analyze_speech
 from src.llm_processing import extract_llm_annotations, aggregate_llm_metrics
-
-
 from src.analyze_band import analyze_band_from_audio, analyze_band_from_analysis
 
 INPUT_DIR = PROJECT_ROOT / "data" / "ielts_part_2"
@@ -41,7 +40,7 @@ def make_json_safe(obj):
     else:
         return obj
 
-async def run_analysis():
+async def run_analysis(limit: int = None):
     wav_files = sorted(INPUT_DIR.rglob("*.wav"))
     OUTPUT_DIR_ANALYSIS.mkdir(parents=True, exist_ok=True)
 
@@ -51,6 +50,8 @@ async def run_analysis():
     print(f"Found {total} wav files")
 
     for idx, wav_path in enumerate(wav_files, start=1):
+        if limit is not None and idx > limit:
+            break
         out_path = OUTPUT_DIR_ANALYSIS / f"{wav_path.stem}.json"
         print(f"[{idx}/{total}] analyzing {wav_path.name}")
 
@@ -58,18 +59,20 @@ async def run_analysis():
             async with ANALYSIS_SEMAPHORE:
                 result = await analyze_speech(wav_path)
 
-            llm_result = extract_llm_annotations(result["raw_transcript"])
-            llm_metrics = aggregate_llm_metrics(llm_result)
+            # llm_result = extract_llm_annotations(result["raw_transcript"])
+            # llm_metrics = aggregate_llm_metrics(llm_result)
+            rubric_estimations = generate_constraints(result)
 
             analysis = {
                 "raw_analysis": result,
-                "llm_metrics": llm_metrics,
+                "rubric_estimations": rubric_estimations,
+                # "llm_metrics": llm_metrics,
             }
 
             with out_path.open("w", encoding="utf-8") as f:
                 json.dump(make_json_safe(analysis), f, indent=2, ensure_ascii=False)
 
-            # 🔑 Let the system breathe
+            # # 🔑 Let the system breathe
             await asyncio.sleep(0.3)
             gc.collect()
 
@@ -169,14 +172,14 @@ def merge_band_results(input_dir: Path, output_path: Path):
 # ENTRY POINT
 # =========================================================
 async def main():
-    # await run_analysis()
+    await run_analysis()
     # await run_result()
 
     # Optional merge
-    merge_band_results(
-        input_dir=OUTPUT_DIR_RESULT,
-        output_path=OUTPUT_DIR_RESULT / "merged_band_analysis.txt",
-    )
+    # merge_band_results(
+    #     input_dir=OUTPUT_DIR_RESULT,
+    #     output_path=OUTPUT_DIR_RESULT / "merged_band_analysis.txt",
+    # )
 
 
 if __name__ == "__main__":

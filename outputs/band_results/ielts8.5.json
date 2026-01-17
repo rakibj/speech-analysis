@@ -1,169 +1,12 @@
 {
   "band_scores": {
-    "overall_band": 4.5,
+    "overall_band": 7.5,
     "criterion_bands": {
-      "fluency_coherence": 5.5,
-      "lexical_resource": 5.5,
-      "grammatical_range_accuracy": 5.5,
-      "pronunciation": 3.5
-    },
-    "feedback_summary": "Overall Band: 4.5\nWeakest: Pronunciation (3.5)\nStrongest: Grammatical Range Accuracy (5.5)",
-    "detailed_diagnostics": {
-      "fluency": {
-        "score": 5.5,
-        "deductions": [
-          [
-            "some_fillers",
-            0.5
-          ],
-          [
-            "some_repetition",
-            0.3
-          ],
-          [
-            "severe_coherence_loss",
-            2.5
-          ]
-        ],
-        "gates": [
-          [
-            "lacks_native_fluency",
-            7.5
-          ]
-        ],
-        "metrics": {
-          "wpm": 133.51,
-          "long_pauses": 0.57,
-          "fillers": 2.38,
-          "repetition": 0.041,
-          "coherence_breaks": 3
-        }
-      },
-      "lexical": {
-        "score": 5.5,
-        "deductions": [
-          [
-            "adequate_range",
-            1.0
-          ]
-        ],
-        "gates": [
-          [
-            "no_sophistication",
-            5.5
-          ],
-          [
-            "no_idiomatic_usage",
-            6.5
-          ],
-          [
-            "insufficient_academic_vocab",
-            6.5
-          ],
-          [
-            "no_phrasal_verbs",
-            6.5
-          ]
-        ],
-        "sophistication_score": 1.18,
-        "metrics": {
-          "diversity": 0.538,
-          "idioms": 0,
-          "awl_coverage": 0,
-          "phrasal_verbs": 0,
-          "error_rate": 0.423728813559322
-        }
-      },
-      "grammar": {
-        "score": 5.5,
-        "deductions": [
-          [
-            "limited_range",
-            1.0
-          ],
-          [
-            "poor_complex_control",
-            2.5
-          ]
-        ],
-        "gates": [],
-        "metrics": {
-          "mlu": 18.23,
-          "complex_accuracy": 0.3333333333333333,
-          "error_rate": 0.847457627118644,
-          "blocking_ratio": 0.0,
-          "structure_range": 2
-        }
-      },
-      "pronunciation": {
-        "score": 3.5,
-        "deductions": [
-          [
-            "difficult_to_understand",
-            3.0
-          ],
-          [
-            "monotone_delivery",
-            1.5
-          ],
-          [
-            "unnatural_rhythm",
-            1.0
-          ]
-        ],
-        "gates": [
-          [
-            "no_prosodic_variation",
-            6.0
-          ]
-        ],
-        "metrics": {
-          "word_confidence": 0.933,
-          "low_conf_ratio": 0.059,
-          "intelligibility": 0.61416,
-          "prosody_quality": 0.4,
-          "monotone": true
-        }
-      }
-    },
-    "strengths": [],
-    "areas_for_improvement": [
-      {
-        "criterion": "Fluency & Coherence",
-        "current_band": 5.5,
-        "suggestions": [
-          "Replace fillers (um, uh) with brief pauses",
-          "Use linking words to maintain coherence"
-        ]
-      },
-      {
-        "criterion": "Lexical Resource",
-        "current_band": 5.5,
-        "suggestions": [
-          "Learn and use more idiomatic expressions",
-          "Incorporate common idioms naturally",
-          "Build academic vocabulary for abstract topics",
-          "Use phrasal verbs for natural expression"
-        ]
-      },
-      {
-        "criterion": "Grammatical Range & Accuracy",
-        "current_band": 5.5,
-        "suggestions": [
-          "Practice complex structures until automatic",
-          "Expand range: conditionals, relative clauses, passives"
-        ]
-      },
-      {
-        "criterion": "Pronunciation",
-        "current_band": 3.5,
-        "suggestions": [
-          "Practice intonation patterns (rising/falling)",
-          "Work on sentence stress and rhythm",
-          "Focus on problematic sounds with minimal pairs"
-        ]
-      }
-    ]
+      "fluency_coherence": 8.0,
+      "lexical_resource": 7.0,
+      "grammatical_range_accuracy": 7.0,
+      "pronunciation": 7.5
+    }
   },
   "analysis": {
     "metadata": {
@@ -171,7 +14,7 @@
       "speaking_time_sec": 96.02,
       "total_words_transcribed": 237,
       "content_word_count": 236,
-      "analysis_timestamp": "2026-01-17T04:52:23.304240Z"
+      "analysis_timestamp": "2026-01-17T06:58:57.339426Z"
     },
     "fluency_coherence": {
       "pauses": {
@@ -189,8 +32,11 @@
         "repetition_rate": 0.041
       },
       "coherence": {
-        "coherence_breaks": 3,
-        "topic_relevance": true
+        "coherence_break_count": 3,
+        "clause_completion_issue_count": 1,
+        "topic_relevance": true,
+        "listener_effort_high": false,
+        "flow_instability_present": false
       }
     },
     "lexical_resource": {
@@ -201,19 +47,24 @@
         "most_frequent_word_ratio": 0.041
       },
       "quality": {
-        "word_choice_errors": 1,
-        "advanced_vocabulary_count": 2
+        "word_choice_error_count": 1,
+        "advanced_vocabulary_count": 2,
+        "idiomatic_collocation_count": 0,
+        "successful_paraphrase_count": 0,
+        "failed_paraphrase_count": 0,
+        "paraphrase_success_ratio": null
       }
     },
     "grammatical_range_accuracy": {
       "complexity": {
         "mean_utterance_length": 18.23,
-        "complex_structures_attempted": 3,
-        "complex_structures_accurate": 1
+        "complex_structures_attempted": 1,
+        "complex_structure_accuracy_ratio": 0.0
       },
       "accuracy": {
-        "grammar_errors": 2,
-        "meaning_blocking_error_ratio": 0.0
+        "grammar_error_count": 1,
+        "meaning_blocking_error_ratio": 0.0,
+        "cascading_grammar_failure": false
       }
     },
     "pronunciation": {

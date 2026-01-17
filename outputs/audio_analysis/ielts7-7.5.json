@@ -1,6 +1,48 @@
 {
   "raw_analysis": {
-    "raw_transcript": "Um, um, uh so I uh ate uh in uh a restaurant called Universal yesterday in um Lygonstrain, Colton, Melbourne. It was an Italian uh restaurant and it was amazing. uh And I uh had some cheap and gothic bread for the entry. And then for the main, I have Tuscan chicken with a mushroom risotto and it's delicious as well. And also for like some sweet, I got some bronies and uh for drinks I have Coke and some white whites and I particularly love most cartel for that. And I went to the restaurant after my opera class and uh with my friends Wendy and we go there because it's the closest place like after my opera uh class and uh I uh love Italian food and also some kind of European food, but normally I would also go to some other restaurants like Chinese ones uh and also Japanese ones, but Italian food like including pizza, it's the most comfortable for me me after a long day having a aurora class. And also what uh else we still have, For uh Wamby she got some pasta uh with seafood, like a uh garlic, like she particularly hates garlic so we need to point out that I'm sorry I don't eat that but it's alright, they are really friendly and nice because they could adjust the dish according to your preference. uh And also after um that we also have some little pizza like with sparbic here as well. So that's not included in the main dish. Thank you.",
+    "raw_transcript": "Um, so I ate in a restaurant called Universal yesterday in Lygonstrain, Colton, Melbourne. It was an Italian restaurant and it was amazing. And I had some cheap and gothic bread for the entry. And then for the main, I have Tuscan chicken with a mushroom risotto and it's delicious as well. And also for like some sweet, I got some bronies and for drinks I have Coke and some white whites and I particularly love most cartel for that. And I went to the restaurant after my opera class and with my friends Wendy and we go there because it's the closest place like after my opera class and I love Italian food and also some kind of European food, but normally I would also go to some other restaurants like Chinese ones and also Japanese ones, but Italian food like including pizza, it's the most comfortable for me after a long day having a aurora class. And also what else we still have, For Wamby she got some pasta with seafood, like a garlic, like she particularly hates garlic so we need to point out that I'm sorry I don't eat that but it's alright, they are really friendly and nice because they could adjust the dish according to your preference. And also after that we also have some little pizza like with sparbic here as well. So that's not included in the main dish. Thank you.",
+    "fluency_analysis": {
+      "verdict": {
+        "fluency_score": 47,
+        "readiness": "borderline"
+      },
+      "benchmarking": {
+        "percentile": 30,
+        "target_score": 80,
+        "score_gap": 33,
+        "estimated_guided_practice_hours": 19.8
+      },
+      "opinions": {
+        "primary_issues": [
+          {
+            "issue": "filler_dependency",
+            "severity": "high",
+            "root_cause": "Fillers replace silent planning pauses.",
+            "score_impact": 13
+          },
+          {
+            "issue": "delivery_instability",
+            "severity": "medium",
+            "root_cause": "Speech rhythm varies unpredictably.",
+            "score_impact": 12
+          }
+        ],
+        "action_plan": [
+          {
+            "priority": 1,
+            "focus": "filler_dependency",
+            "instruction": "Replace filler words with silent pauses under 300 ms.",
+            "expected_score_gain": 17
+          },
+          {
+            "priority": 2,
+            "focus": "delivery_instability",
+            "instruction": "Practice steady pacing using metronome or rhythm drills.",
+            "expected_score_gain": 15
+          }
+        ]
+      }
+    },
     "wpm": 126.99,
     "unique_word_count": 130,
     "fillers_per_min": 3.21,
@@ -4178,14 +4220,28 @@
       ]
     }
   },
-  "llm_metrics": {
-    "coherence_breaks": 2,
-    "topic_relevance": true,
-    "word_choice_errors": 6,
-    "advanced_vocabulary_count": 3,
-    "complex_structures_attempted": 2,
-    "complex_structures_accurate": 1,
-    "grammar_errors": 4,
-    "meaning_blocking_error_ratio": 0.0
+  "rubric_estimations": {
+    "rubric_estimations": {
+      "fluency_coherence": {
+        "allowed_bands": [
+          7,
+          8
+        ],
+        "confidence": "high",
+        "reasons": [
+          "fluent delivery with occasional natural pauses"
+        ]
+      },
+      "pronunciation": {
+        "allowed_bands": [
+          6,
+          7
+        ],
+        "confidence": "high",
+        "reasons": [
+          "generally clear with minor intelligibility lapses"
+        ]
+      }
+    }
   }
 }

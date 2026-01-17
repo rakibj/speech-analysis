@@ -1,6 +1,60 @@
 {
   "raw_analysis": {
-    "raw_transcript": "One week ago, I uh went to the Canter City in Hakata. Before the time I saw uh the Canter City, it's kind of uh a huge shopping mall in uh Hakata. When I uh saw that building first time, it was awesome, because it had pretty good design. And in the last week, I uh decided to go to there for shopping, and I go first time I uh go there and at the time I was so hungry then I uh go to the uh um Lamein store because maybe 7th um floor that canterste uh 7th floor has lots of Lamein store it was uh pretty delicious and uh after that I uh go to shopping for buying some short t -shirts and uh short pants because I uh have only uh long t -shirts and long pants. And I uh go to the Japanese brand because here is Japan and I saw some clothes in newly clothes and uh maybe GU and I buy some t -shirts and pants but the design was just normal thing, just black or white kind of that. uh But the price is a little expensive than I thought. Yeah, and after uh that, I uh want to buy some accessory kind of necklace or stickers. But then I just look around. about I like the Japanese characters thing then I want to buy but the price doesn't make sense then I didn't buy something. Okay great. The uh price is in Japan more.",
+    "raw_transcript": "One week ago, I went to the Canter City in Hakata. Before the time I saw the Canter City, it's kind of a huge shopping mall in Hakata. When I saw that building first time, it was awesome, because it had pretty good design. And in the last week, I decided to go to there for shopping, and I go first time I go there and at the time I was so hungry then I go to the Lamein store because maybe 7th floor that canterste 7th floor has lots of Lamein store it was pretty delicious and after that I go to shopping for buying some short t -shirts and short pants because I have only long t -shirts and long pants. And I go to the Japanese brand because here is Japan and I saw some clothes in newly clothes and maybe GU and I buy some t -shirts and pants but the design was just normal thing, just black or white kind of that. But the price is a little expensive than I thought. Yeah, and after that, I want to buy some accessory kind of necklace or stickers. But then I just look around. about I like the Japanese characters thing then I want to buy but the price doesn't make sense then I didn't buy something. Okay great. The price is in Japan more.",
+    "fluency_analysis": {
+      "verdict": {
+        "fluency_score": 50,
+        "readiness": "not_ready"
+      },
+      "benchmarking": {
+        "percentile": 30,
+        "target_score": 80,
+        "score_gap": 30,
+        "estimated_guided_practice_hours": 18.0
+      },
+      "opinions": {
+        "primary_issues": [
+          {
+            "issue": "delivery_instability",
+            "severity": "medium",
+            "root_cause": "Speech rhythm varies unpredictably.",
+            "score_impact": 20
+          },
+          {
+            "issue": "hesitation_structure",
+            "severity": "high",
+            "root_cause": "Pauses frequently interrupt sentence flow.",
+            "score_impact": 15
+          },
+          {
+            "issue": "filler_dependency",
+            "severity": "high",
+            "root_cause": "Fillers replace silent planning pauses.",
+            "score_impact": 10
+          }
+        ],
+        "action_plan": [
+          {
+            "priority": 1,
+            "focus": "delivery_instability",
+            "instruction": "Practice steady pacing using metronome or rhythm drills.",
+            "expected_score_gain": 13
+          },
+          {
+            "priority": 2,
+            "focus": "hesitation_structure",
+            "instruction": "Pause only after completing full clauses or ideas.",
+            "expected_score_gain": 10
+          },
+          {
+            "priority": 3,
+            "focus": "filler_dependency",
+            "instruction": "Replace filler words with silent pauses under 300 ms.",
+            "expected_score_gain": 6
+          }
+        ]
+      }
+    },
     "wpm": 121.14,
     "unique_word_count": 110,
     "fillers_per_min": 2.54,
@@ -4070,14 +4124,28 @@
       ]
     }
   },
-  "llm_metrics": {
-    "coherence_breaks": 2,
-    "topic_relevance": true,
-    "word_choice_errors": 5,
-    "advanced_vocabulary_count": 0,
-    "complex_structures_attempted": 3,
-    "complex_structures_accurate": 0,
-    "grammar_errors": 4,
-    "meaning_blocking_error_ratio": 0.0
+  "rubric_estimations": {
+    "rubric_estimations": {
+      "fluency_coherence": {
+        "allowed_bands": [
+          5,
+          6
+        ],
+        "confidence": "high",
+        "reasons": [
+          "noticeable fluency breakdown with listener effort required"
+        ]
+      },
+      "pronunciation": {
+        "allowed_bands": [
+          6,
+          7
+        ],
+        "confidence": "high",
+        "reasons": [
+          "generally clear with minor intelligibility lapses"
+        ]
+      }
+    }
   }
 }

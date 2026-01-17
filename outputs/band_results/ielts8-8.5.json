@@ -1,144 +1,12 @@
 {
   "band_scores": {
-    "overall_band": 5.5,
+    "overall_band": 7.5,
     "criterion_bands": {
-      "fluency_coherence": 7.5,
-      "lexical_resource": 5.5,
-      "grammatical_range_accuracy": 4.5,
+      "fluency_coherence": 8.0,
+      "lexical_resource": 7.0,
+      "grammatical_range_accuracy": 7.0,
       "pronunciation": 7.5
-    },
-    "feedback_summary": "Overall Band: 5.5\nWeakest: Grammatical Range Accuracy (4.5)\nStrongest: Pronunciation (7.5)",
-    "detailed_diagnostics": {
-      "fluency": {
-        "score": 7.5,
-        "deductions": [
-          [
-            "some_fillers",
-            0.5
-          ]
-        ],
-        "gates": [
-          [
-            "lacks_native_fluency",
-            7.5
-          ]
-        ],
-        "metrics": {
-          "wpm": 197.99,
-          "long_pauses": 0.0,
-          "fillers": 3.46,
-          "repetition": 0.029,
-          "coherence_breaks": 0
-        }
-      },
-      "lexical": {
-        "score": 5.5,
-        "deductions": [
-          [
-            "adequate_range",
-            1.0
-          ]
-        ],
-        "gates": [
-          [
-            "no_sophistication",
-            5.5
-          ],
-          [
-            "no_idiomatic_usage",
-            6.5
-          ],
-          [
-            "insufficient_academic_vocab",
-            6.5
-          ],
-          [
-            "no_phrasal_verbs",
-            6.5
-          ]
-        ],
-        "sophistication_score": 2.0,
-        "metrics": {
-          "diversity": 0.491,
-          "idioms": 0,
-          "awl_coverage": 0,
-          "phrasal_verbs": 0,
-          "error_rate": 0.4987531172069825
-        }
-      },
-      "grammar": {
-        "score": 4.5,
-        "deductions": [
-          [
-            "limited_range",
-            1.0
-          ],
-          [
-            "very_poor_complex_control",
-            3.5
-          ]
-        ],
-        "gates": [
-          [
-            "no_complex_control",
-            4.5
-          ]
-        ],
-        "metrics": {
-          "mlu": 40.5,
-          "complex_accuracy": 0.0,
-          "error_rate": 0.7481296758104738,
-          "blocking_ratio": 0.0,
-          "structure_range": 2
-        }
-      },
-      "pronunciation": {
-        "score": 7.5,
-        "deductions": [
-          [
-            "noticeable_accent",
-            1.0
-          ]
-        ],
-        "gates": [
-          [
-            "not_native_like",
-            7.5
-          ]
-        ],
-        "metrics": {
-          "word_confidence": 0.905,
-          "low_conf_ratio": 0.101,
-          "intelligibility": 0.84128,
-          "prosody_quality": 0.8,
-          "monotone": false
-        }
-      }
-    },
-    "strengths": [
-      "Fluency Coherence: 7.5",
-      "Pronunciation: 7.5"
-    ],
-    "areas_for_improvement": [
-      {
-        "criterion": "Lexical Resource",
-        "current_band": 5.5,
-        "suggestions": [
-          "Learn and use more idiomatic expressions",
-          "Incorporate common idioms naturally",
-          "Build academic vocabulary for abstract topics",
-          "Use phrasal verbs for natural expression"
-        ]
-      },
-      {
-        "criterion": "Grammatical Range & Accuracy",
-        "current_band": 4.5,
-        "suggestions": [
-          "Practice complex structures until automatic",
-          "Expand range: conditionals, relative clauses, passives"
-        ]
-      }
-    ]
+    }
   },
   "analysis": {
     "metadata": {
@@ -146,7 +14,7 @@
       "speaking_time_sec": 113.26,
       "total_words_transcribed": 405,
       "content_word_count": 401,
-      "analysis_timestamp": "2026-01-17T04:52:23.289076Z"
+      "analysis_timestamp": "2026-01-17T06:58:57.323788Z"
     },
     "fluency_coherence": {
       "pauses": {
@@ -164,8 +32,11 @@
         "repetition_rate": 0.029
       },
       "coherence": {
-        "coherence_breaks": 0,
-        "topic_relevance": true
+        "coherence_break_count": 7,
+        "clause_completion_issue_count": 1,
+        "topic_relevance": true,
+        "listener_effort_high": false,
+        "flow_instability_present": false
       }
     },
     "lexical_resource": {
@@ -176,19 +47,24 @@
         "most_frequent_word_ratio": 0.029
       },
       "quality": {
-        "word_choice_errors": 2,
-        "advanced_vocabulary_count": 1
+        "word_choice_error_count": 1,
+        "advanced_vocabulary_count": 0,
+        "idiomatic_collocation_count": 0,
+        "successful_paraphrase_count": 0,
+        "failed_paraphrase_count": 0,
+        "paraphrase_success_ratio": null
       }
     },
     "grammatical_range_accuracy": {
       "complexity": {
         "mean_utterance_length": 40.5,
-        "complex_structures_attempted": 2,
-        "complex_structures_accurate": 0
+        "complex_structures_attempted": 0,
+        "complex_structure_accuracy_ratio": null
       },
       "accuracy": {
-        "grammar_errors": 3,
-        "meaning_blocking_error_ratio": 0.0
+        "grammar_error_count": 3,
+        "meaning_blocking_error_ratio": 0.0,
+        "cascading_grammar_failure": false
       }
     },
     "pronunciation": {

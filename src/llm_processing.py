@@ -1,153 +1,225 @@
 from pydantic import BaseModel, Field
-from typing_extensions import Annotated
-from typing import List, Literal
+from typing import List, Literal, Optional
 from openai import OpenAI
 import json
 
-NonNegativeInt = Annotated[int, Field(ge=0)]
-Ratio01 = Annotated[float, Field(ge=0.0, le=1.0)]
+
+# ======================================================
+# Span definition
+# ======================================================
 
 class Span(BaseModel):
     text: str
     label: Literal[
+        # Grammar
         "meaning_blocking_grammar_error",
         "grammar_error",
+
+        # Lexical
         "word_choice_error",
-        "coherence_break",
-        "complex_structure",
         "advanced_vocabulary",
+        "idiomatic_or_collocational_use",
+
+        # Discourse
+        "coherence_break",
+        "clause_completion_issue",
+
+        # Syntax
+        "complex_structure",
+
+        # Paraphrase
+        "successful_paraphrase",
+        "failed_paraphrase",
+
+        # Register
+        "register_mismatch",
     ]
 
+
+# ======================================================
+# LLM OUTPUT SCHEMA (IMPORTANT CHANGES)
+# ======================================================
+
 class LLMSpeechAnnotations(BaseModel):
+    # Global judgments (now GRADED, not binary)
     topic_relevance: bool
 
-    coherence_breaks: List[Span]
+    listener_effort_level: Literal["low", "medium", "high"]
+    flow_control_level: Literal["stable", "mixed", "unstable"]
 
+    overall_clarity_score: Literal[1, 2, 3, 4, 5]
+
+    cascading_grammar_failure: bool
+
+    # Discourse
+    coherence_breaks: List[Span]
+    clause_completion_issues: List[Span]
+
+    # Lexical
     word_choice_errors: List[Span]
     advanced_vocabulary: List[Span]
+    idiomatic_or_collocational_use: List[Span]
 
-    complex_structures_attempted: List[Span]
-    complex_structures_accurate: List[Span]
-
+    # Grammar
     grammar_errors: List[Span]
     meaning_blocking_grammar_errors: List[Span]
 
-system_prompt = """
-You are a deterministic annotation engine for spoken English evaluation.
+    # Syntax
+    complex_structures_attempted: List[Span]
+    complex_structures_accurate: List[Span]
+
+    # Paraphrase
+    successful_paraphrase: List[Span]
+    failed_paraphrase: List[Span]
+
+    # Register
+    register_mismatch: List[Span]
+
+
+# ======================================================
+# SYSTEM PROMPT (CRITICAL FIX)
+# ======================================================
+
+SYSTEM_PROMPT = """
+You are an IELTS examiner-style annotation engine.
 
 Your task:
-- Identify and MARK spans in the transcript.
-- Do NOT compute totals, counts, or ratios.
-- Do NOT explain reasoning.
-- Do NOT infer intent beyond the transcript.
-- If unsure, DO NOT annotate the span.
+- Annotate spans AND provide graded judgments.
+- Be precise but NOT overly conservative.
+- When evidence is reasonable, ANNOTATE.
 
-STRICT RULES:
-- Annotate ONLY what is clearly present.
-- If uncertain, omit the annotation.
-- Use the LOWEST reasonable interpretation.
-- Return ONLY valid JSON matching the schema.
-- No markdown. No comments. No extra keys.
+IMPORTANT BEHAVIOR CHANGE:
+- If rewording is present, annotate paraphrase.
+- If vocabulary is more precise than casual speech, annotate advanced_vocabulary.
+- Use MEDIUM confidence when unsure, not omission.
 
-DEFINITIONS:
-- coherence_breaks: Moments where the speaker abandons an idea or makes an illogical jump.
-- topic_relevance: True if the response addresses the prompt.
-- word_choice_errors: Incorrect or inappropriate word choice (not grammar).
-- advanced_vocabulary: Correctly used higher-level words (Band 7+).
-- complex_structures_attempted: Attempts at conditionals, relatives, passives, modals, subordination.
-- complex_structures_accurate: Subset of attempted structures that are correct.
-- grammar_errors: Any grammatical error.
-- meaning_blocking_grammar_errors: Meaning-blocking grammar errors are ONLY those that: Make the sentence unintelligible OR Change the core meaning OR Prevent understanding without rereading. Number agreement errors alone are NOT meaning-blocking. Preposition redundancy alone is NOT meaning-blocking.
+GLOBAL JUDGMENTS:
+- listener_effort_level:
+  low    = effortless to follow
+  medium = occasional effort
+  high   = frequent effort / reprocessing
 
+- flow_control_level:
+  stable   = consistent pacing
+  mixed    = uneven but manageable
+  unstable = erratic / broken rhythm
+
+- overall_clarity_score (1–5):
+  5 = extremely clear, effortless
+  3 = generally clear, some strain
+  1 = hard to follow
 
 SPAN RULES:
-- Each span must be ATOMIC.
-- Do NOT merge multiple issues into one span.
-- A span must be the shortest phrase that independently shows the issue.
-- Never include conjunctions like "and then", "so", "because" unless required.
-- If a span qualifies for multiple labels, assign ONLY the highest-precedence label.
-- Do NOT duplicate spans across categories.
+- Shortest possible span
+- Do not duplicate spans
+- Prefer recall over extreme precision
+- Do NOT annotate filler words as errors
 
 LABEL PRECEDENCE (highest → lowest):
 1. Meaning Blocking Grammar Error
 2. Grammar Error
-3. Word Choice Error
-4. Coherence Break
-5. Complex Structure
-6. Advanced Vocabulary
+3. Failed Paraphrase
+4. Word Choice Error
+5. Coherence Break
+6. Clause Completion Issue
+7. Complex Structure
+8. Successful Paraphrase
+9. Idiomatic or Collocational Use
+10. Advanced Vocabulary
 
-IMPORTANT:
-- A span must include the exact text excerpt from the transcript.
-- Do NOT include timestamps or character offsets.
-- The text must appear verbatim in the transcript.
-- If unsure whether something qualifies, do NOT annotate it.
+Return ONLY valid JSON.
 """
 
-def extract_llm_annotations(raw_transcript: str, speech_context: str = "conversational") -> LLMSpeechAnnotations:
-    
-    context = {
+
+# ======================================================
+# EXTRACTION
+# ======================================================
+
+def extract_llm_annotations(
+    raw_transcript: str,
+    speech_context: str = "conversational"
+) -> LLMSpeechAnnotations:
+
+    client = OpenAI()
+
+    payload = {
         "raw_transcript": raw_transcript,
         "speech_context": speech_context,
     }
 
-    prompt_text = json.dumps(
-        context,
-        ensure_ascii=False,
-        indent=2
-    )
-
-    client = OpenAI()
-    prompt_text = json.dumps(context, ensure_ascii=False)
     response = client.responses.parse(
         model="gpt-4o-mini",
         input=[
-            {"role": "system", "content": system_prompt},
-            {"role": "user", "content": prompt_text},
+            {"role": "system", "content": SYSTEM_PROMPT},
+            {"role": "user", "content": json.dumps(payload, ensure_ascii=False)},
         ],
-        temperature=0.0,      # 🔒 critical
-        top_p=1.0,            # 🔒 critical
+        temperature=0.0,
+        top_p=1.0,
         text_format=LLMSpeechAnnotations,
     )
 
-    llm_result: LLMSpeechAnnotations = response.output_parsed
+    return response.output_parsed
 
-    return llm_result
 
-def aggregate_llm_metrics(llm_result) -> dict:
-    """
-    Convert span-based LLM annotations into scalar metrics.
-    """
+# ======================================================
+# AGGREGATION (COMPATIBLE WITH EXISTING SCORER)
+# ======================================================
 
-    grammar_error_count = len(llm_result.grammar_errors)
-    meaning_blocking_count = len(llm_result.meaning_blocking_grammar_errors)
+def aggregate_llm_metrics(llm: LLMSpeechAnnotations) -> dict:
+    grammar_errors = len(llm.grammar_errors)
+    meaning_blocking = len(llm.meaning_blocking_grammar_errors)
 
-    meaning_blocking_error_ratio = (
-        meaning_blocking_count / grammar_error_count
-        if grammar_error_count > 0
-        else 0.0
+    meaning_blocking_ratio = (
+        meaning_blocking / grammar_errors if grammar_errors else 0.0
+    )
+
+    paraphrase_attempts = (
+        len(llm.successful_paraphrase) + len(llm.failed_paraphrase)
+    )
+
+    paraphrase_success_ratio = (
+        len(llm.successful_paraphrase) / paraphrase_attempts
+        if paraphrase_attempts > 0 else None
+    )
+
+    complex_accuracy_ratio = (
+        len(llm.complex_structures_accurate) /
+        len(llm.complex_structures_attempted)
+        if llm.complex_structures_attempted else None
     )
 
     return {
-        "coherence_breaks": len(llm_result.coherence_breaks),
-        "topic_relevance": llm_result.topic_relevance,
+        # Relevance
+        "topic_relevance": llm.topic_relevance,
 
-        "word_choice_errors": len(llm_result.word_choice_errors),
-        "advanced_vocabulary_count": len(llm_result.advanced_vocabulary),
+        # NEW graded controls (mapped later)
+        "listener_effort_high": llm.listener_effort_level == "high",
+        "flow_instability_present": llm.flow_control_level == "unstable",
+        "overall_clarity_score": llm.overall_clarity_score,
 
-        "complex_structures_attempted": len(llm_result.complex_structures_attempted),
-        "complex_structures_accurate": len(llm_result.complex_structures_accurate),
+        # Coherence
+        "coherence_break_count": len(llm.coherence_breaks),
+        "clause_completion_issue_count": len(llm.clause_completion_issues),
 
-        "grammar_errors": grammar_error_count,
-        "meaning_blocking_error_ratio": round(meaning_blocking_error_ratio, 3),
+        # Lexical
+        "word_choice_error_count": len(llm.word_choice_errors),
+        "advanced_vocabulary_count": len(llm.advanced_vocabulary),
+        "idiomatic_collocation_count": len(llm.idiomatic_or_collocational_use),
+
+        # Grammar
+        "grammar_error_count": grammar_errors,
+        "meaning_blocking_error_ratio": round(meaning_blocking_ratio, 3),
+        "cascading_grammar_failure": llm.cascading_grammar_failure,
+
+        # Syntax
+        "complex_structures_attempted": len(llm.complex_structures_attempted),
+        "complex_structure_accuracy_ratio": complex_accuracy_ratio,
+
+        # Paraphrase
+        "successful_paraphrase_count": len(llm.successful_paraphrase),
+        "failed_paraphrase_count": len(llm.failed_paraphrase),
+        "paraphrase_success_ratio": paraphrase_success_ratio,
+
+        # Register
+        "register_mismatch_count": len(llm.register_mismatch),
     }
-
-def analyze_llm_metrics(
-    raw_transcript: str,
-    speech_context: str = "conversational"
-) -> dict:
-    """
-    Analyze speech using LLM and return aggregated metrics.
-    """
-    llm_result = extract_llm_annotations(raw_transcript, speech_context)
-    llm_metrics = aggregate_llm_metrics(llm_result)
-    return llm_metrics

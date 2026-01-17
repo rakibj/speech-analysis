@@ -1,6 +1,48 @@
 {
   "raw_analysis": {
-    "raw_transcript": "So, since the question was about, uh, uh, describing someone outside uh of family who is a good parent. So I would like to talk about my sister -in -law and also my brother. Um, um, so yesterday I uh came to hookoka and we were on the plane together and the um baby was, um, um, keep crying on the plane for the whole time. So I think it was really distracting for other uh people. But my sister -in -law was really calm with the baby and uh she never got mad at uh the baby even though she was, you uh know, whining and uh she was keep crying and uh screaming. But I uh really thought she was a really calm person and I really respect her anyway because if I was the mother, I uh would get married to a baby once it gets too long. The crying gets too long. So, yeah. uh um I think... Yeah, that's all. Okay, if you're in that situation, how long do you think",
+    "raw_transcript": "So, since the question was about, uh, describing someone outside of family who is a good parent. So I would like to talk about my sister -in -law and also my brother. Um, so yesterday I came to hookoka and we were on the plane together and the baby was, um, keep crying on the plane for the whole time. So I think it was really distracting for other people. But my sister -in -law was really calm with the baby and she never got mad at the baby even though she was, you know, whining and she was keep crying and screaming. But I really thought she was a really calm person and I really respect her anyway because if I was the mother, I would get married to a baby once it gets too long. The crying gets too long. So, yeah. I think... Yeah, that's all. Okay, if you're in that situation, how long do you think",
+    "fluency_analysis": {
+      "verdict": {
+        "fluency_score": 43,
+        "readiness": "borderline"
+      },
+      "benchmarking": {
+        "percentile": 30,
+        "target_score": 80,
+        "score_gap": 37,
+        "estimated_guided_practice_hours": 22.2
+      },
+      "opinions": {
+        "primary_issues": [
+          {
+            "issue": "delivery_instability",
+            "severity": "medium",
+            "root_cause": "Speech rhythm varies unpredictably.",
+            "score_impact": 18
+          },
+          {
+            "issue": "filler_dependency",
+            "severity": "high",
+            "root_cause": "Fillers replace silent planning pauses.",
+            "score_impact": 12
+          }
+        ],
+        "action_plan": [
+          {
+            "priority": 1,
+            "focus": "delivery_instability",
+            "instruction": "Practice steady pacing using metronome or rhythm drills.",
+            "expected_score_gain": 22
+          },
+          {
+            "priority": 2,
+            "focus": "filler_dependency",
+            "instruction": "Replace filler words with silent pauses under 300 ms.",
+            "expected_score_gain": 14
+          }
+        ]
+      }
+    },
     "wpm": 108.93,
     "unique_word_count": 92,
     "fillers_per_min": 3.05,
@@ -2830,14 +2872,28 @@
       ]
     }
   },
-  "llm_metrics": {
-    "coherence_breaks": 1,
-    "topic_relevance": true,
-    "word_choice_errors": 1,
-    "advanced_vocabulary_count": 0,
-    "complex_structures_attempted": 1,
-    "complex_structures_accurate": 0,
-    "grammar_errors": 2,
-    "meaning_blocking_error_ratio": 0.0
+  "rubric_estimations": {
+    "rubric_estimations": {
+      "fluency_coherence": {
+        "allowed_bands": [
+          7,
+          8
+        ],
+        "confidence": "high",
+        "reasons": [
+          "fluent delivery with occasional natural pauses"
+        ]
+      },
+      "pronunciation": {
+        "allowed_bands": [
+          7,
+          8
+        ],
+        "confidence": "high",
+        "reasons": [
+          "clear pronunciation with minor intelligibility lapses"
+        ]
+      }
+    }
   }
 }

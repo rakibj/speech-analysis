@@ -1,6 +1,36 @@
 {
   "raw_analysis": {
-    "raw_transcript": "Okay, so I think technology in these days nowadays is nothing less than a blessing. And technology is something which is uh bought as so many appliances, which is uh making our lives easier on every uh level I would say. Here I would like to talk about a device which I use regularly and uh bi -regularily I mean it's not daily, it is used uh on an hourly basis I would say. And that's Amazon Alexa. And what's special about device, about this device is that it's totally based on artificial intelligence. So there are very few buttons and uh there's no touchscreen because a lot of us uh are right now habitual of touching our uh phones and uh because of this coronavirus we were not allowed to touch each other or we were very cautious and sanitizing our uh hands. But this device even at that time there was no problem in using this because it is totally controlled by the voice and it as it is based on artificial intelligence you know you don't use your own intelligence and uh you just let it do it works and the uh thing is I uh first I uh earlier uh I used to have a clock next to my bed and uh it used uh to ring and wake me me up but when the battery was low it uh would be a nightmare for me me I would say because I was not able to get up on time and reach where I wanted to but since this I just tell Alexa hey Alexa wake me me up at 5 a .m. in the morning and uh I I don't have to do anything else, I just have to sit and relax. And at five AM, there's a very notorious alarm, which is wrong, so that I can wake up. And you won't believe the other day I was having guests over for dinner. And there was a guy who was very old, I would say, there was an old man. And he was very surprised to see this, because I uh told Alexa to give me me a reminder that he needs to take his medicine. It was 10 PM, I still remember. So, the Alexa said, hey Robert, it's time for you to take medicines. c um He was shocked. I mean he was happy and he was not believing it. And when I told him the prize of the product, it uh was just $59. uh He was more shocked and he was... Thank you.",
+    "raw_transcript": "Okay, so I think technology in these days nowadays is nothing less than a blessing. And technology is something which is bought as so many appliances, which is making our lives easier on every level I would say. Here I would like to talk about a device which I use regularly and bi -regularily I mean it's not daily, it is used on an hourly basis I would say. And that's Amazon Alexa. And what's special about device, about this device is that it's totally based on artificial intelligence. So there are very few buttons and there's no touchscreen because a lot of us are right now habitual of touching our phones and because of this coronavirus we were not allowed to touch each other or we were very cautious and sanitizing our hands. But this device even at that time there was no problem in using this because it is totally controlled by the voice and it as it is based on artificial intelligence you know you don't use your own intelligence and you just let it do it works and the thing is I first I earlier I used to have a clock next to my bed and it used to ring and wake me up but when the battery was low it would be a nightmare for me I would say because I was not able to get up on time and reach where I wanted to but since this I just tell Alexa hey Alexa wake me up at 5 a .m. in the morning and I I don't have to do anything else, I just have to sit and relax. And at five AM, there's a very notorious alarm, which is wrong, so that I can wake up. And you won't believe the other day I was having guests over for dinner. And there was a guy who was very old, I would say, there was an old man. And he was very surprised to see this, because I told Alexa to give me a reminder that he needs to take his medicine. It was 10 PM, I still remember. So, the Alexa said, hey Robert, it's time for you to take medicines. He was shocked. I mean he was happy and he was not believing it. And when I told him the prize of the product, it was just $59. He was more shocked and he was... Thank you.",
+    "fluency_analysis": {
+      "verdict": {
+        "fluency_score": 67,
+        "readiness": "borderline"
+      },
+      "benchmarking": {
+        "percentile": 50,
+        "target_score": 80,
+        "score_gap": 13,
+        "estimated_guided_practice_hours": 7.8
+      },
+      "opinions": {
+        "primary_issues": [
+          {
+            "issue": "filler_dependency",
+            "severity": "high",
+            "root_cause": "Fillers replace silent planning pauses.",
+            "score_impact": 14
+          }
+        ],
+        "action_plan": [
+          {
+            "priority": 1,
+            "focus": "filler_dependency",
+            "instruction": "Replace filler words with silent pauses under 300 ms.",
+            "expected_score_gain": 13
+          }
+        ]
+      }
+    },
     "wpm": 197.99,
     "unique_word_count": 197,
     "fillers_per_min": 3.46,
@@ -7022,14 +7052,28 @@
       ]
     }
   },
-  "llm_metrics": {
-    "coherence_breaks": 0,
-    "topic_relevance": true,
-    "word_choice_errors": 2,
-    "advanced_vocabulary_count": 1,
-    "complex_structures_attempted": 2,
-    "complex_structures_accurate": 0,
-    "grammar_errors": 3,
-    "meaning_blocking_error_ratio": 0.0
+  "rubric_estimations": {
+    "rubric_estimations": {
+      "fluency_coherence": {
+        "allowed_bands": [
+          8,
+          9
+        ],
+        "confidence": "high",
+        "reasons": [
+          "fast, smooth delivery with excellent rhythm control"
+        ]
+      },
+      "pronunciation": {
+        "allowed_bands": [
+          8,
+          9
+        ],
+        "confidence": "high",
+        "reasons": [
+          "consistently clear and intelligible pronunciation"
+        ]
+      }
+    }
   }
 }
