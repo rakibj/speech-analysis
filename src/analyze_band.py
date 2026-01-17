@@ -10,17 +10,22 @@ PROJECT_ROOT = Path.cwd().parent
 sys.path.insert(0, str(PROJECT_ROOT))
 
 
-def build_analysis(
-    result: dict,
-) -> dict:
-    # ---- Lexical density ----
-    total_words = result["statistics"]["total_words_transcribed"]
-    content_words = result["statistics"]["content_words"]
+def build_analysis(raw_analysis: dict) -> dict:
+    """
+    Build analysis report with band scoring.
+    
+    Now takes the raw_analysis dict directly and extracts metrics
+    needed for the scorer.
+    """
+    
+    # ---- Extract basic metrics ----
+    total_words = raw_analysis["statistics"]["total_words_transcribed"]
+    content_words = raw_analysis["statistics"]["content_words"]
 
-    # ---- Word confidence metrics ----
+    # ---- Extract word confidence metrics ----
     confidences = [
         w["confidence"]
-        for w in result["timestamps"]["words_timestamps_raw"]
+        for w in raw_analysis["timestamps"]["words_timestamps_raw"]
         if w.get("confidence") is not None
     ]
 
@@ -33,15 +38,38 @@ def build_analysis(
         if confidences else 0.0
     )
 
+    # ---- Build metrics dict for scorer ----
+    # Use the actual metrics from raw_analysis
+    metrics_for_scoring = {
+        # Fluency metrics
+        "wpm": raw_analysis.get("wpm", 0),
+        "long_pauses_per_min": raw_analysis.get("long_pauses_per_min", 0),
+        "pause_variability": raw_analysis.get("pause_variability", 0),
+        "repetition_ratio": raw_analysis.get("repetition_ratio", 0),
+        
+        # Pronunciation metrics
+        "mean_word_confidence": mean_word_confidence,
+        "low_confidence_ratio": low_confidence_ratio,
+        
+        # Lexical metrics
+        "vocab_richness": raw_analysis.get("vocab_richness", 0),
+        "lexical_density": raw_analysis.get("lexical_density", 0),
+        
+        # Grammar metrics
+        "mean_utterance_length": raw_analysis.get("mean_utterance_length", 0),
+        "speech_rate_variability": raw_analysis.get("speech_rate_variability", 0),
+    }
+
     return {
         "metadata": {
-            "audio_duration_sec": round(result["audio_duration_sec"], 2),
-            "speaking_time_sec": round(result["speaking_time_sec"], 2),
+            "audio_duration_sec": round(raw_analysis.get("audio_duration_sec", 0), 2),
+            "speaking_time_sec": round(raw_analysis.get("speaking_time_sec", 0), 2),
             "total_words_transcribed": total_words,
             "content_word_count": content_words,
             "analysis_timestamp": datetime.utcnow().isoformat() + "Z",
         },
-        "fluency_analysis": result.get("fluency_analysis", {}),
+        "fluency_analysis": raw_analysis.get("fluency_analysis", {}),
+        
         # ==================================================
         # PRONUNCIATION
         # ==================================================
@@ -51,7 +79,7 @@ def build_analysis(
                 "low_confidence_ratio": round(low_confidence_ratio, 3),
             },
             "prosody": {
-                "monotone_detected": result["statistics"]["is_monotone"],
+                "monotone_detected": raw_analysis["statistics"].get("is_monotone", False),
             },
         },
 
@@ -59,24 +87,35 @@ def build_analysis(
         # RAW DATA (unchanged)
         # ==================================================
         "raw_data": {
-            "word_timestamps": result["timestamps"]["words_timestamps_raw"],
-            "pause_events": result.get("pause_events", []),
-            "filler_events": result["timestamps"]["filler_timestamps"],
-            "stutter_events": result.get("stutter_events", []),
+            "word_timestamps": raw_analysis["timestamps"]["words_timestamps_raw"],
+            "pause_events": raw_analysis.get("pause_events", []),
+            "filler_events": raw_analysis["timestamps"].get("filler_timestamps", []),
+            "stutter_events": raw_analysis.get("stutter_events", []),
         },
+        
+        # ==================================================
+        # METRICS FOR SCORER (new)
+        # ==================================================
+        "metrics_for_scoring": metrics_for_scoring,
     }
 
 
 async def analyze_band_from_audio(audio_path: str) -> dict:
     result = await analyze_speech(audio_path)
-    scorer = IELTSBandScorer()
     analysis = build_analysis(result)
-    band_scores = scorer.score_overall(analysis)
+    
+    # Score using the extracted metrics
+    scorer = IELTSBandScorer()
+    band_scores = scorer.score_overall(analysis["metrics_for_scoring"])
+    
     return {"band_scores": band_scores, "analysis": analysis}
 
 
 async def analyze_band_from_analysis(raw_analysis: dict) -> dict:
-    scorer = IELTSBandScorer()
     analysis = build_analysis(raw_analysis)
-    band_scores = scorer.score_overall(analysis)
+    
+    # Score using the extracted metrics
+    scorer = IELTSBandScorer()
+    band_scores = scorer.score_overall(analysis["metrics_for_scoring"])
+    
     return {"band_scores": band_scores, "analysis": analysis}

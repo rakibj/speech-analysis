@@ -111,10 +111,10 @@ async def run_result():
 
             # 🔑 EXPLICIT unpacking (this is the key fix)
             raw_analysis = analysis_json["raw_analysis"]
-            llm_metrics = analysis_json["llm_metrics"]
+            # llm_metrics = analysis_json["llm_metrics"]
 
             # 🔑 Call the correct analyze_band signature
-            report = await analyze_band_from_analysis(raw_analysis, llm_metrics)
+            report = await analyze_band_from_analysis(raw_analysis)
 
             with out_path.open("w", encoding="utf-8") as f:
                 json.dump(report, f, indent=2, ensure_ascii=False)
@@ -172,8 +172,8 @@ def merge_band_results(input_dir: Path, output_path: Path):
 # ENTRY POINT
 # =========================================================
 async def main():
-    await run_analysis()
-    # await run_result()
+    # await run_analysis()
+    await run_result()
 
     # Optional merge
     # merge_band_results(

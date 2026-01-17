@@ -1,11 +1,11 @@
 {
   "band_scores": {
-    "overall_band": 7.5,
+    "overall_band": 6.5,
     "criterion_bands": {
-      "fluency_coherence": 8.0,
-      "lexical_resource": 7.0,
-      "grammatical_range_accuracy": 7.0,
-      "pronunciation": 7.5
+      "fluency_coherence": 6.5,
+      "pronunciation": 6.5,
+      "lexical_resource": 6.5,
+      "grammatical_range_accuracy": 6.5
     }
   },
   "analysis": {
@@ -14,57 +14,60 @@
       "speaking_time_sec": 101.66,
       "total_words_transcribed": 229,
       "content_word_count": 229,
-      "analysis_timestamp": "2026-01-17T06:58:57.311138Z"
+      "analysis_timestamp": "2026-01-17T17:51:37.285942Z"
     },
-    "fluency_coherence": {
-      "pauses": {
-        "pause_frequency_per_min": 6.35,
-        "long_pause_rate": 2.12,
-        "pause_variability": 0.905
+    "fluency_analysis": {
+      "verdict": {
+        "fluency_score": 50,
+        "readiness": "not_ready"
       },
-      "rate": {
-        "speech_rate_wpm": 121.14,
-        "speech_rate_variability": 0.246
+      "benchmarking": {
+        "percentile": 30,
+        "target_score": 80,
+        "score_gap": 30,
+        "estimated_guided_practice_hours": 18.0
       },
-      "disfluency": {
-        "filler_frequency_per_min": 2.54,
-        "stutter_frequency_per_min": 0.0,
-        "repetition_rate": 0.052
-      },
-      "coherence": {
-        "coherence_break_count": 6,
-        "clause_completion_issue_count": 3,
-        "topic_relevance": true,
-        "listener_effort_high": false,
-        "flow_instability_present": false
-      }
-    },
-    "lexical_resource": {
-      "breadth": {
-        "unique_word_count": 110,
-        "lexical_diversity": 0.48,
-        "lexical_density": 0.507,
-        "most_frequent_word_ratio": 0.052
-      },
-      "quality": {
-        "word_choice_error_count": 4,
-        "advanced_vocabulary_count": 3,
-        "idiomatic_collocation_count": 0,
-        "successful_paraphrase_count": 0,
-        "failed_paraphrase_count": 0,
-        "paraphrase_success_ratio": null
-      }
-    },
-    "grammatical_range_accuracy": {
-      "complexity": {
-        "mean_utterance_length": 19.08,
-        "complex_structures_attempted": 0,
-        "complex_structure_accuracy_ratio": null
-      },
-      "accuracy": {
-        "grammar_error_count": 2,
-        "meaning_blocking_error_ratio": 0.0,
-        "cascading_grammar_failure": false
+      "opinions": {
+        "primary_issues": [
+          {
+            "issue": "delivery_instability",
+            "severity": "medium",
+            "root_cause": "Speech rhythm varies unpredictably.",
+            "score_impact": 20
+          },
+          {
+            "issue": "hesitation_structure",
+            "severity": "high",
+            "root_cause": "Pauses frequently interrupt sentence flow.",
+            "score_impact": 15
+          },
+          {
+            "issue": "filler_dependency",
+            "severity": "high",
+            "root_cause": "Fillers replace silent planning pauses.",
+            "score_impact": 10
+          }
+        ],
+        "action_plan": [
+          {
+            "priority": 1,
+            "focus": "delivery_instability",
+            "instruction": "Practice steady pacing using metronome or rhythm drills.",
+            "expected_score_gain": 13
+          },
+          {
+            "priority": 2,
+            "focus": "hesitation_structure",
+            "instruction": "Pause only after completing full clauses or ideas.",
+            "expected_score_gain": 10
+          },
+          {
+            "priority": 3,
+            "focus": "filler_dependency",
+            "instruction": "Replace filler words with silent pauses under 300 ms.",
+            "expected_score_gain": 6
+          }
+        ]
       }
     },
     "pronunciation": {
@@ -2155,6 +2158,18 @@
         }
       ],
       "stutter_events": []
+    },
+    "metrics_for_scoring": {
+      "wpm": 121.14,
+      "long_pauses_per_min": 2.12,
+      "pause_variability": 0.905,
+      "repetition_ratio": 0.052,
+      "mean_word_confidence": 0.8386267761454484,
+      "low_confidence_ratio": 0.22270742358078602,
+      "vocab_richness": 0.48,
+      "lexical_density": 0.507,
+      "mean_utterance_length": 19.08,
+      "speech_rate_variability": 0.246
     }
   }
 }

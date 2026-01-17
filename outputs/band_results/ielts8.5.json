@@ -1,11 +1,11 @@
 {
   "band_scores": {
-    "overall_band": 7.5,
+    "overall_band": 8.0,
     "criterion_bands": {
-      "fluency_coherence": 8.0,
-      "lexical_resource": 7.0,
-      "grammatical_range_accuracy": 7.0,
-      "pronunciation": 7.5
+      "fluency_coherence": 8.5,
+      "pronunciation": 8.5,
+      "lexical_resource": 7.5,
+      "grammatical_range_accuracy": 6.5
     }
   },
   "analysis": {
@@ -14,57 +14,22 @@
       "speaking_time_sec": 96.02,
       "total_words_transcribed": 237,
       "content_word_count": 236,
-      "analysis_timestamp": "2026-01-17T06:58:57.339426Z"
+      "analysis_timestamp": "2026-01-17T17:51:37.302993Z"
     },
-    "fluency_coherence": {
-      "pauses": {
-        "pause_frequency_per_min": 9.62,
-        "long_pause_rate": 0.57,
-        "pause_variability": 0.25
+    "fluency_analysis": {
+      "verdict": {
+        "fluency_score": 76,
+        "readiness": "borderline"
       },
-      "rate": {
-        "speech_rate_wpm": 133.51,
-        "speech_rate_variability": 0.264
+      "benchmarking": {
+        "percentile": 65,
+        "target_score": 80,
+        "score_gap": 4,
+        "estimated_guided_practice_hours": 2.4
       },
-      "disfluency": {
-        "filler_frequency_per_min": 2.38,
-        "stutter_frequency_per_min": 0.0,
-        "repetition_rate": 0.041
-      },
-      "coherence": {
-        "coherence_break_count": 3,
-        "clause_completion_issue_count": 1,
-        "topic_relevance": true,
-        "listener_effort_high": false,
-        "flow_instability_present": false
-      }
-    },
-    "lexical_resource": {
-      "breadth": {
-        "unique_word_count": 127,
-        "lexical_diversity": 0.538,
-        "lexical_density": 0.511,
-        "most_frequent_word_ratio": 0.041
-      },
-      "quality": {
-        "word_choice_error_count": 1,
-        "advanced_vocabulary_count": 2,
-        "idiomatic_collocation_count": 0,
-        "successful_paraphrase_count": 0,
-        "failed_paraphrase_count": 0,
-        "paraphrase_success_ratio": null
-      }
-    },
-    "grammatical_range_accuracy": {
-      "complexity": {
-        "mean_utterance_length": 18.23,
-        "complex_structures_attempted": 1,
-        "complex_structure_accuracy_ratio": 0.0
-      },
-      "accuracy": {
-        "grammar_error_count": 1,
-        "meaning_blocking_error_ratio": 0.0,
-        "cascading_grammar_failure": false
+      "opinions": {
+        "primary_issues": [],
+        "action_plan": []
       }
     },
     "pronunciation": {
@@ -2169,6 +2134,18 @@
         }
       ],
       "stutter_events": []
+    },
+    "metrics_for_scoring": {
+      "wpm": 133.51,
+      "long_pauses_per_min": 0.57,
+      "pause_variability": 0.25,
+      "repetition_ratio": 0.041,
+      "mean_word_confidence": 0.9325016187307452,
+      "low_confidence_ratio": 0.05907172995780591,
+      "vocab_richness": 0.538,
+      "lexical_density": 0.511,
+      "mean_utterance_length": 18.23,
+      "speech_rate_variability": 0.264
     }
   }
 }

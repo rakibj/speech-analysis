@@ -1,11 +1,11 @@
 {
   "band_scores": {
-    "overall_band": 7.5,
+    "overall_band": 8.0,
     "criterion_bands": {
-      "fluency_coherence": 8.0,
-      "lexical_resource": 7.0,
-      "grammatical_range_accuracy": 7.0,
-      "pronunciation": 7.5
+      "fluency_coherence": 8.5,
+      "pronunciation": 8.5,
+      "lexical_resource": 6.5,
+      "grammatical_range_accuracy": 7.5
     }
   },
   "analysis": {
@@ -14,57 +14,48 @@
       "speaking_time_sec": 109.78,
       "total_words_transcribed": 327,
       "content_word_count": 324,
-      "analysis_timestamp": "2026-01-17T06:58:57.350652Z"
+      "analysis_timestamp": "2026-01-17T17:51:37.306993Z"
     },
-    "fluency_coherence": {
-      "pauses": {
-        "pause_frequency_per_min": 8.79,
-        "long_pause_rate": 0.98,
-        "pause_variability": 0.551
+    "fluency_analysis": {
+      "verdict": {
+        "fluency_score": 59,
+        "readiness": "borderline"
       },
-      "rate": {
-        "speech_rate_wpm": 158.23,
-        "speech_rate_variability": 0.227
+      "benchmarking": {
+        "percentile": 30,
+        "target_score": 80,
+        "score_gap": 21,
+        "estimated_guided_practice_hours": 12.6
       },
-      "disfluency": {
-        "filler_frequency_per_min": 3.52,
-        "stutter_frequency_per_min": 0.0,
-        "repetition_rate": 0.048
-      },
-      "coherence": {
-        "coherence_break_count": 2,
-        "clause_completion_issue_count": 1,
-        "topic_relevance": true,
-        "listener_effort_high": false,
-        "flow_instability_present": false
-      }
-    },
-    "lexical_resource": {
-      "breadth": {
-        "unique_word_count": 155,
-        "lexical_diversity": 0.478,
-        "lexical_density": 0.443,
-        "most_frequent_word_ratio": 0.048
-      },
-      "quality": {
-        "word_choice_error_count": 1,
-        "advanced_vocabulary_count": 1,
-        "idiomatic_collocation_count": 0,
-        "successful_paraphrase_count": 0,
-        "failed_paraphrase_count": 0,
-        "paraphrase_success_ratio": null
-      }
-    },
-    "grammatical_range_accuracy": {
-      "complexity": {
-        "mean_utterance_length": 23.36,
-        "complex_structures_attempted": 0,
-        "complex_structure_accuracy_ratio": null
-      },
-      "accuracy": {
-        "grammar_error_count": 1,
-        "meaning_blocking_error_ratio": 0.0,
-        "cascading_grammar_failure": false
+      "opinions": {
+        "primary_issues": [
+          {
+            "issue": "delivery_instability",
+            "severity": "medium",
+            "root_cause": "Speech rhythm varies unpredictably.",
+            "score_impact": 15
+          },
+          {
+            "issue": "filler_dependency",
+            "severity": "high",
+            "root_cause": "Fillers replace silent planning pauses.",
+            "score_impact": 14
+          }
+        ],
+        "action_plan": [
+          {
+            "priority": 1,
+            "focus": "delivery_instability",
+            "instruction": "Practice steady pacing using metronome or rhythm drills.",
+            "expected_score_gain": 10
+          },
+          {
+            "priority": 2,
+            "focus": "filler_dependency",
+            "instruction": "Replace filler words with silent pauses under 300 ms.",
+            "expected_score_gain": 10
+          }
+        ]
       }
     },
     "pronunciation": {
@@ -2959,6 +2950,18 @@
         }
       ],
       "stutter_events": []
+    },
+    "metrics_for_scoring": {
+      "wpm": 158.23,
+      "long_pauses_per_min": 0.98,
+      "pause_variability": 0.551,
+      "repetition_ratio": 0.048,
+      "mean_word_confidence": 0.9228632366711941,
+      "low_confidence_ratio": 0.0856269113149847,
+      "vocab_richness": 0.478,
+      "lexical_density": 0.443,
+      "mean_utterance_length": 23.36,
+      "speech_rate_variability": 0.227
     }
   }
 }
