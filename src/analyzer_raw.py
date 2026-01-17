@@ -1,5 +1,6 @@
 # src/analyzer_raw.py
 """Main fluency analysis orchestrator."""
+import asyncio
 import pandas as pd
 from dotenv import load_dotenv
 
@@ -34,7 +35,75 @@ pd.set_option("display.max_colwidth", None)
 pd.set_option("display.width", 0)
 
 
-def analyze_speech(
+def generate_transcript_raw(
+    df_words_raw: pd.DataFrame,
+) -> str:
+    if df_words_raw.empty:
+        return ""
+    return " ".join(df_words_raw["text"].astype(str))
+
+def combine_words_and_fillers(
+    df_words_raw: pd.DataFrame,
+    df_final_fillers: pd.DataFrame
+) -> pd.DataFrame:
+    """
+    Combine transcribed words and disfluency events into a single chronological token stream.
+    
+    Each row represents a spoken token (word or disfluency) with:
+      - 'start', 'end', 'text'
+      - 'source': 'whisper' or 'wav2vec'
+      - 'type': 'word', 'filler', or 'stutter'
+    
+    Only non-empty, valid tokens are included.
+    """
+    tokens = []
+
+    # Add Whisper words
+    if not df_words_raw.empty:
+        for _, row in df_words_raw.iterrows():
+            word = str(row.get("word", "")).strip()
+            if word and not pd.isna(row.get("start")):
+                tokens.append({
+                    "start": float(row["start"]),
+                    "end": float(row["end"]),
+                    "text": word,
+                    "source": "whisper",
+                    "type": "word"
+                })
+
+    # Add Wav2Vec2 fillers/stutters (only if they have non-empty 'text')
+    if not df_final_fillers.empty:
+        for _, row in df_final_fillers.iterrows():
+            text = row.get("text", "")
+            if pd.isna(text):
+                text = ""
+            else:
+                text = str(text).strip()
+            
+            if text and "start" in row and "end" in row:
+                tokens.append({
+                    "start": float(row["start"]),
+                    "end": float(row["end"]),
+                    "text": text,
+                    "source": "wav2vec",
+                    "type": row.get("type", "filler")  # 'filler' or 'stutter'
+                })
+
+    if not tokens:
+        return pd.DataFrame(columns=["start", "end", "text", "source", "type"])
+
+    # Sort by start time
+    tokens_sorted = sorted(tokens, key=lambda x: x["start"])
+    
+    # Convert to DataFrame
+    df_combined = pd.DataFrame(tokens_sorted)
+    
+    # Optional: reset index
+    df_combined.reset_index(drop=True, inplace=True)
+    
+    return df_combined
+
+async def analyze_speech(
     audio_path: str,
     speech_context: str = "conversational",
     device: str = "cpu"
@@ -47,11 +116,18 @@ def analyze_speech(
     
     # Step 1: Verbatim transcription (source of truth)
     print("\n[1/5] Transcribing with Whisper (verbatim)...")
-    verbatim_result = transcribe_verbatim_fillers(audio_path, device=device)
-    is_monotone = is_monotone_speech(audio_path)
-    
+    transcribe_verbatim_fillers_task = asyncio.to_thread(transcribe_verbatim_fillers, str(audio_path), device=device)
+    is_monotone_speech_task = asyncio.to_thread(is_monotone_speech, audio_path)
+    detect_phonemes_wav2vec_task = asyncio.to_thread(detect_phonemes_wav2vec, audio_path)
+
+    verbatim_result, is_monotone, df_wav2vec = await asyncio.gather(
+        transcribe_verbatim_fillers_task,
+        is_monotone_speech_task,    
+        detect_phonemes_wav2vec_task
+    )
+
     # Extract words and segments
-    df_words = extract_words_dataframe(verbatim_result)
+    df_words_whisper_raw = extract_words_dataframe(verbatim_result)
     df_segments = extract_segments_dataframe(verbatim_result)
     
     # Check for empty transcription
@@ -76,19 +152,20 @@ def analyze_speech(
     
     total_duration = float(df_segments.iloc[-1]["end"])
     print(f"  Duration: {total_duration:.2f}s")
-    print(f"  Words: {len(df_words)}")
+    print(f"  Words: {len(df_words_whisper_raw)}")
     
     # Step 2: Mark fillers in words and segments
     print("\n[2/5] Marking filler words...")
-    df_words = mark_filler_words(df_words, CORE_FILLERS)
+    df_words_whisper_raw = mark_filler_words(df_words_whisper_raw, CORE_FILLERS)
     df_segments = mark_filler_segments(df_segments, CORE_FILLERS)
     
-    filler_count = df_words['is_filler'].sum()
+    filler_count = df_words_whisper_raw['is_filler'].sum()
     print(f"  Marked: {filler_count} filler words")
     
     # Get content-only words
-    df_content_words = get_content_words(df_words)
-    print(f"  Content words: {len(df_content_words)}")
+    df_words_content = get_content_words(df_words_whisper_raw)
+    print(f"  Content words: {len(df_words_content)}")
+
     
     # Step 3: Align words with WhisperX
     print("\n[3/5] Aligning words with WhisperX...")
@@ -98,11 +175,10 @@ def analyze_speech(
     
     # Step 4: Detect fillers with Wav2Vec2
     print("\n[4/5] Detecting subtle fillers with Wav2Vec2...")
-    df_wav2vec = detect_phonemes_wav2vec(audio_path)
     df_wav2vec_fillers = detect_fillers_wav2vec(df_wav2vec, df_aligned_words)
     
     # Extract Whisper-detected fillers (already marked in df_words)
-    df_whisper_fillers = df_words[df_words['is_filler']].copy()
+    df_whisper_fillers = df_words_whisper_raw[df_words_whisper_raw['is_filler']].copy()
     df_whisper_fillers['type'] = 'filler'
     df_whisper_fillers['text'] = df_whisper_fillers['word'].str.lower()
     df_whisper_fillers['style'] = 'clear'  # Add style column
@@ -112,33 +188,39 @@ def analyze_speech(
     df_merged_fillers = merge_filler_detections(df_whisper_fillers, df_wav2vec_fillers)
     df_final_fillers = group_stutters(df_merged_fillers)
     print(f"  Total events: {len(df_final_fillers)}")
+
+    df_words_raw = combine_words_and_fillers(df_words_whisper_raw, df_final_fillers)
+    transcript_raw = generate_transcript_raw(df_words_raw)
+    print(f"  Transcript: {transcript_raw}")
     
     print("\n[5/5] Calculating raw score...")
     normalized_metrics = calculate_normalized_metrics(
-        df_words_raw=df_words,
-        df_words_cleaned=df_content_words,
+        df_words_asr=df_words_whisper_raw,      # ✅ full ASR words (with fillers)
+        df_words_content=df_words_content,       # ✅ content-only
         df_segments=df_segments,
         df_fillers=df_final_fillers,
-        total_duration=total_duration
+        total_duration=total_duration,
+        # df_tokens_enriched=df_tokens_enriched  # optional, not used yet
     )
     
     # Build response with multiple word views
     response = {
+        "raw_transcript": transcript_raw,
         **normalized_metrics,
         # Statistics
         "statistics": {
-            "total_words_transcribed": len(df_words),
-            "content_words": len(df_content_words),
+            "total_words_transcribed": len(df_words_whisper_raw),
+            "content_words": len(df_words_content),
             "filler_words_detected": filler_count,
-            "filler_percentage": round(100 * filler_count / len(df_words), 2) if len(df_words) > 0 else 0,
+            "filler_percentage": round(100 * filler_count / len(df_words_whisper_raw), 2) if len(df_words_whisper_raw) > 0 else 0,
             "is_monotone": is_monotone
         }, 
         "timestamps": {
             # Complete timeline with filler markers
-            "words_timestamps_raw": df_words.to_dict(orient="records"),
+            "words_timestamps_raw": df_words_whisper_raw.to_dict(orient="records"),
             
             # Content words only (for clean display)
-            "words_timestamps_cleaned": df_content_words.to_dict(orient="records"),
+            "words_timestamps_cleaned": df_words_content.to_dict(orient="records"),
             
             # Segments with filler flags
             "segment_timestamps": df_segments.to_dict(orient="records"),
@@ -163,7 +245,7 @@ def main():
     audio_path = sys.argv[1]
     speech_context = sys.argv[2] if len(sys.argv) > 2 else "conversational"
     
-    result = analyze_speech(audio_path, speech_context)
+    result = asyncio.run(analyze_speech(audio_path, speech_context))
     
     # Print summary
     print("\n" + "="*60)

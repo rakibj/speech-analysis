@@ -1,3 +1,4 @@
+# analyze_band.py
 import sys
 from pathlib import Path
 from src.analyzer_raw import analyze_speech
@@ -103,13 +104,22 @@ def build_analysis(
         },
     }
 
-def analyze_band(audio_path: str) -> dict:
+async def analyze_band_from_audio(audio_path: str) -> dict:
     """Analyze speech and score IELTS band."""
-    result = analyze_speech(audio_path)
+    result = await analyze_speech(audio_path)
     llm_result = extract_llm_annotations(result["raw_transcript"])
     llm_metrics = aggregate_llm_metrics(llm_result)
     scorer = IELTSBandScorer()
     analysis = build_analysis(result, llm_metrics)
+    band_scores = scorer.score(analysis)
+    report = {"band_scores": band_scores, "analysis": analysis}
+    return report
+
+
+async def analyze_band_from_analysis(raw_analysis: dict, llm_metrics: dict) -> dict:
+    """Analyze speech and score IELTS band."""
+    scorer = IELTSBandScorer()
+    analysis = build_analysis(raw_analysis, llm_metrics)
     band_scores = scorer.score(analysis)
     report = {"band_scores": band_scores, "analysis": analysis}
     return report

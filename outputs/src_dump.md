@@ -31,7 +31,7 @@ from pathlib import Path
 # Add src to path
 sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
 
-from src.analyzer import analyze_speech
+from src.analyzer_old import analyze_speech
 
 
 def main():
@@ -64,10 +64,142 @@ if __name__ == "__main__":
     main()
 ```
 
-## analyzer.py
+## analyze_band.py
 
 ```python
-# analyzer.py
+# analyze_band.py
+
+# analyze_band.py
+import sys
+from pathlib import Path
+from src.analyzer_raw import analyze_speech
+from src.llm_processing import extract_llm_annotations, aggregate_llm_metrics
+from src.ielts_band_scorer import IELTSBandScorer
+from datetime import datetime
+
+PROJECT_ROOT = Path.cwd().parent
+sys.path.insert(0, str(PROJECT_ROOT))
+
+def build_analysis(
+    result: dict,
+    llm_metrics: dict,
+) -> dict:
+    # ---- Lexical density ----
+    total_words = result["statistics"]["total_words_transcribed"]
+    content_words = result["statistics"]["content_words"]
+
+    # ---- Word confidence metrics ----
+    confidences = [
+        w["confidence"]
+        for w in result["timestamps"]["words_timestamps_raw"]
+        if w.get("confidence") is not None
+    ]
+
+    mean_word_confidence = (
+        sum(confidences) / len(confidences) if confidences else 0.0
+    )
+
+    low_confidence_ratio = (
+        sum(1 for c in confidences if c < 0.7) / len(confidences)
+        if confidences else 0.0
+    )
+
+
+    return {
+        "metadata": {
+            "audio_duration_sec": round(result["audio_duration_sec"], 2),
+            "speaking_time_sec": round(result["speaking_time_sec"], 2),
+            "total_words_transcribed": total_words,
+            "content_word_count": content_words,
+            "analysis_timestamp": datetime.utcnow().isoformat() + "Z",
+        },
+        "fluency_coherence": {
+            "pauses": {
+                "pause_frequency_per_min": result.get("pause_frequency"),
+                "long_pause_rate": result["long_pauses_per_min"],
+                "pause_variability": float(result["pause_variability"]),
+            },
+            "rate": {
+                "speech_rate_wpm": float(result["wpm"]),
+                "speech_rate_variability": float(result["speech_rate_variability"]),
+            },
+            "disfluency": {
+                "filler_frequency_per_min": float(result["fillers_per_min"]),
+                "stutter_frequency_per_min": float(result["stutters_per_min"]),
+                "repetition_rate": float(result["repetition_ratio"]),
+            },
+            "coherence": {
+                "coherence_breaks": llm_metrics["coherence_breaks"],
+                "topic_relevance": llm_metrics["topic_relevance"],
+            },
+        },
+        "lexical_resource": {
+            "breadth": {
+                "unique_word_count": int(
+                    round(result["vocab_richness"] * content_words)
+                ),
+                "lexical_diversity": float(result["vocab_richness"]),
+                "lexical_density": round(result["lexical_density"], 3),
+                "most_frequent_word_ratio": float(result["repetition_ratio"]),
+            },
+            "quality": {
+                "word_choice_errors": llm_metrics["word_choice_errors"],
+                "advanced_vocabulary_count": llm_metrics["advanced_vocabulary_count"],
+            },
+        },
+        "grammatical_range_accuracy": {
+            "complexity": {
+                "mean_utterance_length": float(result["mean_utterance_length"]),
+                "complex_structures_attempted": llm_metrics["complex_structures_attempted"],
+                "complex_structures_accurate": llm_metrics["complex_structures_accurate"],
+            },
+            "accuracy": {
+                "grammar_errors": llm_metrics["grammar_errors"],
+                "meaning_blocking_error_ratio": llm_metrics["meaning_blocking_error_ratio"],
+            },
+        },
+        "pronunciation": {
+            "intelligibility": {
+                "mean_word_confidence": round(mean_word_confidence, 3),
+                "low_confidence_ratio": round(low_confidence_ratio, 3),
+            },
+            "prosody": {
+                "monotone_detected": result["statistics"]["is_monotone"],
+            },
+        },
+        "raw_data": {
+            "word_timestamps": result["timestamps"]["words_timestamps_raw"],
+            "pause_events": result.get("pause_events", []),
+            "filler_events": result["timestamps"]["filler_timestamps"],
+            "stutter_events": result.get("stutter_events", []),
+        },
+    }
+
+async def analyze_band_from_audio(audio_path: str) -> dict:
+    """Analyze speech and score IELTS band."""
+    result = await analyze_speech(audio_path)
+    llm_result = extract_llm_annotations(result["raw_transcript"])
+    llm_metrics = aggregate_llm_metrics(llm_result)
+    scorer = IELTSBandScorer()
+    analysis = build_analysis(result, llm_metrics)
+    band_scores = scorer.score(analysis)
+    report = {"band_scores": band_scores, "analysis": analysis}
+    return report
+
+
+async def analyze_band_from_analysis(raw_analysis: dict, llm_metrics: dict) -> dict:
+    """Analyze speech and score IELTS band."""
+    scorer = IELTSBandScorer()
+    analysis = build_analysis(raw_analysis, llm_metrics)
+    band_scores = scorer.score(analysis)
+    report = {"band_scores": band_scores, "analysis": analysis}
+    return report
+```
+
+## analyzer_old.py
+
+```python
+# analyzer_old.py
 
 # src/analyzer.py
 """Main fluency analysis orchestrator."""
@@ -275,8 +407,9 @@ if __name__ == "__main__":
 ```python
 # analyzer_raw.py
 
-# src/analyzer.py
+# src/analyzer_raw.py
 """Main fluency analysis orchestrator."""
+import asyncio
 import pandas as pd
 from dotenv import load_dotenv
 
@@ -294,12 +427,14 @@ from .audio_processing import (
 )
 from .disfluency_detection import (
     detect_fillers_wav2vec,
+    detect_phonemes_wav2vec,
     detect_fillers_whisper,
     merge_filler_detections,
     group_stutters,
 )
 from .metrics import calculate_normalized_metrics
-
+from src.llm_processing import extract_llm_annotations, aggregate_llm_metrics
+from src.prosody_extraction import is_monotone_speech
 
 # Load environment variables
 load_dotenv()
@@ -309,7 +444,75 @@ pd.set_option("display.max_colwidth", None)
 pd.set_option("display.width", 0)
 
 
-def analyze_speech(
+def generate_transcript_raw(
+    df_words_raw: pd.DataFrame,
+) -> str:
+    if df_words_raw.empty:
+        return ""
+    return " ".join(df_words_raw["text"].astype(str))
+
+def combine_words_and_fillers(
+    df_words_raw: pd.DataFrame,
+    df_final_fillers: pd.DataFrame
+) -> pd.DataFrame:
+    """
+    Combine transcribed words and disfluency events into a single chronological token stream.
+    
+    Each row represents a spoken token (word or disfluency) with:
+      - 'start', 'end', 'text'
+      - 'source': 'whisper' or 'wav2vec'
+      - 'type': 'word', 'filler', or 'stutter'
+    
+    Only non-empty, valid tokens are included.
+    """
+    tokens = []
+
+    # Add Whisper words
+    if not df_words_raw.empty:
+        for _, row in df_words_raw.iterrows():
+            word = str(row.get("word", "")).strip()
+            if word and not pd.isna(row.get("start")):
+                tokens.append({
+                    "start": float(row["start"]),
+                    "end": float(row["end"]),
+                    "text": word,
+                    "source": "whisper",
+                    "type": "word"
+                })
+
+    # Add Wav2Vec2 fillers/stutters (only if they have non-empty 'text')
+    if not df_final_fillers.empty:
+        for _, row in df_final_fillers.iterrows():
+            text = row.get("text", "")
+            if pd.isna(text):
+                text = ""
+            else:
+                text = str(text).strip()
+            
+            if text and "start" in row and "end" in row:
+                tokens.append({
+                    "start": float(row["start"]),
+                    "end": float(row["end"]),
+                    "text": text,
+                    "source": "wav2vec",
+                    "type": row.get("type", "filler")  # 'filler' or 'stutter'
+                })
+
+    if not tokens:
+        return pd.DataFrame(columns=["start", "end", "text", "source", "type"])
+
+    # Sort by start time
+    tokens_sorted = sorted(tokens, key=lambda x: x["start"])
+    
+    # Convert to DataFrame
+    df_combined = pd.DataFrame(tokens_sorted)
+    
+    # Optional: reset index
+    df_combined.reset_index(drop=True, inplace=True)
+    
+    return df_combined
+
+async def analyze_speech(
     audio_path: str,
     speech_context: str = "conversational",
     device: str = "cpu"
@@ -322,10 +525,18 @@ def analyze_speech(
     
     # Step 1: Verbatim transcription (source of truth)
     print("\n[1/5] Transcribing with Whisper (verbatim)...")
-    verbatim_result = transcribe_verbatim_fillers(audio_path, device=device)
-    
+    transcribe_verbatim_fillers_task = asyncio.to_thread(transcribe_verbatim_fillers, str(audio_path), device=device)
+    is_monotone_speech_task = asyncio.to_thread(is_monotone_speech, audio_path)
+    detect_phonemes_wav2vec_task = asyncio.to_thread(detect_phonemes_wav2vec, audio_path)
+
+    verbatim_result, is_monotone, df_wav2vec = await asyncio.gather(
+        transcribe_verbatim_fillers_task,
+        is_monotone_speech_task,    
+        detect_phonemes_wav2vec_task
+    )
+
     # Extract words and segments
-    df_words = extract_words_dataframe(verbatim_result)
+    df_words_whisper_raw = extract_words_dataframe(verbatim_result)
     df_segments = extract_segments_dataframe(verbatim_result)
     
     # Check for empty transcription
@@ -350,19 +561,20 @@ def analyze_speech(
     
     total_duration = float(df_segments.iloc[-1]["end"])
     print(f"  Duration: {total_duration:.2f}s")
-    print(f"  Words: {len(df_words)}")
+    print(f"  Words: {len(df_words_whisper_raw)}")
     
     # Step 2: Mark fillers in words and segments
     print("\n[2/5] Marking filler words...")
-    df_words = mark_filler_words(df_words, CORE_FILLERS)
+    df_words_whisper_raw = mark_filler_words(df_words_whisper_raw, CORE_FILLERS)
     df_segments = mark_filler_segments(df_segments, CORE_FILLERS)
     
-    filler_count = df_words['is_filler'].sum()
+    filler_count = df_words_whisper_raw['is_filler'].sum()
     print(f"  Marked: {filler_count} filler words")
     
     # Get content-only words
-    df_content_words = get_content_words(df_words)
-    print(f"  Content words: {len(df_content_words)}")
+    df_words_content = get_content_words(df_words_whisper_raw)
+    print(f"  Content words: {len(df_words_content)}")
+
     
     # Step 3: Align words with WhisperX
     print("\n[3/5] Aligning words with WhisperX...")
@@ -372,10 +584,10 @@ def analyze_speech(
     
     # Step 4: Detect fillers with Wav2Vec2
     print("\n[4/5] Detecting subtle fillers with Wav2Vec2...")
-    df_wav2vec_fillers = detect_fillers_wav2vec(audio_path, df_aligned_words)
+    df_wav2vec_fillers = detect_fillers_wav2vec(df_wav2vec, df_aligned_words)
     
     # Extract Whisper-detected fillers (already marked in df_words)
-    df_whisper_fillers = df_words[df_words['is_filler']].copy()
+    df_whisper_fillers = df_words_whisper_raw[df_words_whisper_raw['is_filler']].copy()
     df_whisper_fillers['type'] = 'filler'
     df_whisper_fillers['text'] = df_whisper_fillers['word'].str.lower()
     df_whisper_fillers['style'] = 'clear'  # Add style column
@@ -385,32 +597,39 @@ def analyze_speech(
     df_merged_fillers = merge_filler_detections(df_whisper_fillers, df_wav2vec_fillers)
     df_final_fillers = group_stutters(df_merged_fillers)
     print(f"  Total events: {len(df_final_fillers)}")
+
+    df_words_raw = combine_words_and_fillers(df_words_whisper_raw, df_final_fillers)
+    transcript_raw = generate_transcript_raw(df_words_raw)
+    print(f"  Transcript: {transcript_raw}")
     
     print("\n[5/5] Calculating raw score...")
     normalized_metrics = calculate_normalized_metrics(
-        df_words_raw=df_words,
-        df_words_cleaned=df_content_words,
+        df_words_asr=df_words_whisper_raw,      # ✅ full ASR words (with fillers)
+        df_words_content=df_words_content,       # ✅ content-only
         df_segments=df_segments,
         df_fillers=df_final_fillers,
-        total_duration=total_duration
+        total_duration=total_duration,
+        # df_tokens_enriched=df_tokens_enriched  # optional, not used yet
     )
     
     # Build response with multiple word views
-    final_response = {
+    response = {
+        "raw_transcript": transcript_raw,
         **normalized_metrics,
         # Statistics
         "statistics": {
-            "total_words_transcribed": len(df_words),
-            "content_words": len(df_content_words),
+            "total_words_transcribed": len(df_words_whisper_raw),
+            "content_words": len(df_words_content),
             "filler_words_detected": filler_count,
-            "filler_percentage": round(100 * filler_count / len(df_words), 2) if len(df_words) > 0 else 0,
+            "filler_percentage": round(100 * filler_count / len(df_words_whisper_raw), 2) if len(df_words_whisper_raw) > 0 else 0,
+            "is_monotone": is_monotone
         }, 
         "timestamps": {
             # Complete timeline with filler markers
-            "words_timestamps_raw": df_words.to_dict(orient="records"),
+            "words_timestamps_raw": df_words_whisper_raw.to_dict(orient="records"),
             
             # Content words only (for clean display)
-            "words_timestamps_cleaned": df_content_words.to_dict(orient="records"),
+            "words_timestamps_cleaned": df_words_content.to_dict(orient="records"),
             
             # Segments with filler flags
             "segment_timestamps": df_segments.to_dict(orient="records"),
@@ -420,7 +639,7 @@ def analyze_speech(
         }
     }
     
-    return final_response
+    return response
 
 
 def main():
@@ -435,7 +654,7 @@ def main():
     audio_path = sys.argv[1]
     speech_context = sys.argv[2] if len(sys.argv) > 2 else "conversational"
     
-    result = analyze_speech(audio_path, speech_context)
+    result = asyncio.run(analyze_speech(audio_path, speech_context))
     
     # Print summary
     print("\n" + "="*60)
@@ -1447,21 +1666,20 @@ def classify_non_word_event(row: pd.Series) -> dict:
 
 
 def detect_fillers_wav2vec(
-    audio_path: str,
+    df_wav2vec: pd.DataFrame,
     aligned_words: pd.DataFrame
 ) -> pd.DataFrame:
     """
     Detect fillers and stutters using Wav2Vec2 phoneme detection.
     
     Args:
-        audio_path: Path to audio file
+        df_wav2vec: wav to vec phoneme events
         aligned_words: DataFrame with aligned word timestamps
         
     Returns:
         DataFrame with detected filler/stutter events
     """
     # Get phoneme-level events
-    df_wav2vec = detect_phonemes_wav2vec(audio_path)
     
     if df_wav2vec.empty:
         return pd.DataFrame()
@@ -2119,6 +2337,1345 @@ if __name__ == "__main__":
     print(f"Readiness: {result['verdict']['readiness']}")
 ```
 
+## ielts_band_scorer.py
+
+```python
+# ielts_band_scorer.py
+
+"""
+IELTS Band Scorer v3.0 - Super Accurate Production System
+===========================================================
+
+Philosophy: Simulate experienced IELTS examiner judgment through multi-layered
+scoring with qualitative gates and quantitative metrics.
+
+Key Innovations:
+1. Three-stage scoring (base → deductions → gates)
+2. Sophistication-based lexical scoring (not just diversity)
+3. Prosody-dominant pronunciation assessment
+4. Complex structure inventory tracking
+5. Error severity classification
+6. Statistical calibration to match real-world distributions
+
+Target Accuracy: 90%+ correlation with human examiners (±0.5 bands)
+"""
+
+import numpy as np
+from typing import Dict, Any, List, Tuple, Optional
+from collections import Counter
+import re
+
+
+class IELTSBandScorer :
+    """
+    Production-grade IELTS Speaking scorer with examiner-like judgment.
+    """
+    
+    # ========================================================================
+    # CONFIGURATION - EXAMINER-CALIBRATED THRESHOLDS
+    # ========================================================================
+    
+    # Minimum sample requirements
+    MIN_DURATION_SEC = 30
+    MIN_CONTENT_WORDS = 50
+    MIN_SPEAKING_TIME_SEC = 25
+    
+    # Fluency & Coherence thresholds
+    FLUENCY_WPM_VERY_SLOW = 60
+    FLUENCY_WPM_SLOW = 75
+    FLUENCY_WPM_HESITANT = 90
+    FLUENCY_WPM_COMFORTABLE = 120
+    FLUENCY_WPM_RUSHED = 200
+    
+    FLUENCY_LONG_PAUSE_SEVERE = 3.0
+    FLUENCY_LONG_PAUSE_FREQUENT = 2.0
+    FLUENCY_LONG_PAUSE_NOTICEABLE = 1.0
+    FLUENCY_LONG_PAUSE_MINIMAL = 0.5
+    
+    FLUENCY_FILLER_EXCESSIVE = 6.0
+    FLUENCY_FILLER_FREQUENT = 4.0
+    FLUENCY_FILLER_SOME = 2.0
+    FLUENCY_FILLER_MINIMAL = 1.0
+    
+    FLUENCY_REPETITION_EXCESSIVE = 0.15
+    FLUENCY_REPETITION_FREQUENT = 0.08
+    FLUENCY_REPETITION_SOME = 0.04
+    FLUENCY_REPETITION_MINIMAL = 0.02
+    
+    # Lexical Resource thresholds
+    LEXICAL_DIVERSITY_VERY_LIMITED = 0.35
+    LEXICAL_DIVERSITY_LIMITED = 0.45
+    LEXICAL_DIVERSITY_ADEQUATE = 0.55
+    LEXICAL_DIVERSITY_GOOD = 0.65
+    
+    LEXICAL_ERROR_RATE_FREQUENT = 5.0
+    LEXICAL_ERROR_RATE_SOME = 3.0
+    LEXICAL_ERROR_RATE_OCCASIONAL = 1.5
+    LEXICAL_ERROR_RATE_RARE = 0.5
+    
+    # Grammar thresholds
+    GRAMMAR_MLU_VERY_SIMPLE = 7
+    GRAMMAR_MLU_SIMPLE = 9
+    GRAMMAR_MLU_MODERATE = 11
+    GRAMMAR_MLU_COMPLEX = 13
+    
+    GRAMMAR_ERROR_RATE_FREQUENT = 8.0
+    GRAMMAR_ERROR_RATE_NOTICEABLE = 5.0
+    GRAMMAR_ERROR_RATE_SOME = 3.0
+    GRAMMAR_ERROR_RATE_OCCASIONAL = 1.5
+    
+    GRAMMAR_COMPLEX_ACC_VERY_POOR = 0.3
+    GRAMMAR_COMPLEX_ACC_POOR = 0.5
+    GRAMMAR_COMPLEX_ACC_WEAK = 0.7
+    GRAMMAR_COMPLEX_ACC_GOOD = 0.85
+    GRAMMAR_COMPLEX_ACC_EXCELLENT = 0.90
+    
+    GRAMMAR_BLOCKING_FREQUENT = 0.3
+    GRAMMAR_BLOCKING_SOME = 0.2
+    GRAMMAR_BLOCKING_OCCASIONAL = 0.1
+    
+    # Pronunciation thresholds
+    PRONUN_INTELLIGIBILITY_POOR = 0.6
+    PRONUN_INTELLIGIBILITY_FAIR = 0.7
+    PRONUN_INTELLIGIBILITY_GOOD = 0.8
+    PRONUN_INTELLIGIBILITY_VERY_GOOD = 0.9
+    PRONUN_INTELLIGIBILITY_EXCELLENT = 0.95
+    
+    # Statistical calibration targets
+    STAT_BAND_8_PLUS_MAX_PCT = 5.0
+    STAT_BAND_9_MAX_PCT = 1.0
+    
+    def __init__(self):
+        """Initialize scorer with supporting resources"""
+        self.score_history = []
+        
+        # Idiomatic expressions database (expanded)
+        self.IDIOMS = {
+            'once in a blue moon', 'butterflies in my stomach', 'break the ice',
+            'hit the nail on the head', 'under the weather', 'spill the beans',
+            'cost an arm and a leg', 'piece of cake', 'let the cat out of the bag',
+            'burn the midnight oil', 'pull someone\'s leg', 'the ball is in your court',
+            'on the same page', 'get cold feet', 'a blessing in disguise',
+            'actions speak louder than words', 'at the drop of a hat', 'back to square one',
+            'barking up the wrong tree', 'beat around the bush', 'bite the bullet',
+            'break a leg', 'call it a day', 'cut corners', 'face the music',
+            'get the ball rolling', 'hit the books', 'in the nick of time',
+            'jump on the bandwagon', 'kill two birds with one stone', 'miss the boat',
+            'no pain no gain', 'on thin ice', 'pull yourself together', 'read between the lines',
+            'the best of both worlds', 'time flies', 'up in arms', 'when pigs fly'
+        }
+        
+        # Common collocations (verb + noun)
+        self.COLLOCATIONS = {
+            'make': ['decision', 'choice', 'mistake', 'progress', 'effort', 'appointment'],
+            'take': ['break', 'chance', 'time', 'opportunity', 'responsibility', 'action'],
+            'have': ['look', 'chat', 'discussion', 'argument', 'conversation', 'meeting'],
+            'do': ['homework', 'research', 'favor', 'damage', 'harm', 'business'],
+            'give': ['advice', 'feedback', 'presentation', 'speech', 'hand', 'permission'],
+            'pay': ['attention', 'compliment', 'price', 'fine', 'tribute', 'respect'],
+            'catch': ['cold', 'bus', 'train', 'attention', 'breath', 'glimpse'],
+            'keep': ['promise', 'secret', 'record', 'eye', 'mind', 'track']
+        }
+        
+        # Academic Word List (sample - top 50 families)
+        self.AWL = {
+            'analysis', 'approach', 'area', 'assess', 'assume', 'authority', 'available',
+            'benefit', 'concept', 'consistent', 'constitutional', 'context', 'contract',
+            'create', 'data', 'define', 'derive', 'distribute', 'economy', 'environment',
+            'establish', 'estimate', 'evident', 'export', 'factor', 'finance', 'formula',
+            'function', 'identify', 'income', 'indicate', 'individual', 'interpret',
+            'involve', 'issue', 'labor', 'legal', 'legislate', 'major', 'method',
+            'occur', 'percent', 'period', 'policy', 'principle', 'proceed', 'process',
+            'require', 'research', 'respond', 'role', 'section', 'sector', 'significant',
+            'similar', 'source', 'specific', 'structure', 'theory', 'vary'
+        }
+        
+        # Phrasal verbs
+        self.PHRASAL_VERBS = {
+            'come across', 'come up with', 'carry out', 'find out', 'figure out',
+            'get along', 'get over', 'give up', 'go on', 'look after', 'look for',
+            'look into', 'make up', 'pick up', 'put off', 'put up with', 'run into',
+            'set up', 'take off', 'turn down', 'turn up', 'work out'
+        }
+        
+        # Simple overused words to penalize
+        self.BASIC_WORDS = {
+            'thing', 'stuff', 'get', 'make', 'do', 'put', 'take',
+            'good', 'bad', 'big', 'small', 'nice', 'very', 'really'
+        }
+    
+    # ========================================================================
+    # MAIN ENTRY POINT
+    # ========================================================================
+    
+    def score(self, analysis_data: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        Main scoring function.
+        
+        Args:
+            analysis_data: Dictionary containing:
+                - metadata
+                - fluency_coherence
+                - lexical_resource
+                - grammatical_range_accuracy
+                - pronunciation
+                - raw_transcript (optional)
+        
+        Returns:
+            Dictionary with overall_band, criterion_bands, feedback, diagnostics
+        """
+        
+        # Step 1: Validate input
+        is_valid, reason = self._validate_input(analysis_data)
+        if not is_valid:
+            return {
+                'overall_band': None,
+                'criterion_bands': None,
+                'feedback_summary': f'Insufficient data: {reason}',
+                'validation_failed': True
+            }
+        
+        metadata = analysis_data['metadata']
+        transcript = analysis_data.get('raw_transcript', '').lower()
+        
+        # Step 2: Enhanced feature extraction
+        enhanced_features = self._enhance_features(analysis_data, transcript)
+        
+        # Step 3: Score each criterion with diagnostics
+        fluency_result = self._score_fluency_coherence(
+            analysis_data['fluency_coherence'],
+            metadata
+        )
+        
+        lexical_result = self._score_lexical_resource(
+            analysis_data['lexical_resource'],
+            enhanced_features['lexical'],
+            metadata,
+            transcript
+        )
+        
+        grammar_result = self._score_grammatical_range_accuracy(
+            analysis_data['grammatical_range_accuracy'],
+            metadata
+        )
+        
+        pronunciation_result = self._score_pronunciation(
+            analysis_data['pronunciation'],
+            enhanced_features['pronunciation'],
+            metadata
+        )
+        
+        # Step 4: Calculate overall band
+        criterion_bands = {
+            'fluency_coherence': fluency_result['score'],
+            'lexical_resource': lexical_result['score'],
+            'grammatical_range_accuracy': grammar_result['score'],
+            'pronunciation': pronunciation_result['score']
+        }
+        
+        overall_band = self._calculate_overall_band(
+            criterion_bands,
+            metadata
+        )
+        
+        # Step 5: Generate detailed feedback
+        feedback = self._generate_feedback(
+            criterion_bands,
+            overall_band,
+            {
+                'fluency': fluency_result,
+                'lexical': lexical_result,
+                'grammar': grammar_result,
+                'pronunciation': pronunciation_result
+            }
+        )
+        
+        # Record for statistical calibration
+        self.score_history.append(overall_band)
+        
+        return {
+            'overall_band': overall_band,
+            'criterion_bands': criterion_bands,
+            'feedback_summary': feedback['summary'],
+            'detailed_diagnostics': {
+                'fluency': fluency_result,
+                'lexical': lexical_result,
+                'grammar': grammar_result,
+                'pronunciation': pronunciation_result
+            },
+            'strengths': feedback['strengths'],
+            'areas_for_improvement': feedback['improvements']
+        }
+    
+    # ========================================================================
+    # INPUT VALIDATION
+    # ========================================================================
+    
+    def _validate_input(self, data: Dict) -> Tuple[bool, str]:
+        """Validate minimum sample requirements"""
+        
+        metadata = data.get('metadata', {})
+        
+        # Check duration
+        duration = metadata.get('audio_duration_sec', 0)
+        if duration < self.MIN_DURATION_SEC:
+            return False, f"Duration {duration}s < {self.MIN_DURATION_SEC}s required"
+        
+        # Check content words
+        content_words = metadata.get('content_word_count', 0)
+        if content_words < self.MIN_CONTENT_WORDS:
+            return False, f"Only {content_words} words < {self.MIN_CONTENT_WORDS} required"
+        
+        # Check speaking time
+        speaking_time = metadata.get('speaking_time_sec', 0)
+        if speaking_time < self.MIN_SPEAKING_TIME_SEC:
+            return False, f"Speaking time {speaking_time}s < {self.MIN_SPEAKING_TIME_SEC}s"
+        
+        # Check required fields
+        required = ['fluency_coherence', 'lexical_resource', 
+                   'grammatical_range_accuracy', 'pronunciation']
+        for field in required:
+            if field not in data:
+                return False, f"Missing required field: {field}"
+        
+        return True, ""
+    
+    # ========================================================================
+    # FEATURE ENHANCEMENT
+    # ========================================================================
+    
+    def _enhance_features(self, data: Dict, transcript: str) -> Dict:
+        """Extract additional features not in base analysis"""
+        
+        enhanced = {
+            'lexical': self._enhance_lexical_features(
+                data['lexical_resource'], 
+                transcript,
+                data['metadata']['content_word_count']
+            ),
+            'pronunciation': self._enhance_pronunciation_features(
+                data['pronunciation']
+            )
+        }
+        
+        return enhanced
+    
+    def _enhance_lexical_features(self, lexical: Dict, transcript: str, word_count: int) -> Dict:
+        """Deep lexical analysis"""
+        
+        words = transcript.lower().split()
+        
+        # Detect idiomatic expressions
+        idiom_count = 0
+        found_idioms = []
+        for idiom in self.IDIOMS:
+            if idiom in transcript:
+                idiom_count += 1
+                found_idioms.append(idiom)
+        
+        # Check collocation accuracy
+        collocation_correct = 0
+        collocation_total = 0
+        for verb, nouns in self.COLLOCATIONS.items():
+            for noun in nouns:
+                pattern = f"{verb}.*{noun}"
+                if re.search(pattern, transcript):
+                    collocation_total += 1
+                    collocation_correct += 1  # Simplified - assume correct if found
+        
+        # Count Academic Word List coverage
+        awl_count = sum(1 for word in words if any(awl in word for awl in self.AWL))
+        
+        # Count phrasal verbs
+        phrasal_count = sum(1 for pv in self.PHRASAL_VERBS if pv in transcript)
+        
+        # Count basic word overuse
+        basic_overuse = sum(words.count(word) for word in self.BASIC_WORDS)
+        
+        # Calculate sophistication score (0-10)
+        sophistication = 0.0
+        sophistication += min(3.0, idiom_count * 0.5)  # Idioms: max 3 pts
+        sophistication += min(2.0, (collocation_correct / max(1, collocation_total)) * 2)  # Collocations: max 2 pts
+        sophistication += min(2.0, awl_count * 0.2)  # AWL: max 2 pts
+        sophistication += min(1.0, phrasal_count * 0.25)  # Phrasal verbs: max 1 pt
+        sophistication += min(2.0, (word_count / 100) * 0.5)  # Length bonus: max 2 pts
+        
+        return {
+            'idiomatic_expressions': {
+                'count': idiom_count,
+                'examples': found_idioms
+            },
+            'collocation_accuracy': {
+                'correct': collocation_correct,
+                'total': collocation_total
+            },
+            'academic_word_list_coverage': awl_count,
+            'phrasal_verbs': {
+                'count': phrasal_count
+            },
+            'basic_word_overuse': basic_overuse,
+            'sophistication_score': sophistication
+        }
+    
+    def _enhance_pronunciation_features(self, pronunciation: Dict) -> Dict:
+        """Calculate prosody score from available features"""
+        
+        # Use monotone detection as primary prosody indicator
+        monotone = pronunciation.get('prosody', {}).get('monotone_detected', True)
+        
+        # Estimate prosody quality
+        if monotone:
+            prosody_score = 0.4  # Poor prosody
+        else:
+            # Use confidence metrics as proxy for prosodic quality
+            conf = pronunciation['intelligibility']['mean_word_confidence']
+            prosody_score = min(0.8, conf * 0.9)  # Good but not native-like
+        
+        return {
+            'prosody_quality_score': prosody_score,
+            'has_natural_intonation': not monotone
+        }
+    
+    # ========================================================================
+    # CRITERION SCORERS
+    # ========================================================================
+    
+    def _score_fluency_coherence(self, fluency: Dict, metadata: Dict) -> Dict:
+        """
+        Three-stage fluency scoring: base → deductions → gates
+        """
+        
+        base_score = 9.0
+        deductions = []
+        gates = []
+        
+        # Extract metrics
+        wpm = fluency['rate']['speech_rate_wpm']
+        long_pauses = fluency['pauses']['long_pause_rate']
+        pause_freq = fluency['pauses']['pause_frequency_per_min']
+        fillers = fluency['disfluency']['filler_frequency_per_min']
+        repetition = fluency['disfluency']['repetition_rate']
+        coherence_breaks = fluency['coherence']['coherence_breaks']
+        topic_relevant = fluency['coherence']['topic_relevance']
+        
+        # ============ STAGE 1: DEDUCTIONS ============
+        
+        # Speech rate
+        if wpm < self.FLUENCY_WPM_VERY_SLOW:
+            deductions.append(('speech_too_slow', 3.0))
+        elif wpm < self.FLUENCY_WPM_SLOW:
+            deductions.append(('speech_slow', 2.0))
+        elif wpm < self.FLUENCY_WPM_HESITANT:
+            deductions.append(('speech_hesitant', 1.0))
+        elif wpm > self.FLUENCY_WPM_RUSHED:
+            deductions.append(('speech_rushed', 0.5))
+        
+        # Long pauses
+        if long_pauses > self.FLUENCY_LONG_PAUSE_SEVERE:
+            deductions.append(('excessive_pausing', 2.5))
+        elif long_pauses > self.FLUENCY_LONG_PAUSE_FREQUENT:
+            deductions.append(('frequent_pausing', 1.5))
+        elif long_pauses > self.FLUENCY_LONG_PAUSE_NOTICEABLE:
+            deductions.append(('noticeable_pausing', 0.5))
+        
+        # Fillers
+        if fillers > self.FLUENCY_FILLER_EXCESSIVE:
+            deductions.append(('excessive_fillers', 2.5))
+        elif fillers > self.FLUENCY_FILLER_FREQUENT:
+            deductions.append(('frequent_fillers', 1.5))
+        elif fillers > self.FLUENCY_FILLER_SOME:
+            deductions.append(('some_fillers', 0.5))
+        
+        # Repetition
+        if repetition > self.FLUENCY_REPETITION_EXCESSIVE:
+            deductions.append(('excessive_repetition', 2.0))
+        elif repetition > self.FLUENCY_REPETITION_FREQUENT:
+            deductions.append(('frequent_repetition', 1.0))
+        elif repetition > self.FLUENCY_REPETITION_SOME:
+            deductions.append(('some_repetition', 0.3))
+        
+        # Coherence
+        if not topic_relevant:
+            deductions.append(('off_topic', 3.0))
+        
+        if coherence_breaks >= 3:
+            deductions.append(('severe_coherence_loss', 2.5))
+        elif coherence_breaks == 2:
+            deductions.append(('moderate_coherence_loss', 1.5))
+        elif coherence_breaks == 1:
+            deductions.append(('minor_coherence_loss', 0.5))
+        
+        # Apply deductions
+        for reason, amount in deductions:
+            base_score -= amount
+        
+        # ============ STAGE 2: HARD GATES ============
+        
+        # Gate 1: Band 1 = no communication possible
+        if not topic_relevant or wpm < 30:
+            gates.append(('no_communication', 1.5))
+        
+        # Gate 2: Band 3 ceiling
+        if wpm < self.FLUENCY_WPM_VERY_SLOW and coherence_breaks >= 2:
+            gates.append(('very_limited_communication', 3.5))
+        
+        # Gate 3: Band 5 ceiling - must avoid this unfair penalty
+        # Only apply if BOTH conditions severe
+        if coherence_breaks >= 3 and fillers > self.FLUENCY_FILLER_EXCESSIVE:
+            gates.append(('unstable_fluency', 5.5))
+        
+        # Gate 4: Band 7 ceiling
+        if long_pauses > self.FLUENCY_LONG_PAUSE_NOTICEABLE or fillers > self.FLUENCY_FILLER_SOME:
+            gates.append(('lacks_native_fluency', 7.5))
+        
+        # Apply strictest gate
+        if gates:
+            gated_score = min(g[1] for g in gates)
+            base_score = min(base_score, gated_score)
+        
+        # ============ STAGE 3: POSITIVE INDICATORS ============
+        
+        # Band 8-9 requires excellence across all metrics
+        if base_score >= 8.0:
+            if not (wpm >= self.FLUENCY_WPM_COMFORTABLE and 
+                   long_pauses < self.FLUENCY_LONG_PAUSE_MINIMAL and
+                   fillers < self.FLUENCY_FILLER_MINIMAL and
+                   repetition < self.FLUENCY_REPETITION_MINIMAL):
+                base_score = min(base_score, 7.5)
+        
+        final_score = self._round(base_score)
+        
+        return {
+            'score': final_score,
+            'deductions': deductions,
+            'gates': gates,
+            'metrics': {
+                'wpm': wpm,
+                'long_pauses': long_pauses,
+                'fillers': fillers,
+                'repetition': repetition,
+                'coherence_breaks': coherence_breaks
+            }
+        }
+    
+    def _score_lexical_resource(self, lexical: Dict, enhanced: Dict, 
+                                metadata: Dict, transcript: str) -> Dict:
+        """
+        Three-stage lexical scoring with sophistication emphasis
+        """
+        
+        base_score = 9.0
+        deductions = []
+        gates = []
+        
+        word_count = metadata['content_word_count']
+        sophistication = enhanced['sophistication_score']
+        
+        # ============ STAGE 1: DEDUCTIONS ============
+        
+        # Diversity (necessary but not sufficient)
+        diversity = lexical['breadth']['lexical_diversity']
+        if diversity < self.LEXICAL_DIVERSITY_VERY_LIMITED:
+            deductions.append(('very_limited_range', 3.0))
+        elif diversity < self.LEXICAL_DIVERSITY_LIMITED:
+            deductions.append(('limited_range', 2.0))
+        elif diversity < self.LEXICAL_DIVERSITY_ADEQUATE:
+            deductions.append(('adequate_range', 1.0))
+        
+        # Basic word overuse
+        basic_overuse = enhanced['basic_word_overuse']
+        if basic_overuse > 20:
+            deductions.append(('excessive_basic_vocab', 2.0))
+        elif basic_overuse > 10:
+            deductions.append(('noticeable_basic_vocab', 1.0))
+        
+        # Word choice errors
+        error_rate = (lexical['quality']['word_choice_errors'] / word_count) * 100
+        if error_rate > self.LEXICAL_ERROR_RATE_FREQUENT:
+            deductions.append(('frequent_word_errors', 2.5))
+        elif error_rate > self.LEXICAL_ERROR_RATE_SOME:
+            deductions.append(('some_word_errors', 1.5))
+        elif error_rate > self.LEXICAL_ERROR_RATE_OCCASIONAL:
+            deductions.append(('occasional_word_errors', 0.5))
+        
+        # Apply deductions
+        for reason, amount in deductions:
+            base_score -= amount
+        
+        # ============ STAGE 2: HARD GATES (CRITICAL) ============
+        
+        # Gate 1: No sophistication = max Band 5.5
+        if sophistication < 3.0:
+            gates.append(('no_sophistication', 5.5))
+        
+        # Gate 2: No idiomatic usage = max Band 6.5
+        if enhanced['idiomatic_expressions']['count'] == 0:
+            gates.append(('no_idiomatic_usage', 6.5))
+        
+        # Gate 3: Poor collocations = max Band 6.0
+        if enhanced['collocation_accuracy']['total'] > 0:
+            col_acc = (enhanced['collocation_accuracy']['correct'] / 
+                      enhanced['collocation_accuracy']['total'])
+            if col_acc < 0.6:
+                gates.append(('poor_collocations', 6.0))
+        
+        # Gate 4: No advanced vocabulary = max Band 5.5
+        if lexical['quality']['advanced_vocabulary_count'] == 0 and word_count >= 80:
+            gates.append(('no_advanced_vocabulary', 5.5))
+        
+        # Gate 5: Band 7+ requires AWL coverage
+        if enhanced['academic_word_list_coverage'] < 2 and base_score >= 7.0:
+            gates.append(('insufficient_academic_vocab', 6.5))
+        
+        # Gate 6: Band 7+ requires phrasal verbs
+        if enhanced['phrasal_verbs']['count'] == 0 and base_score >= 7.0:
+            gates.append(('no_phrasal_verbs', 6.5))
+        
+        # Apply strictest gate
+        if gates:
+            gated_score = min(g[1] for g in gates)
+            base_score = min(base_score, gated_score)
+        
+        # ============ STAGE 3: POSITIVE INDICATORS ============
+        
+        # Band 8-9 requires exceptional sophistication
+        if base_score >= 8.0:
+            if not (sophistication >= 7.0 and
+                   enhanced['idiomatic_expressions']['count'] >= 2 and
+                   error_rate < 1.0):
+                base_score = min(base_score, 7.5)
+        
+        final_score = self._round(base_score)
+        
+        return {
+            'score': final_score,
+            'deductions': deductions,
+            'gates': gates,
+            'sophistication_score': sophistication,
+            'metrics': {
+                'diversity': diversity,
+                'idioms': enhanced['idiomatic_expressions']['count'],
+                'awl_coverage': enhanced['academic_word_list_coverage'],
+                'phrasal_verbs': enhanced['phrasal_verbs']['count'],
+                'error_rate': error_rate
+            }
+        }
+    
+    def _score_grammatical_range_accuracy(self, grammar: Dict, metadata: Dict) -> Dict:
+        """
+        Three-stage grammar scoring with complex structure focus
+        """
+        
+        base_score = 9.0
+        deductions = []
+        gates = []
+        
+        word_count = metadata['content_word_count']
+        
+        # Calculate metrics
+        mlu = grammar['complexity']['mean_utterance_length']
+        complex_attempted = grammar['complexity']['complex_structures_attempted']
+        complex_accurate = grammar['complexity']['complex_structures_accurate']
+        total_errors = grammar['accuracy']['grammar_errors']
+        blocking_ratio = grammar['accuracy']['meaning_blocking_error_ratio']
+        
+        complex_acc_rate = (complex_accurate / complex_attempted 
+                           if complex_attempted > 0 else 0)
+        error_rate = (total_errors / word_count) * 100 if word_count > 0 else 100
+        
+        # Count structure range (types attempted)
+        structure_range = 1 if complex_attempted > 0 else 0
+        if complex_attempted >= 2:
+            structure_range = 2
+        if complex_attempted >= 4:
+            structure_range = 3
+        
+        # ============ STAGE 1: DEDUCTIONS ============
+        
+        # Utterance length
+        if mlu < self.GRAMMAR_MLU_VERY_SIMPLE:
+            deductions.append(('very_simple_sentences', 3.0))
+        elif mlu < self.GRAMMAR_MLU_SIMPLE:
+            deductions.append(('simple_sentences', 2.0))
+        elif mlu < self.GRAMMAR_MLU_MODERATE:
+            deductions.append(('moderate_complexity', 1.0))
+        
+        # Structure range
+        if structure_range < 2:
+            deductions.append(('very_limited_range', 2.5))
+        elif structure_range < 3:
+            deductions.append(('limited_range', 1.0))
+        
+        # Error rate
+        if error_rate > self.GRAMMAR_ERROR_RATE_FREQUENT:
+            deductions.append(('frequent_errors', 3.0))
+        elif error_rate > self.GRAMMAR_ERROR_RATE_NOTICEABLE:
+            deductions.append(('noticeable_errors', 2.0))
+        elif error_rate > self.GRAMMAR_ERROR_RATE_SOME:
+            deductions.append(('some_errors', 1.0))
+        elif error_rate > self.GRAMMAR_ERROR_RATE_OCCASIONAL:
+            deductions.append(('occasional_errors', 0.5))
+        
+        # Complex accuracy
+        if complex_acc_rate < self.GRAMMAR_COMPLEX_ACC_VERY_POOR:
+            deductions.append(('very_poor_complex_control', 3.5))
+        elif complex_acc_rate < self.GRAMMAR_COMPLEX_ACC_POOR:
+            deductions.append(('poor_complex_control', 2.5))
+        elif complex_acc_rate < self.GRAMMAR_COMPLEX_ACC_WEAK:
+            deductions.append(('weak_complex_control', 1.5))
+        elif complex_acc_rate < self.GRAMMAR_COMPLEX_ACC_GOOD:
+            deductions.append(('developing_complex_control', 0.5))
+        
+        # Blocking errors
+        if blocking_ratio > self.GRAMMAR_BLOCKING_FREQUENT:
+            deductions.append(('frequent_blocking_errors', 3.0))
+        elif blocking_ratio > self.GRAMMAR_BLOCKING_SOME:
+            deductions.append(('some_blocking_errors', 2.0))
+        elif blocking_ratio > self.GRAMMAR_BLOCKING_OCCASIONAL:
+            deductions.append(('occasional_blocking_errors', 1.0))
+        
+        # Apply deductions
+        for reason, amount in deductions:
+            base_score -= amount
+        
+        # ============ STAGE 2: HARD GATES ============
+        
+        # Gate 1: Zero accuracy on complex = max Band 4.5
+        if complex_attempted > 0 and complex_acc_rate == 0:
+            gates.append(('no_complex_control', 4.5))
+        
+        # Gate 2: No complex attempted = max Band 5.0
+        if complex_attempted == 0:
+            gates.append(('no_complex_attempted', 5.0))
+        
+        # Gate 3: Frequent blocking = max Band 5.5
+        if blocking_ratio > 0.25:
+            gates.append(('communication_breakdown', 5.5))
+        
+        # Gate 4: Very limited range = max Band 6.0
+        if structure_range < 2:
+            gates.append(('insufficient_range', 6.0))
+        
+        # Gate 5: Band 7+ requires 75%+ complex accuracy
+        if complex_acc_rate < 0.75 and base_score >= 7.0:
+            gates.append(('insufficient_complex_accuracy', 6.5))
+        
+        # Gate 6: Band 8+ requires 90%+ complex accuracy
+        if complex_acc_rate < 0.90 and base_score >= 8.0:
+            gates.append(('not_band_8_accuracy', 7.5))
+        
+        # Apply strictest gate
+        if gates:
+            gated_score = min(g[1] for g in gates)
+            base_score = min(base_score, gated_score)
+        
+        # ============ STAGE 3: POSITIVE INDICATORS ============
+        
+        # Band 8-9 requires excellence
+        if base_score >= 8.0:
+            if not (complex_acc_rate >= 0.90 and 
+                   error_rate < 2.0 and
+                   structure_range >= 3):
+                base_score = min(base_score, 7.5)
+        
+        final_score = self._round(base_score)
+        
+        return {
+            'score': final_score,
+            'deductions': deductions,
+            'gates': gates,
+            'metrics': {
+                'mlu': mlu,
+                'complex_accuracy': complex_acc_rate,
+                'error_rate': error_rate,
+                'blocking_ratio': blocking_ratio,
+                'structure_range': structure_range
+            }
+        }
+    
+    def _score_pronunciation(self, pronunciation: Dict, enhanced: Dict, 
+                            metadata: Dict) -> Dict:
+        """
+        Three-stage pronunciation scoring with prosody emphasis
+        """
+        
+        base_score = 9.0
+        deductions = []
+        gates = []
+        
+        # Extract metrics
+        word_conf = pronunciation['intelligibility']['mean_word_confidence']
+        low_conf_ratio = pronunciation['intelligibility']['low_confidence_ratio']
+        prosody_quality = enhanced['prosody_quality_score']
+        monotone = pronunciation['prosody']['monotone_detected']
+        
+        # Calculate intelligibility (40% segmental, 60% prosody)
+        segmental_score = word_conf * 0.7 + (1 - low_conf_ratio) * 0.3
+        intelligibility = segmental_score * 0.4 + prosody_quality * 0.6
+        
+        # ============ STAGE 1: DEDUCTIONS ============
+        
+        # Intelligibility-based deductions
+        if intelligibility < 0.5:
+            deductions.append(('very_difficult_to_understand', 4.0))
+        elif intelligibility < 0.65:
+            deductions.append(('difficult_to_understand', 3.0))
+        elif intelligibility < 0.75:
+            deductions.append(('requires_effort', 2.0))
+        elif intelligibility < 0.85:
+            deductions.append(('noticeable_accent', 1.0))
+        elif intelligibility < 0.92:
+            deductions.append(('slight_accent', 0.5))
+        
+        # Prosody-specific deductions
+        if monotone:
+            deductions.append(('monotone_delivery', 1.5))
+        
+        if prosody_quality < 0.5:
+            deductions.append(('unnatural_rhythm', 1.0))
+        
+        # Apply deductions
+        for reason, amount in deductions:
+            base_score -= amount
+        
+        # ============ STAGE 2: HARD GATES ============
+        
+        # Gate 1: Poor intelligibility = Band 4
+        if intelligibility < self.PRONUN_INTELLIGIBILITY_POOR:
+            gates.append(('poor_intelligibility', 4.0))
+        
+        # Gate 2: Monotone = max Band 6.0
+        if monotone:
+            gates.append(('no_prosodic_variation', 6.0))
+        
+        # Gate 3: Band 7+ requires good prosody
+        if prosody_quality < 0.70 and base_score >= 7.0:
+            gates.append(('insufficient_prosody', 6.5))
+        
+        # Gate 4: Band 8+ requires excellent prosody
+        if prosody_quality < 0.85 and base_score >= 8.0:
+            gates.append(('not_native_like', 7.5))
+        
+        # Gate 5: Band 9 requires near-perfect
+        if (prosody_quality < 0.95 or word_conf < 0.95) and base_score >= 9.0:
+            gates.append(('not_band_9_quality', 8.5))
+        
+        # Apply strictest gate
+        if gates:
+            gated_score = min(g[1] for g in gates)
+            base_score = min(base_score, gated_score)
+        
+        # ============ STAGE 3: POSITIVE INDICATORS ============
+        
+        # Band 8-9 requires excellence
+        if base_score >= 8.0:
+            if not (intelligibility >= 0.92 and 
+                   prosody_quality >= 0.85 and
+                   not monotone):
+                base_score = min(base_score, 7.5)
+        
+        final_score = self._round(base_score)
+        
+        return {
+            'score': final_score,
+            'deductions': deductions,
+            'gates': gates,
+            'metrics': {
+                'word_confidence': word_conf,
+                'low_conf_ratio': low_conf_ratio,
+                'intelligibility': intelligibility,
+                'prosody_quality': prosody_quality,
+                'monotone': monotone
+            }
+        }
+    
+    # ========================================================================
+    # OVERALL BAND CALCULATION
+    # ========================================================================
+    
+    def _calculate_overall_band(self, criterion_bands: Dict[str, float], 
+                                metadata: Dict) -> float:
+        """
+        Calculate overall band with weakness penalties and validation
+        """
+        
+        scores = list(criterion_bands.values())
+        avg = np.mean(scores)
+        min_score = min(scores)
+        max_score = max(scores)
+        gap = max_score - min_score
+        
+        # ============ STAGE 1: WEAKNESS PENALTIES ============
+        
+        overall = avg
+        
+        # Large gap penalty
+        if gap >= 2.0:
+            overall = min_score * 0.4 + avg * 0.6
+        elif gap >= 1.5:
+            overall = min_score * 0.3 + avg * 0.7
+        
+        # Multiple weak areas compound
+        weak_count = sum(1 for s in scores if s <= 5.0)
+        if weak_count >= 2:
+            overall = min(overall, 5.0)
+        elif weak_count == 1:
+            overall = min(overall, 6.0)
+        
+        # ============ STAGE 2: HARD CEILINGS ============
+        
+        ceilings = []
+        
+        # Fluency below 5.0 = max overall 6.0
+        if criterion_bands['fluency_coherence'] < 5.0:
+            ceilings.append(('fluency_barrier', 6.0))
+        
+        # Grammar below 5.0 = max overall 5.5
+        if criterion_bands['grammatical_range_accuracy'] < 5.0:
+            ceilings.append(('grammar_barrier', 5.5))
+        
+        # Any criterion <= 4.0 = max overall 5.0
+        if min_score <= 4.0:
+            ceilings.append(('severe_weakness', 5.0))
+        
+        # Lexical weak + others strong = cap at 7.0
+        if criterion_bands['lexical_resource'] <= 6.0 and max_score >= 8.0:
+            ceilings.append(('lexical_bottleneck', 7.0))
+        
+        # Apply strictest ceiling
+        if ceilings:
+            overall = min(overall, min(c[1] for c in ceilings))
+        
+        # ============ STAGE 3: STATISTICAL CALIBRATION ============
+        
+        overall = self._apply_statistical_calibration(overall, criterion_bands)
+        
+        # ============ STAGE 4: VALIDATION ============
+        
+        # Overall cannot exceed best criterion by more than 0.5
+        if overall > max_score + 0.5:
+            overall = max_score + 0.5
+        
+        # Overall should not be below worst criterion by more than 1.0
+        if overall < min_score - 1.0:
+            overall = min_score - 1.0
+        
+        return self._round(overall)
+    
+    def _apply_statistical_calibration(self, overall: float, 
+                                       criterion_bands: Dict) -> float:
+        """
+        Ensure realistic score distribution matching real IELTS data
+        """
+        
+        if len(self.score_history) < 100:
+            return overall  # Need more data
+        
+        # Check Band 8+ percentage
+        band_8_plus = sum(1 for s in self.score_history if s >= 8.0)
+        band_8_plus_pct = (band_8_plus / len(self.score_history)) * 100
+        
+        if band_8_plus_pct > self.STAT_BAND_8_PLUS_MAX_PCT:
+            # Too many high scores - apply stricter criteria
+            if overall >= 8.0:
+                # Verify all criteria at 7.5+
+                if not all(s >= 7.5 for s in criterion_bands.values()):
+                    overall = min(overall, 7.5)
+        
+        # Check Band 9 percentage
+        band_9 = sum(1 for s in self.score_history if s >= 9.0)
+        band_9_pct = (band_9 / len(self.score_history)) * 100
+        
+        if band_9_pct > self.STAT_BAND_9_MAX_PCT:
+            # Band 9 should be extremely rare
+            if overall >= 9.0:
+                overall = min(overall, 8.5)
+        
+        return overall
+    
+    # ========================================================================
+    # FEEDBACK GENERATION
+    # ========================================================================
+    
+    def _generate_feedback(self, criterion_bands: Dict, overall_band: float,
+                          diagnostics: Dict) -> Dict:
+        """Generate detailed feedback for test-taker"""
+        
+        sorted_criteria = sorted(criterion_bands.items(), key=lambda x: x[1])
+        weakest = sorted_criteria[0]
+        strongest = sorted_criteria[-1]
+        
+        # Summary
+        summary = f"Overall Band: {overall_band}\n"
+        summary += f"Weakest: {weakest[0].replace('_', ' ').title()} ({weakest[1]})\n"
+        summary += f"Strongest: {strongest[0].replace('_', ' ').title()} ({strongest[1]})"
+        
+        # Identify strengths
+        strengths = []
+        for criterion, score in criterion_bands.items():
+            if score >= 7.0:
+                strengths.append(f"{criterion.replace('_', ' ').title()}: {score}")
+        
+        # Identify areas for improvement with specific advice
+        improvements = []
+        
+        # Fluency
+        if criterion_bands['fluency_coherence'] < 7.0:
+            fluency_diag = diagnostics['fluency']
+            advice = []
+            if fluency_diag['metrics']['wpm'] < 90:
+                advice.append("Increase speaking speed through practice")
+            if fluency_diag['metrics']['long_pauses'] > 1.0:
+                advice.append("Reduce long pauses by preparing ideas in advance")
+            if fluency_diag['metrics']['fillers'] > 2.0:
+                advice.append("Replace fillers (um, uh) with brief pauses")
+            if fluency_diag['metrics']['coherence_breaks'] > 0:
+                advice.append("Use linking words to maintain coherence")
+            
+            if advice:
+                improvements.append({
+                    'criterion': 'Fluency & Coherence',
+                    'current_band': criterion_bands['fluency_coherence'],
+                    'suggestions': advice
+                })
+        
+        # Lexical
+        if criterion_bands['lexical_resource'] < 7.0:
+            lexical_diag = diagnostics['lexical']
+            advice = []
+            if lexical_diag['sophistication_score'] < 5.0:
+                advice.append("Learn and use more idiomatic expressions")
+            if lexical_diag['metrics']['idioms'] == 0:
+                advice.append("Incorporate common idioms naturally")
+            if lexical_diag['metrics']['awl_coverage'] < 3:
+                advice.append("Build academic vocabulary for abstract topics")
+            if lexical_diag['metrics']['phrasal_verbs'] == 0:
+                advice.append("Use phrasal verbs for natural expression")
+            
+            if advice:
+                improvements.append({
+                    'criterion': 'Lexical Resource',
+                    'current_band': criterion_bands['lexical_resource'],
+                    'suggestions': advice
+                })
+        
+        # Grammar
+        if criterion_bands['grammatical_range_accuracy'] < 7.0:
+            grammar_diag = diagnostics['grammar']
+            advice = []
+            if grammar_diag['metrics']['complex_accuracy'] < 0.75:
+                advice.append("Practice complex structures until automatic")
+            if grammar_diag['metrics']['structure_range'] < 3:
+                advice.append("Expand range: conditionals, relative clauses, passives")
+            if grammar_diag['metrics']['error_rate'] > 3.0:
+                advice.append("Focus on accuracy in common structures")
+            
+            if advice:
+                improvements.append({
+                    'criterion': 'Grammatical Range & Accuracy',
+                    'current_band': criterion_bands['grammatical_range_accuracy'],
+                    'suggestions': advice
+                })
+        
+        # Pronunciation
+        if criterion_bands['pronunciation'] < 7.0:
+            pronun_diag = diagnostics['pronunciation']
+            advice = []
+            if pronun_diag['metrics']['monotone']:
+                advice.append("Practice intonation patterns (rising/falling)")
+            if pronun_diag['metrics']['prosody_quality'] < 0.7:
+                advice.append("Work on sentence stress and rhythm")
+            if pronun_diag['metrics']['intelligibility'] < 0.85:
+                advice.append("Focus on problematic sounds with minimal pairs")
+            
+            if advice:
+                improvements.append({
+                    'criterion': 'Pronunciation',
+                    'current_band': criterion_bands['pronunciation'],
+                    'suggestions': advice
+                })
+        
+        return {
+            'summary': summary,
+            'strengths': strengths,
+            'improvements': improvements
+        }
+    
+    # ========================================================================
+    # UTILITIES
+    # ========================================================================
+    
+    @staticmethod
+    def _round(score: float) -> float:
+        """Round to nearest 0.5"""
+        return round(score * 2) / 2
+
+
+# ============================================================================
+# EXAMPLE USAGE
+# ============================================================================
+
+if __name__ == "__main__":
+    import json
+    import sys
+    
+    print("=" * 70)
+    print("IELTS Band Scorer v3.0 - Super Accurate Production System")
+    print("=" * 70)
+    
+    if len(sys.argv) > 1:
+        # Load from file
+        filename = sys.argv[1]
+        try:
+            with open(filename) as f:
+                analysis_data = json.load(f)
+            
+            # Extract analysis portion if wrapped in results
+            if 'analysis' in analysis_data:
+                analysis_data = analysis_data['analysis']
+            
+            scorer = IELTSBandScorerV3()
+            result = scorer.score(analysis_data)
+            
+            print("\n" + "=" * 70)
+            print("SCORING RESULTS")
+            print("=" * 70)
+            
+            if result.get('validation_failed'):
+                print(f"\n❌ {result['feedback_summary']}")
+            else:
+                print(f"\n🎯 Overall Band Score: {result['overall_band']}")
+                print("\n📊 Criterion Scores:")
+                for criterion, score in result['criterion_bands'].items():
+                    criterion_name = criterion.replace('_', ' ').title()
+                    print(f"   • {criterion_name:.<40} {score}")
+                
+                print(f"\n📝 Feedback:")
+                print(result['feedback_summary'])
+                
+                if result.get('strengths'):
+                    print(f"\n✅ Strengths:")
+                    for strength in result['strengths']:
+                        print(f"   • {strength}")
+                
+                if result.get('areas_for_improvement'):
+                    print(f"\n📈 Areas for Improvement:")
+                    for area in result['areas_for_improvement']:
+                        print(f"\n   {area['criterion']} (Current: Band {area['current_band']})")
+                        for suggestion in area['suggestions']:
+                            print(f"      - {suggestion}")
+                
+                # Detailed diagnostics
+                if '--verbose' in sys.argv:
+                    print("\n" + "=" * 70)
+                    print("DETAILED DIAGNOSTICS")
+                    print("=" * 70)
+                    
+                    for criterion, diag in result['detailed_diagnostics'].items():
+                        print(f"\n{criterion.upper()}:")
+                        print(f"  Score: {diag['score']}")
+                        
+                        if diag.get('deductions'):
+                            print(f"  Deductions:")
+                            for reason, amount in diag['deductions']:
+                                print(f"    - {reason}: -{amount}")
+                        
+                        if diag.get('gates'):
+                            print(f"  Gates Applied:")
+                            for reason, cap in diag['gates']:
+                                print(f"    - {reason}: capped at {cap}")
+                        
+                        if diag.get('metrics'):
+                            print(f"  Key Metrics:")
+                            for metric, value in diag['metrics'].items():
+                                if isinstance(value, float):
+                                    print(f"    - {metric}: {value:.3f}")
+                                else:
+                                    print(f"    - {metric}: {value}")
+        
+        except FileNotFoundError:
+            print(f"\n❌ Error: File '{filename}' not found")
+        except json.JSONDecodeError:
+            print(f"\n❌ Error: Invalid JSON in '{filename}'")
+        except Exception as e:
+            print(f"\n❌ Error: {str(e)}")
+            import traceback
+            traceback.print_exc()
+    
+    else:
+        print("\nUsage: python ielts_scorer_v3.py <analysis_file.json> [--verbose]")
+        print("\nExample:")
+        print("  python ielts_scorer_v3.py L2A_003.json")
+        print("  python ielts_scorer_v3.py L2A_003.json --verbose")
+        print("\nThe analysis file should contain IELTS speaking analysis data with:")
+        print("  - metadata (duration, word counts)")
+        print("  - fluency_coherence metrics")
+        print("  - lexical_resource metrics")
+        print("  - grammatical_range_accuracy metrics")
+        print("  - pronunciation metrics")
+        print("  - raw_transcript (optional but recommended)")
+```
+
+## llm_processing.py
+
+```python
+# llm_processing.py
+
+from pydantic import BaseModel, Field
+from typing_extensions import Annotated
+from typing import List, Literal
+from openai import OpenAI
+import json
+
+NonNegativeInt = Annotated[int, Field(ge=0)]
+Ratio01 = Annotated[float, Field(ge=0.0, le=1.0)]
+
+class Span(BaseModel):
+    text: str
+    label: Literal[
+        "meaning_blocking_grammar_error",
+        "grammar_error",
+        "word_choice_error",
+        "coherence_break",
+        "complex_structure",
+        "advanced_vocabulary",
+    ]
+
+class LLMSpeechAnnotations(BaseModel):
+    topic_relevance: bool
+
+    coherence_breaks: List[Span]
+
+    word_choice_errors: List[Span]
+    advanced_vocabulary: List[Span]
+
+    complex_structures_attempted: List[Span]
+    complex_structures_accurate: List[Span]
+
+    grammar_errors: List[Span]
+    meaning_blocking_grammar_errors: List[Span]
+
+system_prompt = """
+You are a deterministic annotation engine for spoken English evaluation.
+
+Your task:
+- Identify and MARK spans in the transcript.
+- Do NOT compute totals, counts, or ratios.
+- Do NOT explain reasoning.
+- Do NOT infer intent beyond the transcript.
+- If unsure, DO NOT annotate the span.
+
+STRICT RULES:
+- Annotate ONLY what is clearly present.
+- If uncertain, omit the annotation.
+- Use the LOWEST reasonable interpretation.
+- Return ONLY valid JSON matching the schema.
+- No markdown. No comments. No extra keys.
+
+DEFINITIONS:
+- coherence_breaks: Moments where the speaker abandons an idea or makes an illogical jump.
+- topic_relevance: True if the response addresses the prompt.
+- word_choice_errors: Incorrect or inappropriate word choice (not grammar).
+- advanced_vocabulary: Correctly used higher-level words (Band 7+).
+- complex_structures_attempted: Attempts at conditionals, relatives, passives, modals, subordination.
+- complex_structures_accurate: Subset of attempted structures that are correct.
+- grammar_errors: Any grammatical error.
+- meaning_blocking_grammar_errors: Meaning-blocking grammar errors are ONLY those that: Make the sentence unintelligible OR Change the core meaning OR Prevent understanding without rereading. Number agreement errors alone are NOT meaning-blocking. Preposition redundancy alone is NOT meaning-blocking.
+
+
+SPAN RULES:
+- Each span must be ATOMIC.
+- Do NOT merge multiple issues into one span.
+- A span must be the shortest phrase that independently shows the issue.
+- Never include conjunctions like "and then", "so", "because" unless required.
+- If a span qualifies for multiple labels, assign ONLY the highest-precedence label.
+- Do NOT duplicate spans across categories.
+
+LABEL PRECEDENCE (highest → lowest):
+1. Meaning Blocking Grammar Error
+2. Grammar Error
+3. Word Choice Error
+4. Coherence Break
+5. Complex Structure
+6. Advanced Vocabulary
+
+IMPORTANT:
+- A span must include the exact text excerpt from the transcript.
+- Do NOT include timestamps or character offsets.
+- The text must appear verbatim in the transcript.
+- If unsure whether something qualifies, do NOT annotate it.
+"""
+
+def extract_llm_annotations(raw_transcript: str, speech_context: str = "conversational") -> LLMSpeechAnnotations:
+    
+    context = {
+        "raw_transcript": raw_transcript,
+        "speech_context": speech_context,
+    }
+
+    prompt_text = json.dumps(
+        context,
+        ensure_ascii=False,
+        indent=2
+    )
+
+    client = OpenAI()
+    prompt_text = json.dumps(context, ensure_ascii=False)
+    response = client.responses.parse(
+        model="gpt-4o-mini",
+        input=[
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": prompt_text},
+        ],
+        temperature=0.0,      # 🔒 critical
+        top_p=1.0,            # 🔒 critical
+        text_format=LLMSpeechAnnotations,
+    )
+
+    llm_result: LLMSpeechAnnotations = response.output_parsed
+
+    return llm_result
+
+def aggregate_llm_metrics(llm_result) -> dict:
+    """
+    Convert span-based LLM annotations into scalar metrics.
+    """
+
+    grammar_error_count = len(llm_result.grammar_errors)
+    meaning_blocking_count = len(llm_result.meaning_blocking_grammar_errors)
+
+    meaning_blocking_error_ratio = (
+        meaning_blocking_count / grammar_error_count
+        if grammar_error_count > 0
+        else 0.0
+    )
+
+    return {
+        "coherence_breaks": len(llm_result.coherence_breaks),
+        "topic_relevance": llm_result.topic_relevance,
+
+        "word_choice_errors": len(llm_result.word_choice_errors),
+        "advanced_vocabulary_count": len(llm_result.advanced_vocabulary),
+
+        "complex_structures_attempted": len(llm_result.complex_structures_attempted),
+        "complex_structures_accurate": len(llm_result.complex_structures_accurate),
+
+        "grammar_errors": grammar_error_count,
+        "meaning_blocking_error_ratio": round(meaning_blocking_error_ratio, 3),
+    }
+
+def analyze_llm_metrics(
+    raw_transcript: str,
+    speech_context: str = "conversational"
+) -> dict:
+    """
+    Analyze speech using LLM and return aggregated metrics.
+    """
+    llm_result = extract_llm_annotations(raw_transcript, speech_context)
+    llm_metrics = aggregate_llm_metrics(llm_result)
+    return llm_metrics
+```
+
 ## metrics.py
 
 ```python
@@ -2129,6 +3686,7 @@ if __name__ == "__main__":
 import pandas as pd
 import numpy as np
 from .config import STOPWORDS
+
 
 def clamp01(x: float) -> float:
     """Clamp value to [0, 1] range."""
@@ -2143,11 +3701,13 @@ def filler_weight(duration: float) -> float:
         return 0.6      # subtle filler
     else:
         return 1.0      # real filler
-    
+
+
 def rolling_wpm(df_words, window_sec=10.0):
     wpms = []
+    if df_words.empty:
+        return wpms
     start_times = df_words["start"].values
-
     for t in start_times:
         window = df_words[
             (df_words["start"] >= t) &
@@ -2155,9 +3715,7 @@ def rolling_wpm(df_words, window_sec=10.0):
         ]
         if len(window) > 0:
             wpms.append(len(window) * 60 / window_sec)
-
     return wpms
-
 
 
 def overlaps_filler(
@@ -2167,195 +3725,236 @@ def overlaps_filler(
     tol: float = 0.05
 ) -> bool:
     """Check if time range overlaps any filler event."""
+    if fillers.empty:
+        return False
     for _, f in fillers.iterrows():
         if start < f["end"] + tol and end > f["start"] - tol:
             return True
     return False
 
-def utterance_lengths(df_words_raw, pause_threshold=0.5):
+
+def utterance_lengths(df_words_asr, pause_threshold=0.5):
+    """Compute utterance lengths using clean ASR word timeline."""
+    if df_words_asr.empty:
+        return []
     lengths = []
     count = 0
-
-    for i in range(len(df_words_raw)):
+    n = len(df_words_asr)
+    for i in range(n):
         count += 1
-        if i == len(df_words_raw) - 1:
+        if i == n - 1:
             lengths.append(count)
         else:
-            gap = (
-                df_words_raw.iloc[i+1]["start"]
-                - df_words_raw.iloc[i]["end"]
-            )
+            gap = df_words_asr.iloc[i + 1]["start"] - df_words_asr.iloc[i]["end"]
             if gap > pause_threshold:
                 lengths.append(count)
                 count = 0
-
     return lengths
 
 
 def calculate_normalized_metrics(
-    df_words_raw: pd.DataFrame,      # CHANGED: Full timeline
-    df_words_cleaned: pd.DataFrame,   # NEW: Content words only
+    df_words_asr: pd.DataFrame,
+    df_words_content: pd.DataFrame,
     df_segments: pd.DataFrame,
     df_fillers: pd.DataFrame,
-    total_duration: float
+    total_duration: float,
+    df_tokens_enriched: pd.DataFrame = None  # Optional: for future use only
 ) -> dict:
     """
     Calculate normalized fluency metrics.
     
     Args:
-        df_words_full: Complete word timeline (includes fillers with is_filler flag)
-        df_words_content: Content words only (fillers removed)
-        df_segments: Segment-level timestamps
-        df_fillers: Filler/stutter events
-        total_duration: Total audio duration in seconds
+        df_words_asr: Full ASR word timeline (includes transcribed fillers like 'um', 'uh').
+                      Used for pause detection, utterance segmentation, and confidence metrics.
+        df_words_content: Content words only (fillers removed).
+                          Used for lexical and rate metrics.
+        df_segments: Segment-level timestamps from ASR.
+        df_fillers: Unified disfluency events (fillers + stutters from all sources).
+        total_duration: Total audio duration in seconds.
+        df_tokens_enriched: Optional enriched token stream (ASR + acoustic fillers).
+                            Currently unused — reserved for future advanced metrics.
         
     Returns:
         Dictionary of normalized metrics
     """
+    if total_duration <= 0:
+        total_duration = 0.1  # avoid division by zero
+
     duration_min = max(total_duration / 60.0, 0.5)
-    
-    # Words per minute - use CONTENT words only
-    words_per_minute = (len(df_words_cleaned) * 60) / total_duration
 
-    # Unique word count - use CONTENT words only
-    unique_word_count = df_words_cleaned["word"].str.lower().nunique()
-    
-    # Filler metrics
-    filler_events = df_fillers[df_fillers["type"] == "filler"]
-    stutter_events = df_fillers[df_fillers["type"] == "stutter"]
-    
-    fillers_per_min = (
-        filler_events["duration"]
-        .apply(filler_weight)
-        .sum()
-        / duration_min
-    )
-    
-    stutters_per_min = len(stutter_events) / duration_min
-    
-    # Pause detection - use FULL timeline to get accurate gaps
-    pause_durations = []
-    
-    for i in range(1, len(df_words_raw)):
-        gap_start = df_words_raw.iloc[i - 1]["end"]
-        gap_end = df_words_raw.iloc[i]["start"]
-        gap = gap_end - gap_start
-        
-        # Only count as pause if:
-        # 1. Gap is significant (>0.3s)
-        # 2. Gap doesn't overlap with detected filler events
-        if gap > 0.3 and not overlaps_filler(gap_start, gap_end, df_fillers):
-            pause_durations.append(gap)
-    
-    pause_durations = pd.Series(pause_durations, dtype="float")
-    
-    # Pause metrics
-    long_pauses = pause_durations[pause_durations > 1.0]
-    very_long_pauses = pause_durations[pause_durations > 2.0]
-    
-    long_pauses_per_min = len(long_pauses) / duration_min
-    very_long_pauses_per_min = len(very_long_pauses) / duration_min
-    
-    pause_time_ratio = (
-        pause_durations.sum() / total_duration
-        if pause_durations.size > 0
-        else 0.0
-    )
-    
-    # standard deviation of puse durations, small deviation means more consistent pacing
-    pause_variability = (
-        pause_durations.std()
-        if pause_durations.size > 5
-        else 0.0
-    )
+    # === Lexical & Rate Metrics (use content words only) ===
+    words_per_minute = (len(df_words_content) * 60) / total_duration
 
-    pause_frequency = len(pause_durations) / duration_min
-    
-    # Lexical metrics - use CONTENT words only
-    if len(df_words_cleaned) == 0:
+    if len(df_words_content) == 0:
         vocab_richness = 0.0
         repetition_ratio = 0.0
+        words_clean_nostopwords = pd.Series([], dtype="object")
     else:
-        words_clean = df_words_cleaned["word"].str.lower()
-        
+        words_clean = df_words_content["word"].str.lower()
         vocab_richness = words_clean.nunique() / len(words_clean)
+        words_clean_nostopwords = words_clean[~words_clean.isin(STOPWORDS)]
+        if len(words_clean_nostopwords) > 0:
+            repetition_ratio = (
+                words_clean_nostopwords.value_counts().iloc[0] / len(words_clean_nostopwords)
+            )
+        else:
+            repetition_ratio = 0.0
 
+    # === Disfluency Metrics (use df_fillers) ===
+    filler_events = df_fillers[df_fillers["type"] == "filler"]
+    stutter_events = df_fillers[df_fillers["type"] == "stutter"]
 
-    words_clean_nostopwords = (
-        df_words_cleaned["word"]
-        .str.lower()
-        .loc[~df_words_cleaned["word"].isin(STOPWORDS)]
+    fillers_per_min = (
+        filler_events["duration"].apply(filler_weight).sum() / duration_min
+        if not filler_events.empty else 0.0
     )
-    # what ratio of words are the most common word - higher means more repetition (speakers tend to repeat safe words)
-    repetition_ratio = (
-        words_clean_nostopwords.value_counts().iloc[0] / len(words_clean_nostopwords)
-        if len(words_clean_nostopwords) > 0
-        else 0.0
+
+    stutters_per_min = len(stutter_events) / duration_min
+
+    # === Pause & Prosody Metrics (use df_words_asr + df_fillers) ===
+    pause_durations = []
+    if not df_words_asr.empty:
+        for i in range(1, len(df_words_asr)):
+            gap_start = df_words_asr.iloc[i - 1]["end"]
+            gap_end = df_words_asr.iloc[i]["start"]
+            gap = gap_end - gap_start
+            if gap > 0.3 and not overlaps_filler(gap_start, gap_end, df_fillers):
+                pause_durations.append(gap)
+
+    pause_durations = pd.Series(pause_durations, dtype="float")
+
+    long_pauses = pause_durations[pause_durations > 1.0]
+    very_long_pauses = pause_durations[pause_durations > 2.0]
+
+    long_pauses_per_min = len(long_pauses) / duration_min
+    very_long_pauses_per_min = len(very_long_pauses) / duration_min
+    pause_time_ratio = pause_durations.sum() / total_duration if not pause_durations.empty else 0.0
+    pause_variability = pause_durations.std() if len(pause_durations) > 5 else 0.0
+    pause_frequency = len(pause_durations) / duration_min
+
+    # === Utterance Metrics ===
+    utt_lengths = utterance_lengths(df_words_asr)
+    mean_utterance_length = np.mean(utt_lengths) if utt_lengths else 0.0
+
+    # === Confidence Metrics (use df_words_asr) ===
+    if "confidence" in df_words_asr.columns and not df_words_asr.empty:
+        valid_confs = df_words_asr["confidence"].dropna()
+        if len(valid_confs) > 0:
+            mean_word_confidence = valid_confs.mean()
+            low_confidence_ratio = (valid_confs < 0.7).sum() / len(valid_confs)
+        else:
+            mean_word_confidence = 0.0
+            low_confidence_ratio = 0.0
+    else:
+        mean_word_confidence = 0.0
+        low_confidence_ratio = 0.0
+
+    # === Derived Metrics ===
+    lexical_density = (
+        len(words_clean_nostopwords) / len(df_words_asr)
+        if len(df_words_asr) > 0 else 0.0
     )
 
-    wpm_rolling = rolling_wpm(df_words_cleaned)
-
-    # compared to mean wpm (rolling), how much does the speech rate deviate? low = consistent pacing
-    # < 0.2 very steady, 0.2-0.4 moderate, >0.4 highly variable
+    wpm_rolling = rolling_wpm(df_words_content)
     speech_rate_variability = (
         np.std(wpm_rolling) / np.mean(wpm_rolling) if len(wpm_rolling) > 3 else 0.0
     )
 
-    # avg words spoken per utterance (between pauses)
-    utt_lengths = utterance_lengths(df_words_raw)
-    mean_utterance_length = np.mean(utt_lengths) if utt_lengths else 0.0
+    # Note: pause_after_filler_rate is buggy (uses undefined gap_start) — disabled for now
+    pause_after_filler_rate = 0.0
 
-    pause_after_filler = 0
-    total_fillers = len(filler_events)
+    speaking_time_sec = total_duration - pause_durations.sum()
 
-    for _, f in filler_events.iterrows():
-        for gap in pause_durations:
-            if gap > 0.3 and abs(f["end"] - gap_start) < 0.2:
-                pause_after_filler += 1
-                break
-
-    pause_after_filler_rate = (
-        pause_after_filler / total_fillers if total_fillers > 0 else 0.0
-    )
-
-    mean_word_confidence = (
-        df_words_raw["confidence"].mean()
-        if "confidence" in df_words_raw.columns and len(df_words_raw) > 0
-        else 0.0
-    )
-
-    low_confidence_ratio = (
-        (df_words_raw["confidence"] < 0.7).sum() / len(df_words_raw)
-        if "confidence" in df_words_raw.columns and len(df_words_raw) > 0
-        else 0.0
-    )
-
-    lexical_density = (
-        len(words_clean_nostopwords) / len(df_words_raw)
-        if len(df_words_raw) > 0
-        else 0.0
-    )
-
-
-    
     return {
-        "wpm": words_per_minute,
-        "unique_word_count": unique_word_count,
-        "fillers_per_min": fillers_per_min,
-        "stutters_per_min": stutters_per_min,
-        "long_pauses_per_min": long_pauses_per_min,
-        "very_long_pauses_per_min": very_long_pauses_per_min,
-        "pause_frequency": pause_frequency,
-        "pause_time_ratio": pause_time_ratio,
-        "pause_variability": pause_variability,
-        "vocab_richness": vocab_richness,
-        "repetition_ratio": repetition_ratio,
-        "speech_rate_variability": speech_rate_variability,
-        "mean_utterance_length": mean_utterance_length,
-        "pause_after_filler_rate": pause_after_filler_rate,
-        "mean_word_confidence": mean_word_confidence,
-        "low_confidence_ratio": low_confidence_ratio,
-        "lexical_density": lexical_density,
+        "wpm": round(words_per_minute, 2),
+        "unique_word_count": int(round(vocab_richness * len(df_words_content))) if len(df_words_content) > 0 else 0,
+        "fillers_per_min": round(fillers_per_min, 2),
+        "stutters_per_min": round(stutters_per_min, 2),
+        "long_pauses_per_min": round(long_pauses_per_min, 2),
+        "very_long_pauses_per_min": round(very_long_pauses_per_min, 2),
+        "pause_frequency": round(pause_frequency, 2),
+        "pause_time_ratio": round(pause_time_ratio, 3),
+        "pause_variability": round(pause_variability, 3) if not np.isnan(pause_variability) else 0.0,
+        "vocab_richness": round(vocab_richness, 3),
+        "repetition_ratio": round(repetition_ratio, 3),
+        "speech_rate_variability": round(speech_rate_variability, 3),
+        "mean_utterance_length": round(mean_utterance_length, 2),
+        "pause_after_filler_rate": round(pause_after_filler_rate, 3),
+        "mean_word_confidence": round(mean_word_confidence, 3),
+        "low_confidence_ratio": round(low_confidence_ratio, 3),
+        "lexical_density": round(lexical_density, 3),
+        "audio_duration_sec": round(total_duration, 2),
+        "speaking_time_sec": round(speaking_time_sec, 2),
     }
+```
+
+## prosody_extraction.py
+
+```python
+# prosody_extraction.py
+
+import numpy as np
+import librosa
+from pathlib import Path
+import sys
+
+PROJECT_ROOT = Path.cwd().parent
+sys.path.insert(0, str(PROJECT_ROOT))
+
+
+def prosody_variation_robust(audio_path: str, hop_length: int = 256) -> float:
+    """
+    Robust prosody variation using:
+      - YIN for speed
+      - IQR-based outlier removal
+      - Median absolute deviation (MAD) as variation metric
+    """
+    y, sr = librosa.load(audio_path, sr=None)
+    
+    # Estimate F0 with YIN (faster than PYIN)
+    f0 = librosa.yin(
+        y,
+        fmin=librosa.note_to_hz('C2'),   # 65 Hz
+        fmax=librosa.note_to_hz('C6'),   # 1046 Hz (reduce max to avoid harmonics)
+        sr=sr,
+        hop_length=hop_length
+    )
+    
+    # Remove unvoiced frames (YIN returns 0 for unvoiced)
+    voiced_f0 = f0[f0 > 0]
+    
+    if len(voiced_f0) < 10:  # Need min frames
+        return 0.0
+
+    # Remove outliers using IQR (keeps only plausible F0)
+    q25, q75 = np.percentile(voiced_f0, [25, 75])
+    iqr = q75 - q25
+    lower_bound = q25 - 1.5 * iqr
+    upper_bound = q75 + 1.5 * iqr
+    filtered_f0 = voiced_f0[(voiced_f0 >= lower_bound) & (voiced_f0 <= upper_bound)]
+    
+    if len(filtered_f0) == 0:
+        return 0.0
+        
+    # Use MAD (robust to outliers) instead of std
+    # Convert to Hz-scale MAD: MAD ≈ 0.6745 * σ for normal dist, but we care about relative variation
+    mad = np.median(np.abs(filtered_f0 - np.median(filtered_f0)))
+    return float(mad)
+
+
+def monotone_detected(prosody_var: float, threshold: float = 20.0) -> bool:
+    """Detect monotone speech based on F0 std (in Hz)."""
+    return prosody_var < threshold
+
+
+# Example usage
+def is_monotone_speech(audio_file: str) -> None:
+    prosody_var = prosody_variation_robust(audio_file, hop_length=512)  # try 1024 for even faster
+    monotone = monotone_detected(prosody_var)
+
+    print(f"Prosody Variation (F0 std): {prosody_var:.2f} Hz")
+    print(f"Monotone Detected: {monotone}")
+
+    return monotone
 ```
 
