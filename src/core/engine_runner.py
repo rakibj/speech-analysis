@@ -104,7 +104,7 @@ async def run_engine(
             use_llm=use_llm
         )
         
-        logger.info("✓ Analysis complete")
+        logger.info("[OK] Analysis complete")
         
         return result
         

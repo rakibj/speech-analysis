@@ -14,10 +14,10 @@ async def main():
     audio_file = Path("samples/sample6.flac")
 
     if not audio_file.exists():
-        print(f"❌ Audio File Not Found")
+        print(f"[ERROR] Audio File Not Found")
         return
     
-    print(f"📁 Loading: {audio_file.name} ({audio_file.stat().st_size / 1024 / 1024:.2f} MB)")
+    print(f"[INFO] Loading: {audio_file.name} ({audio_file.stat().st_size / 1024 / 1024:.2f} MB)")
     
     # Read audio bytes
     with open(audio_file, "rb") as f:
@@ -25,7 +25,7 @@ async def main():
     
     # Run analysis
     try:
-        print("\n🚀 Starting analysis (this may take 1-2 minutes)...\n")
+        print("\n[START] Starting analysis (this may take 1-2 minutes)...\n")
         
         result = await run_engine(
             audio_bytes=audio_bytes,
@@ -41,10 +41,10 @@ async def main():
         
         # Transcript
         transcript = result['transcript']
-        print(f"\n📝 TRANSCRIPT:\n{transcript}\n")
+        print(f"\n[TRANSCRIPT]:\n{transcript}\n")
         
         # Band scores
-        print(f"🎯 IELTS BAND SCORES:")
+        print(f"[IELTS BAND SCORES]:")
         print(f"   Overall Band: {result['band_scores']['overall_band']}")
         print(f"\n   Criterion Bands:")
         for criterion, band in result['band_scores']['criterion_bands'].items():
@@ -52,13 +52,13 @@ async def main():
         
         # Feedback
         if result['band_scores']['feedback']:
-            print(f"\n💬 FEEDBACK:")
+            print(f"\n[FEEDBACK]:")
             for criterion, feedback in result['band_scores']['feedback'].items():
                 print(f"   {criterion}:")
                 print(f"     {feedback}\n")
         
         # Statistics
-        print(f"📊 STATISTICS:")
+        print(f"[STATISTICS]:")
         stats = result['statistics']
         print(f"   • Duration: {result['metadata']['audio_duration_sec']}s")
         print(f"   • Total words: {stats['total_words_transcribed']}")
@@ -70,7 +70,7 @@ async def main():
         # Fluency metrics
         fluency = result['fluency_analysis']
         if fluency:
-            print(f"\n⚡ FLUENCY METRICS:")
+            print(f"\n[FLUENCY METRICS]:")
             if 'wpm' in fluency:
                 print(f"   • Words per minute: {fluency['wpm']}")
             if 'long_pauses_per_min' in fluency:
@@ -80,21 +80,21 @@ async def main():
         
         # Speech quality
         quality = result['speech_quality']
-        print(f"\n🔊 SPEECH QUALITY:")
+        print(f"\n[SPEECH QUALITY]:")
         print(f"   • Mean word confidence: {quality['mean_word_confidence']:.3f}")
         print(f"   • Low confidence ratio: {quality['low_confidence_ratio']:.3f}")
         print(f"   • Monotone detected: {quality['is_monotone']}")
         
         # LLM analysis
         if result.get('llm_analysis'):
-            print(f"\n🤖 LLM ANALYSIS AVAILABLE")
+            print(f"\n[LLM ANALYSIS AVAILABLE]")
         else:
-            print(f"\n💡 TIP: Run with use_llm=True for semantic analysis (slower)")
+            print(f"\n[TIP] Run with use_llm=True for semantic analysis (slower)")
         
         print("\n" + "="*70)
         
     except Exception as e:
-        print(f"\n❌ ERROR: {str(e)}")
+        print(f"\n[ERROR] {str(e)}")
         import traceback
         traceback.print_exc()
 

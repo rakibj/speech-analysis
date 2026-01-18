@@ -119,7 +119,7 @@ async def analyze_speech(
                 logger.info("Stage 4: Running LLM annotation analysis...")
                 llm_annotations = extract_llm_annotations(transcript)
                 llm_analysis = aggregate_llm_metrics(llm_annotations)
-                logger.info("✓ LLM analysis complete")
+                logger.info("[OK] LLM analysis complete")
             except Exception as e:
                 logger.warning(f"LLM analysis failed (continuing): {str(e)}")
                 llm_analysis = None
@@ -167,7 +167,7 @@ async def analyze_speech(
             "llm_analysis": llm_analysis,
         }
         
-        logger.info("✓ Analysis complete")
+        logger.info("[OK] Analysis complete")
         return make_json_safe(final_report)
         
     except SpeechAnalysisError as e:
