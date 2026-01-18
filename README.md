@@ -47,10 +47,10 @@ from src.analyze_band import analyze_band_from_analysis
 async def analyze_audio_sample():
     # Analyze speech from audio file
     result = await analyze_speech("path/to/audio.wav")
-    
+
     # Get IELTS band scoring
     band_result = await analyze_band_from_analysis(result)
-    
+
     print(f"Overall Band: {band_result['band_scores']['overall_band']}")
     print(f"Fluency: {band_result['band_scores']['criterion_bands']['fluency_coherence']}")
     print(f"Pronunciation: {band_result['band_scores']['criterion_bands']['pronunciation']}")
@@ -88,6 +88,7 @@ CACHE_MODELS=true      # Cache loaded models
 ### Thresholds & Weights
 
 Edit `src/config.py` for:
+
 - **Filler patterns**: Detection rules for um, uh, er, etc.
 - **Pause thresholds**: Long pause detection (400ms default)
 - **Scoring weights**: WEIGHT_PAUSE, WEIGHT_FILLER, WEIGHT_STABILITY, etc.
@@ -102,11 +103,13 @@ Edit `src/config.py` for:
 Comprehensive speech analysis from audio file.
 
 **Parameters:**
+
 - `audio_path` (str): Path to audio file (.wav, .flac, .mp3, etc.)
 - `speech_context` (str): One of "conversational", "narrative", "presentation", "interview"
 - `device` (str): "cpu" or "cuda" for GPU acceleration
 
 **Returns:**
+
 ```python
 {
     "raw_transcript": "Full verbatim transcription",
@@ -131,6 +134,7 @@ Comprehensive speech analysis from audio file.
 ```
 
 **Raises:**
+
 - `AudioNotFoundError`: File doesn't exist
 - `AudioFormatError`: Cannot read file
 - `AudioDurationError`: Too short (< 5 seconds)
@@ -139,6 +143,7 @@ Comprehensive speech analysis from audio file.
 - `NoSpeechDetectedError`: No speech in audio
 
 **Example:**
+
 ```python
 import asyncio
 from src.analyzer_raw import analyze_speech
@@ -153,11 +158,13 @@ print(f"Fillers: {result['statistics']['filler_percentage']}%")
 IELTS band scoring from metrics.
 
 **Parameters:**
+
 - `metrics` (dict): Metrics dictionary from analyzer
 - `transcript` (str): Full transcription text
 - `use_llm` (bool): Enable OpenAI semantic evaluation (default: False)
 
 **Returns:**
+
 ```python
 {
     "overall_band": 6.5,
@@ -179,10 +186,12 @@ IELTS band scoring from metrics.
 ```
 
 **Raises:**
+
 - `LLMAPIError`: OpenAI API call failed (degrades to metrics-only)
 - `ConfigurationError`: Missing OpenAI API key (with LLM enabled)
 
 **Example:**
+
 ```python
 from src.ielts_band_scorer import score_ielts_speaking
 
@@ -243,6 +252,7 @@ logger = setup_logging(
 ```
 
 **Log Levels:**
+
 - `DEBUG`: Detailed model and processing info
 - `INFO`: Stage completion and results
 - `WARNING`: Non-critical issues (missing API key, model warnings)
@@ -260,11 +270,13 @@ uv run python scripts/batch_band_analysis.py
 ```
 
 Processes:
+
 1. All `.wav` files in `data/ielts_part_2/`
 2. Saves analysis to `outputs/audio_analysis/`
 3. Scores with IELTS bands to `outputs/band_results/`
 
 Configure limits in script:
+
 ```python
 await run_analysis(limit=5)  # Process first 5 files
 ```
@@ -288,6 +300,7 @@ uv run python test_e2e.py
 ```
 
 **Test Coverage:**
+
 - Exception handling (4 tests)
 - Audio processing utilities (6 tests)
 - LLM integration (3 tests)
@@ -298,15 +311,15 @@ uv run python test_e2e.py
 
 Typical analysis times (single audio file, base model):
 
-| Operation | Duration | Notes |
-|-----------|----------|-------|
-| Audio loading | 0.1s | File I/O |
-| Whisper transcription | 15-30s | GPU 2-3x faster |
-| WhisperX alignment | 5-10s | For 2 min audio |
-| Wav2Vec2 filler detection | 10-20s | GPU recommended |
-| LLM annotation | 10-15s | OpenAI API call |
-| IELTS scoring | < 1s | Metrics calculation |
-| **Total (with LLM)** | ~50-90s | ~30-50s on GPU |
+| Operation                 | Duration | Notes               |
+| ------------------------- | -------- | ------------------- |
+| Audio loading             | 0.1s     | File I/O            |
+| Whisper transcription     | 15-30s   | GPU 2-3x faster     |
+| WhisperX alignment        | 5-10s    | For 2 min audio     |
+| Wav2Vec2 filler detection | 10-20s   | GPU recommended     |
+| LLM annotation            | 10-15s   | OpenAI API call     |
+| IELTS scoring             | < 1s     | Metrics calculation |
+| **Total (with LLM)**      | ~50-90s  | ~30-50s on GPU      |
 
 ## Metrics Explained
 
@@ -401,6 +414,7 @@ To extend the system:
 4. **Add tests**: Create test file in `tests/`
 
 All changes should:
+
 - Include type hints
 - Have error handling with custom exceptions
 - Add logging at key points
