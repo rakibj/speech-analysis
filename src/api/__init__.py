@@ -132,11 +132,9 @@ async def _process_analysis(job_id: str, tmp_path: str, speech_context: str, dev
             device=device
         )
         
-        # Convert result to response model
-        analysis_response = AudioAnalysisResponse(**result)
-        
-        # Store result in job queue
-        job_queue.set_result(job_id, analysis_response)
+        # Store result as-is (engine_runner returns raw analysis dict)
+        # Don't validate against AudioAnalysisResponse model here
+        job_queue.set_result(job_id, result)
         logger.info(f"[Job {job_id}] Analysis completed successfully")
     
     except (AudioNotFoundError, FileNotFoundError) as e:
