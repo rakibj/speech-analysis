@@ -5,7 +5,7 @@ Run: python test_quick.py
 
 import asyncio
 from pathlib import Path
-from src.engine_runner import run_engine
+from src.core.engine_runner import run_engine
 
 
 async def main():

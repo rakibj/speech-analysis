@@ -2,7 +2,7 @@
 """Fluency metrics calculation and scoring."""
 import pandas as pd
 import numpy as np
-from .config import STOPWORDS
+from src.utils.config import STOPWORDS
 
 
 def clamp01(x: float) -> float:

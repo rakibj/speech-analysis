@@ -13,9 +13,10 @@ import json
 from pathlib import Path
 
 # Add src to path
-sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
+sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from src.analyzer_old import analyze_speech
+import asyncio
+from src.services import AnalysisService
 
 
 def main():
@@ -33,7 +34,7 @@ def main():
         sys.exit(1)
     
     # Run analysis
-    result = analyze_speech(audio_path, speech_context)
+    result = asyncio.run(AnalysisService.analyze_speech(audio_path, speech_context))
     
     # Save to JSON if requested
     if output_json:

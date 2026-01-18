@@ -5,7 +5,7 @@ from typing import Tuple, Dict, List
 
 from .metrics import calculate_normalized_metrics
 
-from .config import (
+from src.utils.config import (
     WPM_TOO_SLOW,
     WPM_SLOW_THRESHOLD,
     WPM_OPTIMAL_MAX,

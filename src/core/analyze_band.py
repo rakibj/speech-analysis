@@ -1,9 +1,9 @@
 # analyze_band.py
 import sys
 from pathlib import Path
-from src.analyzer_raw import analyze_speech
-from src.llm_processing import extract_llm_annotations, aggregate_llm_metrics
-from src.ielts_band_scorer import IELTSBandScorer
+from src.core.analyzer_raw import analyze_speech
+from src.core.llm_processing import extract_llm_annotations, aggregate_llm_metrics
+from src.core.ielts_band_scorer import IELTSBandScorer
 from datetime import datetime
 
 PROJECT_ROOT = Path.cwd().parent

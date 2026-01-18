@@ -22,7 +22,7 @@ class SpeechAnalysisError(Exception):
         super().__init__(self.message)
     
     def __str__(self) -> str:
-        if self.details:
+        if self.details and isinstance(self.details, dict):
             details_str = " | " + " | ".join(
                 f"{k}={v}" for k, v in self.details.items()
             )

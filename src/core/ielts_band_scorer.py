@@ -436,8 +436,8 @@ def score_ielts_speaking(
     Notes:
         LLM failures degrade gracefully - metrics-only scoring is used as fallback
     """
-    from .logging_config import logger
-    from .exceptions import LLMProcessingError
+    from src.utils.logging_config import logger
+    from src.utils.exceptions import LLMProcessingError
     
     scorer = IELTSBandScorer()
     llm_metrics = None

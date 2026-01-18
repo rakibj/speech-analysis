@@ -17,12 +17,12 @@ import traceback
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(PROJECT_ROOT))
 
-from src.analyzer_raw import analyze_speech as analyze_speech_raw
-from src.analyze_band import build_analysis
-from src.ielts_band_scorer import score_ielts_speaking
-from src.llm_processing import extract_llm_annotations, aggregate_llm_metrics
-from src.logging_config import setup_logging
-from src.exceptions import SpeechAnalysisError
+from src.core.analyzer_raw import analyze_speech as analyze_speech_raw
+from src.core.analyze_band import build_analysis
+from src.core.ielts_band_scorer import score_ielts_speaking
+from src.core.llm_processing import extract_llm_annotations, aggregate_llm_metrics
+from src.utils.logging_config import setup_logging
+from src.utils.exceptions import SpeechAnalysisError
 
 # Setup logging
 logger = setup_logging(level="INFO")

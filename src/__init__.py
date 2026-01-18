@@ -5,9 +5,9 @@ __version__ = "0.1.0"
 __author__ = "Speech Analysis Contributors"
 __license__ = "MIT"
 
-from src.exceptions import SpeechAnalysisError
-from src.logging_config import setup_logging
-from src.enums import Readiness, IELTSBand, SpeechContext
+from src.utils.exceptions import SpeechAnalysisError
+from src.utils.logging_config import setup_logging
+from src.utils.enums import Readiness, IELTSBand, SpeechContext
 
 __all__ = [
     "SpeechAnalysisError",

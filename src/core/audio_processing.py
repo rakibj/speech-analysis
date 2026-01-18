@@ -9,8 +9,8 @@ import pandas as pd
 import numpy as np
 from pathlib import Path
 from typing import Tuple, Dict, Set, Any
-from .config import CORE_FILLERS, FILLER_PATTERNS
-from .exceptions import (
+from src.utils.config import CORE_FILLERS, FILLER_PATTERNS
+from src.utils.exceptions import (
     AudioNotFoundError,
     AudioFormatError,
     AudioDurationError,
@@ -19,7 +19,7 @@ from .exceptions import (
     NoSpeechDetectedError,
     DeviceError,
 )
-from .logging_config import logger
+from src.utils.logging_config import logger
 
 
 MIN_AUDIO_DURATION_SEC = 5.0

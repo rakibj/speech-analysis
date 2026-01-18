@@ -1,16 +1,16 @@
-# uv run python scripts/batch_analysis_deep.py
+"""
+Deep batch analysis CLI for comprehensive audio analysis.
 
+Usage:
+    python -m src.cli.batch_analysis_deep
+"""
 import sys
 import json
 import csv
+import asyncio
 from pathlib import Path
 from tqdm import tqdm
 
-# --- path fix ---
-ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT))
-
-import asyncio
 from src.services import AnalysisService
 
 

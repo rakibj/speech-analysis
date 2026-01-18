@@ -1,6 +1,6 @@
 """Test custom exception classes."""
 import pytest
-from src.exceptions import (
+from src.utils.exceptions import (
     SpeechAnalysisError,
     AudioProcessingError,
     AudioNotFoundError,

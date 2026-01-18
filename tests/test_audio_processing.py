@@ -3,14 +3,14 @@ import pytest
 import numpy as np
 import pandas as pd
 from pathlib import Path
-from src.audio_processing import (
+from src.audio.processing import (
     is_filler_word,
     normalize_word,
     mark_filler_words,
     get_content_words,
     MIN_AUDIO_DURATION_SEC,
 )
-from src.exceptions import AudioNotFoundError, AudioDurationError
+from src.utils.exceptions import AudioNotFoundError, AudioDurationError
 
 
 def test_normalize_word():
@@ -78,7 +78,7 @@ def test_get_content_words_missing_column():
 
 def test_load_audio_missing_file():
     """Test load_audio raises error for missing file."""
-    from src.audio_processing import load_audio
+    from src.audio.processing import load_audio
     
     with pytest.raises(AudioNotFoundError):
         load_audio("/nonexistent/file.wav")

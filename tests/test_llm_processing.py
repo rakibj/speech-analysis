@@ -2,8 +2,8 @@
 import pytest
 import os
 from unittest.mock import patch, MagicMock
-from src.llm_processing import aggregate_llm_metrics, LLMSpeechAnnotations, Span
-from src.exceptions import (
+from src.utils.llm_processing import aggregate_llm_metrics, LLMSpeechAnnotations, Span
+from src.utils.exceptions import (
     ConfigurationError,
     LLMValidationError,
     LLMAPIError,
@@ -44,7 +44,7 @@ def test_aggregate_llm_metrics():
 
 def test_extract_llm_annotations_missing_api_key(monkeypatch):
     """Test extract_llm_annotations raises error without API key."""
-    from src.llm_processing import extract_llm_annotations
+    from src.utils.llm_processing import extract_llm_annotations
     
     # Ensure API key is not set
     monkeypatch.delenv("OPENAI_API_KEY", raising=False)
@@ -55,7 +55,7 @@ def test_extract_llm_annotations_missing_api_key(monkeypatch):
 
 def test_extract_llm_annotations_empty_transcript(monkeypatch):
     """Test extract_llm_annotations raises error for empty transcript."""
-    from src.llm_processing import extract_llm_annotations
+    from src.utils.llm_processing import extract_llm_annotations
     
     monkeypatch.setenv("OPENAI_API_KEY", "test-key")
     

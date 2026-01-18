@@ -1,14 +1,12 @@
-# src/disfluency_detection.py
-"""Disfluency detection: fillers, stutters, and hesitations."""
+# src/audio/filler_detection.py
+"""Filler and disfluency detection using multiple methods."""
 import re
-import torch
-import torchaudio
 import soundfile as sf
 import pandas as pd
-from transformers import Wav2Vec2Processor, Wav2Vec2ForCTC
-from typing import Tuple
+from typing import Tuple, Set
 
-from .config import (
+from src.utils.config import (
+    CORE_FILLERS,
     FILLER_MAP,
     FILLER_REGEX,
     WORD_ONSET_WINDOW,
@@ -17,6 +15,158 @@ from .config import (
     GROUP_GAP_SEC,
     FRAME_SEC,
 )
+
+
+# ==============================
+# WORD-LEVEL FILLER DETECTION
+# ==============================
+
+def normalize_word(word: str) -> str:
+    """
+    Normalize a word for filler detection.
+    
+    - Strips punctuation
+    - Converts to lowercase
+    - Removes extra whitespace
+    
+    Args:
+        word: Raw word string from transcription
+        
+    Returns:
+        Normalized word string
+    """
+    word = re.sub(r'^[^\w]+|[^\w]+$', '', word.lower().strip())
+    word = re.sub(r'\s+', ' ', word)
+    return word
+
+
+def is_filler_word(
+    word: str,
+    filler_set: Set[str] = CORE_FILLERS,
+    include_pattern_match: bool = True
+) -> bool:
+    """
+    Determine if a word is a filler with high confidence.
+    
+    Args:
+        word: Word to check
+        filler_set: Set of known filler words
+        include_pattern_match: Also check regex patterns for variations
+        
+    Returns:
+        True if word is a filler
+    """
+    normalized = normalize_word(word)
+    
+    if not normalized:
+        return False
+    
+    # Direct lookup in filler set
+    if normalized in filler_set:
+        return True
+    
+    # Pattern matching for variations
+    if include_pattern_match:
+        # Repeated vowels: uhhhhh, ummmm, ahhhhh
+        if re.fullmatch(r'[uea]h{2,}', normalized):
+            return True
+        if re.fullmatch(r'[ume]{2,}', normalized):
+            return True
+        
+        # Elongated nasals: mmmmm, nnnn
+        if re.fullmatch(r'[mn]{2,}', normalized):
+            return True
+        
+        # Um/uh variants with extra letters
+        if re.fullmatch(r'u+h*m+', normalized):
+            return True
+        if re.fullmatch(r'u+h+', normalized):
+            return True
+        if re.fullmatch(r'e+r+m*', normalized):
+            return True
+    
+    return False
+
+
+def mark_filler_words(
+    df_words: pd.DataFrame,
+    filler_set: Set[str] = CORE_FILLERS,
+    word_column: str = 'word'
+) -> pd.DataFrame:
+    """
+    Add 'is_filler' column to word DataFrame.
+    
+    Args:
+        df_words: DataFrame with word timestamps
+        filler_set: Set of filler words to detect
+        word_column: Name of column containing words
+        
+    Returns:
+        DataFrame with added 'is_filler' column
+    """
+    df = df_words.copy()
+    
+    df['is_filler'] = df[word_column].apply(
+        lambda w: is_filler_word(w, filler_set)
+    )
+    
+    return df
+
+
+def get_content_words(df_words: pd.DataFrame) -> pd.DataFrame:
+    """
+    Extract only content words (non-fillers).
+    
+    Args:
+        df_words: DataFrame with 'is_filler' column
+        
+    Returns:
+        Filtered DataFrame with only content words
+    """
+    if 'is_filler' not in df_words.columns:
+        raise ValueError("DataFrame must have 'is_filler' column. Run mark_filler_words() first.")
+    
+    return df_words[~df_words['is_filler']].copy().reset_index(drop=True)
+
+
+def segment_contains_filler(segment_text: str, filler_set: Set[str] = CORE_FILLERS) -> bool:
+    """
+    Check if a segment contains any filler words.
+    
+    Args:
+        segment_text: Full segment text
+        filler_set: Set of filler words
+        
+    Returns:
+        True if segment contains fillers
+    """
+    words = segment_text.lower().split()
+    return any(is_filler_word(w, filler_set) for w in words)
+
+
+def mark_filler_segments(
+    df_segments: pd.DataFrame,
+    filler_set: Set[str] = CORE_FILLERS,
+    text_column: str = 'text'
+) -> pd.DataFrame:
+    """
+    Add 'contains_filler' column to segment DataFrame.
+    
+    Args:
+        df_segments: DataFrame with segment timestamps
+        filler_set: Set of filler words to detect
+        text_column: Name of column containing segment text
+        
+    Returns:
+        DataFrame with added 'contains_filler' column
+    """
+    df = df_segments.copy()
+    
+    df['contains_filler'] = df[text_column].apply(
+        lambda text: segment_contains_filler(text, filler_set)
+    )
+    
+    return df
 
 
 # ==============================
@@ -33,6 +183,7 @@ def detect_phonemes_wav2vec(audio_path: str) -> pd.DataFrame:
     Returns:
         DataFrame with phoneme events (label, start, end, duration)
     """
+    from transformers import Wav2Vec2Processor, Wav2Vec2ForCTC
     processor = Wav2Vec2Processor.from_pretrained("facebook/wav2vec2-large-960h")
     wav2vec = Wav2Vec2ForCTC.from_pretrained("facebook/wav2vec2-large-960h")
     wav2vec.eval()
@@ -44,6 +195,8 @@ def detect_phonemes_wav2vec(audio_path: str) -> pd.DataFrame:
     if waveform.ndim == 2:
         waveform = waveform.mean(axis=1)
     
+    import torch
+    import torchaudio
     waveform = torch.from_numpy(waveform)
     
     # Resample to 16kHz if needed
@@ -226,34 +379,35 @@ def classify_non_word_event(row: pd.Series) -> dict:
 
 
 def detect_fillers_wav2vec(
-    df_wav2vec: pd.DataFrame,
-    aligned_words: pd.DataFrame
+    audio_path: str,
+    df_aligned_words: pd.DataFrame
 ) -> pd.DataFrame:
     """
     Detect fillers and stutters using Wav2Vec2 phoneme detection.
     
     Args:
-        df_wav2vec: wav to vec phoneme events
-        aligned_words: DataFrame with aligned word timestamps
+        audio_path: Path to audio file
+        df_aligned_words: DataFrame with aligned word timestamps
         
     Returns:
         DataFrame with detected filler/stutter events
     """
     # Get phoneme-level events
+    df_wav2vec = detect_phonemes_wav2vec(audio_path)
     
     if df_wav2vec.empty:
         return pd.DataFrame()
     
     # Filter out word overlaps
     df_wav2vec["overlaps_word"] = df_wav2vec.apply(
-        lambda r: overlaps_any_word_relaxed(r["start"], r["end"], aligned_words),
+        lambda r: overlaps_any_word_relaxed(r["start"], r["end"], df_aligned_words),
         axis=1
     )
     
     df_non_word = df_wav2vec.loc[~df_wav2vec["overlaps_word"]].copy()
     
     # Handle word-initial sounds
-    word_starts = aligned_words[["start"]].copy()
+    word_starts = df_aligned_words[["start"]].copy()
     
     df_non_word["is_word_initial"] = df_non_word.apply(
         lambda r: is_word_initial_candidate(r, word_starts),
@@ -443,21 +597,3 @@ def group_stutters(df_fillers: pd.DataFrame) -> pd.DataFrame:
     ].reset_index(drop=True)
     
     return df_final
-
-
-if __name__ == "__main__":
-    # Quick test
-    import sys
-    from .audio_processing import transcribe_with_whisper, align_words_whisperx, load_audio
-    
-    audio_path = "sample4.flac"
-    
-    # Get word alignments
-    result = transcribe_with_whisper(audio_path)
-    audio, _ = load_audio(audio_path)
-    df_aligned = align_words_whisperx(result["segments"], audio)
-    
-    # Detect fillers
-    df_wav2vec = detect_fillers_wav2vec(audio_path, df_aligned)
-    print(f"Detected {len(df_wav2vec)} events via Wav2Vec2")
-    print(df_wav2vec.head())

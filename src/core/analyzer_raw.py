@@ -5,29 +5,29 @@ import pandas as pd
 from dotenv import load_dotenv
 
 from .fluency_metrics import analyze_fluency
+from .metrics import calculate_normalized_metrics
 
-from .audio_processing import (
+from src.audio.processing import (
     CORE_FILLERS,
-    get_content_words,
     load_audio,
-    mark_filler_segments,
-    mark_filler_words,
     transcribe_with_whisper,
     transcribe_verbatim_fillers,
     align_words_whisperx,
     extract_words_dataframe,
     extract_segments_dataframe,
 )
-from .disfluency_detection import (
+from src.audio.filler_detection import (
+    get_content_words,
+    mark_filler_segments,
+    mark_filler_words,
     detect_fillers_wav2vec,
     detect_phonemes_wav2vec,
     detect_fillers_whisper,
     merge_filler_detections,
     group_stutters,
 )
-from .metrics import calculate_normalized_metrics
-from src.llm_processing import extract_llm_annotations, aggregate_llm_metrics
-from src.prosody_extraction import is_monotone_speech
+from src.core.llm_processing import extract_llm_annotations, aggregate_llm_metrics
+from src.core.prosody_extraction import is_monotone_speech
 
 # Load environment variables
 load_dotenv()
@@ -177,7 +177,7 @@ async def analyze_speech(
     
     # Step 4: Detect fillers with Wav2Vec2
     print("\n[4/5] Detecting subtle fillers with Wav2Vec2...")
-    df_wav2vec_fillers = detect_fillers_wav2vec(df_wav2vec, df_aligned_words)
+    df_wav2vec_fillers = detect_fillers_wav2vec(audio_path, df_aligned_words)
     
     # Extract Whisper-detected fillers (already marked in df_words)
     df_whisper_fillers = df_words_whisper_raw[df_words_whisper_raw['is_filler']].copy()

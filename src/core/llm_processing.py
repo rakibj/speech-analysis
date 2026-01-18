@@ -3,8 +3,8 @@ from typing import List, Literal, Optional, Dict, Any
 from openai import OpenAI
 import json
 import os
-from .exceptions import LLMAPIError, LLMValidationError, ConfigurationError
-from .logging_config import logger
+from src.utils.exceptions import LLMAPIError, LLMValidationError, ConfigurationError
+from src.utils.logging_config import logger
 
 
 # ======================================================

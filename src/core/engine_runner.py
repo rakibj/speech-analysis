@@ -14,9 +14,9 @@ from pathlib import Path
 from typing import Dict, Optional
 import traceback
 
-from src.engine import analyze_speech
-from src.logging_config import setup_logging
-from src.exceptions import SpeechAnalysisError
+from src.core.engine import analyze_speech
+from src.utils.logging_config import setup_logging
+from src.utils.exceptions import SpeechAnalysisError
 
 logger = setup_logging(level="INFO")
 

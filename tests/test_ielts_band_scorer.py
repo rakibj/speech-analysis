@@ -1,6 +1,6 @@
 """Test IELTS band scoring."""
 import pytest
-from src.ielts_band_scorer import (
+from src.utils.ielts_band_scorer import (
     score_ielts_speaking,
     round_half,
     get_band_descriptor,

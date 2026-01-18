@@ -1,15 +1,15 @@
-# uv run python .\scripts\batch_analysis.py
+"""
+Batch analysis CLI for processing multiple audio files.
+
+Usage:
+    python -m src.cli.batch_analysis
+"""
 import csv
 import json
+import asyncio
 from pathlib import Path
 from tqdm import tqdm
-import sys
-from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT))
-
-import asyncio
 from src.services import AnalysisService
 
 
