@@ -18,6 +18,7 @@ app = modal.App("speech-analysis")
 def build_image():
     return (
         modal.Image.debian_slim()
+        .apt_install("ffmpeg")  # ← ADD THIS LINE
         .pip_install(
             # Web framework
             "fastapi>=0.104.0,<1.0",
