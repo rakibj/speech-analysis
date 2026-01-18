@@ -3,14 +3,17 @@
 ## 🚀 Three Ways to Test
 
 ### 1️⃣ Command Line (30-60 seconds)
+
 ```bash
 python test_quick.py
 ```
 
 ### 2️⃣ Interactive Notebook (Best for Development)
+
 Open: `notebooks/test_engine_runner.ipynb`
 
 ### 3️⃣ Python Script
+
 ```python
 import asyncio
 from src.engine_runner import run_engine
@@ -27,6 +30,7 @@ print(f"Transcript: {result['transcript']}")
 ## 📝 Function Signatures
 
 ### Async (Use in async contexts)
+
 ```python
 result = await run_engine(
     audio_bytes=b'...',      # Raw audio bytes
@@ -38,6 +42,7 @@ result = await run_engine(
 ```
 
 ### Sync (Use in regular Python)
+
 ```python
 result = run_engine_sync(
     audio_bytes=b'...',
@@ -63,16 +68,19 @@ result['llm_analysis']                  # Semantic analysis (if use_llm=True)
 ## ⚡ Quick Tests
 
 ### Basic Test
+
 ```python
 result = await run_engine(audio_bytes, use_llm=False)  # 30-60s
 ```
 
 ### Accurate Test (with LLM)
+
 ```python
 result = await run_engine(audio_bytes, use_llm=True)   # 60-120s
 ```
 
 ### Error Handling
+
 ```python
 try:
     result = await run_engine(audio_bytes)
@@ -83,6 +91,7 @@ except Exception as e:
 ```
 
 ### Multiple Contexts
+
 ```python
 for ctx in ["conversational", "narrative", "presentation"]:
     result = await run_engine(audio_bytes, context=ctx)
@@ -93,11 +102,11 @@ for ctx in ["conversational", "narrative", "presentation"]:
 
 ## 📊 Performance
 
-| Scenario | Time |
-|----------|------|
-| No LLM | 30-60s |
-| With LLM | 60-120s |
-| Sync overhead | <1s |
+| Scenario      | Time    |
+| ------------- | ------- |
+| No LLM        | 30-60s  |
+| With LLM      | 60-120s |
+| Sync overhead | <1s     |
 
 ---
 
@@ -115,27 +124,27 @@ Run in this order:
 
 ## 🔍 Troubleshooting
 
-| Problem | Solution |
-|---------|----------|
+| Problem                | Solution                                   |
+| ---------------------- | ------------------------------------------ |
 | "No audio files found" | Update path: `Path("your/audio/file.wav")` |
-| CUDA out of memory | Use `device="cpu"` |
-| Too slow | Disable LLM: `use_llm=False` |
-| API errors | Check OPENAI_API_KEY environment variable |
-| Temp files accumulate | Rare; automatic cleanup usually works |
+| CUDA out of memory     | Use `device="cpu"`                         |
+| Too slow               | Disable LLM: `use_llm=False`               |
+| API errors             | Check OPENAI_API_KEY environment variable  |
+| Temp files accumulate  | Rare; automatic cleanup usually works      |
 
 ---
 
 ## 📚 Files Reference
 
-| File | Purpose |
-|------|---------|
-| `src/engine_runner.py` | Main implementation |
-| `src/engine.py` | Underlying analysis engine |
-| `test_quick.py` | Quick CLI test |
-| `notebooks/test_engine_runner.ipynb` | Interactive testing |
-| `ENGINE_RUNNER_COMPLETE.md` | Full documentation |
-| `IMPLEMENTATION_GUIDE.md` | Implementation details |
-| `TEST_ENGINE_RUNNER.md` | Testing guide |
+| File                                 | Purpose                    |
+| ------------------------------------ | -------------------------- |
+| `src/engine_runner.py`               | Main implementation        |
+| `src/engine.py`                      | Underlying analysis engine |
+| `test_quick.py`                      | Quick CLI test             |
+| `notebooks/test_engine_runner.ipynb` | Interactive testing        |
+| `ENGINE_RUNNER_COMPLETE.md`          | Full documentation         |
+| `IMPLEMENTATION_GUIDE.md`            | Implementation details     |
+| `TEST_ENGINE_RUNNER.md`              | Testing guide              |
 
 ---
 
