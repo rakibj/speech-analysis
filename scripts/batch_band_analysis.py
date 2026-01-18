@@ -232,7 +232,7 @@ def merge_band_results(input_dir: Path, output_path: Path):
 # ENTRY POINT
 # =========================================================
 async def main():
-    # await run_analysis(1)
+    await run_analysis(1)
     await run_result()
 
     # Optional merge
