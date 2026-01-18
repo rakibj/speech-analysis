@@ -17,7 +17,7 @@
       "fluency_coherence": "Good fluency. Generally able to sustain speech with occasional hesitations.",
       "pronunciation": "Adequate pronunciation. Generally understood but occasional clarity issues.",
       "lexical_resource": "Good vocabulary range. Uses 0 advanced items and 0 idiomatic expressions.",
-      "grammatical_range_accuracy": "Good grammatical control. Mostly accurate structures. 1 errors in complex sentences.",
+      "grammatical_range_accuracy": "Good grammatical control. Mostly accurate structures. 3 errors in complex sentences.",
       "overall_recommendation": "Good overall performance. Minor areas for refinement in accuracy and range."
     }
   },
@@ -27,7 +27,7 @@
       "speaking_time_sec": 103.18,
       "total_words_transcribed": 239,
       "content_word_count": 237,
-      "analysis_timestamp": "2026-01-18T13:52:30.848417Z"
+      "analysis_timestamp": "2026-01-18T14:10:19.935259Z"
     },
     "fluency_analysis": {
       "verdict": {

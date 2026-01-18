@@ -1,23 +1,23 @@
 {
   "band_scores": {
-    "overall_band": 6.0,
+    "overall_band": 7.0,
     "criterion_bands": {
       "fluency_coherence": 7.5,
       "pronunciation": 7.5,
       "lexical_resource": 8.0,
-      "grammatical_range_accuracy": 5.5
+      "grammatical_range_accuracy": 6.0
     },
     "descriptors": {
-      "fluency_coherence": "Able to keep going and demonstrates willingness. Coherence may be lost due to hesitation.",
-      "pronunciation": "Range of phonological features with variable control. Individual words may be mispronounced.",
-      "lexical_resource": "Resource sufficient to discuss topics. Vocabulary use may be inappropriate.",
-      "grammatical_range_accuracy": "Mix of structures with limited flexibility. Errors frequent but rarely impede communication."
+      "fluency_coherence": "Able to keep going readily with long turns without noticeable effort. Some hesitation and repetition.",
+      "pronunciation": "Uses wide range of phonological features. Can sustain appropriate rhythm.",
+      "lexical_resource": "Wide resource, readily used. Skilful use of less common items despite occasional inaccuracies.",
+      "grammatical_range_accuracy": "Range of structures flexibly used. Error-free sentences frequent."
     },
     "feedback": {
       "fluency_coherence": "Good fluency. Generally able to sustain speech with occasional hesitations.",
       "pronunciation": "Generally clear pronunciation. Minor variations do not affect understanding.",
       "lexical_resource": "Wide and flexible vocabulary. Uses 0 advanced vocabulary items effectively. Strong command of less common items.",
-      "grammatical_range_accuracy": "Limited grammatical accuracy. 2 errors frequently affect clarity.",
+      "grammatical_range_accuracy": "Adequate control. 1 errors noted but meaning usually clear.",
       "overall_recommendation": "Good overall performance. Minor areas for refinement in accuracy and range."
     }
   },
@@ -27,7 +27,7 @@
       "speaking_time_sec": 75.0,
       "total_words_transcribed": 160,
       "content_word_count": 157,
-      "analysis_timestamp": "2026-01-18T13:52:39.561361Z"
+      "analysis_timestamp": "2026-01-18T14:10:30.574283Z"
     },
     "fluency_analysis": {
       "verdict": {
