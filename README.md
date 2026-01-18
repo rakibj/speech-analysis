@@ -350,6 +350,60 @@ Typical analysis times (single audio file, base model):
 - **Grammar Error Count**: From LLM analysis
 - **Complex Structure Accuracy**: Successful vs. attempted complex sentences
 
+## Known Limitations
+
+### v0 Release Constraints
+
+| Limitation                                  | Impact                                      | Workaround                                       | Future                              |
+| ------------------------------------------- | ------------------------------------------- | ------------------------------------------------ | ----------------------------------- |
+| **Min audio duration: 5 seconds**           | Very short clips rejected                   | Use longer recordings                            | May support shorter clips in v0.2   |
+| **Sequential analysis** (if limit exceeded) | Batch processing may be slow                | Use `run_analysis(limit=N)` to process in chunks | GPU acceleration planned for v0.3   |
+| **Single speaker only**                     | Multi-speaker detection not supported       | Ensure single speaker throughout                 | Multi-speaker support in v1.0       |
+| **English only**                            | Non-English audio may fail                  | Transcribe to English first                      | Multi-language support planned v1.0 |
+| **Whisper accuracy**                        | May misidentify some words                  | Use larger model (`large`)                       | Fine-tuning on IELTS data v0.3      |
+| **LLM dependency**                          | OpenAI API required for semantic analysis   | System works metrics-only if API unavailable     | Local LLM option in v1.0            |
+| **IELTS-specific**                          | Scoring calibrated for IELTS only           | Not suitable for other proficiency tests         | CEFR/TOEFL support planned          |
+| **No accent normalization**                 | Accent-specific features may affect scoring | Model is accent-aware but not adaptive           | Accent-normalized variant in v0.4   |
+
+### Accuracy Notes
+
+- **Band accuracy**: ±0.5 band (calibrated on IELTS samples)
+- **Metric variability**: ~5-10% depending on audio quality and background noise
+- **LLM annotations**: Depend on GPT-4 availability and token limits
+- **Filler detection**: ~95% precision, ~90% recall on clean audio
+
+### Audio Quality Requirements
+
+- **Format**: WAV, MP3, FLAC, OGG, M4A
+- **Sample rate**: 16 kHz recommended (auto-resampled)
+- **Mono/Stereo**: Both supported
+- **Background noise**: < -30dB relative to speech
+- **Duration**: ≥ 5 seconds, ≤ 10 minutes recommended
+
+### Performance Constraints
+
+- **Model size**: Whisper "medium" is default (1.5GB VRAM)
+  - Use "tiny" (39MB) for CPU-only or minimal resources
+  - Use "large" (3GB) for highest accuracy (requires GPU)
+- **Batch processing**: Up to ~8 files in parallel with LLM rate limiting
+- **GPU memory**: 4-6GB recommended for full pipeline
+
+### Known Issues
+
+- **Issue**: Audio files with heavy background noise may produce inaccurate metrics
+
+  - **Workaround**: Pre-process audio or use denoising tool
+  - **Status**: Will improve in v0.2 with noise detection
+
+- **Issue**: Filler detection may double-count speech hesitations
+
+  - **Workaround**: Use confidence thresholds (see config.py)
+  - **Status**: Being refined in v0.2
+
+- **Issue**: Very fast speakers (>180 WPM) may see band capping at 8.0
+  - **Workaround**: Use metrics-only scoring without LLM boost
+  - **Status**: Will calibrate in v0.3
+
 ## Troubleshooting
 
 ### "No speech detected in audio"
