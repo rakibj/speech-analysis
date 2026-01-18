@@ -16,8 +16,8 @@
     "feedback": {
       "fluency_coherence": "Adequate fluency. Able to produce extended speech but with noticeable pauses.",
       "pronunciation": "Adequate pronunciation. Generally understood but occasional clarity issues.",
-      "lexical_resource": "Adequate vocabulary. Can discuss topics at length. 2 word choice errors noted.",
-      "grammatical_range_accuracy": "Adequate control. 2 errors noted but meaning usually clear.",
+      "lexical_resource": "Adequate vocabulary. Can discuss topics at length. 3 word choice errors noted.",
+      "grammatical_range_accuracy": "Adequate control. 5 errors noted but meaning usually clear.",
       "overall_recommendation": "Adequate performance. Focus on fluency and reducing hesitations would help."
     }
   },
@@ -27,7 +27,7 @@
       "speaking_time_sec": 101.66,
       "total_words_transcribed": 229,
       "content_word_count": 229,
-      "analysis_timestamp": "2026-01-18T14:10:00.515014Z"
+      "analysis_timestamp": "2026-01-18T14:23:34.731672Z"
     },
     "fluency_analysis": {
       "verdict": {

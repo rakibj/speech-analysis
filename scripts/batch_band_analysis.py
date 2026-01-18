@@ -114,47 +114,73 @@ async def run_analysis(limit: int = None):
 # =========================================================
 # STAGE 2: IELTS BAND SCORING
 # =========================================================
-async def run_result():
-    """Score audio analysis results with IELTS band scoring."""
-    OUTPUT_DIR_RESULT.mkdir(parents=True, exist_ok=True)
+# Semaphore for LLM rate limiting (OpenAI has rate limits)
+LLM_SEMAPHORE = asyncio.Semaphore(3)
 
-    analysis_files = sorted(OUTPUT_DIR_ANALYSIS.glob("*.json"))
-    total = len(analysis_files)
-    failures = []
 
-    logger.info(f"\nScoring {total} analysis files")
-
-    for idx, path in enumerate(analysis_files, start=1):
-        out_path = OUTPUT_DIR_RESULT / path.name
-        logger.info(f"[{idx}/{total}] scoring {path.name}")
-
-        try:
+async def score_single_file(idx: int, total: int, path: Path, out_path: Path) -> tuple:
+    """Score a single analysis file asynchronously with LLM rate limiting.
+    
+    Returns:
+        (success: bool, filename: str, error: str or None)
+    """
+    try:
+        # Rate limit LLM calls to 3 concurrent requests
+        async with LLM_SEMAPHORE:
             with path.open("r", encoding="utf-8") as f:
                 analysis_json = json.load(f)
 
             # Explicit unpacking
             raw_analysis = analysis_json["raw_analysis"]
-            # llm_metrics = analysis_json["llm_metrics"]
+            
+            logger.info(f"[{idx}/{total}] scoring {path.name}")
 
             # Call the correct analyze_band signature
             report = await analyze_band_from_analysis(raw_analysis)
 
+            # Write results
             with out_path.open("w", encoding="utf-8") as f:
                 json.dump(report, f, indent=2, ensure_ascii=False)
             
             logger.debug(f"Saved band results to {out_path}")
+            return (True, path.name, None)
 
-        except KeyError as e:
-            failures.append((path.name, f"Missing key: {str(e)}"))
-            logger.error(f"❌ Missing data key in {path.name}: {str(e)}")
-        except Exception as e:
-            failures.append((path.name, str(e)))
-            logger.error(f"❌ Scoring failed for {path.name}: {str(e)}")
-            logger.debug(traceback.format_exc())
+    except KeyError as e:
+        error_msg = f"Missing key: {str(e)}"
+        logger.error(f"❌ Missing data key in {path.name}: {error_msg}")
+        return (False, path.name, error_msg)
+    except Exception as e:
+        error_msg = str(e)
+        logger.error(f"❌ Scoring failed for {path.name}: {error_msg}")
+        logger.debug(traceback.format_exc())
+        return (False, path.name, error_msg)
+
+
+async def run_result():
+    """Score all analysis results in parallel with LLM rate limiting."""
+    OUTPUT_DIR_RESULT.mkdir(parents=True, exist_ok=True)
+
+    analysis_files = sorted(OUTPUT_DIR_ANALYSIS.glob("*.json"))
+    total = len(analysis_files)
+
+    logger.info(f"\nScoring {total} analysis files (parallel with LLM rate limiting)")
+
+    # Create all scoring tasks
+    tasks = []
+    for idx, path in enumerate(analysis_files, start=1):
+        out_path = OUTPUT_DIR_RESULT / path.name
+        tasks.append(score_single_file(idx, total, path, out_path))
+
+    # Run all tasks concurrently
+    results = await asyncio.gather(*tasks, return_exceptions=False)
+
+    # Aggregate results
+    successes = sum(1 for success, _, _ in results if success)
+    failures = [(filename, error) for success, filename, error in results if not success]
 
     logger.info("\n=== Band scoring complete ===")
     logger.info(f"Total files: {total}")
-    logger.info(f"Successes: {total - len(failures)}")
+    logger.info(f"Successes: {successes}")
     logger.info(f"Failures: {len(failures)}")
 
     if failures:
@@ -206,8 +232,8 @@ def merge_band_results(input_dir: Path, output_path: Path):
 # ENTRY POINT
 # =========================================================
 async def main():
-    await run_analysis(1)
-    # await run_result()
+    # await run_analysis(1)
+    await run_result()
 
     # Optional merge
     # merge_band_results(

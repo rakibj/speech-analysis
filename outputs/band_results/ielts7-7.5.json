@@ -4,7 +4,7 @@
     "criterion_bands": {
       "fluency_coherence": 7.5,
       "pronunciation": 6.5,
-      "lexical_resource": 7.5,
+      "lexical_resource": 6.0,
       "grammatical_range_accuracy": 7.5
     },
     "descriptors": {
@@ -16,9 +16,9 @@
     "feedback": {
       "fluency_coherence": "Good fluency. Generally able to sustain speech with occasional hesitations.",
       "pronunciation": "Adequate pronunciation. Generally understood but occasional clarity issues.",
-      "lexical_resource": "Good vocabulary range. Uses 0 advanced items and 0 idiomatic expressions.",
-      "grammatical_range_accuracy": "Good grammatical control. Mostly accurate structures. 3 errors in complex sentences.",
-      "overall_recommendation": "Good overall performance. Minor areas for refinement in accuracy and range."
+      "lexical_resource": "Adequate vocabulary. Can discuss topics at length. 5 word choice errors noted.",
+      "grammatical_range_accuracy": "Good grammatical control. Mostly accurate structures. 4 errors in complex sentences.",
+      "overall_recommendation": "Adequate performance. Focus on fluency and reducing hesitations would help."
     }
   },
   "analysis": {
@@ -27,7 +27,7 @@
       "speaking_time_sec": 103.18,
       "total_words_transcribed": 239,
       "content_word_count": 237,
-      "analysis_timestamp": "2026-01-18T14:10:19.935259Z"
+      "analysis_timestamp": "2026-01-18T14:23:57.573895Z"
     },
     "fluency_analysis": {
       "verdict": {
