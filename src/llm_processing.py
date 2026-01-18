@@ -1,7 +1,10 @@
-from pydantic import BaseModel, Field
-from typing import List, Literal, Optional
+from pydantic import BaseModel, Field, ValidationError as PydanticValidationError
+from typing import List, Literal, Optional, Dict, Any
 from openai import OpenAI
 import json
+import os
+from .exceptions import LLMAPIError, LLMValidationError, ConfigurationError
+from .logging_config import logger
 
 
 # ======================================================
@@ -139,33 +142,93 @@ def extract_llm_annotations(
     raw_transcript: str,
     speech_context: str = "conversational"
 ) -> LLMSpeechAnnotations:
-
-    client = OpenAI()
-
-    payload = {
-        "raw_transcript": raw_transcript,
-        "speech_context": speech_context,
-    }
-
-    response = client.responses.parse(
-        model="gpt-4o-mini",
-        input=[
-            {"role": "system", "content": SYSTEM_PROMPT},
-            {"role": "user", "content": json.dumps(payload, ensure_ascii=False)},
-        ],
-        temperature=0.0,
-        top_p=1.0,
-        text_format=LLMSpeechAnnotations,
-    )
-
-    return response.output_parsed
+    """
+    Extract LLM-based speech annotations from transcript.
+    
+    Args:
+        raw_transcript: Full transcript text
+        speech_context: Context (conversational, narrative, etc)
+        
+    Returns:
+        LLMSpeechAnnotations object with parsed annotations
+        
+    Raises:
+        ConfigurationError: If OpenAI API key is missing
+        LLMAPIError: If OpenAI API call fails
+        LLMValidationError: If response schema is invalid
+    """
+    # Validate API key
+    api_key = os.getenv("OPENAI_API_KEY")
+    if not api_key:
+        raise ConfigurationError(
+            "OpenAI API key not found. Set OPENAI_API_KEY environment variable.",
+            {"environment_var": "OPENAI_API_KEY"}
+        )
+    
+    # Validate transcript
+    if not raw_transcript or not raw_transcript.strip():
+        raise LLMValidationError(
+            "Empty transcript provided to LLM",
+            {"transcript_length": len(raw_transcript) if raw_transcript else 0}
+        )
+    
+    try:
+        client = OpenAI(api_key=api_key)
+        
+        payload = {
+            "raw_transcript": raw_transcript,
+            "speech_context": speech_context,
+        }
+        
+        logger.info(f"Extracting LLM annotations (context: {speech_context})")
+        
+        response = client.responses.parse(
+            model="gpt-4o-mini",
+            input=[
+                {"role": "system", "content": SYSTEM_PROMPT},
+                {"role": "user", "content": json.dumps(payload, ensure_ascii=False)},
+            ],
+            temperature=0.0,
+            top_p=1.0,
+            text_format=LLMSpeechAnnotations,
+        )
+        
+        logger.info("LLM annotation extraction successful")
+        return response.output_parsed
+        
+    except PydanticValidationError as e:
+        raise LLMValidationError(
+            f"LLM response validation failed: {str(e)}",
+            {"validation_errors": str(e)}
+        )
+    except Exception as e:
+        error_msg = str(e)
+        if "API" in error_msg or "OpenAI" in error_msg:
+            raise LLMAPIError(
+                f"OpenAI API call failed: {error_msg}",
+                {"error": error_msg, "model": "gpt-4o-mini"}
+            )
+        else:
+            raise LLMAPIError(
+                f"Unexpected error during LLM annotation: {error_msg}",
+                {"error": error_msg}
+            )
 
 
 # ======================================================
 # AGGREGATION (COMPATIBLE WITH EXISTING SCORER)
 # ======================================================
 
-def aggregate_llm_metrics(llm: LLMSpeechAnnotations) -> dict:
+def aggregate_llm_metrics(llm: LLMSpeechAnnotations) -> Dict[str, Any]:
+    """
+    Aggregate LLM annotations into metrics dictionary.
+    
+    Args:
+        llm: LLMSpeechAnnotations object
+        
+    Returns:
+        Dictionary of aggregated metrics for band scoring
+    """
     grammar_errors = len(llm.grammar_errors)
     meaning_blocking = len(llm.meaning_blocking_grammar_errors)
 

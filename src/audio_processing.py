@@ -1,16 +1,31 @@
 # src/audio_processing.py
-"""Audio loading and transcription utilities."""
+"""Audio loading and transcription utilities with error handling."""
 import torch
 import torchaudio
 import soundfile as sf
 import whisper
 import whisperx
 import pandas as pd
-from typing import Tuple
+import numpy as np
+from pathlib import Path
+from typing import Tuple, Dict, Set, Any
 from .config import CORE_FILLERS, FILLER_PATTERNS
+from .exceptions import (
+    AudioNotFoundError,
+    AudioFormatError,
+    AudioDurationError,
+    TranscriptionError,
+    ModelLoadError,
+    NoSpeechDetectedError,
+    DeviceError,
+)
+from .logging_config import logger
 
 
-def load_audio(path: str) -> Tuple[any, int]:
+MIN_AUDIO_DURATION_SEC = 5.0
+
+
+def load_audio(path: str) -> Tuple[np.ndarray, int]:
     """
     Load audio file and convert to mono 16kHz.
     
@@ -19,8 +34,27 @@ def load_audio(path: str) -> Tuple[any, int]:
         
     Returns:
         Tuple of (audio_array, sample_rate)
+        
+    Raises:
+        AudioNotFoundError: If file doesn't exist
+        AudioFormatError: If file cannot be read
     """
-    audio, sr = sf.read(path, dtype="float32")
+    audio_path = Path(path)
+    
+    # Validate file exists
+    if not audio_path.exists():
+        raise AudioNotFoundError(
+            f"Audio file not found: {path}",
+            {"file_path": str(audio_path)}
+        )
+    
+    try:
+        audio, sr = sf.read(str(audio_path), dtype="float32")
+    except Exception as e:
+        raise AudioFormatError(
+            f"Failed to read audio file: {str(e)}",
+            {"file_path": str(audio_path), "error": str(e)}
+        )
     
     # Convert stereo to mono
     if audio.ndim == 2:
@@ -28,12 +62,27 @@ def load_audio(path: str) -> Tuple[any, int]:
     
     # Resample to 16kHz if needed
     if sr != 16000:
-        audio_tensor = torch.from_numpy(audio)
-        audio = torchaudio.functional.resample(
-            audio_tensor, sr, 16000
-        ).numpy()
-        sr = 16000
+        try:
+            audio_tensor = torch.from_numpy(audio)
+            audio = torchaudio.functional.resample(
+                audio_tensor, sr, 16000
+            ).numpy()
+            sr = 16000
+        except Exception as e:
+            raise AudioFormatError(
+                f"Failed to resample audio: {str(e)}",
+                {"original_sample_rate": sr, "target_sample_rate": 16000}
+            )
     
+    # Validate audio duration
+    duration = len(audio) / sr
+    if duration < MIN_AUDIO_DURATION_SEC:
+        raise AudioDurationError(
+            f"Audio duration {duration:.2f}s is less than minimum {MIN_AUDIO_DURATION_SEC}s",
+            {"duration": duration, "minimum_required": MIN_AUDIO_DURATION_SEC}
+        )
+    
+    logger.info(f"Loaded audio: {duration:.2f}s at {sr}Hz")
     return audio, sr
 
 
@@ -41,36 +90,61 @@ def transcribe_with_whisper(
     audio_path: str,
     model_name: str = "base",
     device: str = "cpu"
-) -> dict:
+) -> Dict[str, Any]:
     """
     Transcribe audio using Whisper with word timestamps.
     
     Args:
         audio_path: Path to audio file
-        model_name: Whisper model size
+        model_name: Whisper model size (tiny, base, small, medium, large)
         device: Device to run on ('cpu' or 'cuda')
         
     Returns:
         Dictionary with segments and word-level timestamps
+        
+    Raises:
+        ModelLoadError: If Whisper model fails to load
+        TranscriptionError: If transcription fails
+        DeviceError: If device is unavailable
     """
-    model = whisper.load_model(model_name, device=device)
+    # Validate device availability
+    if device == "cuda" and not torch.cuda.is_available():
+        logger.warning("CUDA requested but not available, falling back to CPU")
+        device = "cpu"
     
-    result = model.transcribe(
-        audio_path,
-        task="transcribe",
-        word_timestamps=True,
-        fp16=False,
-        language="en"
-    )
+    # Load model
+    try:
+        model = whisper.load_model(model_name, device=device)
+        logger.info(f"Loaded Whisper model: {model_name} on {device}")
+    except Exception as e:
+        raise ModelLoadError(
+            f"Failed to load Whisper model {model_name}: {str(e)}",
+            {"model": model_name, "device": device, "error": str(e)}
+        )
     
-    return result
+    # Transcribe
+    try:
+        result = model.transcribe(
+            audio_path,
+            task="transcribe",
+            word_timestamps=True,
+            fp16=False,
+            language="en"
+        )
+        logger.info(f"Transcription completed: {len(result.get('segments', []))} segments")
+        return result
+    except Exception as e:
+        raise TranscriptionError(
+            f"Transcription failed: {str(e)}",
+            {"audio_path": audio_path, "model": model_name, "error": str(e)}
+        )
 
 
 def transcribe_verbatim_fillers(
     audio_path: str,
     model_name: str = "base",
     device: str = "cpu"
-) -> dict:
+) -> Dict[str, Any]:
     """
     Transcribe with explicit focus on capturing filler words.
     
@@ -81,29 +155,49 @@ def transcribe_verbatim_fillers(
         
     Returns:
         Dictionary with verbatim transcription including fillers
+        
+    Raises:
+        ModelLoadError: If model fails to load
+        TranscriptionError: If transcription fails
     """
-    model = whisper.load_model(model_name, device=device)
+    # Validate device
+    if device == "cuda" and not torch.cuda.is_available():
+        logger.warning("CUDA requested but not available, falling back to CPU")
+        device = "cpu"
     
-    result = model.transcribe(
-        audio_path,
-        task="transcribe",
-        temperature=0,
-        word_timestamps=True,
-        condition_on_previous_text=False,
-        initial_prompt=(
-            "Transcribe verbatim. Include filler words like um, uh, er, "
-            "false starts, repetitions, and hesitations."
-        ),
-        fp16=False,
-        language="en"
-    )
+    try:
+        model = whisper.load_model(model_name, device=device)
+    except Exception as e:
+        raise ModelLoadError(
+            f"Failed to load Whisper model: {str(e)}",
+            {"model": model_name, "device": device}
+        )
     
-    return result
+    try:
+        result = model.transcribe(
+            audio_path,
+            task="transcribe",
+            temperature=0,
+            word_timestamps=True,
+            condition_on_previous_text=False,
+            initial_prompt=(
+                "Transcribe verbatim. Include filler words like um, uh, er, "
+                "false starts, repetitions, and hesitations."
+            ),
+            fp16=False,
+            language="en"
+        )
+        return result
+    except Exception as e:
+        raise TranscriptionError(
+            f"Verbatim transcription failed: {str(e)}",
+            {"audio_path": audio_path, "error": str(e)}
+        )
 
 
 def align_words_whisperx(
     segments: list,
-    audio: any,
+    audio: np.ndarray,
     language_code: str = "en",
     device: str = None
 ) -> pd.DataFrame:
@@ -118,22 +212,43 @@ def align_words_whisperx(
         
     Returns:
         DataFrame with aligned word timestamps
+        
+    Raises:
+        ModelLoadError: If alignment model fails to load
     """
     if device is None:
         device = "cuda" if torch.cuda.is_available() else "cpu"
     
-    align_model, metadata = whisperx.load_align_model(
-        language_code=language_code,
-        device=device
-    )
+    # Validate device
+    if device == "cuda" and not torch.cuda.is_available():
+        logger.warning("CUDA requested but not available, falling back to CPU")
+        device = "cpu"
     
-    aligned = whisperx.align(
-        segments,
-        align_model,
-        metadata,
-        audio,
-        device
-    )
+    try:
+        align_model, metadata = whisperx.load_align_model(
+            language_code=language_code,
+            device=device
+        )
+        logger.info(f"Loaded WhisperX alignment model for {language_code}")
+    except Exception as e:
+        raise ModelLoadError(
+            f"Failed to load alignment model: {str(e)}",
+            {"language": language_code, "device": device}
+        )
+    
+    try:
+        aligned = whisperx.align(
+            segments,
+            align_model,
+            metadata,
+            audio,
+            device
+        )
+    except Exception as e:
+        raise TranscriptionError(
+            f"Word alignment failed: {str(e)}",
+            {"error": str(e)}
+        )
     
     aligned_words = []
     for seg in aligned["segments"]:
@@ -145,11 +260,17 @@ def align_words_whisperx(
                     "end": float(w["end"])
                 })
     
+    if not aligned_words:
+        raise NoSpeechDetectedError(
+            "No words detected in aligned segments",
+            {"segments_processed": len(aligned.get('segments', []))}
+        )
+    
     df = pd.DataFrame(aligned_words)
     return df.sort_values("start").reset_index(drop=True)
 
 
-def extract_words_dataframe(result: dict) -> pd.DataFrame:
+def extract_words_dataframe(result: Dict[str, Any]) -> pd.DataFrame:
     """
     Extract word-level data from Whisper result.
     
@@ -158,6 +279,9 @@ def extract_words_dataframe(result: dict) -> pd.DataFrame:
         
     Returns:
         DataFrame with word timestamps and confidence scores
+        
+    Raises:
+        NoSpeechDetectedError: If no words are found
     """
     words = []
     for seg in result["segments"]:
@@ -170,11 +294,17 @@ def extract_words_dataframe(result: dict) -> pd.DataFrame:
                 "confidence": float(w["probability"])
             })
     
+    if not words:
+        raise NoSpeechDetectedError(
+            "No words extracted from transcription",
+            {"segments": len(result.get('segments', []))}
+        )
+    
     return pd.DataFrame(words)
 
 
 
-def extract_segments_dataframe(result: dict) -> pd.DataFrame:
+def extract_segments_dataframe(result: Dict[str, Any]) -> pd.DataFrame:
     """
     Extract segment-level data from Whisper result.
     
@@ -203,11 +333,9 @@ def extract_segments_dataframe(result: dict) -> pd.DataFrame:
         })
     
     return pd.DataFrame(segments)
-# Add to audio_processing.py or create a new utility file
+# Filler detection utilities
 
 import re
-import pandas as pd
-from typing import Set
 
 
 def normalize_word(word: str) -> str:

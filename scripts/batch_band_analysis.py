@@ -14,6 +14,11 @@ from src.rubric_from_metrics import generate_constraints
 from src.analyzer_raw import analyze_speech
 from src.llm_processing import extract_llm_annotations, aggregate_llm_metrics
 from src.analyze_band import analyze_band_from_audio, analyze_band_from_analysis
+from src.logging_config import setup_logging
+from src.exceptions import SpeechAnalysisError
+
+# Setup logging
+logger = setup_logging(level="INFO")
 
 INPUT_DIR = PROJECT_ROOT / "data" / "ielts_part_2"
 OUTPUT_DIR_ANALYSIS = PROJECT_ROOT / "outputs" / "audio_analysis"
@@ -27,6 +32,7 @@ ANALYSIS_SEMAPHORE = asyncio.Semaphore(1)
 
 
 def make_json_safe(obj):
+    """Convert numpy types to native Python types for JSON serialization."""
     if isinstance(obj, dict):
         return {k: make_json_safe(v) for k, v in obj.items()}
     elif isinstance(obj, list):
@@ -41,19 +47,20 @@ def make_json_safe(obj):
         return obj
 
 async def run_analysis(limit: int = None):
+    """Run speech analysis on all audio files with error handling."""
     wav_files = sorted(INPUT_DIR.rglob("*.wav"))
     OUTPUT_DIR_ANALYSIS.mkdir(parents=True, exist_ok=True)
 
     total = len(wav_files)
     failures = []
 
-    print(f"Found {total} wav files")
+    logger.info(f"Found {total} wav files")
 
     for idx, wav_path in enumerate(wav_files, start=1):
         if limit is not None and idx > limit:
             break
         out_path = OUTPUT_DIR_ANALYSIS / f"{wav_path.stem}.json"
-        print(f"[{idx}/{total}] analyzing {wav_path.name}")
+        logger.info(f"[{idx}/{total}] analyzing {wav_path.name}")
 
         try:
             async with ANALYSIS_SEMAPHORE:
@@ -71,67 +78,89 @@ async def run_analysis(limit: int = None):
 
             with out_path.open("w", encoding="utf-8") as f:
                 json.dump(make_json_safe(analysis), f, indent=2, ensure_ascii=False)
+            
+            logger.debug(f"Saved analysis to {out_path}")
 
-            # # 🔑 Let the system breathe
+            # Let the system breathe
             await asyncio.sleep(0.3)
             gc.collect()
 
-        except Exception:
-            failures.append(wav_path.name)
-            print(f"❌ FAILED: {wav_path.name}")
-            traceback.print_exc()
+        except SpeechAnalysisError as e:
+            failures.append((wav_path.name, str(e)))
+            logger.error(f"❌ Analysis failed for {wav_path.name}: {e.message}")
+
+            # Extra cooldown after failure
+            await asyncio.sleep(1.0)
+            gc.collect()
+        except Exception as e:
+            failures.append((wav_path.name, str(e)))
+            logger.error(f"❌ Unexpected error for {wav_path.name}: {str(e)}")
+            logger.debug(traceback.format_exc())
 
             # Extra cooldown after failure
             await asyncio.sleep(1.0)
             gc.collect()
 
-    print("\n=== Analysis complete ===")
-    print(f"Total files: {total}")
-    print(f"Failures: {len(failures)}")
+    logger.info("\n=== Analysis complete ===")
+    logger.info(f"Total files: {total}")
+    logger.info(f"Successes: {total - len(failures)}")
+    logger.info(f"Failures: {len(failures)}")
+    
+    if failures:
+        logger.warning("Failed files:")
+        for filename, error in failures:
+            logger.warning(f"  - {filename}: {error}")
 
 # =========================================================
 # STAGE 2: IELTS BAND SCORING
 # =========================================================
 async def run_result():
+    """Score audio analysis results with IELTS band scoring."""
     OUTPUT_DIR_RESULT.mkdir(parents=True, exist_ok=True)
 
     analysis_files = sorted(OUTPUT_DIR_ANALYSIS.glob("*.json"))
     total = len(analysis_files)
     failures = []
 
-    print(f"\nScoring {total} analysis files")
+    logger.info(f"\nScoring {total} analysis files")
 
     for idx, path in enumerate(analysis_files, start=1):
         out_path = OUTPUT_DIR_RESULT / path.name
-        print(f"[{idx}/{total}] scoring {path.name}")
+        logger.info(f"[{idx}/{total}] scoring {path.name}")
 
         try:
             with path.open("r", encoding="utf-8") as f:
                 analysis_json = json.load(f)
 
-            # 🔑 EXPLICIT unpacking (this is the key fix)
+            # Explicit unpacking
             raw_analysis = analysis_json["raw_analysis"]
             # llm_metrics = analysis_json["llm_metrics"]
 
-            # 🔑 Call the correct analyze_band signature
+            # Call the correct analyze_band signature
             report = await analyze_band_from_analysis(raw_analysis)
 
             with out_path.open("w", encoding="utf-8") as f:
                 json.dump(report, f, indent=2, ensure_ascii=False)
+            
+            logger.debug(f"Saved band results to {out_path}")
 
-        except Exception:
-            failures.append(path.name)
-            print(f"❌ FAILED: {path.name}")
-            traceback.print_exc()
+        except KeyError as e:
+            failures.append((path.name, f"Missing key: {str(e)}"))
+            logger.error(f"❌ Missing data key in {path.name}: {str(e)}")
+        except Exception as e:
+            failures.append((path.name, str(e)))
+            logger.error(f"❌ Scoring failed for {path.name}: {str(e)}")
+            logger.debug(traceback.format_exc())
 
-    print("\n=== Band scoring complete ===")
-    print(f"Total files: {total}")
-    print(f"Failures: {len(failures)}")
+    logger.info("\n=== Band scoring complete ===")
+    logger.info(f"Total files: {total}")
+    logger.info(f"Successes: {total - len(failures)}")
+    logger.info(f"Failures: {len(failures)}")
 
     if failures:
-        print("Failed files:")
-        for f in failures:
-            print(" -", f)
+        logger.warning("Failed files:")
+        for filename, error in failures:
+            logger.warning(f"  - {filename}: {error}")
 
 
 
@@ -139,6 +168,7 @@ async def run_result():
 # OPTIONAL: MERGE RESULTS
 # =========================================================
 def merge_band_results(input_dir: Path, output_path: Path):
+    """Merge individual band results into single JSON file."""
     merged = {}
     failures = []
 
@@ -147,7 +177,7 @@ def merge_band_results(input_dir: Path, output_path: Path):
         if p.name != output_path.name
     )
 
-    print(f"Merging {len(json_files)} json files")
+    logger.info(f"Merging {len(json_files)} json files")
 
     for path in json_files:
         key = path.stem
@@ -155,17 +185,21 @@ def merge_band_results(input_dir: Path, output_path: Path):
         try:
             with path.open("r", encoding="utf-8") as f:
                 merged[key] = json.load(f)
-        except Exception:
-            failures.append(path.name)
-            print(f"❌ Failed to read {path.name}")
-            traceback.print_exc()
+        except Exception as e:
+            failures.append((path.name, str(e)))
+            logger.error(f"❌ Failed to read {path.name}: {str(e)}")
 
     with output_path.open("w", encoding="utf-8") as f:
         json.dump(merged, f, indent=2, ensure_ascii=False)
 
-    print("\n=== Merge complete ===")
-    print(f"Total merged: {len(merged)}")
-    print(f"Failures: {len(failures)}")
+    logger.info("\n=== Merge complete ===")
+    logger.info(f"Total merged: {len(merged)}")
+    logger.info(f"Failures: {len(failures)}")
+    
+    if failures:
+        logger.warning("Failed files:")
+        for filename, error in failures:
+            logger.warning(f"  - {filename}: {error}")
 
 
 # =========================================================

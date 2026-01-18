@@ -17,7 +17,7 @@
       "fluency_coherence": "Limited fluency. Frequent pauses and repetitions affect speech flow.",
       "pronunciation": "Adequate pronunciation. Generally understood but occasional clarity issues.",
       "lexical_resource": "Good vocabulary range. Uses 1 advanced items and 0 idiomatic expressions.",
-      "grammatical_range_accuracy": "Adequate control. 2 errors noted but meaning usually clear.",
+      "grammatical_range_accuracy": "Adequate control. 1 errors noted but meaning usually clear.",
       "overall_recommendation": "Adequate performance. Focus on fluency and reducing hesitations would help."
     }
   },
@@ -27,7 +27,7 @@
       "speaking_time_sec": 91.8,
       "total_words_transcribed": 163,
       "content_word_count": 162,
-      "analysis_timestamp": "2026-01-17T18:00:39.264822Z"
+      "analysis_timestamp": "2026-01-18T13:52:24.282996Z"
     },
     "fluency_analysis": {
       "verdict": {

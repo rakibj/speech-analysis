@@ -432,15 +432,26 @@ def score_ielts_speaking(
     
     Returns:
         dict with overall_band, criterion_bands, descriptors, and feedback
+        
+    Notes:
+        LLM failures degrade gracefully - metrics-only scoring is used as fallback
     """
+    from .logging_config import logger
+    from .exceptions import LLMProcessingError
+    
     scorer = IELTSBandScorer()
     llm_metrics = None
 
     if use_llm and transcript:
         try:
+            from .llm_processing import extract_llm_annotations, aggregate_llm_metrics
+            
             llm_annotations = extract_llm_annotations(transcript)
             llm_metrics = aggregate_llm_metrics(llm_annotations)
+            logger.info("LLM scoring successful")
+        except LLMProcessingError as e:
+            logger.warning(f"LLM scoring failed, falling back to metrics-only: {e.message}")
         except Exception as e:
-            print(f"LLM call failed: {e}. Using metrics-only scoring.")
+            logger.warning(f"Unexpected error during LLM scoring, using metrics-only: {str(e)}")
 
     return scorer.score_overall_with_feedback(metrics, transcript, llm_metrics)
