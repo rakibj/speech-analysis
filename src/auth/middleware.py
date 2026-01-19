@@ -40,15 +40,18 @@ async def get_rapidapi_auth(
         async def analyze(auth: AuthContext = Depends(get_rapidapi_auth)):
             ...
     """
-    # Verify signature if present
-    if x_rapidapi_signature:
-        try:
-            body = await request.body()
-        except Exception:
-            body = b""
-        
-        if not KeyManager.verify_rapidapi_signature(body, x_rapidapi_signature):
-            raise HTTPException(status_code=401, detail="Invalid RapidAPI signature")
+    # Signature is REQUIRED for RapidAPI endpoints
+    if not x_rapidapi_signature:
+        raise HTTPException(status_code=401, detail="X-RapidAPI-Signature header is required")
+    
+    # Verify signature
+    try:
+        body = await request.body()
+    except Exception:
+        body = b""
+    
+    if not KeyManager.verify_rapidapi_signature(body, x_rapidapi_signature):
+        raise HTTPException(status_code=401, detail="Invalid RapidAPI signature")
     
     # Validate the API key
     try:

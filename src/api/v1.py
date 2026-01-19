@@ -19,8 +19,8 @@ job_queue = JobQueue()  # Singleton job tracker
 
 
 @router.get("/health")
-async def health_check():
-    """Health check endpoint."""
+async def health_check(auth: AuthContext = Depends(get_rapidapi_auth)):
+    """Health check endpoint - requires valid RapidAPI key and signature."""
     return {
         "status": "healthy",
         "version": "0.1.0",
