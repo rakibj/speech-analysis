@@ -1,114 +1,50 @@
 {
+  "filename": "ielts5.5.json",
+  "overall_band": 6.5,
+  "confidence": {
+    "overall_confidence": 0.44,
+    "factor_breakdown": {
+      "duration": {
+        "value_sec": 109.54,
+        "multiplier": 0.7,
+        "reason": "Longer samples provide more stable metrics"
+      },
+      "audio_clarity": {
+        "value": 0.227,
+        "multiplier": 0.7,
+        "reason": "Many unclear words indicate audio/speech quality issues"
+      },
+      "boundary_proximity": {
+        "score": 6.5,
+        "adjustment": -0.05,
+        "reason": "Scores on .0/.5 boundaries are less stable"
+      },
+      "criterion_coherence": {
+        "mismatch_detected": false,
+        "adjustment": 0.0,
+        "reason": "Physically impossible criterion combinations flagged"
+      }
+    },
+    "confidence_category": "VERY_LOW - Score unreliable, retest recommended",
+    "recommendation": "Very low confidence. Score unreliable. Retest required with better audio conditions."
+  },
   "band_scores": {
-    "overall_band": 6.0,
-    "criterion_bands": {
-      "fluency_coherence": 6.0,
-      "pronunciation": 6.5,
-      "lexical_resource": 6.0,
-      "grammatical_range_accuracy": 6.0
-    },
-    "descriptors": {
-      "fluency_coherence": "Able to keep going and demonstrates willingness. Coherence may be lost due to hesitation.",
-      "pronunciation": "Range of phonological features with variable control. Individual words may be mispronounced.",
-      "lexical_resource": "Resource sufficient to discuss topics. Vocabulary use may be inappropriate.",
-      "grammatical_range_accuracy": "Mix of structures with limited flexibility. Errors frequent but rarely impede communication."
-    },
-    "feedback": {
-      "fluency_coherence": "Adequate fluency. Able to produce extended speech but with noticeable pauses.",
-      "pronunciation": "Adequate pronunciation. Generally understood but occasional clarity issues.",
-      "lexical_resource": "Adequate vocabulary. Can discuss topics at length. 1 word choice errors noted.",
-      "grammatical_range_accuracy": "Adequate control. 1 errors noted but meaning usually clear.",
-      "overall_recommendation": "Adequate performance. Focus on fluency and reducing hesitations would help."
-    }
+    "fluency_coherence": 6.0,
+    "pronunciation": 6.5,
+    "lexical_resource": 7.5,
+    "grammatical_range_accuracy": 6.0
   },
-  "analysis": {
-    "metadata": {
-      "audio_duration_sec": 109.54,
-      "speaking_time_sec": 91.8,
-      "total_words_transcribed": 163,
-      "content_word_count": 162,
-      "analysis_timestamp": "2026-01-19T08:25:40.547664Z"
-    },
-    "fluency_analysis": {
-      "verdict": {
-        "fluency_score": 29,
-        "readiness": "not_ready"
-      },
-      "benchmarking": {
-        "percentile": 30,
-        "target_score": 80,
-        "score_gap": 51,
-        "estimated_guided_practice_hours": 30.599999999999998
-      },
-      "opinions": {
-        "primary_issues": [
-          {
-            "issue": "delivery_instability",
-            "severity": "medium",
-            "root_cause": "Speech rhythm varies unpredictably.",
-            "score_impact": 20
-          },
-          {
-            "issue": "hesitation_structure",
-            "severity": "high",
-            "root_cause": "Pauses frequently interrupt sentence flow.",
-            "score_impact": 16
-          },
-          {
-            "issue": "filler_dependency",
-            "severity": "high",
-            "root_cause": "Fillers replace silent planning pauses.",
-            "score_impact": 11
-          },
-          {
-            "issue": "delivery_pacing",
-            "severity": "medium",
-            "root_cause": "Speech rate deviates from optimal clarity range.",
-            "score_impact": 7
-          }
-        ],
-        "action_plan": [
-          {
-            "priority": 1,
-            "focus": "delivery_instability",
-            "instruction": "Practice steady pacing using metronome or rhythm drills.",
-            "expected_score_gain": 21
-          },
-          {
-            "priority": 2,
-            "focus": "hesitation_structure",
-            "instruction": "Pause only after completing full clauses or ideas.",
-            "expected_score_gain": 17
-          },
-          {
-            "priority": 3,
-            "focus": "filler_dependency",
-            "instruction": "Replace filler words with silent pauses under 300 ms.",
-            "expected_score_gain": 11
-          }
-        ]
-      }
-    },
-    "pronunciation": {
-      "intelligibility": {
-        "mean_word_confidence": 0.845,
-        "low_confidence_ratio": 0.227
-      },
-      "prosody": {
-        "monotone_detected": false
-      }
-    }
+  "descriptors": {
+    "fluency_coherence": "Able to keep going but relies on repetition and self-correction. May search for fairly basic language.",
+    "pronunciation": "Range of phonological features. Control variable. Some lapses in rhythm.",
+    "lexical_resource": "Range sufficient to discuss topics at length. Some inappropriate vocabulary.",
+    "grammatical_range_accuracy": "Mix of short and complex structures. Errors frequent in complex structures."
   },
-  "metrics": {
-    "wpm": 88.73,
-    "long_pauses_per_min": 2.19,
-    "pause_variability": 1.472,
-    "repetition_ratio": 0.072,
-    "mean_word_confidence": 0.8450871881112793,
-    "low_confidence_ratio": 0.22699386503067484,
-    "vocab_richness": 0.537,
-    "lexical_density": 0.509,
-    "mean_utterance_length": 9.59,
-    "speech_rate_variability": 0.317
+  "feedback": {
+    "fluency_coherence": "Adequate fluency. Able to produce extended speech but with noticeable pauses.",
+    "pronunciation": "Adequate pronunciation. Generally understood but occasional clarity issues.",
+    "lexical_resource": "Good vocabulary range.",
+    "grammatical_range_accuracy": "Adequate grammatical control with some errors.",
+    "overall_recommendation": "Adequate performance. Focus on fluency and reducing hesitations would help."
   }
 }

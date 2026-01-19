@@ -9,7 +9,7 @@ Combines:
 Confidence: ~85% (up from 65% with metrics-only)
 """
 
-from typing import Dict, Optional
+from typing import Dict, Optional, List, Any
 from .llm_processing import extract_llm_annotations, aggregate_llm_metrics
 
 
@@ -296,6 +296,233 @@ class IELTSBandScorer:
         return base_score
 
     # ===============================
+    # CONFIDENCE SCORING
+    # ===============================
+
+    def calculate_confidence_score(
+        self,
+        metrics: Dict,
+        band_scores: Dict,
+        llm_metrics: Optional[Dict] = None,
+    ) -> Dict:
+        """
+        Calculate multi-factor confidence score (0.0-1.0).
+        
+        Factors:
+        1. Sample duration (longer = more reliable)
+        2. Audio clarity (low_confidence_ratio)
+        3. LLM span consistency (optional)
+        4. Score boundary proximity (on .0/.5 = less stable)
+        5. Gaming detection flags
+        6. Criterion coherence (impossible combos flagged)
+        
+        Returns:
+            Dict with overall confidence and factor breakdown
+        """
+        confidence = 1.0
+        factors = {}
+        
+        # Factor 1: Sample Duration
+        duration = metrics.get("audio_duration_sec", 0)
+        duration_mult = self._get_duration_multiplier(duration)
+        factors["duration"] = {
+            "value_sec": duration,
+            "multiplier": duration_mult,
+            "reason": "Longer samples provide more stable metrics"
+        }
+        confidence *= duration_mult
+        
+        # Factor 2: Audio Clarity (low_confidence_ratio)
+        low_conf_ratio = metrics.get("low_confidence_ratio", 0)
+        clarity_mult = self._get_clarity_multiplier(low_conf_ratio)
+        factors["audio_clarity"] = {
+            "value": low_conf_ratio,
+            "multiplier": clarity_mult,
+            "reason": "Many unclear words indicate audio/speech quality issues"
+        }
+        confidence *= clarity_mult
+        
+        # Factor 3: LLM Consistency (if available)
+        if llm_metrics:
+            llm_consistency = self._calculate_llm_consistency(llm_metrics)
+            consistency_mult = self._get_consistency_multiplier(llm_consistency)
+            factors["llm_consistency"] = {
+                "value": llm_consistency,
+                "multiplier": consistency_mult,
+                "reason": "Scattered LLM findings reduce assessment reliability"
+            }
+            confidence *= consistency_mult
+        
+        # Factor 4: Score Boundary Proximity
+        overall_score = band_scores.get("overall_band", 7.0)
+        boundary_adj = self._get_boundary_adjustment(overall_score)
+        factors["boundary_proximity"] = {
+            "score": overall_score,
+            "adjustment": boundary_adj,
+            "reason": "Scores on .0/.5 boundaries are less stable"
+        }
+        confidence += boundary_adj
+        
+        # Factor 5: Gaming Detection Penalties
+        if llm_metrics:
+            gaming_penalty = self._calculate_gaming_penalty(llm_metrics)
+            factors["gaming_detection"] = {
+                "flags_detected": gaming_penalty > 0,
+                "penalty": gaming_penalty,
+                "reason": "Detected gaming attempts or incoherent speech"
+            }
+            confidence -= gaming_penalty
+        
+        # Factor 6: Criterion Coherence
+        criterion_scores = band_scores.get("criterion_bands", {})
+        extreme_mismatch = self._detect_extreme_mismatch(criterion_scores)
+        coherence_adj = -0.15 if extreme_mismatch else 0.0
+        factors["criterion_coherence"] = {
+            "mismatch_detected": extreme_mismatch,
+            "adjustment": coherence_adj,
+            "reason": "Physically impossible criterion combinations flagged"
+        }
+        confidence += coherence_adj
+        
+        # Clamp to 0.0-1.0
+        confidence = max(0.0, min(1.0, confidence))
+        
+        return {
+            "overall_confidence": round(confidence, 2),
+            "factor_breakdown": factors,
+            "confidence_category": self._categorize_confidence(confidence),
+            "recommendation": self._generate_confidence_recommendation(confidence),
+        }
+
+    def _get_duration_multiplier(self, duration_sec: float) -> float:
+        """Map audio duration to confidence multiplier."""
+        if duration_sec < 120:  # 2 min
+            return 0.70
+        elif duration_sec < 180:  # 3 min
+            return 0.85
+        elif duration_sec < 300:  # 5 min
+            return 0.95
+        else:
+            return 1.0
+
+    def _get_clarity_multiplier(self, low_conf_ratio: float) -> float:
+        """Map low-confidence ratio to multiplier."""
+        if low_conf_ratio < 0.05:
+            return 1.0
+        elif low_conf_ratio < 0.10:
+            return 0.95
+        elif low_conf_ratio < 0.15:
+            return 0.85
+        else:
+            return 0.70
+
+    def _calculate_llm_consistency(self, llm_metrics: Dict) -> float:
+        """
+        Calculate how consistent LLM findings are.
+        High variance in error types = lower consistency.
+        """
+        error_counts = [
+            llm_metrics.get("coherence_break_count", 0),
+            llm_metrics.get("word_choice_error_count", 0),
+            llm_metrics.get("grammar_error_count", 0),
+            llm_metrics.get("clause_completion_issue_count", 0),
+        ]
+        
+        # If too many different error types, consistency is low
+        error_types_found = sum(1 for count in error_counts if count > 0)
+        
+        if error_types_found <= 2:
+            return 0.95  # Consistent findings
+        elif error_types_found <= 3:
+            return 0.75  # Mixed findings
+        else:
+            return 0.50  # Many scattered issues
+
+    def _get_consistency_multiplier(self, consistency: float) -> float:
+        """Map LLM consistency to multiplier."""
+        if consistency >= 0.90:
+            return 1.0
+        elif consistency >= 0.70:
+            return 0.90
+        else:
+            return 0.75
+
+    def _get_boundary_adjustment(self, score: float) -> float:
+        """Adjust confidence for scores on boundaries."""
+        # Check if score is exactly on .0 or .5 boundary
+        fractional = score - int(score)
+        if abs(fractional) < 0.01 or abs(fractional - 0.5) < 0.01:
+            return -0.05  # On boundary = less stable
+        else:
+            return 0.0
+
+    def _calculate_gaming_penalty(self, llm_metrics: Dict) -> float:
+        """Calculate penalty based on gaming detection flags."""
+        penalty = 0.0
+        
+        # Off-topic is most damaging
+        if not llm_metrics.get("topic_relevance", True):
+            penalty += 0.20
+        
+        # Erratic flow
+        if llm_metrics.get("flow_instability_present", False):
+            penalty += 0.10
+        
+        # Hard to follow
+        if llm_metrics.get("listener_effort_high", False):
+            penalty += 0.10
+        
+        # Forced vocabulary (register mismatch)
+        register_mismatch = llm_metrics.get("register_mismatch_count", 0)
+        if register_mismatch >= 2:
+            penalty += 0.15
+        
+        return min(penalty, 0.40)  # Cap at 0.40
+
+    def _detect_extreme_mismatch(self, criterion_scores: Dict) -> bool:
+        """Detect physically impossible criterion combinations."""
+        fc = criterion_scores.get("fluency_coherence", 0)
+        pr = criterion_scores.get("pronunciation", 0)
+        lr = criterion_scores.get("lexical_resource", 0)
+        gr = criterion_scores.get("grammatical_range_accuracy", 0)
+        
+        # Impossible: High fluency but very low grammar
+        if fc > 7.5 and gr < 6.0:
+            return True
+        
+        # Impossible: High lexical but very low grammar
+        if lr > 8.0 and gr < 6.0:
+            return True
+        
+        return False
+
+    def _categorize_confidence(self, score: float) -> str:
+        """Categorize confidence for user display."""
+        if score >= 0.95:
+            return "VERY_HIGH - Highly reliable score"
+        elif score >= 0.85:
+            return "HIGH - Reliable with minor caveats"
+        elif score >= 0.75:
+            return "MODERATE - General reliability, some uncertainty"
+        elif score >= 0.60:
+            return "LOW - Significant uncertainty, review recommended"
+        else:
+            return "VERY_LOW - Score unreliable, retest recommended"
+
+    def _generate_confidence_recommendation(self, score: float) -> str:
+        """Generate actionable recommendation."""
+        if score >= 0.90:
+            return "No action needed. Score is reliable."
+        elif score >= 0.80:
+            return "Score is generally reliable. Consider longer sample for verification."
+        elif score >= 0.70:
+            return "Score has moderate reliability. Audio quality or duration may be affecting results."
+        elif score >= 0.60:
+            return "Low confidence. Recommend retesting with 5+ minutes of clear audio."
+        else:
+            return "Very low confidence. Score unreliable. Retest required with better audio conditions."
+
+    # ===============================
     # OVERALL BAND WITH FEEDBACK
     # ===============================
 
@@ -362,6 +589,17 @@ class IELTSBandScorer:
 
         # Get descriptors
         descriptor = get_band_descriptor(overall)
+        
+        # Calculate confidence score
+        band_scores = {
+            "overall_band": overall,
+            "criterion_bands": subscores
+        }
+        confidence_result = self.calculate_confidence_score(
+            metrics,
+            band_scores,
+            llm_metrics
+        )
 
         # Build feedback
         feedback = self._build_feedback(
@@ -371,6 +609,7 @@ class IELTSBandScorer:
         return {
             "overall_band": overall,
             "criterion_bands": subscores,
+            "confidence": confidence_result,
             "descriptors": descriptor,
             "feedback": feedback,
         }
@@ -553,6 +792,162 @@ class IELTSBandScorer:
             ] = "Needs improvement. Work on fluency, pronunciation, and grammatical accuracy."
 
         return feedback
+
+    def build_timestamped_rubric_feedback(
+        self,
+        subscores: Dict,
+        metrics: Dict,
+        word_timestamps: List[Dict],
+        llm_annotations: Optional[Any] = None,
+    ) -> Dict:
+        """
+        Build feedback grouped by IELTS rubric with timestamped segments.
+        
+        Args:
+            subscores: Band scores for each criterion
+            metrics: Raw metrics dictionary
+            word_timestamps: List of word timestamp dicts from audio_analysis
+            llm_annotations: Optional LLMSpeechAnnotations object
+            
+        Returns:
+            Dict with timestamped feedback grouped by rubric category
+        """
+        from .llm_processing import map_spans_to_timestamps
+        
+        timestamped_spans = []
+        if llm_annotations:
+            # Collect all spans from LLM annotations
+            all_spans = []
+            all_spans.extend(llm_annotations.coherence_breaks)
+            all_spans.extend(llm_annotations.word_choice_errors)
+            all_spans.extend(llm_annotations.grammar_errors)
+            all_spans.extend(llm_annotations.meaning_blocking_grammar_errors)
+            all_spans.extend(llm_annotations.advanced_vocabulary)
+            all_spans.extend(llm_annotations.idiomatic_or_collocational_use)
+            all_spans.extend(llm_annotations.clause_completion_issues)
+            all_spans.extend(llm_annotations.complex_structures_attempted)
+            all_spans.extend(llm_annotations.complex_structures_accurate)
+            all_spans.extend(llm_annotations.register_mismatch)
+            all_spans.extend(llm_annotations.successful_paraphrase)
+            all_spans.extend(llm_annotations.failed_paraphrase)
+            
+            # Map to timestamps (need raw_transcript from metrics)
+            transcript = metrics.get("raw_transcript", "")
+            if transcript and word_timestamps:
+                timestamped_spans = map_spans_to_timestamps(
+                    transcript,
+                    all_spans,
+                    word_timestamps
+                )
+        
+        # Extract pronunciation issues from low-confidence words
+        pronunciation_issues = []
+        for word_data in word_timestamps:
+            if word_data.get("confidence", 1.0) < 0.70:
+                pronunciation_issues.append({
+                    "word": word_data.get("word", ""),
+                    "start_sec": word_data.get("start", 0.0),
+                    "end_sec": word_data.get("end", 0.0),
+                    "confidence": word_data.get("confidence", 0.0),
+                })
+        
+        # Group timestamped spans by category
+        grammar_issues = [s for s in timestamped_spans if s.label in [
+            "grammar_error", "meaning_blocking_grammar_error", "clause_completion_issue"
+        ]]
+        
+        lexical_issues = [s for s in timestamped_spans if s.label in [
+            "word_choice_error"
+        ]]
+        
+        lexical_highlights = [s for s in timestamped_spans if s.label in [
+            "advanced_vocabulary", "idiomatic_or_collocational_use", "successful_paraphrase"
+        ]]
+        
+        fluency_issues = [s for s in timestamped_spans if s.label in [
+            "coherence_break"
+        ]]
+        
+        return {
+            "fluency_coherence": {
+                "band": subscores.get("fluency_coherence", 7.0),
+                "issues": [
+                    {
+                        "type": issue.label,
+                        "segment": issue.text,
+                        "timestamps": {
+                            "start_sec": issue.start_sec,
+                            "end_sec": issue.end_sec,
+                            "display": issue.timestamp_mmss,
+                        },
+                        "feedback": f"Coherence break detected. Connect ideas more smoothly."
+                    }
+                    for issue in fluency_issues
+                ]
+            },
+            "pronunciation": {
+                "band": subscores.get("pronunciation", 7.0),
+                "unclear_words": [
+                    {
+                        "word": issue["word"],
+                        "timestamps": {
+                            "start_sec": issue["start_sec"],
+                            "end_sec": issue["end_sec"],
+                            "display": f"{int(issue['start_sec'])//60}:{int(issue['start_sec'])%60:02d}",
+                        },
+                        "confidence": round(issue["confidence"], 2),
+                        "feedback": "Enunciate more clearly"
+                    }
+                    for issue in pronunciation_issues
+                ]
+            },
+            "lexical_resource": {
+                "band": subscores.get("lexical_resource", 7.0),
+                "issues": [
+                    {
+                        "type": issue.label,
+                        "word": issue.text,
+                        "timestamps": {
+                            "start_sec": issue.start_sec,
+                            "end_sec": issue.end_sec,
+                            "display": issue.timestamp_mmss,
+                        },
+                        "feedback": "Word choice could be improved"
+                    }
+                    for issue in lexical_issues
+                ],
+                "highlights": [
+                    {
+                        "type": highlight.label,
+                        "phrase": highlight.text,
+                        "timestamps": {
+                            "start_sec": highlight.start_sec,
+                            "end_sec": highlight.end_sec,
+                            "display": highlight.timestamp_mmss,
+                        },
+                        "feedback": "Excellent vocabulary use"
+                    }
+                    for highlight in lexical_highlights
+                ]
+            },
+            "grammatical_accuracy": {
+                "band": subscores.get("grammatical_range_accuracy", 7.0),
+                "issues": [
+                    {
+                        "type": issue.label,
+                        "segment": issue.text,
+                        "timestamps": {
+                            "start_sec": issue.start_sec,
+                            "end_sec": issue.end_sec,
+                            "display": issue.timestamp_mmss,
+                        },
+                        "severity": "high" if "meaning_blocking" in issue.label else "low",
+                        "feedback": "Grammar error - see feedback for correction"
+                    }
+                    for issue in grammar_issues
+                ]
+            }
+        }
 
     def score_overall(self, metrics: Dict) -> Dict:
         """Legacy method for backwards compatibility."""

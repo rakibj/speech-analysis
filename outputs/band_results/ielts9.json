@@ -1,96 +1,50 @@
 {
+  "filename": "ielts9.json",
+  "overall_band": 8.0,
+  "confidence": {
+    "overall_confidence": 0.76,
+    "factor_breakdown": {
+      "duration": {
+        "value_sec": 122.86,
+        "multiplier": 0.85,
+        "reason": "Longer samples provide more stable metrics"
+      },
+      "audio_clarity": {
+        "value": 0.086,
+        "multiplier": 0.95,
+        "reason": "Many unclear words indicate audio/speech quality issues"
+      },
+      "boundary_proximity": {
+        "score": 8.0,
+        "adjustment": -0.05,
+        "reason": "Scores on .0/.5 boundaries are less stable"
+      },
+      "criterion_coherence": {
+        "mismatch_detected": false,
+        "adjustment": 0.0,
+        "reason": "Physically impossible criterion combinations flagged"
+      }
+    },
+    "confidence_category": "MODERATE - General reliability, some uncertainty",
+    "recommendation": "Score has moderate reliability. Audio quality or duration may be affecting results."
+  },
   "band_scores": {
-    "overall_band": 8.5,
-    "criterion_bands": {
-      "fluency_coherence": 8.0,
-      "pronunciation": 8.0,
-      "lexical_resource": 8.5,
-      "grammatical_range_accuracy": 7.5
-    },
-    "descriptors": {
-      "fluency_coherence": "Fluent with only very occasional repetition or self-correction. Hesitation may occasionally occur to find words.",
-      "pronunciation": "Uses wide range of phonological features. Can sustain appropriate rhythm.",
-      "lexical_resource": "Wide resource, readily used to discuss all topics. Skilful use of less common items.",
-      "grammatical_range_accuracy": "Wide range of structures, flexibly used. Majority of sentences error-free."
-    },
-    "feedback": {
-      "fluency_coherence": "Excellent fluency. Speech flows naturally with minimal hesitation.",
-      "pronunciation": "Clear pronunciation. Speech is easily understood with consistent clarity.",
-      "lexical_resource": "Wide and flexible vocabulary. Uses 5 advanced vocabulary items effectively. Strong command of less common items.",
-      "grammatical_range_accuracy": "Good grammatical control. Mostly accurate structures. 0 errors in complex sentences.",
-      "overall_recommendation": "Strong performance across all criteria. Ready for advanced academic/professional contexts."
-    }
+    "fluency_coherence": 8.0,
+    "pronunciation": 8.0,
+    "lexical_resource": 7.0,
+    "grammatical_range_accuracy": 7.5
   },
-  "analysis": {
-    "metadata": {
-      "audio_duration_sec": 122.86,
-      "speaking_time_sec": 109.78,
-      "total_words_transcribed": 327,
-      "content_word_count": 324,
-      "analysis_timestamp": "2026-01-19T08:26:26.999715Z"
-    },
-    "fluency_analysis": {
-      "verdict": {
-        "fluency_score": 59,
-        "readiness": "borderline"
-      },
-      "benchmarking": {
-        "percentile": 30,
-        "target_score": 80,
-        "score_gap": 21,
-        "estimated_guided_practice_hours": 12.6
-      },
-      "opinions": {
-        "primary_issues": [
-          {
-            "issue": "delivery_instability",
-            "severity": "medium",
-            "root_cause": "Speech rhythm varies unpredictably.",
-            "score_impact": 15
-          },
-          {
-            "issue": "filler_dependency",
-            "severity": "high",
-            "root_cause": "Fillers replace silent planning pauses.",
-            "score_impact": 14
-          }
-        ],
-        "action_plan": [
-          {
-            "priority": 1,
-            "focus": "delivery_instability",
-            "instruction": "Practice steady pacing using metronome or rhythm drills.",
-            "expected_score_gain": 10
-          },
-          {
-            "priority": 2,
-            "focus": "filler_dependency",
-            "instruction": "Replace filler words with silent pauses under 300 ms.",
-            "expected_score_gain": 10
-          }
-        ]
-      }
-    },
-    "pronunciation": {
-      "intelligibility": {
-        "mean_word_confidence": 0.923,
-        "low_confidence_ratio": 0.086
-      },
-      "prosody": {
-        "monotone_detected": false
-      }
-    }
+  "descriptors": {
+    "fluency_coherence": "Fluent with only very occasional repetition. Hesitation may occur mid-sentence but won't affect coherence.",
+    "pronunciation": "Wide range of phonological features. Can sustain appropriate rhythm with occasional lapses.",
+    "lexical_resource": "Resource flexibly used. Some ability to use less common and idiomatic items.",
+    "grammatical_range_accuracy": "Range of structures flexibly used. Error-free sentences frequent."
   },
-  "metrics": {
-    "wpm": 158.23,
-    "long_pauses_per_min": 0.98,
-    "pause_variability": 0.551,
-    "repetition_ratio": 0.048,
-    "mean_word_confidence": 0.9228632366711941,
-    "low_confidence_ratio": 0.0856269113149847,
-    "vocab_richness": 0.478,
-    "lexical_density": 0.443,
-    "mean_utterance_length": 23.36,
-    "speech_rate_variability": 0.227
+  "feedback": {
+    "fluency_coherence": "Excellent fluency. Speech flows naturally with minimal hesitation.",
+    "pronunciation": "Clear pronunciation. Speech is easily understood with consistent clarity.",
+    "lexical_resource": "Good vocabulary range.",
+    "grammatical_range_accuracy": "Good control of grammatical structures.",
+    "overall_recommendation": "Good overall performance. Minor areas for refinement in accuracy and range."
   }
 }
