@@ -165,6 +165,8 @@ async def analyze_speech(
             
             # LLM analysis (if available)
             "llm_analysis": llm_analysis,
+
+            # "raw_data": analysis["raw_data"],
         }
         
         logger.info("[OK] Analysis complete")

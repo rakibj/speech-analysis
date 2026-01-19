@@ -11,7 +11,8 @@ from src.core.engine_runner import run_engine
 async def main():
     # Find sample audio
     # audio_file = Path("data/l2arctic_spontaneous/L2A_001.wav")
-    audio_file = Path("samples/sample6.flac")
+    audio_file = Path("data/ielts_part_2/ielts7.wav")
+    # audio_file = Path("samples/sample6.flac")
 
     if not audio_file.exists():
         print(f"[ERROR] Audio File Not Found")
