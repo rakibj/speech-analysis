@@ -3,8 +3,14 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 import logging
+from dotenv import load_dotenv
 
-from src.api import router
+# Load environment variables
+load_dotenv()
+
+from src.api import router as old_router
+from src.api.v1 import router as rapidapi_router
+from src.api.direct import router as direct_router
 from src.utils.logging_config import logger
 
 # Create FastAPI app
@@ -27,7 +33,14 @@ app.add_middleware(
 )
 
 # Include routers
-app.include_router(router, prefix="/api/v1", tags=["analysis"])
+# RapidAPI endpoint
+app.include_router(rapidapi_router, prefix="/api/v1", tags=["analysis_rapidapi"])
+
+# Direct access endpoint
+app.include_router(direct_router, prefix="/api/direct/v1", tags=["analysis_direct"])
+
+# Legacy endpoint (if still needed for backward compatibility)
+app.include_router(old_router, prefix="/api/legacy", tags=["analysis_legacy"])
 
 # Root endpoint
 @app.get("/", tags=["root"])
@@ -37,7 +50,11 @@ async def root():
         "message": "Welcome to Speech Analysis API",
         "version": "0.1.0",
         "docs": "/docs",
-        "health": "/api/v1/health"
+        "endpoints": {
+            "rapidapi": "/api/v1/health",
+            "direct": "/api/direct/v1/health",
+            "legacy": "/api/legacy/health"
+        }
     }
 
 
@@ -62,3 +79,4 @@ if __name__ == "__main__":
         reload=True,
         log_level="info"
     )
+

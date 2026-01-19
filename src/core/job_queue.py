@@ -18,12 +18,20 @@ class JobQueue:
         self._jobs: Dict[str, Dict[str, Any]] = {}
         self._lock = threading.Lock()
     
-    def create_job(self, job_id: str, filename: str) -> None:
-        """Create a new job entry."""
+    def create_job(self, job_id: str, filename: str, api_key_hash: Optional[str] = None) -> None:
+        """
+        Create a new job entry.
+        
+        Args:
+            job_id: Unique job identifier
+            filename: Original filename
+            api_key_hash: Hash of API key (for ownership tracking)
+        """
         with self._lock:
             self._jobs[job_id] = {
                 "status": JobStatus.PROCESSING,
                 "filename": filename,
+                "api_key_hash": api_key_hash,
                 "result": None,
                 "error": None,
                 "created_at": datetime.now().isoformat()
@@ -65,3 +73,22 @@ class JobQueue:
         """Get full job information including metadata."""
         with self._lock:
             return self._jobs.get(job_id)
+    
+    def verify_job_ownership(self, job_id: str, api_key_hash: str) -> bool:
+        """
+        Verify that a job belongs to the given API key.
+        
+        Args:
+            job_id: Job identifier
+            api_key_hash: Hash of the API key
+            
+        Returns:
+            True if job belongs to this key, False otherwise
+        """
+        with self._lock:
+            if job_id not in self._jobs:
+                return False
+            
+            job = self._jobs[job_id]
+            return job.get("api_key_hash") == api_key_hash
+
