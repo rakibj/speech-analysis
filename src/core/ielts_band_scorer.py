@@ -544,6 +544,27 @@ class IELTSBandScorer:
         lr = self.score_lexical(metrics, llm_metrics)
         gr = self.score_grammar(metrics, llm_metrics)
 
+        # ===============================
+        # INTER-CRITERION COUPLING
+        # ===============================
+        # Weak fluency/pronunciation should cap lexical and grammar
+        # IELTS principle: can't have high vocabulary range if speech is halting/unclear
+        # Strategy: Cap at the minimum criterion level (not +buffer)
+        
+        min_criterion = min(fc, pr)
+        
+        # Cap lexical/grammar to match the weakest criterion
+        # This ensures overall score reflects true speaking ability
+        if min_criterion < 6.5:
+            # Very weak: both lexical and grammar capped at weak criterion level
+            lr = min(lr, min_criterion + 0.5)
+            gr = min(gr, min_criterion + 0.5)
+        elif min_criterion < 7.0:
+            # Moderate: cap at min_criterion level (no buffer)
+            # E.g., if fluency=6.5, lexical/grammar can't exceed 6.5
+            lr = min(lr, min_criterion)
+            gr = min(gr, min_criterion)
+
         subscores = {
             "fluency_coherence": fc,
             "pronunciation": pr,

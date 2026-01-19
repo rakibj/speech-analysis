@@ -1,6 +1,11 @@
 {
-  "filename": "ielts9.json",
   "overall_band": 8.0,
+  "criterion_bands": {
+    "fluency_coherence": 8.0,
+    "pronunciation": 8.0,
+    "lexical_resource": 7.0,
+    "grammatical_range_accuracy": 7.5
+  },
   "confidence": {
     "overall_confidence": 0.76,
     "factor_breakdown": {
@@ -28,12 +33,6 @@
     "confidence_category": "MODERATE - General reliability, some uncertainty",
     "recommendation": "Score has moderate reliability. Audio quality or duration may be affecting results."
   },
-  "band_scores": {
-    "fluency_coherence": 8.0,
-    "pronunciation": 8.0,
-    "lexical_resource": 7.0,
-    "grammatical_range_accuracy": 7.5
-  },
   "descriptors": {
     "fluency_coherence": "Fluent with only very occasional repetition. Hesitation may occur mid-sentence but won't affect coherence.",
     "pronunciation": "Wide range of phonological features. Can sustain appropriate rhythm with occasional lapses.",
@@ -46,5 +45,6 @@
     "lexical_resource": "Good vocabulary range.",
     "grammatical_range_accuracy": "Good control of grammatical structures.",
     "overall_recommendation": "Good overall performance. Minor areas for refinement in accuracy and range."
-  }
+  },
+  "filename": "ielts9.json"
 }

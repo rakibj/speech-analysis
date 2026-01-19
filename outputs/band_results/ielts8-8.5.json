@@ -1,6 +1,11 @@
 {
-  "filename": "ielts8-8.5.json",
   "overall_band": 8.0,
+  "criterion_bands": {
+    "fluency_coherence": 8.5,
+    "pronunciation": 8.0,
+    "lexical_resource": 7.0,
+    "grammatical_range_accuracy": 8.5
+  },
   "confidence": {
     "overall_confidence": 0.67,
     "factor_breakdown": {
@@ -28,12 +33,6 @@
     "confidence_category": "LOW - Significant uncertainty, review recommended",
     "recommendation": "Low confidence. Recommend retesting with 5+ minutes of clear audio."
   },
-  "band_scores": {
-    "fluency_coherence": 8.5,
-    "pronunciation": 8.0,
-    "lexical_resource": 7.0,
-    "grammatical_range_accuracy": 8.5
-  },
   "descriptors": {
     "fluency_coherence": "Fluent with only very occasional repetition. Hesitation may occur mid-sentence but won't affect coherence.",
     "pronunciation": "Wide range of phonological features. Can sustain appropriate rhythm with occasional lapses.",
@@ -46,5 +45,6 @@
     "lexical_resource": "Good vocabulary range.",
     "grammatical_range_accuracy": "Excellent grammatical control across range of structures.",
     "overall_recommendation": "Strong performance across all criteria. Ready for advanced academic/professional contexts."
-  }
+  },
+  "filename": "ielts8-8.5.json"
 }

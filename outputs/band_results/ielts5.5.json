@@ -1,6 +1,11 @@
 {
-  "filename": "ielts5.5.json",
-  "overall_band": 6.5,
+  "overall_band": 6.0,
+  "criterion_bands": {
+    "fluency_coherence": 6.0,
+    "pronunciation": 6.5,
+    "lexical_resource": 6.5,
+    "grammatical_range_accuracy": 6.0
+  },
   "confidence": {
     "overall_confidence": 0.44,
     "factor_breakdown": {
@@ -15,7 +20,7 @@
         "reason": "Many unclear words indicate audio/speech quality issues"
       },
       "boundary_proximity": {
-        "score": 6.5,
+        "score": 6.0,
         "adjustment": -0.05,
         "reason": "Scores on .0/.5 boundaries are less stable"
       },
@@ -28,23 +33,18 @@
     "confidence_category": "VERY_LOW - Score unreliable, retest recommended",
     "recommendation": "Very low confidence. Score unreliable. Retest required with better audio conditions."
   },
-  "band_scores": {
-    "fluency_coherence": 6.0,
-    "pronunciation": 6.5,
-    "lexical_resource": 7.5,
-    "grammatical_range_accuracy": 6.0
-  },
   "descriptors": {
-    "fluency_coherence": "Able to keep going but relies on repetition and self-correction. May search for fairly basic language.",
-    "pronunciation": "Range of phonological features. Control variable. Some lapses in rhythm.",
-    "lexical_resource": "Range sufficient to discuss topics at length. Some inappropriate vocabulary.",
-    "grammatical_range_accuracy": "Mix of short and complex structures. Errors frequent in complex structures."
+    "fluency_coherence": "Able to keep going and demonstrates willingness. Coherence may be lost due to hesitation.",
+    "pronunciation": "Range of phonological features with variable control. Individual words may be mispronounced.",
+    "lexical_resource": "Resource sufficient to discuss topics. Vocabulary use may be inappropriate.",
+    "grammatical_range_accuracy": "Mix of structures with limited flexibility. Errors frequent but rarely impede communication."
   },
   "feedback": {
     "fluency_coherence": "Adequate fluency. Able to produce extended speech but with noticeable pauses.",
     "pronunciation": "Adequate pronunciation. Generally understood but occasional clarity issues.",
-    "lexical_resource": "Good vocabulary range.",
+    "lexical_resource": "Adequate vocabulary for topic discussion.",
     "grammatical_range_accuracy": "Adequate grammatical control with some errors.",
     "overall_recommendation": "Adequate performance. Focus on fluency and reducing hesitations would help."
-  }
+  },
+  "filename": "ielts5.5.json"
 }

@@ -1,6 +1,11 @@
 {
-  "filename": "ielts7.json",
   "overall_band": 7.0,
+  "criterion_bands": {
+    "fluency_coherence": 7.0,
+    "pronunciation": 7.5,
+    "lexical_resource": 8.0,
+    "grammatical_range_accuracy": 6.0
+  },
   "confidence": {
     "overall_confidence": 0.44,
     "factor_breakdown": {
@@ -28,12 +33,6 @@
     "confidence_category": "VERY_LOW - Score unreliable, retest recommended",
     "recommendation": "Very low confidence. Score unreliable. Retest required with better audio conditions."
   },
-  "band_scores": {
-    "fluency_coherence": 7.0,
-    "pronunciation": 7.5,
-    "lexical_resource": 8.0,
-    "grammatical_range_accuracy": 6.0
-  },
   "descriptors": {
     "fluency_coherence": "Able to keep going readily with long turns without noticeable effort. Some hesitation and repetition.",
     "pronunciation": "Uses wide range of phonological features. Can sustain appropriate rhythm.",
@@ -46,5 +45,6 @@
     "lexical_resource": "Wide vocabulary range used flexibly.",
     "grammatical_range_accuracy": "Adequate grammatical control with some errors.",
     "overall_recommendation": "Good overall performance. Minor areas for refinement in accuracy and range."
-  }
+  },
+  "filename": "ielts7.json"
 }
