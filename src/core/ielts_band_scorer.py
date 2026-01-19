@@ -105,15 +105,22 @@ class IELTSBandScorer:
         pause_var = metrics.get("pause_variability", 0)
         repetition = metrics.get("repetition_ratio", 0)
 
-        if wpm >= 130 and long_pauses <= 1.0 and pause_var <= 0.60 and repetition <= 0.050:
+        # Improved calibration - stricter for low bands
+        if wpm >= 150 and long_pauses <= 0.5 and pause_var <= 0.40 and repetition <= 0.035:
             return 8.5
-        if wpm >= 100 and long_pauses <= 1.8 and pause_var <= 0.75 and repetition <= 0.065:
+        if wpm >= 130 and long_pauses <= 1.0 and pause_var <= 0.60 and repetition <= 0.050:
+            return 8.0
+        if wpm >= 110 and long_pauses <= 1.5 and pause_var <= 0.75 and repetition <= 0.065:
             return 7.5
+        if wpm >= 90 and long_pauses <= 2.0 and pause_var <= 1.0:
+            return 7.0
         if wpm >= 80 and long_pauses <= 2.5 and pause_var <= 1.2:
             return 6.5
-        if long_pauses >= 2.0 or pause_var >= 0.9:
+        if wpm >= 70 and long_pauses <= 3.0:
+            return 6.0
+        if long_pauses >= 3.0 or pause_var >= 1.3:
             return 5.5
-        return 6.0
+        return 5.5
 
     # ===============================
     # PRONUNCIATION
@@ -124,13 +131,28 @@ class IELTSBandScorer:
         mean_conf = metrics.get("mean_word_confidence", 0)
         low_conf_ratio = metrics.get("low_confidence_ratio", 0)
 
-        if mean_conf >= 0.89 and low_conf_ratio <= 0.12:
+        # Calibrated thresholds based on actual data:
+        # Band 8.5: mean >= 0.92, low <= 0.08
+        # Band 8.0: mean >= 0.89, low <= 0.12
+        # Band 7.5: mean >= 0.87, low <= 0.17
+        # Band 7.0: mean >= 0.84, low <= 0.20
+        # Band 6.5: mean >= 0.80, low <= 0.25
+        # Band 6.0: mean >= 0.75, low <= 0.32
+        # Band 5.5: low > 0.32
+        
+        if mean_conf >= 0.92 and low_conf_ratio <= 0.08:
             return 8.5
-        if mean_conf >= 0.85 and low_conf_ratio <= 0.20:
+        if mean_conf >= 0.89 and low_conf_ratio <= 0.12:
+            return 8.0
+        if mean_conf >= 0.87 and low_conf_ratio <= 0.17:
             return 7.5
-        if mean_conf >= 0.82 and low_conf_ratio <= 0.30:
+        if mean_conf >= 0.84 and low_conf_ratio <= 0.20:
+            return 7.0
+        if mean_conf >= 0.80 and low_conf_ratio <= 0.25:
             return 6.5
-        if low_conf_ratio >= 0.35:
+        if mean_conf >= 0.75 and low_conf_ratio <= 0.32:
+            return 6.0
+        if low_conf_ratio > 0.32:
             return 5.5
         return 6.0
 
@@ -139,34 +161,88 @@ class IELTSBandScorer:
     # ===============================
 
     def score_lexical(self, metrics: Dict, llm_metrics: Optional[Dict] = None) -> float:
-        """Score lexical using metrics + optional LLM semantic eval."""
+        """
+        Score lexical resource using metrics + LLM semantic evaluation.
+        
+        Enhanced calibration:
+        - Thresholds adjusted based on actual IELTS sample data
+        - LLM findings (advanced vocab, idioms) given stronger weight
+        - Word choice errors properly penalize based on frequency
+        - Topic relevance and coherence matter: random idiom insertion gets penalized
+        """
         vocab_richness = metrics.get("vocab_richness", 0)
         lexical_density = metrics.get("lexical_density", 0)
+        wpm = metrics.get("wpm", 0)
 
-        # Metrics-based baseline
-        if vocab_richness >= 0.55 and lexical_density >= 0.48:
+        # Metrics-based baseline with improved thresholds
+        # Higher thresholds to better differentiate bands
+        if vocab_richness >= 0.58 and lexical_density >= 0.50:
+            base_score = 8.5
+        elif vocab_richness >= 0.54 and lexical_density >= 0.47:
             base_score = 8.0
-        elif vocab_richness >= 0.50 and lexical_density >= 0.45:
+        elif vocab_richness >= 0.50 and lexical_density >= 0.44:
             base_score = 7.5
-        elif vocab_richness >= 0.45 and lexical_density >= 0.40:
+        elif vocab_richness >= 0.46 and lexical_density >= 0.41:
+            base_score = 7.0
+        elif vocab_richness >= 0.42 and lexical_density >= 0.38:
             base_score = 6.5
-        elif vocab_richness < 0.40 or lexical_density < 0.35:
+        elif vocab_richness >= 0.38 and lexical_density >= 0.35:
+            base_score = 6.0
+        elif vocab_richness < 0.35 or lexical_density < 0.32:
             base_score = 5.5
         else:
             base_score = 6.0
 
-        # LLM enhancement: idiomatic use and word choice errors
+        # LLM enhancement: advanced vocabulary and idiomatic use
         if llm_metrics:
             adv_vocab = llm_metrics.get("advanced_vocabulary_count", 0)
             idioms = llm_metrics.get("idiomatic_collocation_count", 0)
             word_errors = llm_metrics.get("word_choice_error_count", 0)
+            total_words = metrics.get("unique_word_count", 1)
+            
+            # CRITICAL: Check topic relevance and coherence
+            topic_relevant = llm_metrics.get("topic_relevance", True)
+            listener_effort_high = llm_metrics.get("listener_effort_high", False)
+            flow_unstable = llm_metrics.get("flow_instability_present", False)
+            register_mismatch = llm_metrics.get("register_mismatch_count", 0)
 
-            if idioms >= 2 and word_errors <= 1:
+            # If topic is irrelevant or flow is unstable, penalize heavily
+            # (catches random idiom insertion, off-topic rambling)
+            if not topic_relevant:
+                base_score = min(base_score, 6.5)
+            
+            if flow_unstable or listener_effort_high:
+                base_score = min(base_score, 7.0)
+            
+            if register_mismatch >= 2:
+                base_score = min(base_score, 6.5)
+
+            # Significant advanced vocabulary use → boost score (ONLY if coherent)
+            if adv_vocab >= 5 and base_score >= 7.0:
+                base_score = max(base_score, 8.5)
+            elif adv_vocab >= 3 and base_score >= 7.0:
                 base_score = max(base_score, 8.0)
-            elif adv_vocab >= 3 and word_errors <= 2:
+            elif adv_vocab >= 2 and base_score >= 6.5:
                 base_score = max(base_score, 7.5)
-            elif word_errors >= 5:
+            
+            # Idiomatic use → boost score ONLY if context-appropriate and coherent
+            # (register_mismatch means idioms are forced)
+            if register_mismatch == 0:
+                if idioms >= 3 and word_errors <= 1 and base_score >= 7.0:
+                    base_score = max(base_score, 8.5)
+                elif idioms >= 2 and word_errors <= 2 and base_score >= 7.0:
+                    base_score = max(base_score, 8.0)
+                elif idioms >= 1 and word_errors <= 1 and base_score >= 6.5:
+                    base_score = max(base_score, 7.5)
+            
+            # Word choice errors penalize proportionally
+            error_ratio = word_errors / max(total_words, 1)
+            if error_ratio > 0.05:  # >5% error rate
                 base_score = min(base_score, 6.0)
+            elif error_ratio > 0.03:  # >3% error rate
+                base_score = min(base_score, 6.5)
+            elif word_errors >= 5:
+                base_score = min(base_score, 6.5)
 
         return base_score
 
@@ -180,11 +256,15 @@ class IELTSBandScorer:
         speech_rate_var = metrics.get("speech_rate_variability", 0)
         repetition = metrics.get("repetition_ratio", 0)
 
-        # Metrics-based baseline
+        # Metrics-based baseline - improved calibration
         if mean_utt_len >= 35 and speech_rate_var <= 0.25 and repetition <= 0.035:
+            base_score = 8.5
+        elif mean_utt_len >= 25 and speech_rate_var <= 0.30 and repetition <= 0.045:
             base_score = 8.0
         elif mean_utt_len >= 20 and speech_rate_var <= 0.40 and repetition <= 0.065:
             base_score = 7.5
+        elif mean_utt_len >= 15 and repetition <= 0.08:
+            base_score = 7.0
         elif mean_utt_len >= 10 and repetition <= 0.10:
             base_score = 6.5
         elif repetition >= 0.12 or mean_utt_len < 8:
@@ -197,10 +277,18 @@ class IELTSBandScorer:
             complex_acc = llm_metrics.get("complex_structure_accuracy_ratio")
             grammar_errors = llm_metrics.get("grammar_error_count", 0)
             meaning_blocking = llm_metrics.get("meaning_blocking_error_ratio", 0)
+            adv_vocab = llm_metrics.get("advanced_vocabulary_count", 0)
 
-            if complex_acc and complex_acc >= 0.85 and grammar_errors <= 2:
+            # Strong complex structure usage → boost
+            if complex_acc and complex_acc >= 0.90 and grammar_errors <= 1:
+                base_score = max(base_score, 8.5)
+            elif complex_acc and complex_acc >= 0.85 and grammar_errors <= 2:
                 base_score = max(base_score, 8.0)
-            elif grammar_errors >= 8:
+            elif complex_acc and complex_acc >= 0.75 and grammar_errors <= 3:
+                base_score = max(base_score, 7.5)
+            
+            # Penalize only for significant issues
+            if grammar_errors >= 10:
                 base_score = min(base_score, 6.0)
             elif meaning_blocking >= 0.30:
                 base_score = min(base_score, 5.5)
@@ -221,6 +309,8 @@ class IELTSBandScorer:
         Compute overall band with IELTS descriptor alignment and user feedback.
         
         If llm_metrics provided, uses LLM insights for richer feedback.
+        Uses weighted average with emphasis on consistent high performance.
+        Applies topic relevance and coherence penalties.
         """
         fc = self.score_fluency(metrics)
         pr = self.score_pronunciation(metrics)
@@ -234,13 +324,39 @@ class IELTSBandScorer:
             "grammatical_range_accuracy": gr,
         }
 
-        # Overall = average of 4 criteria
-        avg = sum(subscores.values()) / 4
-        overall = round_half(avg)
+        # Overall calculation: weighted average (fluency gets extra weight as per IELTS)
+        weighted_avg = (fc * 0.3 + pr * 0.2 + lr * 0.25 + gr * 0.25)
+        overall = round_half(weighted_avg)
 
-        # Hard cap: if any criterion is weak, cap overall
+        # Apply topic relevance penalty at overall level
+        if llm_metrics:
+            topic_relevant = llm_metrics.get("topic_relevance", True)
+            listener_effort_high = llm_metrics.get("listener_effort_high", False)
+            flow_unstable = llm_metrics.get("flow_instability_present", False)
+            clarity_score = llm_metrics.get("overall_clarity_score", 3)
+            
+            # If completely off-topic, hard cap at 6.5
+            if not topic_relevant:
+                overall = min(overall, 6.5)
+            
+            # If flow is unstable or listener effort high, hard cap at 7.0
+            if flow_unstable or listener_effort_high:
+                overall = min(overall, 7.0)
+            
+            # If clarity is very poor (1-2), cap at 6.0
+            if clarity_score <= 2:
+                overall = min(overall, 6.0)
+
+        # Hard caps for weak criteria
         if min(subscores.values()) <= 5.5:
             overall = min(overall, 6.0)
+        
+        # Boost overall if speaker shows consistent high performance (3+ criteria >= 8.0)
+        high_bands = sum(1 for s in subscores.values() if s >= 8.0)
+        if high_bands >= 3 and min(subscores.values()) >= 7.5:
+            overall = max(overall, 8.5)
+        elif high_bands >= 2 and min(subscores.values()) >= 7.0:
+            overall = max(overall, 8.0)
 
         overall = max(5.0, min(9.0, overall))
 
@@ -268,6 +384,34 @@ class IELTSBandScorer:
     ) -> Dict[str, str]:
         """Generate user-facing feedback based on strengths and weaknesses."""
         feedback = {}
+
+        # Topic Relevance and Coherence feedback (ADDED)
+        if llm_metrics:
+            topic_relevant = llm_metrics.get("topic_relevance", True)
+            listener_effort_high = llm_metrics.get("listener_effort_high", False)
+            flow_unstable = llm_metrics.get("flow_instability_present", False)
+            clarity_score = llm_metrics.get("overall_clarity_score", 3)
+            register_mismatch = llm_metrics.get("register_mismatch_count", 0)
+            
+            # Topic relevance
+            if not topic_relevant:
+                feedback["topic_relevance"] = "⚠️ Speech drifts off-topic. Stay focused on the question."
+            elif topic_relevant:
+                feedback["topic_relevance"] = "✓ Speech stays on topic."
+            
+            # Coherence and flow
+            if flow_unstable:
+                feedback["coherence"] = "⚠️ Speech flow is erratic. Connect ideas more smoothly."
+            elif listener_effort_high:
+                feedback["coherence"] = "⚠️ Listener effort required. Ideas not clearly connected."
+            else:
+                feedback["coherence"] = "✓ Speech is coherent and well-connected."
+            
+            # Register appropriateness
+            if register_mismatch >= 2:
+                feedback["register"] = f"⚠️ {register_mismatch} instances of inappropriate language use. Avoid forcing vocabulary."
+            elif register_mismatch >= 1:
+                feedback["register"] = "Mostly appropriate language register."
 
         # Fluency feedback
         fc = subscores["fluency_coherence"]

@@ -90,27 +90,54 @@ Your task:
 - Annotate spans AND provide graded judgments.
 - Be precise but NOT overly conservative.
 - When evidence is reasonable, ANNOTATE.
+- ACTIVELY SEEK advanced vocabulary and idiomatic use - don't omit them.
 
 IMPORTANT BEHAVIOR CHANGE:
 - If rewording is present, annotate paraphrase.
-- If vocabulary is more precise than casual speech, annotate advanced_vocabulary.
+- If vocabulary is more precise/sophisticated than casual speech, annotate advanced_vocabulary.
+- If vocabulary demonstrates natural language use beyond basic learner English, annotate.
 - Use MEDIUM confidence when unsure, not omission.
 
 GLOBAL JUDGMENTS:
+- topic_relevance: 
+  TRUE = speaker stays on topic or slightly tangential but related
+  FALSE = off-topic rambling, random insertions unrelated to subject
+  (Slight relevance is OK - mark TRUE)
+
 - listener_effort_level:
-  low    = effortless to follow
-  medium = occasional effort
-  high   = frequent effort / reprocessing
+  low    = effortless to follow (speech is coherent, connected)
+  medium = occasional effort needed (some jumps or unclear transitions)
+  high   = frequent effort required (scattered ideas, hard to track flow)
+  (Use HIGH to penalize babblers and random idiom inserters)
 
 - flow_control_level:
-  stable   = consistent pacing
-  mixed    = uneven but manageable
-  unstable = erratic / broken rhythm
+  stable   = consistent pacing, smooth transitions
+  mixed    = uneven pacing but ideas are connected
+  unstable = erratic flow, abrupt changes, no clear thread
+  (Use UNSTABLE to catch gaming attempts)
 
 - overall_clarity_score (1–5):
   5 = extremely clear, effortless
   3 = generally clear, some strain
   1 = hard to follow
+  (Lower this if topic_relevance=FALSE or random idiom insertions detected)
+
+ADVANCED VOCABULARY GUIDELINES (be GENEROUS):
+- Academic/formal words: methodology, facilitate, leverage, emphasize, demonstrate, analyze
+- Precise descriptors: meticulous, pragmatic, intricate, nuanced, eloquent
+- Sophisticated expressions: "coincided with", "in hindsight", "nonetheless"
+- Domain-specific terms: algorithm, paradigm, sustainable, reciprocal
+- Adverbs of manner/degree: substantially, inherently, predominantly
+- ANY word more advanced than basic learner English (not simple/common)
+
+IDIOMATIC USE GUIDELINES (CONTEXT MATTERS):
+- Annotate natural collocations IF CONTEXTUALLY APPROPRIATE: "came back", "set aside", "take for granted"
+- Phrasal verbs IF USED MEANINGFULLY: "take on", "bring about", "shed light on"
+- Common expressions IF NATURALLY USED: "in a nutshell", "on second thought"
+- Figurative language IF RELEVANT TO TOPIC: "between a rock and a hard place", "silver lining"
+- Expressions beyond word-by-word translation ONLY IF CONTEXTUALLY FITTING
+- CRITICAL: Do NOT annotate random idiom insertion. If 3+ idioms appear disconnected from speech flow, mark as "register_mismatch" instead
+- CRITICAL: If topic_relevance=FALSE or flow_control_level=unstable, penalize any idiom annotations
 
 SPAN RULES:
 - Shortest possible span
@@ -129,6 +156,9 @@ LABEL PRECEDENCE (highest → lowest):
 8. Successful Paraphrase
 9. Idiomatic or Collocational Use
 10. Advanced Vocabulary
+
+CRITICAL: When you identify any sophisticated vocabulary or natural expression use, ALWAYS annotate it. 
+This is measured in IELTS scoring - examiners actively listen for vocabulary range.
 
 Return ONLY valid JSON.
 """

@@ -104,11 +104,14 @@ def calculate_normalized_metrics(
 
     if len(df_words_content) == 0:
         vocab_richness = 0.0
+        type_token_ratio = 0.0
         repetition_ratio = 0.0
         words_clean_nostopwords = pd.Series([], dtype="object")
     else:
         words_clean = df_words_content["word"].str.lower()
         vocab_richness = words_clean.nunique() / len(words_clean)
+        type_token_ratio = vocab_richness  # TTR = unique_words / total_words
+        
         words_clean_nostopwords = words_clean[~words_clean.isin(STOPWORDS)]
         if len(words_clean_nostopwords) > 0:
             repetition_ratio = (
@@ -193,6 +196,7 @@ def calculate_normalized_metrics(
         "pause_time_ratio": round(pause_time_ratio, 3),
         "pause_variability": round(pause_variability, 3) if not np.isnan(pause_variability) else 0.0,
         "vocab_richness": round(vocab_richness, 3),
+        "type_token_ratio": round(type_token_ratio, 3),
         "repetition_ratio": round(repetition_ratio, 3),
         "speech_rate_variability": round(speech_rate_variability, 3),
         "mean_utterance_length": round(mean_utterance_length, 2),
