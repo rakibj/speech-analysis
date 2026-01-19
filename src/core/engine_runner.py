@@ -35,7 +35,12 @@ async def run_engine(
     
     Args:
         audio_bytes: Raw audio data as bytes (WAV, MP3, etc.)
-        context: Speech context ('conversational', 'narrative', 'presentation', 'interview')
+        context: Speech context string
+            - "conversational" - General conversation
+            - "ielts" - IELTS Speaking test
+            - "ielts[topic: family, cue_card: Describe someone]" - IELTS with metadata
+            - "narrative", "presentation", "interview" - Other speech types
+            Metadata is extracted and passed to LLM for context-aware analysis.
         device: Computation device ('cpu' or 'cuda')
         use_llm: Whether to use LLM for semantic analysis (default: True)
         filename: Original filename (for reference, default: 'audio.wav')
@@ -58,7 +63,7 @@ async def run_engine(
     Example:
         result = await run_engine(
             audio_bytes=b'...',
-            context='conversational',
+            context='ielts[topic: family, part: 2]',
             use_llm=True
         )
         print(f"Band Score: {result['band_scores']['overall_band']}")

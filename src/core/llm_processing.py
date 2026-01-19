@@ -187,14 +187,16 @@ Return ONLY valid JSON.
 
 def extract_llm_annotations(
     raw_transcript: str,
-    speech_context: str = "conversational"
+    speech_context: str = "conversational",
+    context_metadata: dict = None
 ) -> LLMSpeechAnnotations:
     """
     Extract LLM-based speech annotations from transcript.
     
     Args:
         raw_transcript: Full transcript text
-        speech_context: Context (conversational, narrative, etc)
+        speech_context: Context (conversational, narrative, ielts, etc)
+        context_metadata: Optional metadata dict (e.g., {"topic": "family", "cue_card": "..."})
         
     Returns:
         LLMSpeechAnnotations object with parsed annotations
@@ -227,7 +229,11 @@ def extract_llm_annotations(
             "speech_context": speech_context,
         }
         
-        logger.info(f"Extracting LLM annotations (context: {speech_context})")
+        # Add context metadata if provided
+        if context_metadata:
+            payload["context_metadata"] = context_metadata
+        
+        logger.info(f"Extracting LLM annotations (context: {speech_context}, metadata: {context_metadata})")
         
         response = client.responses.parse(
             model="gpt-4o-mini",
@@ -242,7 +248,6 @@ def extract_llm_annotations(
         
         logger.info("LLM annotation extraction successful")
         return response.output_parsed
-        
     except PydanticValidationError as e:
         raise LLMValidationError(
             f"LLM response validation failed: {str(e)}",

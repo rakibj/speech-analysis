@@ -302,24 +302,44 @@ PRACTICE_HOURS_PER_POINT = 0.6
 # Different speaking contexts tolerate pauses and rhythm
 # differently. These multipliers adjust scoring sensitivity.
 #
+# Context format:
+#   "conversational" - General conversation
+#   "ielts" - IELTS Speaking (topic-based, may include off-topic tolerance)
+#   "ielts[topic: ..., cue_card: ...]" - IELTS with specific context
+#
+# The system parses context to extract:
+#   - base_context: conversational | ielts | custom
+#   - metadata: topic, cue_card, etc. (passed to LLM for relevance checks)
+#
 # Example:
 #   Narrative speech allows longer pauses than interviews.
 CONTEXT_CONFIG = {
     "conversational": {
         "pause_tolerance": 1.0,
         "pause_variability_tolerance": 1.0,
+        "base_type": "conversational",
+    },
+    "ielts": {
+        "pause_tolerance": 1.0,
+        "pause_variability_tolerance": 1.0,
+        "base_type": "ielts",
+        # IELTS speaking has specific relevance expectations
+        "topic_relevance_threshold": 0.65,  # Soft relevance check
     },
     "narrative": {
         "pause_tolerance": 1.4,
         "pause_variability_tolerance": 1.3,
+        "base_type": "narrative",
     },
     "presentation": {
         "pause_tolerance": 1.2,
         "pause_variability_tolerance": 1.1,
+        "base_type": "presentation",
     },
     "interview": {
         "pause_tolerance": 0.9,
         "pause_variability_tolerance": 0.9,
+        "base_type": "interview",
     },
 }
 

@@ -31,7 +31,7 @@ async def main():
         
         result = await run_engine(
             audio_bytes=audio_bytes,
-            context="conversational",
+            context="ielts",  # Use IELTS context for IELTS test
             use_llm=True,  # Disable LLM for faster testing
             filename=audio_file.name
         )

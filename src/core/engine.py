@@ -23,6 +23,7 @@ from src.core.ielts_band_scorer import score_ielts_speaking
 from src.core.llm_processing import extract_llm_annotations, aggregate_llm_metrics
 from src.utils.logging_config import setup_logging
 from src.utils.exceptions import SpeechAnalysisError
+from src.utils.context_parser import parse_context, format_context_for_llm
 
 # Setup logging
 logger = setup_logging(level="INFO")
@@ -57,7 +58,13 @@ async def analyze_speech(
     
     Args:
         audio_path: Path to audio file
-        context: Speech context (conversational, narrative, presentation, interview)
+        context: Speech context string
+            - "conversational" - General conversation
+            - "ielts" - IELTS Speaking test
+            - "ielts[topic: family, cue_card: Describe someone]" - IELTS with metadata
+            - "narrative", "presentation", "interview" - Other speech types
+            - "custom[key: value, ...]" - Custom context with metadata
+            Metadata is extracted and passed to LLM for context-aware analysis.
         device: Device to use (cpu or cuda)
         use_llm: Whether to use LLM for semantic evaluation
         
@@ -71,17 +78,24 @@ async def analyze_speech(
             - timestamped_feedback: Rubric-based feedback WITH TIMESTAMPS
             - raw_metrics: detailed metrics dict
             - llm_analysis: LLM annotations (if use_llm=True)
+            - context: Parsed context information
     """
     
     audio_path_str = str(audio_path)
+    
+    # Parse context string into base_type and metadata
+    base_context, context_metadata = parse_context(context)
+    llm_context = format_context_for_llm(base_context, context_metadata)
+    
     logger.info(f"Starting comprehensive analysis for: {audio_path_str}")
+    logger.info(f"Context: {base_context} | {llm_context}")
     
     try:
         # =============================================
         # STAGE 1: RAW ACOUSTIC ANALYSIS
         # =============================================
         logger.info("Stage 1: Running raw audio analysis...")
-        raw_analysis = await analyze_speech_raw(audio_path_str, context, device)
+        raw_analysis = await analyze_speech_raw(audio_path_str, base_context, device)
         
         # Check for errors
         if not raw_analysis.get("statistics", {}).get("total_words_transcribed", 0):
@@ -118,7 +132,11 @@ async def analyze_speech(
         if use_llm and transcript:
             try:
                 logger.info("Stage 4: Running LLM annotation analysis...")
-                llm_annotations = extract_llm_annotations(transcript)
+                llm_annotations = extract_llm_annotations(
+                    transcript, 
+                    speech_context=base_context,
+                    context_metadata=context_metadata
+                )
                 llm_analysis = aggregate_llm_metrics(llm_annotations)
                 logger.info("[OK] LLM analysis complete")
             except Exception as e:
