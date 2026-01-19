@@ -4,6 +4,7 @@ Run: python test_quick.py
 """
 
 import asyncio
+import json
 from pathlib import Path
 from src.core.engine_runner import run_engine
 
@@ -37,8 +38,15 @@ async def main():
         
         # Display results
         print("\n" + "="*70)
-        print("✓ ANALYSIS COMPLETE")
+        print("[OK] ANALYSIS COMPLETE")
         print("="*70)
+        
+        # Export final report to JSON
+        output_path = Path("outputs") / f"final_report_{audio_file.stem}.json"
+        output_path.parent.mkdir(parents=True, exist_ok=True)
+        with open(output_path, 'w') as f:
+            json.dump(result, f, indent=2)
+        print(f"\n[EXPORTED] Final report saved to: {output_path}\n")
         
         # Transcript
         transcript = result['transcript']

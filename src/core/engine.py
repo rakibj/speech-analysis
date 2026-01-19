@@ -53,7 +53,7 @@ async def analyze_speech(
     """
     Perform comprehensive speech analysis on an audio file.
     
-    Returns everything except timestamps, includes transcript.
+    Returns analysis WITH confidence scoring and timestamped rubric feedback.
     
     Args:
         audio_path: Path to audio file
@@ -63,12 +63,12 @@ async def analyze_speech(
         
     Returns:
         dict with:
-            - metadata: audio info, timestamps
+            - metadata: audio info
             - transcript: raw speech transcript
             - fluency_analysis: fluency metrics
             - pronunciation: intelligibility and prosody
-            - band_scores: IELTS band scoring
-            - feedback: user-facing feedback
+            - band_scores: IELTS band scoring with CONFIDENCE
+            - timestamped_feedback: Rubric-based feedback WITH TIMESTAMPS
             - raw_metrics: detailed metrics dict
             - llm_analysis: LLM annotations (if use_llm=True)
     """
@@ -114,6 +114,7 @@ async def analyze_speech(
         # STAGE 4: LLM ANNOTATIONS (OPTIONAL)
         # =============================================
         llm_analysis = None
+        llm_annotations = None
         if use_llm and transcript:
             try:
                 logger.info("Stage 4: Running LLM annotation analysis...")
@@ -123,11 +124,117 @@ async def analyze_speech(
             except Exception as e:
                 logger.warning(f"LLM analysis failed (continuing): {str(e)}")
                 llm_analysis = None
+                llm_annotations = None
         
         # =============================================
-        # BUILD FINAL REPORT (NO TIMESTAMPS)
+        # BUILD FINAL REPORT (WITH CONFIDENCE & TIMESTAMPS)
         # =============================================
         logger.info("Finalizing report...")
+        
+        # Prepare timestamped feedback (if word-level timestamps available)
+        timestamped_feedback = {}
+        word_timestamps = raw_analysis.get("timestamps", {}).get("words_timestamps_raw", [])
+        
+        if word_timestamps and use_llm and llm_annotations and transcript:
+            try:
+                from src.core.llm_processing import map_spans_to_timestamps
+                
+                # Map grammar errors to timestamps
+                if llm_annotations.grammar_errors:
+                    timestamped_issues = map_spans_to_timestamps(transcript, llm_annotations.grammar_errors, word_timestamps)
+                    timestamped_feedback["grammar_errors"] = [
+                        {
+                            "text": span.text,
+                            "label": span.label,
+                            "start_sec": span.start_sec,
+                            "end_sec": span.end_sec,
+                            "timestamp_mmss": span.timestamp_mmss,
+                        }
+                        for span in timestamped_issues
+                    ]
+                
+                # Map word choice errors to timestamps
+                if llm_annotations.word_choice_errors:
+                    timestamped_issues = map_spans_to_timestamps(transcript, llm_annotations.word_choice_errors, word_timestamps)
+                    timestamped_feedback["word_choice_errors"] = [
+                        {
+                            "text": span.text,
+                            "label": span.label,
+                            "start_sec": span.start_sec,
+                            "end_sec": span.end_sec,
+                            "timestamp_mmss": span.timestamp_mmss,
+                        }
+                        for span in timestamped_issues
+                    ]
+                
+                # Map coherence breaks to timestamps
+                if llm_annotations.coherence_breaks:
+                    timestamped_issues = map_spans_to_timestamps(transcript, llm_annotations.coherence_breaks, word_timestamps)
+                    timestamped_feedback["coherence_breaks"] = [
+                        {
+                            "text": span.text,
+                            "label": span.label,
+                            "start_sec": span.start_sec,
+                            "end_sec": span.end_sec,
+                            "timestamp_mmss": span.timestamp_mmss,
+                        }
+                        for span in timestamped_issues
+                    ]
+                
+                if timestamped_feedback:
+                    logger.info(f"[OK] Timestamped feedback mapped ({len(timestamped_feedback)} issue types)")
+            except Exception as e:
+                logger.warning(f"Could not generate timestamped feedback: {str(e)}")
+                # Continue without timestamped feedback
+        
+        # Extract timestamped words and fillers from raw_analysis
+        timestamped_words = raw_analysis.get("timestamps", {}).get("words_timestamps_raw", [])
+        timestamped_fillers = raw_analysis.get("timestamps", {}).get("filler_timestamps", [])
+        
+        # Format words with timestamp_mmss
+        formatted_words = []
+        for word_data in timestamped_words:
+            if isinstance(word_data, dict):
+                start = word_data.get("start", 0.0)
+                end = word_data.get("end", 0.0)
+                word = word_data.get("word", "")
+                # Calculate MM:SS format
+                start_min = int(start // 60)
+                start_sec = int(start % 60)
+                end_min = int(end // 60)
+                end_sec = int(end % 60)
+                timestamp_mmss = f"{start_min}:{start_sec:02d}-{end_min}:{end_sec:02d}"
+                
+                formatted_words.append({
+                    "word": word,
+                    "start_sec": round(start, 2),
+                    "end_sec": round(end, 2),
+                    "timestamp_mmss": timestamp_mmss,
+                    "confidence": round(word_data.get("confidence", 0.0), 3),
+                })
+        
+        # Format fillers with timestamp_mmss
+        formatted_fillers = []
+        for filler_data in timestamped_fillers:
+            if isinstance(filler_data, dict):
+                start = filler_data.get("start", 0.0)
+                end = filler_data.get("end", 0.0)
+                filler_type = filler_data.get("type", "filler")
+                filler_word = filler_data.get("word", "")
+                # Calculate MM:SS format
+                start_min = int(start // 60)
+                start_sec = int(start % 60)
+                end_min = int(end // 60)
+                end_sec = int(end % 60)
+                timestamp_mmss = f"{start_min}:{start_sec:02d}-{end_min}:{end_sec:02d}"
+                
+                formatted_fillers.append({
+                    "word": filler_word,
+                    "type": filler_type,
+                    "start_sec": round(start, 2),
+                    "end_sec": round(end, 2),
+                    "timestamp_mmss": timestamp_mmss,
+                })
         
         final_report = {
             # Metadata
@@ -142,13 +249,23 @@ async def analyze_speech(
             # Pronunciation (from analysis)
             "pronunciation": analysis["pronunciation"],
             
-            # IELTS Band Scores
+            # IELTS Band Scores WITH CONFIDENCE
             "band_scores": {
                 "overall_band": band_scores["overall_band"],
                 "criterion_bands": band_scores["criterion_bands"],
+                "confidence": band_scores.get("confidence"),  # ✅ CONFIDENCE INCLUDED
                 "descriptors": band_scores["descriptors"],
                 "feedback": band_scores["feedback"],
             },
+            
+            # Timestamped Words (word-level timeline with confidence)
+            "timestamped_words": formatted_words if formatted_words else None,
+            
+            # Timestamped Fillers (all detected fillers and stutters)
+            "timestamped_fillers": formatted_fillers if formatted_fillers else None,
+            
+            # Timestamped Rubric Feedback (when word-level timestamps available)
+            "timestamped_feedback": timestamped_feedback if timestamped_feedback else None,
             
             # Raw metrics used for scoring
             "metrics_for_scoring": make_json_safe(metrics_for_scoring),
@@ -165,8 +282,6 @@ async def analyze_speech(
             
             # LLM analysis (if available)
             "llm_analysis": llm_analysis,
-
-            # "raw_data": analysis["raw_data"],
         }
         
         logger.info("[OK] Analysis complete")
