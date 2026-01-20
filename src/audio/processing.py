@@ -174,7 +174,15 @@ def transcribe_verbatim_fillers(
     
     try:
         import whisper
-        model = whisper.load_model(model_name, device=device)
+        import torch
+        # Workaround for meta tensor issue: load on CPU first, then move to target device
+        try:
+            model = whisper.load_model(model_name, device="cpu")
+            if device != "cpu":
+                model = model.to(device)
+        except Exception:
+            # Fallback: try loading directly with device parameter
+            model = whisper.load_model(model_name, device=device)
     except Exception as e:
         raise ModelLoadError(
             f"Failed to load Whisper model: {str(e)}",
