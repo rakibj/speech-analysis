@@ -89,8 +89,7 @@ def fastapi_app():
     from fastapi.middleware.cors import CORSMiddleware
     from fastapi.responses import JSONResponse
 
-    # Local imports (NOW WORKS)
-    from src.api import router as old_router
+    # Local imports
     from src.api.v1 import router as rapidapi_router
     from src.api.direct import router as direct_router
     from src.utils.logging_config import logger
@@ -113,10 +112,9 @@ def fastapi_app():
         allow_headers=["*"],
     )
 
-    # Routes - Include all three routers
+    # Routes
     app.include_router(rapidapi_router, prefix="/api/v1", tags=["analysis_rapidapi"])
     app.include_router(direct_router, prefix="/api/direct/v1", tags=["analysis_direct"])
-    app.include_router(old_router, prefix="/api/legacy", tags=["analysis_legacy"])
 
     @app.get("/", tags=["root"])
     async def root():

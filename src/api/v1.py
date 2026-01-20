@@ -1,5 +1,5 @@
 """RapidAPI-specific routes (v1)."""
-from fastapi import APIRouter, HTTPException, UploadFile, File, Form, BackgroundTasks, Depends, Query
+from fastapi import APIRouter, HTTPException, UploadFile, File, Form, BackgroundTasks, Depends, Query, Request
 from typing import Optional
 import tempfile
 from pathlib import Path
@@ -13,6 +13,12 @@ from src.core.job_queue import JobQueue
 from src.services.response_builder import build_response
 from src.utils.logging_config import logger
 from src.utils.exceptions import AudioNotFoundError, AudioFormatError, AudioDurationError
+from src.api.protections import (
+    validate_file_size,
+    validate_audio_duration,
+    check_rate_limit,
+    enforce_rapidapi_only
+)
 
 router = APIRouter()
 job_queue = JobQueue()  # Singleton job tracker
@@ -30,6 +36,7 @@ async def health_check(auth: AuthContext = Depends(get_rapidapi_auth)):
 
 @router.post("/analyze")
 async def analyze_audio_rapidapi(
+    request: Request,
     file: UploadFile = File(...),
     speech_context: SpeechContextEnum = Form(default=SpeechContextEnum.CONVERSATIONAL),
     device: str = Form(default="cpu"),
@@ -42,6 +49,12 @@ async def analyze_audio_rapidapi(
     
     Returns immediately with job_id. Poll /result/{job_id} for results.
     
+    PROTECTIONS:
+    - File size limit: 15MB max
+    - Audio duration: 30 minutes max
+    - Rate limiting: 100 requests/hour per user
+    - RapidAPI-only: Must come through RapidAPI Gateway
+    
     Args:
         file: Audio file to analyze
         speech_context: Context of the speech
@@ -53,10 +66,19 @@ async def analyze_audio_rapidapi(
         status: Always "queued"
         message: Instructions for polling
     """
+    # PROTECTION 1: Enforce RapidAPI-only access
+    enforce_rapidapi_only(request)
+    
+    # PROTECTION 2: Rate limit per user
+    check_rate_limit(auth.owner_id)
+    
+    # PROTECTION 3: Validate file size
+    await validate_file_size(file)
+    
     job_id = str(uuid.uuid4())
     
     try:
-        logger.info(f"[RapidAPI] Received analysis request: {job_id} for {file.filename}")
+        logger.info(f"[RapidAPI] Received analysis request: {job_id} for {file.filename} from {auth.owner_id}")
     except Exception as e:
         logger.error(f"Failed to log request: {str(e)}")
         raise HTTPException(status_code=500, detail="Internal error")
@@ -65,6 +87,9 @@ async def analyze_audio_rapidapi(
     with tempfile.NamedTemporaryFile(delete=False, suffix=Path(file.filename).suffix) as tmp:
         tmp.write(await file.read())
         tmp_path = tmp.name
+    
+    # PROTECTION 4: Validate audio duration
+    await validate_audio_duration(tmp_path)
     
     # Create job entry with API key ownership tracking
     job_queue.create_job(job_id, file.filename, api_key_hash=auth.key_hash)

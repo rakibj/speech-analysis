@@ -8,7 +8,6 @@ from dotenv import load_dotenv
 # Load environment variables
 load_dotenv()
 
-from src.api import router as old_router
 from src.api.v1 import router as rapidapi_router
 from src.api.direct import router as direct_router
 from src.utils.logging_config import logger
@@ -39,9 +38,6 @@ app.include_router(rapidapi_router, prefix="/api/v1", tags=["analysis_rapidapi"]
 # Direct access endpoint
 app.include_router(direct_router, prefix="/api/direct/v1", tags=["analysis_direct"])
 
-# Legacy endpoint (if still needed for backward compatibility)
-app.include_router(old_router, prefix="/api/legacy", tags=["analysis_legacy"])
-
 # Root endpoint
 @app.get("/", tags=["root"])
 async def root():
@@ -52,8 +48,7 @@ async def root():
         "docs": "/docs",
         "endpoints": {
             "rapidapi": "/api/v1/health",
-            "direct": "/api/direct/v1/health",
-            "legacy": "/api/legacy/health"
+            "direct": "/api/direct/v1/health"
         }
     }
 
