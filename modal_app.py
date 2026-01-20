@@ -18,7 +18,7 @@ app = modal.App("speech-analysis")
 def build_image():
     return (
         modal.Image.debian_slim()
-        .apt_install("ffmpeg")  # ← ADD THIS LINE
+        .apt_install("ffmpeg")  # ← ADD THIS LINEdesi
         .pip_install(
             # Web framework
             "fastapi>=0.104.0,<1.0",
@@ -76,7 +76,10 @@ def build_image():
     cpu=2.0,
     memory=4096,                 # MB
     allow_concurrent_inputs=10,
-    secrets=[modal.Secret.from_name("openai-secret")],
+    secrets=[
+        modal.Secret.from_name("openai-secret"),
+        modal.Secret.from_name("rapidapi-secret"),
+    ],
 )
 @modal.asgi_app()
 def fastapi_app():
@@ -87,7 +90,9 @@ def fastapi_app():
     from fastapi.responses import JSONResponse
 
     # Local imports (NOW WORKS)
-    from src.api import router
+    from src.api import router as old_router
+    from src.api.v1 import router as rapidapi_router
+    from src.api.direct import router as direct_router
     from src.utils.logging_config import logger
 
     app = FastAPI(
@@ -108,8 +113,10 @@ def fastapi_app():
         allow_headers=["*"],
     )
 
-    # Routes
-    app.include_router(router, prefix="/api/v1", tags=["analysis"])
+    # Routes - Include all three routers
+    app.include_router(rapidapi_router, prefix="/api/v1", tags=["analysis_rapidapi"])
+    app.include_router(direct_router, prefix="/api/direct/v1", tags=["analysis_direct"])
+    app.include_router(old_router, prefix="/api/legacy", tags=["analysis_legacy"])
 
     @app.get("/", tags=["root"])
     async def root():
