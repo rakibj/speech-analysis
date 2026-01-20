@@ -20,6 +20,12 @@ class KeyManager:
         },
     }
     
+    # RapidAPI keys - NO LONGER USED
+    # RapidAPI Gateway validates subscriptions before forwarding requests.
+    # We trust the gateway's validation, so we don't need a hardcoded key list.
+    # See get_rapidapi_auth() in middleware.py for how we handle RapidAPI auth.
+    RAPIDAPI_KEYS = {}
+    
     # Prefix for generated keys
     KEY_PREFIX = "sk_"
     
@@ -53,7 +59,7 @@ class KeyManager:
     @classmethod
     def validate_key(cls, api_key: str) -> AuthContext:
         """
-        Validate an API key against hardcoded VALID_KEYS.
+        Validate an API key against hardcoded VALID_KEYS or RAPIDAPI_KEYS.
         
         Args:
             api_key: The API key to validate
@@ -67,20 +73,29 @@ class KeyManager:
         if not api_key:
             raise InvalidAPIKeyError("API key is required")
         
+        # Check direct access keys (hashed)
         key_hash = cls._hash_key(api_key)
+        if key_hash in cls.VALID_KEYS:
+            key_info = cls.VALID_KEYS[key_hash]
+            return AuthContext(
+                api_key=api_key,
+                key_hash=key_hash,
+                owner_type=key_info.get("owner_type", "direct"),
+                owner_id=key_info.get("name")
+            )
         
-        # Check against hardcoded valid keys
-        if key_hash not in cls.VALID_KEYS:
-            raise InvalidAPIKeyError("Invalid API key")
+        # Check RapidAPI keys (not hashed, compared directly)
+        if api_key in cls.RAPIDAPI_KEYS:
+            key_info = cls.RAPIDAPI_KEYS[api_key]
+            return AuthContext(
+                api_key=api_key,
+                key_hash=api_key,  # Use key itself as hash for RapidAPI
+                owner_type=key_info.get("owner_type", "rapidapi"),
+                owner_id=key_info.get("name")
+            )
         
-        key_info = cls.VALID_KEYS[key_hash]
-        
-        return AuthContext(
-            api_key=api_key,
-            key_hash=key_hash,
-            owner_type=key_info["owner_type"],
-            verified=True
-        )
+        # Key not found
+        raise InvalidAPIKeyError("Invalid API key")
     
     @classmethod
     def verify_rapidapi_signature(
