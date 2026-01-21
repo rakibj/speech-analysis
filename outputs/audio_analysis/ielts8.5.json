@@ -32,7 +32,7 @@
     "speech_rate_variability": 0.243,
     "mean_utterance_length": 241.0,
     "pause_after_filler_rate": 0.0,
-    "mean_word_confidence": 1.0,
+    "mean_word_confidence": 0.88,
     "low_confidence_ratio": 0.0,
     "lexical_density": 0.502,
     "audio_duration_sec": 106.1,

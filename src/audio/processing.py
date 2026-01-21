@@ -199,7 +199,7 @@ def transcribe_verbatim_fillers(
             audio_path,
             task="transcribe",
             temperature=0,
-            word_timestamps=(device != "cpu"),  # Disable on CPU due to timing hook issues
+            word_timestamps=(device != "cpu"),  # Disable on CPU due to timing hook issues causing slowdown
             condition_on_previous_text=False,
             initial_prompt=(
                 "Transcribe verbatim. Include filler words like um, uh, er, "
@@ -346,7 +346,7 @@ def extract_words_dataframe(result: Dict[str, Any]) -> pd.DataFrame:
                                 "start": seg.get("start", 0) + i * word_duration,
                                 "end": seg.get("start", 0) + (i + 1) * word_duration,
                                 "duration": word_duration,
-                                "confidence": seg.get("confidence", 1.0)
+                                "confidence": seg.get("confidence", 0.5)  # FIXED: Default to 0.5 (uncertain), not 1.0 (perfect)
                             })
             if words_from_segments:
                 return pd.DataFrame(words_from_segments)
@@ -377,8 +377,8 @@ def extract_segments_dataframe(result: Dict[str, Any]) -> pd.DataFrame:
                 [float(w["probability"]) for w in seg["words"]]
             ) / len(seg["words"])
         else:
-            # Use segment-level confidence if available, else default to 1.0
-            avg_confidence = float(seg.get("confidence", 1.0))
+            # FIXED: Use segment-level confidence if available, else default to 0.5 (uncertain), not 1.0 (perfect)
+            avg_confidence = float(seg.get("confidence", 0.5))
         
         segments.append({
             "text": seg["text"].strip(),
