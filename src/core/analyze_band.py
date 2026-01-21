@@ -17,6 +17,7 @@ def build_analysis(raw_analysis: dict) -> dict:
     Now takes the raw_analysis dict directly and extracts metrics
     needed for the scorer.
     """
+    from src.utils.logging_config import logger
     
     # ---- Extract basic metrics ----
     total_words = raw_analysis["statistics"]["total_words_transcribed"]
@@ -49,6 +50,9 @@ def build_analysis(raw_analysis: dict) -> dict:
         "mean_utterance_length": raw_analysis.get("mean_utterance_length", 0),
         "speech_rate_variability": raw_analysis.get("speech_rate_variability", 0),
     }
+    
+    # DEBUG: Log extracted metrics
+    logger.info(f"[METRICS_DEBUG] WPM={metrics_for_scoring.get('wpm')} | VocabRich={metrics_for_scoring.get('vocab_richness')} | LexDens={metrics_for_scoring.get('lexical_density')} | MeanUtterLen={metrics_for_scoring.get('mean_utterance_length')} | MeanConf={mean_word_confidence} | LowConfRatio={low_confidence_ratio}")
 
     return {
         "metadata": {

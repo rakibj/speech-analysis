@@ -175,6 +175,21 @@ async def analyze_speech(
     df_aligned_words = align_words_whisperx(verbatim_result["segments"], audio, device=device)
     print(f"  Aligned: {len(df_aligned_words)} words")
     
+    # Merge WhisperX confidence back into Whisper words
+    # Match by word position/timing and update confidence from aligned data
+    if not df_aligned_words.empty and 'confidence' in df_aligned_words.columns:
+        # Merge on approximate timing (within 10ms tolerance)
+        for idx, row in df_words_whisper_raw.iterrows():
+            # Find matching aligned word (by timing proximity)
+            matching = df_aligned_words[
+                (df_aligned_words['start'] >= row['start'] - 0.01) &
+                (df_aligned_words['start'] <= row['start'] + 0.01)
+            ]
+            if not matching.empty:
+                # Use the first match (should be unique)
+                df_words_whisper_raw.at[idx, 'confidence'] = matching.iloc[0]['confidence']
+        print(f"  Updated confidence for {(df_words_whisper_raw['confidence'] > 0.5).sum()} words from WhisperX")
+    
     # Step 4: Detect fillers with Wav2Vec2
     print("\n[4/5] Detecting subtle fillers with Wav2Vec2...")
     df_wav2vec_fillers = detect_fillers_wav2vec(audio_path, df_aligned_words)

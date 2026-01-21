@@ -199,7 +199,7 @@ def transcribe_verbatim_fillers(
             audio_path,
             task="transcribe",
             temperature=0,
-            word_timestamps=(device != "cpu"),  # Disable on CPU due to timing hook issues causing slowdown
+            word_timestamps=True,  # Enable on all devices - provides per-word confidence
             condition_on_previous_text=False,
             initial_prompt=(
                 "Transcribe verbatim. Include filler words like um, uh, er, "
@@ -285,10 +285,13 @@ def align_words_whisperx(
     for seg in aligned["segments"]:
         for w in seg.get("words", []):
             if w["start"] is not None and w["end"] is not None:
+                # Extract confidence/probability if available from WhisperX
+                confidence = w.get("probability", w.get("confidence", 0.5))
                 aligned_words.append({
                     "word": w["word"].strip().lower(),
                     "start": float(w["start"]),
-                    "end": float(w["end"])
+                    "end": float(w["end"]),
+                    "confidence": float(confidence) if confidence is not None else 0.5
                 })
     
     if not aligned_words:
