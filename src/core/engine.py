@@ -54,6 +54,71 @@ def make_json_safe(obj):
         return obj
 
 
+def merge_words_and_fillers(timestamped_words, timestamped_fillers, core_fillers=None):
+    """
+    Merge content words and filler events into a single unified timeline.
+    
+    Args:
+        timestamped_words: List of content words from Whisper (dict with word, start, end, confidence, is_filler)
+        timestamped_fillers: List of filler events from Wav2Vec2/Whisper (dict with word, type, start, end)
+        core_fillers: Optional list of common filler words to identify most frequent one
+    
+    Returns:
+        Sorted merged list with word, type, start_sec, end_sec, confidence
+    """
+    if core_fillers is None:
+        core_fillers = ["um", "uh", "er", "ah", "hmm", "like", "you know", "so", "basically", "literally"]
+    
+    merged = []
+    
+    # Add content words
+    for word_data in (timestamped_words or []):
+        if isinstance(word_data, dict):
+            word_text = word_data.get("word", "").strip()
+            is_filler = word_data.get("is_filler", False)
+            
+            # Skip if word is empty
+            if not word_text:
+                continue
+            
+            merged.append({
+                "word": word_text,
+                "type": "filler" if is_filler else "content",
+                "start_sec": round(word_data.get("start", 0.0), 3),
+                "end_sec": round(word_data.get("end", 0.0), 3),
+                "confidence": round(word_data.get("confidence", 0.0), 3),
+            })
+    
+    # Add filler events (these are detected by Wav2Vec2 or Whisper as disfluencies)
+    for filler_data in (timestamped_fillers or []):
+        if isinstance(filler_data, dict):
+            # Try to get word from various fields
+            filler_word = filler_data.get("word") or filler_data.get("text") or filler_data.get("raw_label")
+            
+            # Ensure we have a string
+            if filler_word is None or (isinstance(filler_word, float) and np.isnan(filler_word)):
+                filler_word = ""
+            else:
+                filler_word = str(filler_word).strip()
+            
+            # Handle null fillers - convert to most frequent one
+            if not filler_word or filler_word.lower() == "none":
+                filler_word = "um"  # Default to most common filler
+            
+            merged.append({
+                "word": filler_word,
+                "type": "filler",
+                "start_sec": round(filler_data.get("start", 0.0), 3),
+                "end_sec": round(filler_data.get("end", 0.0), 3),
+                "confidence": 0.25,  # Wav2Vec2 filler detection confidence
+            })
+    
+    # Sort by start_sec
+    merged.sort(key=lambda x: x["start_sec"])
+    
+    return merged
+
+
 async def analyze_speech(
     audio_path: str,
     context: str = "conversational",
@@ -158,11 +223,17 @@ async def analyze_speech(
         # =============================================
         logger.info("Finalizing report...")
         
+        # Merge words and fillers into unified timeline
+        timestamped_words = raw_analysis.get("timestamps", {}).get("words_timestamps_raw", [])
+        timestamped_fillers = raw_analysis.get("timestamps", {}).get("filler_timestamps", [])
+        
+        # Create merged word_timestamps with both content and filler events
+        word_timestamps_merged = merge_words_and_fillers(timestamped_words, timestamped_fillers)
+        
         # Prepare timestamped feedback (if word-level timestamps available)
         timestamped_feedback = {}
-        word_timestamps = raw_analysis.get("timestamps", {}).get("words_timestamps_raw", [])
         
-        if word_timestamps and use_llm and llm_annotations and transcript:
+        if word_timestamps_merged and use_llm and llm_annotations and transcript:
             try:
                 from src.core.llm_processing import map_spans_to_timestamps
                 
@@ -214,56 +285,6 @@ async def analyze_speech(
                 logger.warning(f"Could not generate timestamped feedback: {str(e)}")
                 # Continue without timestamped feedback
         
-        # Extract timestamped words and fillers from raw_analysis
-        timestamped_words = raw_analysis.get("timestamps", {}).get("words_timestamps_raw", [])
-        timestamped_fillers = raw_analysis.get("timestamps", {}).get("filler_timestamps", [])
-        
-        # Format words with timestamp_mmss
-        formatted_words = []
-        for word_data in timestamped_words:
-            if isinstance(word_data, dict):
-                start = word_data.get("start", 0.0)
-                end = word_data.get("end", 0.0)
-                word = word_data.get("word", "")
-                # Calculate MM:SS format
-                start_min = int(start // 60)
-                start_sec = int(start % 60)
-                end_min = int(end // 60)
-                end_sec = int(end % 60)
-                timestamp_mmss = f"{start_min}:{start_sec:02d}-{end_min}:{end_sec:02d}"
-                
-                formatted_words.append({
-                    "word": word,
-                    "start_sec": round(start, 2),
-                    "end_sec": round(end, 2),
-                    "timestamp_mmss": timestamp_mmss,
-                    "confidence": round(word_data.get("confidence", 0.0), 3),
-                })
-        
-        # Format fillers with timestamp_mmss
-        formatted_fillers = []
-        for filler_data in timestamped_fillers:
-            if isinstance(filler_data, dict):
-                start = filler_data.get("start", 0.0)
-                end = filler_data.get("end", 0.0)
-                filler_type = filler_data.get("type", "filler")
-                # Get filler word from either 'word' (Whisper) or 'text' (Wav2Vec2) or 'raw_label'
-                filler_word = filler_data.get("word") or filler_data.get("text") or filler_data.get("raw_label", "")
-                # Calculate MM:SS format
-                start_min = int(start // 60)
-                start_sec = int(start % 60)
-                end_min = int(end // 60)
-                end_sec = int(end % 60)
-                timestamp_mmss = f"{start_min}:{start_sec:02d}-{end_min}:{end_sec:02d}"
-                
-                formatted_fillers.append({
-                    "word": filler_word,
-                    "type": filler_type,
-                    "start_sec": round(start, 2),
-                    "end_sec": round(end, 2),
-                    "timestamp_mmss": timestamp_mmss,
-                })
-        
         final_report = {
             # Metadata
             "metadata": analysis["metadata"],
@@ -286,11 +307,8 @@ async def analyze_speech(
                 "feedback": band_scores["feedback"],
             },
             
-            # Timestamped Words (word-level timeline with confidence)
-            "timestamped_words": formatted_words if formatted_words else [],
-            
-            # Timestamped Fillers (all detected fillers and stutters)
-            "timestamped_fillers": formatted_fillers if formatted_fillers else [],
+            # Timestamped Words (unified timeline: content words + filler events)
+            "word_timestamps": word_timestamps_merged if word_timestamps_merged else [],
             
             # Timestamped Rubric Feedback (when word-level timestamps available)
             "timestamped_feedback": timestamped_feedback if timestamped_feedback else {},
