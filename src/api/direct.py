@@ -15,7 +15,28 @@ from src.utils.logging_config import logger
 from src.utils.exceptions import AudioNotFoundError, AudioFormatError, AudioDurationError
 
 router = APIRouter()
-job_queue = JobQueue()  # Singleton job tracker
+
+# Global job queue - initialized with Modal Dict if available (in Modal)
+# The Dict is injected from modal_app.py context
+job_queue = None
+
+
+def get_job_queue():
+    """Get or initialize job queue with Modal Dict if available."""
+    global job_queue
+    if job_queue is None:
+        # Try to get Modal Dict from context
+        try:
+            import modal
+            job_dict = modal.Dict.from_name(
+                "speech-analysis-jobs",
+                create_if_missing=False
+            )
+            job_queue = JobQueue(kv_store=job_dict)
+        except Exception:
+            # Fallback to in-memory only (local development)
+            job_queue = JobQueue()
+    return job_queue
 
 
 @router.get("/health")
@@ -67,7 +88,7 @@ async def analyze_audio_direct(
         tmp_path = tmp.name
     
     # Create job entry with API key ownership tracking
-    job_queue.create_job(job_id, file.filename, api_key_hash=auth.key_hash)
+    get_job_queue().create_job(job_id, file.filename, api_key_hash=auth.key_hash)
     
     # Queue analysis as background task
     background_tasks.add_task(
@@ -106,10 +127,10 @@ async def get_result_direct(
         status="error": Analysis failed, error message in 'detail' field
     """
     # Verify job ownership
-    if not job_queue.verify_job_ownership(job_id, auth.key_hash):
+    if not get_job_queue().verify_job_ownership(job_id, auth.key_hash):
         raise HTTPException(status_code=404, detail=f"Job {job_id} not found or access denied")
     
-    status, data = job_queue.get_status(job_id)
+    status, data = get_job_queue().get_status(job_id)
     
     if status == "notfound":
         raise HTTPException(status_code=404, detail=f"Job {job_id} not found")
@@ -146,28 +167,28 @@ async def _process_analysis_direct(job_id: str, tmp_path: str, speech_context: s
         )
         
         # Store result as-is (engine_runner returns raw analysis dict)
-        job_queue.set_result(job_id, result)
+        get_job_queue().set_result(job_id, result)
         logger.info(f"[Job {job_id}] Analysis completed successfully")
     
     except (AudioNotFoundError, FileNotFoundError) as e:
         error_msg = f"Audio file not found: {str(e)}"
         logger.error(f"[Job {job_id}] {error_msg}")
-        job_queue.set_error(job_id, error_msg)
+        get_job_queue().set_error(job_id, error_msg)
     
     except AudioFormatError as e:
         error_msg = f"Invalid audio format: {str(e)}"
         logger.error(f"[Job {job_id}] {error_msg}")
-        job_queue.set_error(job_id, error_msg)
+        get_job_queue().set_error(job_id, error_msg)
     
     except AudioDurationError as e:
         error_msg = f"Audio too short: {str(e)}"
         logger.error(f"[Job {job_id}] {error_msg}")
-        job_queue.set_error(job_id, error_msg)
+        get_job_queue().set_error(job_id, error_msg)
     
     except Exception as e:
         error_msg = f"Analysis failed: {str(e)}"
         logger.error(f"[Job {job_id}] {error_msg}", exc_info=True)
-        job_queue.set_error(job_id, error_msg)
+        get_job_queue().set_error(job_id, error_msg)
     
     finally:
         # Always clean up temp file

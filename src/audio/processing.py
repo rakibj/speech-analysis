@@ -1,5 +1,6 @@
 # src/audio/processing.py
 """Audio loading and transcription utilities with error handling."""
+import os
 import soundfile as sf
 import pandas as pd
 import numpy as np
@@ -117,7 +118,9 @@ def transcribe_with_whisper(
     # Load model
     try:
         import whisper
-        model = whisper.load_model(model_name, device=device)
+        # Use cache directory from environment or default
+        cache_dir = os.getenv("WHISPER_DOWNLOAD_ROOT", None)
+        model = whisper.load_model(model_name, device=device, download_root=cache_dir)
         logger.info(f"Loaded Whisper model: {model_name} on {device}")
     except Exception as e:
         raise ModelLoadError(
@@ -175,14 +178,16 @@ def transcribe_verbatim_fillers(
     try:
         import whisper
         import torch
+        # Use cache directory from environment or default
+        cache_dir = os.getenv("WHISPER_DOWNLOAD_ROOT", None)
         # Workaround for meta tensor issue: load on CPU first, then move to target device
         try:
-            model = whisper.load_model(model_name, device="cpu")
+            model = whisper.load_model(model_name, device="cpu", download_root=cache_dir)
             if device != "cpu":
                 model = model.to_empty(device=device)
         except Exception:
             # Fallback: try loading directly with device parameter
-            model = whisper.load_model(model_name, device=device)
+            model = whisper.load_model(model_name, device=device, download_root=cache_dir)
     except Exception as e:
         raise ModelLoadError(
             f"Failed to load Whisper model: {str(e)}",

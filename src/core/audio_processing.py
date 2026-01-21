@@ -1,5 +1,6 @@
 # src/audio_processing.py
 """Audio loading and transcription utilities with error handling."""
+import os
 import torch
 import torchaudio
 import soundfile as sf
@@ -114,7 +115,9 @@ def transcribe_with_whisper(
     
     # Load model
     try:
-        model = whisper.load_model(model_name, device=device)
+        # Use cache directory from environment or default
+        cache_dir = os.getenv("WHISPER_DOWNLOAD_ROOT", None)
+        model = whisper.load_model(model_name, device=device, download_root=cache_dir)
         logger.info(f"Loaded Whisper model: {model_name} on {device}")
     except Exception as e:
         raise ModelLoadError(
@@ -166,7 +169,9 @@ def transcribe_verbatim_fillers(
         device = "cpu"
     
     try:
-        model = whisper.load_model(model_name, device=device)
+        # Use cache directory from environment or default
+        cache_dir = os.getenv("WHISPER_DOWNLOAD_ROOT", None)
+        model = whisper.load_model(model_name, device=device, download_root=cache_dir)
     except Exception as e:
         raise ModelLoadError(
             f"Failed to load Whisper model: {str(e)}",

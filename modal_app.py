@@ -3,6 +3,29 @@ Modal deployment for Speech Analysis API.
 """
 
 import modal
+import os
+
+# ---------------------------------------------------------
+# Modal Volumes for Model Caching
+# ---------------------------------------------------------
+
+# Create persistent volumes for caching models across executions
+# This eliminates repeated downloads and dramatically reduces latency
+model_cache_volume = modal.Volume.from_name(
+    "speech-analysis-models",
+    create_if_missing=True
+)
+
+# ---------------------------------------------------------
+# Modal Dict for Job Results (Distributed State)
+# ---------------------------------------------------------
+
+# Create persistent distributed dict for async job tracking
+# Allows multiple concurrent containers to share job state
+job_results_store = modal.Dict.from_name(
+    "speech-analysis-jobs",
+    create_if_missing=True
+)
 
 # ---------------------------------------------------------
 # Modal App
@@ -76,6 +99,18 @@ def build_image():
     timeout=600,                 # 10 minutes (safe for heavy jobs)
     cpu=2.0,
     memory=4096,                 # MB
+    volumes={
+        "/mnt/models": model_cache_volume,
+    },
+    env={
+        # Cache models in persistent volume to avoid re-downloads
+        # Using /mnt/models instead of /root/.cache (which pip already populates)
+        "HF_HOME": "/mnt/models",
+        "TORCH_HOME": "/mnt/models/torch",
+        "WHISPER_DOWNLOAD_ROOT": "/mnt/models/whisper",
+        # Disable huggingface analytics
+        "HF_HUB_DISABLE_TELEMETRY": "1",
+    },
     secrets=[
         modal.Secret.from_name("openai-secret"),
         modal.Secret.from_name("rapidapi-secret"),

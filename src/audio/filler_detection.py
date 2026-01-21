@@ -1,6 +1,7 @@
 # src/audio/filler_detection.py
 """Filler and disfluency detection using multiple methods."""
 import re
+import os
 import soundfile as sf
 import pandas as pd
 from typing import Tuple, Set
@@ -184,8 +185,18 @@ def detect_phonemes_wav2vec(audio_path: str) -> pd.DataFrame:
         DataFrame with phoneme events (label, start, end, duration)
     """
     from transformers.models.wav2vec2 import Wav2Vec2Processor, Wav2Vec2ForCTC
-    processor = Wav2Vec2Processor.from_pretrained("facebook/wav2vec2-large-960h")
-    wav2vec = Wav2Vec2ForCTC.from_pretrained("facebook/wav2vec2-large-960h")
+    
+    # Use HF_HOME from environment (set by Modal) for model caching
+    cache_dir = os.getenv("HF_HOME", None)
+    
+    processor = Wav2Vec2Processor.from_pretrained(
+        "facebook/wav2vec2-large-960h",
+        cache_dir=cache_dir
+    )
+    wav2vec = Wav2Vec2ForCTC.from_pretrained(
+        "facebook/wav2vec2-large-960h",
+        cache_dir=cache_dir
+    )
     wav2vec.eval()
     
     # Load audio

@@ -1,6 +1,7 @@
 # src/disfluency_detection.py
 """Disfluency detection: fillers, stutters, and hesitations."""
 import re
+import os
 import torch
 import torchaudio
 import soundfile as sf
@@ -33,8 +34,17 @@ def detect_phonemes_wav2vec(audio_path: str) -> pd.DataFrame:
     Returns:
         DataFrame with phoneme events (label, start, end, duration)
     """
-    processor = Wav2Vec2Processor.from_pretrained("facebook/wav2vec2-large-960h")
-    wav2vec = Wav2Vec2ForCTC.from_pretrained("facebook/wav2vec2-large-960h")
+    # Use HF_HOME from environment (set by Modal) for model caching
+    cache_dir = os.getenv("HF_HOME", None)
+    
+    processor = Wav2Vec2Processor.from_pretrained(
+        "facebook/wav2vec2-large-960h",
+        cache_dir=cache_dir
+    )
+    wav2vec = Wav2Vec2ForCTC.from_pretrained(
+        "facebook/wav2vec2-large-960h",
+        cache_dir=cache_dir
+    )
     wav2vec.eval()
     
     # Load audio
