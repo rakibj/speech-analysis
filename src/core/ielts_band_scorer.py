@@ -138,7 +138,7 @@ class IELTSBandScorer:
         # Band 7.0: mean >= 0.84, low <= 0.20
         # Band 6.5: mean >= 0.80, low <= 0.25
         # Band 6.0: mean >= 0.75, low <= 0.32
-        # Band 5.5: low > 0.32
+        # Band 5.5: low > 0.32 or mean < 0.75
         
         if mean_conf >= 0.92 and low_conf_ratio <= 0.08:
             return 8.5
@@ -152,9 +152,8 @@ class IELTSBandScorer:
             return 6.5
         if mean_conf >= 0.75 and low_conf_ratio <= 0.32:
             return 6.0
-        if low_conf_ratio > 0.32:
-            return 5.5
-        return 6.0
+        # Default to 5.5 for low confidence or other cases
+        return 5.5
 
     # ===============================
     # LEXICAL RESOURCE

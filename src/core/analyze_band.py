@@ -23,20 +23,10 @@ def build_analysis(raw_analysis: dict) -> dict:
     content_words = raw_analysis["statistics"]["content_words"]
 
     # ---- Extract word confidence metrics ----
-    confidences = [
-        w["confidence"]
-        for w in raw_analysis["timestamps"]["words_timestamps_raw"]
-        if w.get("confidence") is not None
-    ]
-
-    mean_word_confidence = (
-        sum(confidences) / len(confidences) if confidences else 0.0
-    )
-
-    low_confidence_ratio = (
-        sum(1 for c in confidences if c < 0.7) / len(confidences)
-        if confidences else 0.0
-    )
+    # Use pre-calculated values from raw_analysis if available
+    # (Whisper word-level confidence is always ~1.0, so we use the original calculation)
+    mean_word_confidence = raw_analysis.get("mean_word_confidence", 0.0)
+    low_confidence_ratio = raw_analysis.get("low_confidence_ratio", 0.0)
 
     # ---- Build metrics dict for scorer ----
     # Use the actual metrics from raw_analysis

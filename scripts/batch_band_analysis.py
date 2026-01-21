@@ -10,10 +10,10 @@ import numpy as np
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(PROJECT_ROOT))
 
-from src.utils.rubric_from_metrics import generate_constraints
-from src.utils.analyzer_raw import analyze_speech
-from src.utils.llm_processing import extract_llm_annotations, aggregate_llm_metrics
-from src.utils.analyze_band import analyze_band_from_audio, analyze_band_from_analysis
+from src.core.rubric_from_metrics import generate_constraints
+from src.core.analyzer_raw import analyze_speech
+from src.core.llm_processing import extract_llm_annotations, aggregate_llm_metrics
+from src.core.analyze_band import analyze_band_from_audio, analyze_band_from_analysis
 from src.utils.logging_config import setup_logging
 from src.utils.exceptions import SpeechAnalysisError
 

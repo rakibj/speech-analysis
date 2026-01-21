@@ -12,7 +12,7 @@ from pathlib import Path
 import gc
 import numpy as np
 
-from src.utils.rubric_from_metrics import generate_constraints
+from src.core.rubric_from_metrics import generate_constraints
 from src.utils.analyzer_raw import analyze_speech
 from src.core.llm_processing import extract_llm_annotations, aggregate_llm_metrics
 from src.utils.analyze_band import analyze_band_from_audio, analyze_band_from_analysis
