@@ -551,40 +551,11 @@ class IELTSBandScorer:
             "grammatical_range_accuracy": gr,
         }
 
-        # Overall calculation: weighted average (fluency gets extra weight as per IELTS)
-        weighted_avg = (fc * 0.3 + pr * 0.2 + lr * 0.25 + gr * 0.25)
-        overall = round_half(weighted_avg)
+        # Overall calculation: Official IELTS formula (equal weight to all criteria)
+        # Overall Band = (FC + PR + LR + GR) / 4
+        overall = round_half((fc + pr + lr + gr) / 4.0)
 
-        # Apply topic relevance penalty at overall level
-        if llm_metrics:
-            topic_relevant = llm_metrics.get("topic_relevance", True)
-            listener_effort_high = llm_metrics.get("listener_effort_high", False)
-            flow_unstable = llm_metrics.get("flow_instability_present", False)
-            clarity_score = llm_metrics.get("overall_clarity_score", 3)
-            
-            # If completely off-topic, hard cap at 6.5
-            if not topic_relevant:
-                overall = min(overall, 6.5)
-            
-            # If flow is unstable or listener effort high, hard cap at 7.0
-            if flow_unstable or listener_effort_high:
-                overall = min(overall, 7.0)
-            
-            # If clarity is very poor (1-2), cap at 6.0
-            if clarity_score <= 2:
-                overall = min(overall, 6.0)
-
-        # Hard caps for weak criteria
-        if min(subscores.values()) <= 5.5:
-            overall = min(overall, 6.0)
-        
-        # Boost overall if speaker shows consistent high performance (3+ criteria >= 8.0)
-        high_bands = sum(1 for s in subscores.values() if s >= 8.0)
-        if high_bands >= 3 and min(subscores.values()) >= 7.5:
-            overall = max(overall, 8.5)
-        elif high_bands >= 2 and min(subscores.values()) >= 7.0:
-            overall = max(overall, 8.0)
-
+        # Clamp to valid IELTS range [5.0, 9.0]
         overall = max(5.0, min(9.0, overall))
 
         # Get descriptors
