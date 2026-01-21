@@ -30,7 +30,7 @@ logger = setup_logging(level="INFO")
 
 
 def make_json_safe(obj):
-    """Convert numpy types to native Python types for JSON serialization."""
+    """Convert numpy types and inf/nan to native Python types for JSON serialization."""
     if isinstance(obj, dict):
         return {k: make_json_safe(v) for k, v in obj.items()}
     elif isinstance(obj, list):
@@ -38,7 +38,16 @@ def make_json_safe(obj):
     elif isinstance(obj, (np.integer,)):
         return int(obj)
     elif isinstance(obj, (np.floating,)):
-        return float(obj)
+        val = float(obj)
+        # Convert inf/nan to None for JSON compliance
+        if np.isinf(val) or np.isnan(val):
+            return None
+        return val
+    elif isinstance(obj, float):
+        # Handle native Python floats too
+        if np.isinf(obj) or np.isnan(obj):
+            return None
+        return obj
     elif isinstance(obj, (np.bool_,)):
         return bool(obj)
     else:
@@ -238,7 +247,8 @@ async def analyze_speech(
                 start = filler_data.get("start", 0.0)
                 end = filler_data.get("end", 0.0)
                 filler_type = filler_data.get("type", "filler")
-                filler_word = filler_data.get("word", "")
+                # Get filler word from either 'word' (Whisper) or 'text' (Wav2Vec2) or 'raw_label'
+                filler_word = filler_data.get("word") or filler_data.get("text") or filler_data.get("raw_label", "")
                 # Calculate MM:SS format
                 start_min = int(start // 60)
                 start_sec = int(start % 60)
@@ -277,16 +287,30 @@ async def analyze_speech(
             },
             
             # Timestamped Words (word-level timeline with confidence)
-            "timestamped_words": formatted_words if formatted_words else None,
+            "timestamped_words": formatted_words if formatted_words else [],
             
             # Timestamped Fillers (all detected fillers and stutters)
-            "timestamped_fillers": formatted_fillers if formatted_fillers else None,
+            "timestamped_fillers": formatted_fillers if formatted_fillers else [],
             
             # Timestamped Rubric Feedback (when word-level timestamps available)
-            "timestamped_feedback": timestamped_feedback if timestamped_feedback else None,
+            "timestamped_feedback": timestamped_feedback if timestamped_feedback else {},
             
             # Raw metrics used for scoring
             "metrics_for_scoring": make_json_safe(metrics_for_scoring),
+            
+            # Normalized metrics (fluency, disfluency, prosody)
+            "normalized_metrics": {
+                "wpm": raw_analysis.get("wpm", 0),
+                "articulationrate": raw_analysis.get("articulationrate", 0),
+                "long_pauses_per_min": raw_analysis.get("long_pauses_per_min", 0),
+                "fillers_per_min": raw_analysis.get("fillers_per_min", 0),
+                "pause_variability": raw_analysis.get("pause_variability", 0),
+                "speech_rate_variability": raw_analysis.get("speech_rate_variability", 0),
+                "vocab_richness": raw_analysis.get("vocab_richness", 0),
+                "type_token_ratio": raw_analysis.get("type_token_ratio", 0),
+                "repetition_ratio": raw_analysis.get("repetition_ratio", 0),
+                "mean_utterance_length": raw_analysis.get("mean_utterance_length", 0),
+            },
             
             # Statistics
             "statistics": raw_analysis["statistics"],

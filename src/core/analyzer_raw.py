@@ -184,7 +184,8 @@ async def analyze_speech(
     df_whisper_fillers['type'] = 'filler'
     df_whisper_fillers['text'] = df_whisper_fillers['word'].str.lower()
     df_whisper_fillers['style'] = 'clear'  # Add style column
-    df_whisper_fillers = df_whisper_fillers[['type', 'text', 'start', 'end', 'duration', 'style']]
+    # Keep word column for output, select all relevant columns
+    df_whisper_fillers = df_whisper_fillers[['word', 'type', 'text', 'start', 'end', 'duration', 'style', 'confidence']]
     
     # Merge detections
     df_merged_fillers = merge_filler_detections(df_whisper_fillers, df_wav2vec_fillers)

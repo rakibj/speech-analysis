@@ -185,19 +185,57 @@ def detect_phonemes_wav2vec(audio_path: str) -> pd.DataFrame:
         DataFrame with phoneme events (label, start, end, duration)
     """
     from transformers.models.wav2vec2 import Wav2Vec2Processor, Wav2Vec2ForCTC
+    import shutil
     
     # Use HF_HOME from environment (set by Modal) for model caching
     cache_dir = os.getenv("HF_HOME", None)
     
-    processor = Wav2Vec2Processor.from_pretrained(
-        "facebook/wav2vec2-large-960h",
-        cache_dir=cache_dir
-    )
-    wav2vec = Wav2Vec2ForCTC.from_pretrained(
-        "facebook/wav2vec2-large-960h",
-        cache_dir=cache_dir
-    )
-    wav2vec.eval()
+    def load_wav2vec_models():
+        """Load models with automatic cache recovery on corruption."""
+        try:
+            processor = Wav2Vec2Processor.from_pretrained(
+                "facebook/wav2vec2-large-960h",
+                cache_dir=cache_dir
+            )
+            wav2vec = Wav2Vec2ForCTC.from_pretrained(
+                "facebook/wav2vec2-large-960h",
+                cache_dir=cache_dir
+            )
+            wav2vec.eval()
+            return processor, wav2vec
+        except (OSError, UnicodeDecodeError) as e:
+            # Cache corrupted - try to clear it and retry
+            if "Invalid argument" in str(e) or "UnicodeDecodeError" in str(type(e).__name__):
+                import logging
+                logger = logging.getLogger(__name__)
+                logger.warning("Wav2Vec2 cache corrupted, rebuilding...")
+                
+                # Clear the corrupted cache
+                if cache_dir:
+                    wav2vec_cache = os.path.join(cache_dir, "models--facebook--wav2vec2-large-960h")
+                    if os.path.exists(wav2vec_cache):
+                        try:
+                            shutil.rmtree(wav2vec_cache)
+                            logger.info(f"Cleared corrupted cache: {wav2vec_cache}")
+                        except Exception as cleanup_err:
+                            logger.error(f"Failed to clear cache: {cleanup_err}")
+                
+                # Retry with fresh download
+                processor = Wav2Vec2Processor.from_pretrained(
+                    "facebook/wav2vec2-large-960h",
+                    cache_dir=cache_dir
+                )
+                wav2vec = Wav2Vec2ForCTC.from_pretrained(
+                    "facebook/wav2vec2-large-960h",
+                    cache_dir=cache_dir
+                )
+                wav2vec.eval()
+                logger.info("Wav2Vec2 models loaded successfully after cache rebuild")
+                return processor, wav2vec
+            else:
+                raise
+    
+    processor, wav2vec = load_wav2vec_models()
     
     # Load audio
     waveform, sr = sf.read(audio_path, dtype="float32")
