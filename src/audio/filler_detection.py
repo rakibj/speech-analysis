@@ -183,7 +183,7 @@ def detect_phonemes_wav2vec(audio_path: str) -> pd.DataFrame:
     Returns:
         DataFrame with phoneme events (label, start, end, duration)
     """
-    from transformers import Wav2Vec2Processor, Wav2Vec2ForCTC
+    from transformers.models.wav2vec2 import Wav2Vec2Processor, Wav2Vec2ForCTC
     processor = Wav2Vec2Processor.from_pretrained("facebook/wav2vec2-large-960h")
     wav2vec = Wav2Vec2ForCTC.from_pretrained("facebook/wav2vec2-large-960h")
     wav2vec.eval()

@@ -179,7 +179,7 @@ def transcribe_verbatim_fillers(
         try:
             model = whisper.load_model(model_name, device="cpu")
             if device != "cpu":
-                model = model.to(device)
+                model = model.to_empty(device=device)
         except Exception:
             # Fallback: try loading directly with device parameter
             model = whisper.load_model(model_name, device=device)
@@ -194,7 +194,7 @@ def transcribe_verbatim_fillers(
             audio_path,
             task="transcribe",
             temperature=0,
-            word_timestamps=True,
+            word_timestamps=(device != "cpu"),  # Disable on CPU due to timing hook issues
             condition_on_previous_text=False,
             initial_prompt=(
                 "Transcribe verbatim. Include filler words like um, uh, er, "
@@ -311,6 +311,9 @@ def extract_words_dataframe(result: Dict[str, Any]) -> pd.DataFrame:
     """
     words = []
     for seg in result["segments"]:
+        # Skip if words not available (e.g., when word_timestamps=False)
+        if "words" not in seg:
+            continue
         for w in seg["words"]:
             words.append({
                 "word": w["word"].strip(),
@@ -321,6 +324,28 @@ def extract_words_dataframe(result: Dict[str, Any]) -> pd.DataFrame:
             })
     
     if not words:
+        # Create DataFrame from segments if word-level data unavailable
+        segments = result.get("segments", [])
+        if segments:
+            words_from_segments = []
+            for seg in segments:
+                text = seg.get("text", "").strip()
+                if text:
+                    # Split into words and create entries with segment timing
+                    seg_words = text.split()
+                    if seg_words:
+                        word_duration = (seg.get("end", 0) - seg.get("start", 0)) / len(seg_words)
+                        for i, word in enumerate(seg_words):
+                            words_from_segments.append({
+                                "word": word,
+                                "start": seg.get("start", 0) + i * word_duration,
+                                "end": seg.get("start", 0) + (i + 1) * word_duration,
+                                "duration": word_duration,
+                                "confidence": seg.get("confidence", 1.0)
+                            })
+            if words_from_segments:
+                return pd.DataFrame(words_from_segments)
+        
         raise NoSpeechDetectedError(
             "No words extracted from transcription",
             {"segments": len(result.get('segments', []))}
@@ -341,13 +366,14 @@ def extract_segments_dataframe(result: Dict[str, Any]) -> pd.DataFrame:
     """
     segments = []
     for seg in result["segments"]:
-        # Handle empty word list
-        if len(seg["words"]) > 0:
+        # Handle missing word-level data (when word_timestamps=False)
+        if "words" in seg and len(seg["words"]) > 0:
             avg_confidence = sum(
                 [float(w["probability"]) for w in seg["words"]]
             ) / len(seg["words"])
         else:
-            avg_confidence = 0.0
+            # Use segment-level confidence if available, else default to 1.0
+            avg_confidence = float(seg.get("confidence", 1.0))
         
         segments.append({
             "text": seg["text"].strip(),

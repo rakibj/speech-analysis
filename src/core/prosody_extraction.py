@@ -2,9 +2,13 @@ import numpy as np
 import librosa
 from pathlib import Path
 import sys
+import warnings
 
 PROJECT_ROOT = Path.cwd().parent
 sys.path.insert(0, str(PROJECT_ROOT))
+
+# Suppress librosa audioread deprecation warning
+warnings.filterwarnings('ignore', category=FutureWarning, module='librosa')
 
 
 def prosody_variation_robust(audio_path: str, hop_length: int = 256) -> float:

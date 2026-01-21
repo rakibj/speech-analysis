@@ -34,6 +34,7 @@ def build_image():
             # Audio processing
             "librosa>=0.10.1,<1.0",
             "soundfile>=0.12.1,<0.14",
+            "pysoundfile>=0.9.0",  # Latest available version
             "openai-whisper>=20250625",
             "whisperx>=3.4.3",
 
@@ -75,13 +76,13 @@ def build_image():
     timeout=600,                 # 10 minutes (safe for heavy jobs)
     cpu=2.0,
     memory=4096,                 # MB
-    allow_concurrent_inputs=10,
     secrets=[
         modal.Secret.from_name("openai-secret"),
         modal.Secret.from_name("rapidapi-secret"),
     ],
 )
 @modal.asgi_app()
+@modal.concurrent(max_inputs=10)
 def fastapi_app():
     """Serve FastAPI app via Modal ASGI."""
 

@@ -5,8 +5,23 @@ Run: python test_quick.py
 
 import asyncio
 import json
+import sys
 from pathlib import Path
 from src.core.engine_runner import run_engine
+
+# Enable UTF-8 output on Windows
+if sys.platform == 'win32':
+    sys.stdout.reconfigure(encoding='utf-8')
+
+
+def safe_print(text):
+    """Safely print text with unicode character fallbacks"""
+    if isinstance(text, str):
+        # Replace special characters with ASCII equivalents for terminal display
+        text = text.replace('✓', '[ok]')
+        text = text.replace('•', '*')
+    print(text)
+
 
 
 async def main():
@@ -57,42 +72,42 @@ async def main():
         print(f"   Overall Band: {result['band_scores']['overall_band']}")
         print(f"\n   Criterion Bands:")
         for criterion, band in result['band_scores']['criterion_bands'].items():
-            print(f"     • {criterion}: {band}")
+            safe_print(f"     * {criterion}: {band}")
         
         # Feedback
         if result['band_scores']['feedback']:
             print(f"\n[FEEDBACK]:")
             for criterion, feedback in result['band_scores']['feedback'].items():
                 print(f"   {criterion}:")
-                print(f"     {feedback}\n")
+                safe_print(f"     {feedback}\n")
         
         # Statistics
-        print(f"[STATISTICS]:")
+        print(f"\n[STATISTICS]:")
         stats = result['statistics']
-        print(f"   • Duration: {result['metadata']['audio_duration_sec']}s")
-        print(f"   • Total words: {stats['total_words_transcribed']}")
-        print(f"   • Content words: {stats['content_words']}")
-        print(f"   • Filler words: {stats['filler_words_detected']}")
-        print(f"   • Filler percentage: {stats['filler_percentage']}%")
-        print(f"   • Monotone: {'Yes' if stats['is_monotone'] else 'No'}")
+        safe_print(f"   * Duration: {result['metadata']['audio_duration_sec']}s")
+        safe_print(f"   * Total words: {stats['total_words_transcribed']}")
+        safe_print(f"   * Content words: {stats['content_words']}")
+        safe_print(f"   * Filler words: {stats['filler_words_detected']}")
+        safe_print(f"   * Filler percentage: {stats['filler_percentage']}%")
+        safe_print(f"   * Monotone: {'Yes' if stats['is_monotone'] else 'No'}")
         
         # Fluency metrics
         fluency = result['fluency_analysis']
         if fluency:
             print(f"\n[FLUENCY METRICS]:")
             if 'wpm' in fluency:
-                print(f"   • Words per minute: {fluency['wpm']}")
+                safe_print(f"   * Words per minute: {fluency['wpm']}")
             if 'long_pauses_per_min' in fluency:
-                print(f"   • Long pauses per minute: {fluency['long_pauses_per_min']}")
+                safe_print(f"   * Long pauses per minute: {fluency['long_pauses_per_min']}")
             if 'pause_variability' in fluency:
-                print(f"   • Pause variability: {fluency['pause_variability']}")
+                safe_print(f"   * Pause variability: {fluency['pause_variability']}")
         
         # Speech quality
         quality = result['speech_quality']
         print(f"\n[SPEECH QUALITY]:")
-        print(f"   • Mean word confidence: {quality['mean_word_confidence']:.3f}")
-        print(f"   • Low confidence ratio: {quality['low_confidence_ratio']:.3f}")
-        print(f"   • Monotone detected: {quality['is_monotone']}")
+        safe_print(f"   * Mean word confidence: {quality['mean_word_confidence']:.3f}")
+        safe_print(f"   * Low confidence ratio: {quality['low_confidence_ratio']:.3f}")
+        safe_print(f"   * Monotone detected: {quality['is_monotone']}")
         
         # LLM analysis
         if result.get('llm_analysis'):
