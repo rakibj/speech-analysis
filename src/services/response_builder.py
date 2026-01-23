@@ -1,6 +1,36 @@
 """Response filtering and data transformation for tiered API responses."""
 from typing import Optional, Dict, Any, Literal
+import math
 from src.models import AudioAnalysisResponseDefault, AudioAnalysisResponseFeedback, AudioAnalysisResponseFull
+
+
+def sanitize_value(value: Any) -> Any:
+    """
+    Sanitize a value to ensure it's JSON-compliant.
+    Converts NaN and infinity to null or 0.
+    
+    Args:
+        value: Any value that might contain non-JSON-compliant floats
+        
+    Returns:
+        Sanitized value safe for JSON serialization
+    """
+    if value is None:
+        return None
+    
+    if isinstance(value, float):
+        # Handle NaN and infinity
+        if math.isnan(value) or math.isinf(value):
+            return None  # or return 0.0 if you prefer
+        return value
+    
+    if isinstance(value, dict):
+        return {k: sanitize_value(v) for k, v in value.items()}
+    
+    if isinstance(value, list):
+        return [sanitize_value(item) for item in value]
+    
+    return value
 
 
 def transform_engine_output(raw_analysis: Dict[str, Any]) -> Dict[str, Any]:
@@ -177,6 +207,9 @@ def build_response(
     # Transform engine output to fill missing fields
     raw_analysis = transform_engine_output(raw_analysis)
     
+    # Sanitize all values to ensure JSON compliance
+    raw_analysis = sanitize_value(raw_analysis)
+    
     # Extract common fields (always included)
     base_response = {
         "job_id": job_id,
@@ -214,5 +247,8 @@ def build_response(
             "timestamped_feedback": raw_analysis.get("timestamped_feedback"),
             "speech_quality": raw_analysis.get("speech_quality"),
         })
+    
+    # Final sanitization to ensure all values are JSON-compliant
+    base_response = sanitize_value(base_response)
     
     return base_response
