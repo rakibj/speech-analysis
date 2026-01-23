@@ -97,9 +97,8 @@ def transform_engine_output(raw_analysis: Dict[str, Any]) -> Dict[str, Any]:
         statistics = transformed.get("statistics", {})
         
         # Calculate metrics from available data
+        # These are fallback values - normally normalized_metrics should be provided by engine
         transformed["normalized_metrics"] = {
-            "speech_rate_wpm": statistics.get("speech_rate", 0),
-            "articulation_rate_wpm": statistics.get("articulation_rate", 0),
             "filler_frequency": statistics.get("filler_percentage", 0),
             "pause_frequency": statistics.get("pause_frequency", 0),
             "mean_word_confidence": speech_quality.get("mean_word_confidence", 0),
@@ -219,6 +218,8 @@ def build_response(
         "overall_band": raw_analysis.get("overall_band"),
         "criterion_bands": raw_analysis.get("criterion_bands"),
         "confidence": raw_analysis.get("confidence"),
+        "statistics": raw_analysis.get("statistics"),
+        "normalized_metrics": raw_analysis.get("normalized_metrics"),
     }
     
     # Add feedback tier fields if requested
@@ -238,8 +239,6 @@ def build_response(
             "content_words": raw_analysis.get("content_words"),
             "segment_timestamps": raw_analysis.get("segment_timestamps"),
             "filler_events": raw_analysis.get("filler_events"),
-            "statistics": raw_analysis.get("statistics"),
-            "normalized_metrics": raw_analysis.get("normalized_metrics"),
             "opinions": raw_analysis.get("opinions"),
             "benchmarking": raw_analysis.get("benchmarking"),
             "llm_analysis": raw_analysis.get("llm_analysis"),

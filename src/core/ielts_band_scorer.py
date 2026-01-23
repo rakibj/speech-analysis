@@ -574,8 +574,16 @@ class IELTSBandScorer:
         # Clamp to valid IELTS range [5.0, 9.0]
         overall = max(5.0, min(9.0, overall))
 
-        # Get descriptors
+        # Get descriptors for overall band AND individual criteria
         descriptor = get_band_descriptor(overall)
+        
+        # Build criterion-specific descriptors from the actual criterion scores
+        criterion_descriptors = {
+            "fluency_coherence": get_band_descriptor(fc).get("fluency_coherence", ""),
+            "pronunciation": get_band_descriptor(pr).get("pronunciation", ""),
+            "lexical_resource": get_band_descriptor(lr).get("lexical_resource", ""),
+            "grammatical_range_accuracy": get_band_descriptor(gr).get("grammatical_range_accuracy", ""),
+        }
         
         # Calculate confidence score
         band_scores = {
@@ -598,6 +606,7 @@ class IELTSBandScorer:
             "criterion_bands": subscores,
             "confidence": confidence_result,
             "descriptors": descriptor,
+            "criterion_descriptors": criterion_descriptors,
             "feedback": feedback,
         }
 
