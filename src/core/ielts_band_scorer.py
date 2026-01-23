@@ -645,178 +645,341 @@ class IELTSBandScorer:
         metrics: Dict,
         llm_metrics: Optional[Dict],
         transcript: str,
-    ) -> Dict[str, str]:
-        """Generate user-facing feedback based on strengths and weaknesses."""
+    ) -> Dict[str, Any]:
+        """
+        Generate detailed user-facing feedback with clear strengths and weaknesses.
+        
+        Returns feedback for each criterion with:
+        - What is good (strengths)
+        - What needs improvement (weaknesses)
+        - Actionable suggestions
+        """
         feedback = {}
 
-        # Topic Relevance and Coherence feedback (ADDED)
-        if llm_metrics:
-            topic_relevant = llm_metrics.get("topic_relevance", True)
-            listener_effort_high = llm_metrics.get("listener_effort_high", False)
-            flow_unstable = llm_metrics.get("flow_instability_present", False)
-            clarity_score = llm_metrics.get("overall_clarity_score", 3)
-            register_mismatch = llm_metrics.get("register_mismatch_count", 0)
-            
-            # Topic relevance
-            if not topic_relevant:
-                feedback["topic_relevance"] = "⚠️ Speech drifts off-topic. Stay focused on the question."
-            elif topic_relevant:
-                feedback["topic_relevance"] = "✓ Speech stays on topic."
-            
-            # Coherence and flow
-            if flow_unstable:
-                feedback["coherence"] = "⚠️ Speech flow is erratic. Connect ideas more smoothly."
-            elif listener_effort_high:
-                feedback["coherence"] = "⚠️ Listener effort required. Ideas not clearly connected."
-            else:
-                feedback["coherence"] = "✓ Speech is coherent and well-connected."
-            
-            # Register appropriateness
-            if register_mismatch >= 2:
-                feedback["register"] = f"⚠️ {register_mismatch} instances of inappropriate language use. Avoid forcing vocabulary."
-            elif register_mismatch >= 1:
-                feedback["register"] = "Mostly appropriate language register."
-
-        # Fluency feedback
+        # ============================================================
+        # FLUENCY & COHERENCE FEEDBACK
+        # ============================================================
         fc = subscores["fluency_coherence"]
-        if fc >= 8.0:
-            feedback[
-                "fluency_coherence"
-            ] = "Excellent fluency. Speech flows naturally with minimal hesitation."
-        elif fc >= 7.0:
-            feedback[
-                "fluency_coherence"
-            ] = "Good fluency. Generally able to sustain speech with occasional hesitations."
-        elif fc >= 6.0:
-            feedback[
-                "fluency_coherence"
-            ] = "Adequate fluency. Able to produce extended speech but with noticeable pauses."
-        else:
-            feedback[
-                "fluency_coherence"
-            ] = "Limited fluency. Frequent pauses and repetitions affect speech flow."
+        fluency_feedback = {
+            "criterion": "Fluency & Coherence",
+            "band": fc,
+            "strengths": [],
+            "weaknesses": [],
+            "suggestions": []
+        }
+        
+        if llm_metrics:
+            coherence_breaks = llm_metrics.get("coherence_break_count", 0)
+            flow_unstable = llm_metrics.get("flow_instability_present", False)
+            
+            # Strengths
+            if fc >= 8.0:
+                fluency_feedback["strengths"].append("Excellent fluency - speech flows naturally")
+                fluency_feedback["strengths"].append("Minimal hesitation and repetition")
+            elif fc >= 7.0:
+                fluency_feedback["strengths"].append("Good fluency - able to sustain speech")
+                fluency_feedback["strengths"].append("Generally smooth delivery with minor pauses")
+            elif fc >= 6.0:
+                fluency_feedback["strengths"].append("Able to produce extended speech")
+                if coherence_breaks == 0:
+                    fluency_feedback["strengths"].append("Ideas are logically connected")
+            else:
+                if coherence_breaks == 0:
+                    fluency_feedback["strengths"].append("Speech stays on topic")
+            
+            # Weaknesses
+            if coherence_breaks > 0:
+                fluency_feedback["weaknesses"].append(f"Coherence breaks detected ({coherence_breaks}) - ideas not always clearly connected")
+            if flow_unstable:
+                fluency_feedback["weaknesses"].append("Speech flow is inconsistent - difficulty finding words")
+            if fc < 7.0:
+                wpm = metrics.get("wpm", 0)
+                if wpm < 80:
+                    fluency_feedback["weaknesses"].append(f"Speech rate is slow ({wpm} WPM) - consider speaking at natural pace")
+            if fc < 6.0:
+                long_pauses = metrics.get("long_pauses_per_min", 0)
+                repetition = metrics.get("repetition_ratio", 0)
+                if long_pauses > 2.5:
+                    fluency_feedback["weaknesses"].append(f"Frequent long pauses ({long_pauses}/min) - prepare answers more thoroughly")
+                if repetition > 0.1:
+                    fluency_feedback["weaknesses"].append(f"Excessive repetition (ratio: {repetition}) - vary your vocabulary and structures")
+            
+            # Suggestions
+            if coherence_breaks > 0:
+                fluency_feedback["suggestions"].append("Use transition words (furthermore, in addition, however) to connect ideas")
+                fluency_feedback["suggestions"].append("Practice organizing thoughts before speaking")
+            if flow_unstable:
+                fluency_feedback["suggestions"].append("Take pauses to think, but avoid very long silences")
+                fluency_feedback["suggestions"].append("Record yourself and listen for natural flow")
+            if fc < 7.5:
+                fluency_feedback["suggestions"].append("Practice extended speaking (2-3 minutes) on various topics")
+        
+        feedback["fluency_coherence"] = fluency_feedback
 
-        # Pronunciation feedback
+        # ============================================================
+        # PRONUNCIATION FEEDBACK
+        # ============================================================
         pr = subscores["pronunciation"]
+        pronunciation_feedback = {
+            "criterion": "Pronunciation",
+            "band": pr,
+            "strengths": [],
+            "weaknesses": [],
+            "suggestions": []
+        }
+        
+        mean_conf = metrics.get("mean_word_confidence", 0.7)
+        low_conf_ratio = metrics.get("low_confidence_ratio", 0)
+        
+        # Strengths
         if pr >= 8.0:
-            feedback[
-                "pronunciation"
-            ] = "Clear pronunciation. Speech is easily understood with consistent clarity."
+            pronunciation_feedback["strengths"].append("Clear pronunciation - easily understood")
+            pronunciation_feedback["strengths"].append("Consistent phonological control")
+            pronunciation_feedback["strengths"].append("Natural stress and intonation patterns")
         elif pr >= 7.0:
-            feedback[
-                "pronunciation"
-            ] = "Generally clear pronunciation. Minor variations do not affect understanding."
+            pronunciation_feedback["strengths"].append("Generally clear pronunciation")
+            pronunciation_feedback["strengths"].append("Minor accent variations don't affect understanding")
         elif pr >= 6.0:
-            feedback[
-                "pronunciation"
-            ] = "Adequate pronunciation. Generally understood but occasional clarity issues."
+            pronunciation_feedback["strengths"].append("Understandable pronunciation")
+            if mean_conf > 0.75:
+                pronunciation_feedback["strengths"].append("Most words are clearly articulated")
         else:
-            feedback[
-                "pronunciation"
-            ] = "Pronunciation issues. Requires effort to understand at times."
+            if low_conf_ratio < 0.4:
+                pronunciation_feedback["strengths"].append("Some words are clearly pronounced")
+        
+        # Weaknesses
+        if pr < 8.0 and low_conf_ratio > 0.3:
+            pronunciation_feedback["weaknesses"].append(f"Low word clarity ({round(low_conf_ratio*100)}% unclear words)")
+            pronunciation_feedback["weaknesses"].append("Mispronunciation of certain words affects understanding")
+        if pr < 7.0 and mean_conf < 0.75:
+            pronunciation_feedback["weaknesses"].append(f"Average word clarity is low ({round(mean_conf*100)}%) - enunciation needs work")
+        if pr < 6.0:
+            pronunciation_feedback["weaknesses"].append("Pronunciation issues make speech difficult to understand")
+            pronunciation_feedback["weaknesses"].append("Inconsistent control over phonological features")
+        if metrics.get("is_monotone", False):
+            pronunciation_feedback["weaknesses"].append("Lack of intonation variation - speech sounds monotone")
+        
+        # Suggestions
+        if low_conf_ratio > 0.2:
+            pronunciation_feedback["suggestions"].append("Focus on articulation - speak more clearly and deliberately")
+            pronunciation_feedback["suggestions"].append("Record yourself and compare with native speaker pronunciation")
+        if metrics.get("is_monotone", False):
+            pronunciation_feedback["suggestions"].append("Practice varying pitch and stress - listen to English music and podcasts")
+            pronunciation_feedback["suggestions"].append("Mark stress patterns in words you struggle with")
+        if pr < 7.0:
+            pronunciation_feedback["suggestions"].append("Use a pronunciation app (Forvo, Google Translate) to check individual words")
+            pronunciation_feedback["suggestions"].append("Watch English movies and imitate natural pronunciation patterns")
+        
+        feedback["pronunciation"] = pronunciation_feedback
 
-        # Lexical feedback
+        # ============================================================
+        # LEXICAL RESOURCE FEEDBACK
+        # ============================================================
         lr = subscores["lexical_resource"]
+        lexical_feedback = {
+            "criterion": "Lexical Resource",
+            "band": lr,
+            "strengths": [],
+            "weaknesses": [],
+            "suggestions": []
+        }
+        
         if llm_metrics:
             adv_vocab = llm_metrics.get("advanced_vocabulary_count", 0)
             idioms = llm_metrics.get("idiomatic_collocation_count", 0)
             word_errors = llm_metrics.get("word_choice_error_count", 0)
-
+            vocab_richness = metrics.get("vocab_richness", 0)
+            
+            # Strengths
             if lr >= 8.0:
-                feedback[
-                    "lexical_resource"
-                ] = f"Wide and flexible vocabulary. Uses {adv_vocab} advanced vocabulary items effectively. Strong command of less common items."
+                lexical_feedback["strengths"].append("Wide and flexible vocabulary range")
+                if adv_vocab > 0:
+                    lexical_feedback["strengths"].append(f"Uses {adv_vocab} advanced vocabulary items effectively")
+                if idioms > 0:
+                    lexical_feedback["strengths"].append(f"Employs {idioms} idiomatic expressions naturally")
             elif lr >= 7.0:
-                feedback[
-                    "lexical_resource"
-                ] = f"Good vocabulary range. Uses {adv_vocab} advanced items and {idioms} idiomatic expressions."
+                lexical_feedback["strengths"].append("Good vocabulary range")
+                if adv_vocab > 0:
+                    lexical_feedback["strengths"].append(f"Uses {adv_vocab} advanced items to show sophistication")
+                if idioms > 0:
+                    lexical_feedback["strengths"].append(f"Includes {idioms} idiomatic expressions")
             elif lr >= 6.0:
-                feedback[
-                    "lexical_resource"
-                ] = f"Adequate vocabulary. Can discuss topics at length. {word_errors} word choice errors noted."
+                lexical_feedback["strengths"].append("Adequate vocabulary for topic discussion")
+                if vocab_richness > 0.45:
+                    lexical_feedback["strengths"].append("Good vocabulary diversity")
             else:
-                feedback[
-                    "lexical_resource"
-                ] = f"Limited vocabulary. {word_errors} word choice errors. Difficulty with unfamiliar topics."
+                if vocab_richness > 0.35:
+                    lexical_feedback["strengths"].append("Attempts varied vocabulary")
+            
+            # Weaknesses
+            if word_errors > 0:
+                lexical_feedback["weaknesses"].append(f"Word choice errors ({word_errors}) - using wrong words or wrong connotation")
+            if lr < 7.0 and adv_vocab == 0:
+                lexical_feedback["weaknesses"].append("Limited use of advanced vocabulary")
+            if lr < 6.0:
+                lexical_feedback["weaknesses"].append("Limited vocabulary range")
+                lexical_feedback["weaknesses"].append("Difficulty expressing ideas on unfamiliar topics")
+                if vocab_richness < 0.4:
+                    lexical_feedback["weaknesses"].append("Excessive repetition of the same words")
+            if idioms == 0 and lr >= 6.0:
+                lexical_feedback["weaknesses"].append("Does not use idiomatic expressions or collocations")
+            
+            # Suggestions
+            if word_errors > 0:
+                lexical_feedback["suggestions"].append("Learn precise word meanings and usage contexts")
+                lexical_feedback["suggestions"].append("Use a thesaurus and corpus (e.g., English Corpora) to check word usage")
+            if lr < 7.5:
+                lexical_feedback["suggestions"].append("Learn 10-15 new advanced words/phrases per week")
+                lexical_feedback["suggestions"].append("Study idiomatic expressions in context")
+            if vocab_richness < 0.45:
+                lexical_feedback["suggestions"].append("Paraphrase - express the same idea using different words")
+                lexical_feedback["suggestions"].append("Practice describing topics using synonyms")
         else:
+            # Without LLM metrics
             if lr >= 8.0:
-                feedback["lexical_resource"] = "Wide vocabulary range used flexibly."
+                lexical_feedback["strengths"].append("Excellent vocabulary range and flexibility")
             elif lr >= 7.0:
-                feedback["lexical_resource"] = "Good vocabulary range."
+                lexical_feedback["strengths"].append("Good vocabulary with variety")
             elif lr >= 6.0:
-                feedback[
-                    "lexical_resource"
-                ] = "Adequate vocabulary for topic discussion."
+                lexical_feedback["strengths"].append("Adequate vocabulary for discussion")
             else:
-                feedback[
-                    "lexical_resource"
-                ] = "Limited vocabulary range. Focus on expanding word knowledge."
+                lexical_feedback["strengths"].append("Some vocabulary use shown")
+                lexical_feedback["weaknesses"].append("Limited vocabulary range needs expansion")
+        
+        feedback["lexical_resource"] = lexical_feedback
 
-        # Grammar feedback
+        # ============================================================
+        # GRAMMATICAL RANGE & ACCURACY FEEDBACK
+        # ============================================================
         gr = subscores["grammatical_range_accuracy"]
+        grammar_feedback = {
+            "criterion": "Grammatical Range & Accuracy",
+            "band": gr,
+            "strengths": [],
+            "weaknesses": [],
+            "suggestions": []
+        }
+        
         if llm_metrics:
-            complex_acc = llm_metrics.get("complex_structure_accuracy_ratio")
             grammar_errors = llm_metrics.get("grammar_error_count", 0)
-
+            complex_structures = llm_metrics.get("complex_structures_attempted", 0)
+            complex_accuracy = llm_metrics.get("complex_structure_accuracy_ratio")
+            cascading_failure = llm_metrics.get("cascading_grammar_failure", False)
+            
+            # Strengths
             if gr >= 8.0:
-                feedback[
-                    "grammatical_range_accuracy"
-                ] = f"Excellent grammar. Wide range of structures used accurately. {grammar_errors} minor errors detected."
+                grammar_feedback["strengths"].append("Excellent grammatical control")
+                grammar_feedback["strengths"].append("Wide range of structures used accurately")
+                if complex_structures > 0 and complex_accuracy == 1.0:
+                    grammar_feedback["strengths"].append("Complex structures handled accurately")
             elif gr >= 7.0:
-                feedback[
-                    "grammatical_range_accuracy"
-                ] = f"Good grammatical control. Mostly accurate structures. {grammar_errors} errors in complex sentences."
+                grammar_feedback["strengths"].append("Good grammatical control")
+                grammar_feedback["strengths"].append("Mostly accurate sentence structures")
+                if complex_structures > 0:
+                    grammar_feedback["strengths"].append("Attempts complex structures")
             elif gr >= 6.0:
-                feedback[
-                    "grammatical_range_accuracy"
-                ] = f"Adequate control. {grammar_errors} errors noted but meaning usually clear."
+                grammar_feedback["strengths"].append("Adequate grammatical control")
+                if grammar_errors <= 2:
+                    grammar_feedback["strengths"].append("Manages basic and some complex structures")
             else:
-                feedback[
-                    "grammatical_range_accuracy"
-                ] = f"Limited grammatical accuracy. {grammar_errors} errors frequently affect clarity."
+                if grammar_errors < 5:
+                    grammar_feedback["strengths"].append("Basic sentence formation demonstrated")
+            
+            # Weaknesses
+            if grammar_errors > 0:
+                grammar_feedback["weaknesses"].append(f"Grammar errors found ({grammar_errors}) - affects clarity at times")
+            if cascading_failure:
+                grammar_feedback["weaknesses"].append("Grammar errors compound - meaning becomes unclear")
+            if gr < 7.0 and complex_structures > 0 and complex_accuracy and complex_accuracy < 0.7:
+                grammar_feedback["weaknesses"].append("Complex structures attempted but often inaccurate")
+            if gr < 6.0:
+                grammar_feedback["weaknesses"].append("Limited range of grammatical structures")
+                grammar_feedback["weaknesses"].append("Frequent grammatical errors affect meaning")
+            if gr < 7.0 and complex_structures == 0:
+                grammar_feedback["weaknesses"].append("Primarily uses simple sentences - limited complexity")
+            
+            # Suggestions
+            if grammar_errors > 0:
+                grammar_feedback["suggestions"].append("Review common grammar errors identified in your speech")
+                grammar_feedback["suggestions"].append(f"Focus on tense consistency and subject-verb agreement")
+            if complex_structures == 0 or (complex_accuracy and complex_accuracy < 0.7):
+                grammar_feedback["suggestions"].append("Practice using complex structures (relative clauses, conditionals, etc.)")
+                grammar_feedback["suggestions"].append("Start with written practice, then transfer to speaking")
+            if gr < 7.0:
+                grammar_feedback["suggestions"].append("Study one complex structure per week (e.g., subordinate clauses)")
+                grammar_feedback["suggestions"].append("Record yourself and check for grammatical accuracy")
+                grammar_feedback["suggestions"].append("Practice combining simple sentences into complex ones")
         else:
+            # Without LLM metrics
             if gr >= 8.0:
-                feedback[
-                    "grammatical_range_accuracy"
-                ] = "Excellent grammatical control across range of structures."
+                grammar_feedback["strengths"].append("Excellent range and accuracy of grammatical structures")
             elif gr >= 7.0:
-                feedback[
-                    "grammatical_range_accuracy"
-                ] = "Good control of grammatical structures."
+                grammar_feedback["strengths"].append("Good control of various grammatical structures")
             elif gr >= 6.0:
-                feedback[
-                    "grammatical_range_accuracy"
-                ] = "Adequate grammatical control with some errors."
+                grammar_feedback["strengths"].append("Adequate grammatical control with some range")
             else:
-                feedback[
-                    "grammatical_range_accuracy"
-                ] = "Limited grammatical accuracy. Focus on accuracy of complex structures."
+                grammar_feedback["strengths"].append("Basic grammatical control shown")
+                grammar_feedback["weaknesses"].append("Limited range and accuracy needs development")
+        
+        feedback["grammatical_range_accuracy"] = grammar_feedback
 
-        # Overall recommendation
-        overall = (
-            subscores["fluency_coherence"]
+        # ============================================================
+        # OVERALL ASSESSMENT
+        # ============================================================
+        overall = round_half(
+            (subscores["fluency_coherence"]
             + subscores["pronunciation"]
             + subscores["lexical_resource"]
-            + subscores["grammatical_range_accuracy"]
-        ) / 4
-        if overall >= 8.0:
-            feedback[
-                "overall_recommendation"
-            ] = "Strong performance across all criteria. Ready for advanced academic/professional contexts."
-        elif overall >= 7.0:
-            feedback[
-                "overall_recommendation"
-            ] = "Good overall performance. Minor areas for refinement in accuracy and range."
-        elif overall >= 6.0:
-            feedback[
-                "overall_recommendation"
-            ] = "Adequate performance. Focus on fluency and reducing hesitations would help."
-        else:
-            feedback[
-                "overall_recommendation"
-            ] = "Needs improvement. Work on fluency, pronunciation, and grammatical accuracy."
-
+            + subscores["grammatical_range_accuracy"]) / 4
+        )
+        
+        overall_feedback = {
+            "overall_band": overall,
+            "summary": self._get_overall_summary(overall),
+            "next_band_tips": self._get_next_band_tips(overall, subscores)
+        }
+        
+        feedback["overall"] = overall_feedback
+        
         return feedback
+    
+    def _get_overall_summary(self, overall: float) -> str:
+        """Get summary text for overall band."""
+        if overall >= 8.0:
+            return "You demonstrate strong command of English with fluent delivery, varied vocabulary, and excellent grammatical control. Continue refining your pronunciation and exploring more advanced expressions."
+        elif overall >= 7.0:
+            return "You show good English proficiency with generally fluent speech, adequate range of vocabulary and structures. Focus on expanding lexical range and reducing grammatical errors."
+        elif overall >= 6.0:
+            return "You have adequate English skills to discuss topics with some range and generally clear communication. Work on fluency, vocabulary diversity, and grammatical accuracy to progress further."
+        elif overall >= 5.5:
+            return "You can manage basic conversation but need improvement in fluency, vocabulary range, and grammatical accuracy. Consistent practice in all areas will help you advance."
+        else:
+            return "You have some English ability but need significant improvement in fluency, vocabulary, and grammar. Consider focused practice on foundational skills."
+    
+    def _get_next_band_tips(self, current: float, subscores: Dict) -> Dict[str, str]:
+        """Get specific tips to reach the next band level."""
+        tips = {}
+        
+        if current < 9.0:
+            next_band = round_half(current + 0.5)
+            
+            # Find weakest criterion
+            weakest_criterion = min(subscores.items(), key=lambda x: x[1])[0]
+            
+            if weakest_criterion == "fluency_coherence":
+                tips["focus"] = "Improve fluency and coherence to reach band " + str(next_band)
+                tips["action"] = "Practice extended speaking on various topics. Use transition words and plan your responses."
+            elif weakest_criterion == "pronunciation":
+                tips["focus"] = "Improve pronunciation clarity to reach band " + str(next_band)
+                tips["action"] = "Work on articulation and intonation. Use pronunciation apps and compare with native speakers."
+            elif weakest_criterion == "lexical_resource":
+                tips["focus"] = "Expand vocabulary and use advanced words to reach band " + str(next_band)
+                tips["action"] = "Learn new words in context, practice using synonyms, and study idiomatic expressions."
+            else:  # grammatical_range_accuracy
+                tips["focus"] = "Improve grammar range and accuracy to reach band " + str(next_band)
+                tips["action"] = "Master complex sentence structures and ensure accurate tense and agreement."
+        
+        return tips
 
     def build_timestamped_rubric_feedback(
         self,

@@ -100,6 +100,7 @@ def transform_engine_output(raw_analysis: Dict[str, Any]) -> Dict[str, Any]:
         transformed["confidence"] = band_scores.get("confidence")
         transformed["descriptors"] = band_scores.get("descriptors")  # ✅ Extract descriptors
         transformed["criterion_descriptors"] = band_scores.get("criterion_descriptors")  # ✅ Extract criterion_descriptors
+        transformed["feedback"] = band_scores.get("feedback")  # ✅ Extract detailed per-rubric feedback
         transformed["scoring_config"] = {}  # Placeholder config
     
     # Extract llm_analysis if not at top level
@@ -300,6 +301,7 @@ def build_response(
             "word_choice_errors": raw_analysis.get("word_choice_errors"),
             "examiner_descriptors": raw_analysis.get("examiner_descriptors"),
             "fluency_notes": raw_analysis.get("fluency_notes"),
+            "feedback": raw_analysis.get("feedback"),  # ✅ Include detailed per-rubric feedback
         })
     
     # Add full tier fields if requested
