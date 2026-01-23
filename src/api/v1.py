@@ -9,6 +9,7 @@ from src.models.auth import AuthContext
 from src.auth.middleware import get_rapidapi_auth
 from src.models import SpeechContextEnum
 from src.services import AnalysisService
+from src.core.analyzer_fast import analyze_speech_fast
 from src.core.job_queue import JobQueue
 from src.services.response_builder import build_response
 from src.utils.logging_config import logger
@@ -151,6 +152,88 @@ async def get_result_rapidapi(
     return response
 
 
+@router.post("/analyze-fast")
+async def analyze_audio_rapidapi_fast(
+    request: Request,
+    file: UploadFile = File(...),
+    speech_context: SpeechContextEnum = Form(default=SpeechContextEnum.CONVERSATIONAL),
+    device: str = Form(default="cpu"),
+    background_tasks: BackgroundTasks = None,
+    auth: AuthContext = Depends(get_rapidapi_auth)
+):
+    """
+    Fast speech analysis - lightweight variant for quick feedback.
+    RapidAPI endpoint.
+    
+    ⚡ FAST MODE (5-8x speedup):
+    - Skips Wav2Vec2 filler detection
+    - Skips LLM annotations & semantic analysis
+    - Uses metrics-only band scoring
+    - Provides basic WPM, pauses, and band estimate
+    
+    PROTECTIONS:
+    - File size limit: 15MB max
+    - Audio duration: 30 minutes max
+    - Rate limiting: 100 requests/hour per user (same as /analyze)
+    - RapidAPI-only: Must come through RapidAPI Gateway
+    
+    Args:
+        file: Audio file to analyze
+        speech_context: Context of the speech
+        device: Device to run on ("cpu" or "cuda")
+        auth: RapidAPI authentication context
+        
+    Returns:
+        job_id: Unique identifier to poll for results
+        status: Always "queued"
+        mode: "fast" (indicates fast variant)
+        message: Instructions for polling
+    """
+    # PROTECTION 1: Enforce RapidAPI-only access
+    enforce_rapidapi_only(request)
+    
+    # PROTECTION 2: Rate limit per user (shared with /analyze)
+    check_rate_limit(auth.owner_id)
+    
+    # PROTECTION 3: Validate file size
+    await validate_file_size(file)
+    
+    job_id = str(uuid.uuid4())
+    
+    try:
+        logger.info(f"[RapidAPI-Fast] Received fast analysis request: {job_id} for {file.filename} from {auth.owner_id}")
+    except Exception as e:
+        logger.error(f"Failed to log request: {str(e)}")
+        raise HTTPException(status_code=500, detail="Internal error")
+    
+    # Save uploaded file to temp location
+    with tempfile.NamedTemporaryFile(delete=False, suffix=Path(file.filename).suffix) as tmp:
+        tmp.write(await file.read())
+        tmp_path = tmp.name
+    
+    # PROTECTION 4: Validate audio duration
+    await validate_audio_duration(tmp_path)
+    
+    # Create job entry with API key ownership tracking
+    job_queue.create_job(job_id, file.filename, api_key_hash=auth.key_hash)
+    
+    # Queue fast analysis as background task
+    background_tasks.add_task(
+        _process_analysis_rapidapi_fast,
+        job_id=job_id,
+        tmp_path=tmp_path,
+        speech_context=speech_context,
+        device=device
+    )
+    
+    return {
+        "job_id": job_id,
+        "status": "queued",
+        "mode": "fast",
+        "message": f"Fast analysis started. Poll /api/v1/result/{job_id} for results"
+    }
+
+
 # ============================================================================
 # Background processing function (NOT an endpoint)
 # ============================================================================
@@ -191,6 +274,51 @@ async def _process_analysis_rapidapi(job_id: str, tmp_path: str, speech_context:
     
     except Exception as e:
         error_msg = f"Analysis failed: {str(e)}"
+        logger.error(f"[Job {job_id}] {error_msg}", exc_info=True)
+        job_queue.set_error(job_id, error_msg)
+    
+    finally:
+        # Always clean up temp file
+        Path(tmp_path).unlink(missing_ok=True)
+        logger.info(f"[Job {job_id}] Cleaned up temporary file")
+
+
+async def _process_analysis_rapidapi_fast(job_id: str, tmp_path: str, speech_context: str, device: str):
+    """
+    Background task to process fast audio analysis.
+    Skips expensive operations for 5-8x speedup.
+    """
+    try:
+        logger.info(f"[Job {job_id}] Starting fast analysis...")
+        
+        # Call the fast analysis variant
+        result = await analyze_speech_fast(
+            audio_path=tmp_path,
+            speech_context=speech_context,
+            device=device
+        )
+        
+        # Store result
+        job_queue.set_result(job_id, result)
+        logger.info(f"[Job {job_id}] Fast analysis completed successfully")
+    
+    except (AudioNotFoundError, FileNotFoundError) as e:
+        error_msg = f"Audio file not found: {str(e)}"
+        logger.error(f"[Job {job_id}] {error_msg}")
+        job_queue.set_error(job_id, error_msg)
+    
+    except AudioFormatError as e:
+        error_msg = f"Invalid audio format: {str(e)}"
+        logger.error(f"[Job {job_id}] {error_msg}")
+        job_queue.set_error(job_id, error_msg)
+    
+    except AudioDurationError as e:
+        error_msg = f"Audio too short: {str(e)}"
+        logger.error(f"[Job {job_id}] {error_msg}")
+        job_queue.set_error(job_id, error_msg)
+    
+    except Exception as e:
+        error_msg = f"Fast analysis failed: {str(e)}"
         logger.error(f"[Job {job_id}] {error_msg}", exc_info=True)
         job_queue.set_error(job_id, error_msg)
     
