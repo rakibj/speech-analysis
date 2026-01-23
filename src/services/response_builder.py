@@ -67,7 +67,24 @@ def transform_engine_output(raw_analysis: Dict[str, Any]) -> Dict[str, Any]:
         if "timestamped_fillers" in transformed and transformed["timestamped_fillers"]:
             transformed["filler_events"] = transformed["timestamped_fillers"]
         else:
-            transformed["filler_events"] = None
+            # Generate filler_events from word_timestamps
+            word_timestamps = transformed.get("word_timestamps", [])
+            if word_timestamps and isinstance(word_timestamps, list):
+                fillers = [
+                    {
+                        "type": "filler",
+                        "text": w.get("word", ""),
+                        "start_sec": w.get("start_sec"),
+                        "end_sec": w.get("end_sec"),
+                        "duration_sec": w.get("end_sec", 0) - w.get("start_sec", 0),
+                        "confidence": w.get("confidence")
+                    }
+                    for w in word_timestamps
+                    if w.get("type") == "filler" or w.get("is_filler", False)
+                ]
+                transformed["filler_events"] = fillers if fillers else None
+            else:
+                transformed["filler_events"] = None
     
     # Extract content_words from statistics
     if "content_words" not in transformed or transformed["content_words"] is None:
@@ -81,6 +98,8 @@ def transform_engine_output(raw_analysis: Dict[str, Any]) -> Dict[str, Any]:
         transformed["overall_band"] = band_scores.get("overall_band")
         transformed["criterion_bands"] = band_scores.get("criterion_bands")
         transformed["confidence"] = band_scores.get("confidence")
+        transformed["descriptors"] = band_scores.get("descriptors")  # ✅ Extract descriptors
+        transformed["criterion_descriptors"] = band_scores.get("criterion_descriptors")  # ✅ Extract criterion_descriptors
         transformed["scoring_config"] = {}  # Placeholder config
     
     # Extract llm_analysis if not at top level
@@ -156,6 +175,53 @@ def transform_engine_output(raw_analysis: Dict[str, Any]) -> Dict[str, Any]:
         
         transformed["fluency_notes"] = " | ".join(notes) if notes else "Fluency adequate"
     
+    # Ensure all expected fields are present (use None or empty structures for missing ones)
+    if "segment_timestamps" not in transformed or transformed["segment_timestamps"] is None:
+        # Try to generate from word_timestamps by grouping into sentences
+        word_timestamps = transformed.get("word_timestamps", [])
+        if word_timestamps and isinstance(word_timestamps, list) and len(word_timestamps) > 0:
+            # Simple grouping: collect words until we hit a period
+            segments = []
+            current_segment = []
+            for word in word_timestamps:
+                current_segment.append(word)
+                if "." in word.get("word", ""):
+                    if current_segment:
+                        start = current_segment[0].get("start_sec", 0)
+                        end = current_segment[-1].get("end_sec", 0)
+                        text = " ".join([w.get("word", "") for w in current_segment])
+                        segments.append({
+                            "text": text,
+                            "start_sec": start,
+                            "end_sec": end,
+                            "duration_sec": end - start,
+                            "avg_word_confidence": sum(w.get("confidence", 0.5) for w in current_segment) / len(current_segment) if current_segment else 0
+                        })
+                        current_segment = []
+            transformed["segment_timestamps"] = segments if segments else None
+        else:
+            transformed["segment_timestamps"] = None
+    
+    if "opinions" not in transformed or transformed["opinions"] is None:
+        transformed["opinions"] = None
+    
+    if "benchmarking" not in transformed or transformed["benchmarking"] is None:
+        transformed["benchmarking"] = None
+    
+    if "confidence_multipliers" not in transformed or transformed["confidence_multipliers"] is None:
+        # Extract from confidence.factor_breakdown if available
+        confidence = transformed.get("confidence", {})
+        if isinstance(confidence, dict) and "factor_breakdown" in confidence:
+            # Convert factor_breakdown to confidence_multipliers
+            breakdown = confidence.get("factor_breakdown", {})
+            multipliers = {}
+            for factor, details in breakdown.items():
+                if isinstance(details, dict):
+                    multipliers[factor] = details.get("multiplier", details.get("adjustment", 0))
+            transformed["confidence_multipliers"] = multipliers if multipliers else None
+        else:
+            transformed["confidence_multipliers"] = None
+    
     return transformed
 
 
@@ -218,8 +284,12 @@ def build_response(
         "overall_band": raw_analysis.get("overall_band"),
         "criterion_bands": raw_analysis.get("criterion_bands"),
         "confidence": raw_analysis.get("confidence"),
+        "descriptors": raw_analysis.get("descriptors"),
+        "criterion_descriptors": raw_analysis.get("criterion_descriptors"),
         "statistics": raw_analysis.get("statistics"),
         "normalized_metrics": raw_analysis.get("normalized_metrics"),
+        "llm_analysis": raw_analysis.get("llm_analysis"),
+        "speech_quality": raw_analysis.get("speech_quality"),
     }
     
     # Add feedback tier fields if requested

@@ -319,7 +319,6 @@ async def analyze_speech(
             # Normalized metrics (fluency, disfluency, prosody)
             "normalized_metrics": {
                 "wpm": raw_analysis.get("wpm", 0),
-                "articulationrate": raw_analysis.get("articulationrate", 0),
                 "long_pauses_per_min": raw_analysis.get("long_pauses_per_min", 0),
                 "fillers_per_min": raw_analysis.get("fillers_per_min", 0),
                 "pause_variability": raw_analysis.get("pause_variability", 0),

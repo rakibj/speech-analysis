@@ -585,6 +585,35 @@ class IELTSBandScorer:
             "grammatical_range_accuracy": get_band_descriptor(gr).get("grammatical_range_accuracy", ""),
         }
         
+        # Enhance descriptors with actual LLM findings if available
+        if llm_metrics:
+            # Fluency enhancements
+            if llm_metrics.get("coherence_break_count", 0) > 0:
+                criterion_descriptors["fluency_coherence"] += f" {llm_metrics['coherence_break_count']} coherence breaks detected."
+            if llm_metrics.get("flow_instability_present"):
+                criterion_descriptors["fluency_coherence"] += " Speech flow shows instability."
+            
+            # Grammar enhancements
+            grammar_errors = llm_metrics.get("grammar_error_count", 0)
+            if grammar_errors > 0:
+                criterion_descriptors["grammatical_range_accuracy"] += f" {grammar_errors} grammar error(s) identified."
+            if llm_metrics.get("cascading_grammar_failure"):
+                criterion_descriptors["grammatical_range_accuracy"] += " Grammar errors cascade affecting meaning."
+            
+            # Lexical enhancements
+            word_errors = llm_metrics.get("word_choice_error_count", 0)
+            adv_vocab = llm_metrics.get("advanced_vocabulary_count", 0)
+            if word_errors > 0:
+                criterion_descriptors["lexical_resource"] += f" {word_errors} word choice issue(s) detected."
+            if adv_vocab > 0:
+                criterion_descriptors["lexical_resource"] += f" {adv_vocab} advanced vocabulary use noted."
+        
+        # Enhance with speech quality metrics if available
+        if "mean_word_confidence" in metrics or "low_confidence_ratio" in metrics:
+            low_conf_ratio = metrics.get("low_confidence_ratio", 0)
+            if low_conf_ratio > 0.3:
+                criterion_descriptors["pronunciation"] += f" {round(low_conf_ratio*100)}% of words show low confidence."
+        
         # Calculate confidence score
         band_scores = {
             "overall_band": overall,
