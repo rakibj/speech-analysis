@@ -1,21 +1,245 @@
 # Speech Analysis API - Response Data Documentation
 
-**Version:** 1.1  
+**Version:** 1.2  
 **Last Updated:** January 24, 2026  
-**Status:** Complete with LLM Integration + Structured Per-Rubric Feedback
+**Status:** Complete with `/analyze-fast` Endpoint + LLM Integration + Structured Per-Rubric Feedback
+
+---
+
+## 🚀 Quick Start for Frontend Developers
+
+**New to the API?** Start here:
+
+1. **Choose Your Endpoint:**
+   - Want detailed feedback? Use `/api/direct/v1/analyze` (20-40 sec)
+   - Need quick results? Use `/api/direct/v1/analyze-fast` (5-10 sec)
+
+2. **Submit Audio:**
+
+   ```bash
+   POST /api/direct/v1/analyze
+   Content-Type: multipart/form-data
+
+   file: [audio file]
+   speech_context: "conversational" (optional)
+   device: "cpu" (optional)
+   ```
+
+3. **Get Job ID:** Receive `job_id` immediately
+
+   ```json
+   { "job_id": "abc-123", "status": "queued" }
+   ```
+
+4. **Poll Results:**
+
+   ```bash
+   GET /api/direct/v1/result/{job_id}?detail=feedback
+   ```
+
+5. **Display Results:** Show band scores, feedback, and metrics
+
+**See [Endpoint Comparison](#quick-endpoint-comparison) to choose between full and fast analysis.**
 
 ---
 
 ## Table of Contents
 
-1. [Overview](#overview)
-2. [Response Structure](#response-structure)
-3. [Base Response Fields](#base-response-fields)
-4. [Response Tiers](#response-tiers)
-5. [Detailed Field Descriptions](#detailed-field-descriptions)
-6. [Data Types & Ranges](#data-types--ranges)
-7. [Examples](#examples)
-8. [Usage Guide for Frontend](#usage-guide-for-frontend)
+1. [Quick Start for Frontend Developers](#-quick-start-for-frontend-developers)
+2. [API Endpoints](#api-endpoints)
+3. [Quick Endpoint Comparison](#quick-endpoint-comparison)
+4. [Overview](#overview)
+5. [Response Structure](#response-structure)
+6. [Response Tiers](#response-tiers)
+7. [Base Response Fields](#base-response-fields)
+8. [Fast Mode Response Fields](#fast-mode-response-fields-analyzefast)
+9. [Optional Feedback Tier Fields](#optional-feedback-tier-fields)
+10. [Optional Full Tier Fields](#optional-full-tier-fields)
+11. [Data Types & Ranges](#data-types--ranges)
+12. [Integration Guide for Frontend Developers](#integration-guide-for-frontend-developers)
+13. [Field Validation & Type Safety](#field-validation--type-safety)
+14. [Examples](#examples)
+15. [Usage Guide for Frontend](#usage-guide-for-frontend)
+16. [Important Notes](#important-notes)
+17. [Error Handling Guide](#error-handling-guide)
+18. [Version History](#version-history)
+
+---
+
+## API Endpoints
+
+### Available Endpoints
+
+#### 1. `/api/direct/v1/analyze` (POST) - Full Analysis
+
+**Base URL:** `http://localhost:8000/api/direct/v1/analyze`
+
+Performs comprehensive speech analysis with all features enabled.
+
+**Features:**
+
+- Wav2Vec2 filler detection
+- LLM semantic analysis
+- Full grammatical and vocabulary assessment
+- All metrics calculated
+
+**Processing Time:** 20-40 seconds per minute of audio
+
+**Parameters:**
+
+- `file` (UploadFile) - Audio file to analyze [required]
+- `speech_context` (SpeechContextEnum) - Type of speech [optional, default: "conversational"]
+  - Values: `"conversational"`, `"narrative"`, `"presentation"`, `"interview"`
+- `device` (string) - Processing device [optional, default: "cpu"]
+  - Values: `"cpu"`, `"cuda"`
+
+**Response:**
+
+```json
+{
+  "job_id": "uuid-string",
+  "status": "queued",
+  "message": "Analysis started. Poll /api/direct/v1/result/{job_id} for results"
+}
+```
+
+Then poll `/api/direct/v1/result/{job_id}` with optional `detail` parameter:
+
+- No parameter: Base response (fastest)
+- `?detail=feedback`: Base + feedback tier
+- `?detail=full`: Base + feedback + full tier
+
+---
+
+#### 2. `/api/direct/v1/analyze-fast` (POST) - Fast Analysis ⚡ NEW
+
+**Base URL:** `http://localhost:8000/api/direct/v1/analyze-fast`
+
+**⚡ FAST MODE - 5-8x speedup for quick feedback**
+
+Lightweight variant for quick assessment with basic metrics.
+
+**What's Skipped:**
+
+- ❌ Wav2Vec2 filler detection (uses Whisper only)
+- ❌ LLM annotations & semantic analysis
+- ❌ Detailed grammatical analysis
+- ❌ Vocabulary sophistication assessment
+
+**What's Included:**
+
+- ✅ Basic WPM calculation
+- ✅ Pause frequency detection
+- ✅ Word confidence metrics
+- ✅ Metrics-only band scoring
+- ✅ Whisper transcription
+
+**Use Cases:**
+
+- Quick practice feedback
+- Fast progress tracking
+- Initial skill assessment
+- When full analysis isn't needed
+
+**Processing Time:** 5-10 seconds per minute of audio
+
+**Parameters:** Same as `/analyze`
+
+- `file` (UploadFile) [required]
+- `speech_context` (SpeechContextEnum) [optional]
+- `device` (string) [optional]
+
+**Response:**
+
+```json
+{
+  "job_id": "uuid-string",
+  "status": "queued",
+  "mode": "fast",
+  "message": "Fast analysis started. Poll /api/direct/v1/result/{job_id} for results"
+}
+```
+
+Same polling mechanism as full analysis. Fast response will include reduced/simplified fields.
+
+---
+
+#### 3. `/api/v1/analyze` (POST) - RapidAPI Full Analysis
+
+**Base URL:** RapidAPI Gateway (https://rapidapi.com/...)
+
+Same as direct `/analyze` but requires RapidAPI authentication and gateway headers.
+
+Protections:
+
+- File size limit: 15MB max
+- Audio duration: 30 minutes max
+- Rate limiting: 100 requests/hour per user
+- RapidAPI-only enforcement
+
+---
+
+#### 4. Result Polling: `/api/direct/v1/result/{job_id}` (GET)
+
+Poll for analysis results using the job_id returned from analyze endpoint.
+
+**Parameters:**
+
+- `job_id` (path parameter) - UUID from analyze response [required]
+- `detail` (query parameter) - Response detail level [optional]
+  - Values: `null` (default), `"feedback"`, `"full"`
+
+**Responses:**
+
+**Still Processing:**
+
+```json
+{
+  "job_id": "uuid-string",
+  "status": "processing",
+  "message": "Analysis in progress..."
+}
+```
+
+**Completed:**
+
+```json
+{
+  "job_id": "uuid-string",
+  "status": "completed",
+  ... (response fields based on detail parameter)
+}
+```
+
+**Error:**
+
+```json
+{
+  "job_id": "uuid-string",
+  "status": "error",
+  "error": "Error message describing what went wrong"
+}
+```
+
+---
+
+## Quick Endpoint Comparison
+
+| Feature               | `/analyze`                           | `/analyze-fast`                   |
+| --------------------- | ------------------------------------ | --------------------------------- |
+| Processing Speed      | 20-40 sec/min                        | 5-10 sec/min                      |
+| Speedup               | Baseline                             | 5-8x faster                       |
+| LLM Analysis          | ✅ Full                              | ❌ Skipped                        |
+| Filler Detection      | ✅ Wav2Vec2 (accurate)               | ⚠️ Whisper only                   |
+| Grammar Analysis      | ✅ Detailed                          | ❌ None                           |
+| Vocabulary Assessment | ✅ Full                              | ❌ None                           |
+| Band Scoring          | ✅ Metrics + LLM                     | ✅ Metrics only                   |
+| Feedback Field        | ✅ Detailed                          | ❌ Null                           |
+| Confidence Score      | ✅ High reliability                  | ⚠️ Lower reliability              |
+| Ideal Use Case        | Formal assessment, detailed feedback | Quick practice, progress tracking |
+| Cost                  | Higher                               | Lower                             |
+
+**TL;DR:** Use `/analyze` for detailed assessment, `/analyze-fast` for quick feedback.
 
 ---
 
@@ -32,39 +256,48 @@ The Speech Analysis API returns comprehensive IELTS speaking assessment data inc
 - **Structured Per-Rubric Feedback** - Clear strengths, weaknesses, and suggestions per criterion (NEW)
 - **Detailed Analysis** - Granular breakdown with timestamps and detailed findings (optional tiers)
 
+### Complete Field Availability Matrix
+
+**Which fields are returned for each endpoint and detail level:**
+
+| Field                                                            | Full Analyze (default) | Full + feedback | Full + full | Fast Mode |
+| ---------------------------------------------------------------- | ---------------------- | --------------- | ----------- | --------- |
+| **Core** (always)                                                |
+| job_id, status, engine_version, scoring_config                   | ✅                     | ✅              | ✅          | ✅        |
+| **Scores** (always)                                              |
+| overall_band, criterion_bands                                    | ✅                     | ✅              | ✅          | ✅        |
+| **Assessment** (always)                                          |
+| confidence, descriptors, criterion_descriptors                   | ✅                     | ✅              | ✅          | ✅        |
+| **Metrics** (always)                                             |
+| statistics, normalized_metrics, speech_quality                   | ✅                     | ✅              | ✅          | ✅        |
+| **LLM** (always, but null in fast)                               |
+| llm_analysis                                                     | ✅                     | ✅              | ✅          | ❌ null   |
+| **Feedback** (detail=feedback or full)                           |
+| transcript, grammar_errors, word_choice_errors                   | ❌                     | ✅              | ✅          | ❌        |
+| examiner_descriptors, fluency_notes, feedback                    | ❌                     | ✅              | ✅          | ❌        |
+| **Full** (detail=full only)                                      |
+| word_timestamps, filler_events, content_words                    | ❌                     | ❌              | ✅          | ❌        |
+| segment_timestamps, confidence_multipliers, timestamped_feedback | ❌                     | ❌              | ✅          | ❌        |
+
+✅ = Present with data | ❌ = Not returned | `null` = Present but always null
+
 ### Response Tiers
 
-All responses include the **base tier** (11 fields). Additional fields are available when requested:
+All responses include the **base tier** (13 fields). Additional fields are available when requested:
 
 - **Default (no detail parameter):** Base tier only (smallest, fastest)
-- **`detail=feedback`:** Base + Feedback tier (transcript, errors, notes)
+- **`detail=feedback`:** Base + Feedback tier (transcript, errors, notes, feedback)
 - **`detail=full`:** Base + Feedback + Full tier (timestamps, detailed breakdown)
+
+**Note on Fast Mode:** The `/analyze-fast` endpoint returns a simplified response with fewer fields. LLM-derived fields will be `null` or missing. See [Fast Mode Response Fields](#fast-mode-response-fields-analyzefast) for details.
 
 ---
 
 ## ⚠️ Current Implementation Status
 
-### Fields Fixed ✅ (Now Returning Data)
+### Full Analysis Mode Fields ✅
 
-**Just Updated (January 24, 2026):**
-
-- ✅ `feedback` - NEW! Structured per-rubric feedback with strengths, weaknesses, suggestions (detail="feedback" or "full")
-- ✅ `descriptors` - Now extracted from band_scores
-- ✅ `criterion_descriptors` - Now extracted from band_scores with LLM findings
-- ✅ `filler_events` - Now generated from word_timestamps
-- ✅ `segment_timestamps` - Now generated from word_timestamps (sentences)
-- ✅ `confidence_multipliers` - Now extracted from confidence.factor_breakdown
-
-### Fields Currently Returning `null` (To Be Implemented)
-
-The following fields are defined in the API contract but currently return `null`:
-
-| Field          | Why Null             | Workaround                               |
-| -------------- | -------------------- | ---------------------------------------- |
-| `opinions`     | Not generated by LLM | Use `llm_analysis` for detailed findings |
-| `benchmarking` | Not implemented      | Manual comparison required               |
-
-### Fields Working Correctly ✅
+**All Fields Implemented:**
 
 - ✅ `overall_band`, `criterion_bands` - Band scores calculated
 - ✅ `confidence` - Confidence with detailed factor_breakdown
@@ -73,14 +306,45 @@ The following fields are defined in the API contract but currently return `null`
 - ✅ `llm_analysis` - Complete LLM findings
 - ✅ `speech_quality` - Word confidence and monotone detection
 - ✅ `transcript` - Full transcription (when detail="feedback")
-- ✅ `word_timestamps` - All words with timing and confidence
-- ✅ `grammar_errors`, `word_choice_errors` - Error counts with notes
-- ✅ `examiner_descriptors`, `fluency_notes` - Feedback generated
-- ✅ `descriptors`, `criterion_descriptors` - Now extracted from scorer (NEW)
-- ✅ `filler_events` - Now generated from word_timestamps (NEW)
-- ✅ `segment_timestamps` - Now generated by grouping words (NEW)
-- ✅ `confidence_multipliers` - Now extracted from confidence breakdown (NEW)
-- ✅ `feedback` - NEW structured per-rubric feedback (January 24, 2026)
+- ✅ `word_timestamps` - All words with timing and confidence (when detail="full")
+- ✅ `grammar_errors`, `word_choice_errors` - Error counts with notes (when detail="feedback")
+- ✅ `examiner_descriptors`, `fluency_notes` - Feedback generated (when detail="feedback")
+- ✅ `descriptors`, `criterion_descriptors` - Extracted from scorer
+- ✅ `filler_events` - Generated from word_timestamps (when detail="full")
+- ✅ `segment_timestamps` - Generated by grouping words (when detail="full")
+- ✅ `confidence_multipliers` - Extracted from confidence breakdown (when detail="full")
+- ✅ `feedback` - NEW structured per-rubric feedback (all detail levels)
+- ✅ `content_words` - Non-filler words (when detail="full")
+- ✅ `engine_version` - Version string (always)
+- ✅ `scoring_config` - Configuration metadata (always)
+
+### Fields Currently Returning `null` (Documented)
+
+The following fields are defined in the API contract but currently return `null`:
+
+| Field          | Why Null             | Workaround                               |
+| -------------- | -------------------- | ---------------------------------------- |
+| `opinions`     | Not generated by LLM | Use `llm_analysis` for detailed findings |
+| `benchmarking` | Not implemented      | Manual comparison required               |
+
+### Fast Mode (`/analyze-fast`) Behavior
+
+Fast mode skips expensive operations. Response contains:
+
+| Field                  | Available  | Notes                              |
+| ---------------------- | ---------- | ---------------------------------- |
+| Base tier fields       | ✅ Yes     | All fields returned                |
+| `llm_analysis`         | ❌ Null    | Not calculated in fast mode        |
+| `feedback`             | ❌ Null    | Requires LLM analysis              |
+| `grammar_errors`       | ❌ Null    | Requires LLM analysis              |
+| `word_choice_errors`   | ❌ Null    | Requires LLM analysis              |
+| `examiner_descriptors` | ❌ Null    | Requires LLM analysis              |
+| `fluency_notes`        | ❌ Null    | Requires LLM analysis              |
+| `filler_events`        | ⚠️ Limited | Whisper-based only (less accurate) |
+| Timestamps             | ✅ Yes     | All word timestamps included       |
+| `normalized_metrics`   | ✅ Yes     | Basic metrics only                 |
+
+**Recommendation:** Use fast mode for quick feedback, full mode for detailed assessment.
 
 ---
 
@@ -886,7 +1150,7 @@ Components that contributed to the overall confidence score.
 
 **Type:** Word-level quality assessment
 
-Specific feedback tied to exact timestamps in the speech.
+Specific feedback tied to exact timestamps in the speech. Detailed analysis of which parts of the speech had issues.
 
 ---
 
@@ -935,6 +1199,139 @@ Specific feedback tied to exact timestamps in the speech.
 | `coherence_break_count`     | integer | 2       |
 | `word_choice_error_count`   | integer | 2       |
 | `advanced_vocabulary_count` | integer | 1       |
+
+---
+
+## Fast Mode Response Fields (`/analyze-fast`)
+
+The `/analyze-fast` endpoint returns a simplified response optimized for speed. Base tier fields are always included, but LLM-dependent fields are omitted.
+
+### Fast Mode Base Response (Always Included)
+
+```json
+{
+  "job_id": "string",
+  "status": "completed|processing|error",
+  "engine_version": "string",
+  "scoring_config": {object},
+  "overall_band": 6.0,
+  "criterion_bands": {object},
+  "confidence": {object},
+  "descriptors": {object},
+  "criterion_descriptors": {object},
+  "statistics": {object},
+  "normalized_metrics": {object},
+  "speech_quality": {object}
+}
+```
+
+### Fields NOT Available in Fast Mode (Always `null`)
+
+| Field                  | Reason                                   |
+| ---------------------- | ---------------------------------------- |
+| `llm_analysis`         | Skipped - expensive LLM processing       |
+| `feedback`             | Depends on LLM analysis                  |
+| `grammar_errors`       | Requires LLM semantic analysis           |
+| `word_choice_errors`   | Requires LLM vocabulary analysis         |
+| `examiner_descriptors` | Generated from LLM findings              |
+| `fluency_notes`        | Generated from LLM analysis              |
+| `opinions`             | Not calculated in any mode (null always) |
+| `benchmarking`         | Not implemented (null always)            |
+
+### Fields WITH Limitations in Fast Mode
+
+**`filler_events` (when detail="full")**
+
+- Only detected via Whisper ASR (no Wav2Vec2)
+- Less accurate but faster
+- May miss subtle fillers
+
+**`normalized_metrics`**
+
+- Calculated from Whisper output only
+- Excludes LLM-based enhancements
+- Basic WPM, pauses, and confidence metrics only
+
+### Fast Mode Example Response
+
+```json
+{
+  "job_id": "abc-123-def",
+  "status": "completed",
+  "engine_version": "0.1.0",
+  "scoring_config": {},
+  "overall_band": 6.0,
+  "criterion_bands": {
+    "fluency_coherence": 6,
+    "pronunciation": 7,
+    "lexical_resource": 6,
+    "grammatical_range_accuracy": 6
+  },
+  "confidence": {
+    "overall_confidence": 0.42
+  },
+  "descriptors": {
+    "fluency_coherence": "Able to keep going and demonstrates willingness...",
+    "pronunciation": "Range of phonological features with variable control...",
+    "lexical_resource": "Resource sufficient to discuss topics...",
+    "grammatical_range_accuracy": "Mix of structures with limited flexibility..."
+  },
+  "criterion_descriptors": {
+    "fluency_coherence": "Able to keep going and demonstrates willingness...",
+    "pronunciation": "Range of phonological features with variable control...",
+    "lexical_resource": "Resource sufficient to discuss topics...",
+    "grammatical_range_accuracy": "Mix of structures with limited flexibility..."
+  },
+  "statistics": {
+    "total_words_transcribed": 163,
+    "content_words": 162,
+    "filler_words_detected": 0,
+    "filler_percentage": 0.0,
+    "is_monotone": false
+  },
+  "normalized_metrics": {
+    "wpm": 88.73,
+    "long_pauses_per_min": 2.19,
+    "fillers_per_min": 0.0,
+    "pause_variability": 1.472,
+    "speech_rate_variability": 0.317,
+    "vocab_richness": null,
+    "type_token_ratio": null,
+    "repetition_ratio": null,
+    "mean_utterance_length": null
+  },
+  "speech_quality": {
+    "mean_word_confidence": 0.78,
+    "low_confidence_ratio": 0.25,
+    "is_monotone": false
+  },
+  "llm_analysis": null,
+  "feedback": null,
+  "grammar_errors": null,
+  "word_choice_errors": null,
+  "examiner_descriptors": null,
+  "fluency_notes": null
+}
+```
+
+### When to Use Fast Mode
+
+✅ **Use Fast Mode For:**
+
+- Quick practice feedback (5-10 seconds per minute)
+- Real-time progress tracking
+- Initial skill assessment
+- Mobile app analysis (bandwidth conscious)
+- Classroom practice with immediate feedback
+- Progress monitoring over multiple takes
+
+❌ **Don't Use Fast Mode For:**
+
+- Formal assessments
+- Detailed feedback required
+- Grammar/vocabulary analysis needed
+- Professional evaluation
+- Detailed per-rubric feedback
 
 ---
 
@@ -1160,7 +1557,185 @@ Use `word_timestamps` to build a timeline visualization:
 
 ---
 
-## Key Insights for Frontend
+## Integration Guide for Frontend Developers
+
+### Handling Both Full and Fast Mode Responses
+
+When displaying results, your frontend should handle both response types:
+
+```javascript
+// Helper function to detect response mode
+function isFullMode(response) {
+  return response.llm_analysis !== null && response.feedback !== null;
+}
+
+function isFastMode(response) {
+  return response.llm_analysis === null && response.feedback === null;
+}
+
+// Display conditional UI based on mode
+if (isFullMode(response)) {
+  // Show full feedback sections
+  displayFeedback(response.feedback);
+  displayGrammarErrors(response.grammar_errors);
+  displayAdvancedMetrics(response.normalized_metrics);
+} else if (isFastMode(response)) {
+  // Show basic metrics only
+  displayBasicMetrics(response.statistics);
+  displayBandScore(response.overall_band);
+  showFastModeNotice("Fast mode - LLM analysis not included");
+}
+```
+
+### Conditional Field Access
+
+Always null-check before accessing fields that may not be available:
+
+```javascript
+// Safe field access
+const feedback = response.feedback || {};
+const grammarErrors = response.grammar_errors || { count: 0 };
+const llmAnalysis = response.llm_analysis || null;
+
+// Check if field exists and has data
+if (llmAnalysis && llmAnalysis.grammar_error_count > 0) {
+  displayGrammarWarning();
+}
+```
+
+### Response Mode Detection Helper
+
+```javascript
+const ResponseMode = {
+  FULL: "full",
+  FEEDBACK: "feedback",
+  DEFAULT: "default",
+  FAST: "fast",
+};
+
+function getResponseMode(response) {
+  // Check for fast mode indicators
+  if (response.llm_analysis === null && response.feedback === null) {
+    return ResponseMode.FAST;
+  }
+
+  // Check for detail level
+  if (
+    response.word_timestamps !== undefined &&
+    response.word_timestamps !== null
+  ) {
+    return ResponseMode.FULL;
+  }
+
+  if (
+    response.grammar_errors !== undefined &&
+    response.grammar_errors !== null
+  ) {
+    return ResponseMode.FEEDBACK;
+  }
+
+  return ResponseMode.DEFAULT;
+}
+```
+
+### Recommended Display Strategy
+
+**For Dashboard/Quick View:**
+
+```
+1. Always show: overall_band, criterion_bands, statistics
+2. If full mode: Add feedback section, grammar errors
+3. If fast mode: Show only basic metrics
+```
+
+**For Detailed Analysis:**
+
+```
+1. Request with detail=full
+2. Display all available fields
+3. Show timestamps visualization
+4. Display detailed feedback
+```
+
+**For Practice Mode:**
+
+```
+1. Use analyze-fast endpoint
+2. Show quick feedback immediately
+3. Option to run full analysis for detailed feedback
+```
+
+---
+
+## Key Integration Points
+
+### 1. Handling Processing Status
+
+```javascript
+async function pollForResults(jobId) {
+  let attempts = 0;
+  const maxAttempts = 300; // 5 minutes with 1-sec intervals
+
+  while (attempts < maxAttempts) {
+    const response = await fetch(`/api/direct/v1/result/${jobId}`);
+    const data = await response.json();
+
+    if (data.status === "completed") {
+      return data;
+    } else if (data.status === "error") {
+      throw new Error(data.error);
+    }
+
+    // Still processing, wait and retry
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    attempts++;
+  }
+
+  throw new Error("Analysis timeout");
+}
+```
+
+### 2. Choosing Endpoint Based on User Action
+
+```javascript
+async function analyzeAudio(file, isQuickMode = false) {
+  const endpoint = isQuickMode
+    ? "/api/direct/v1/analyze-fast"
+    : "/api/direct/v1/analyze";
+
+  const formData = new FormData();
+  formData.append("file", file);
+  formData.append("speech_context", "conversational");
+
+  const response = await fetch(endpoint, {
+    method: "POST",
+    body: formData,
+  });
+
+  const { job_id } = await response.json();
+  return job_id;
+}
+```
+
+### 3. Requesting Full Details When Needed
+
+```javascript
+async function getDetailedResults(jobId) {
+  // First request: fast default response
+  let response = await fetch(`/api/direct/v1/result/${jobId}`);
+  let data = await response.json();
+
+  if (data.status === "completed") {
+    // User clicked "View Details", request full tier
+    response = await fetch(`/api/direct/v1/result/${jobId}?detail=full`);
+    data = await response.json();
+  }
+
+  return data;
+}
+```
+
+---
 
 ### 1. Criterion Descriptors Are the Source of Truth
 
@@ -1207,6 +1782,99 @@ This is much more informative than generic band descriptions.
 
 ---
 
+## Field Validation & Type Safety
+
+### Response Field Checklist
+
+**Always Present (All Modes):**
+
+- ✅ `job_id` - string
+- ✅ `status` - "completed" | "processing" | "error"
+- ✅ `engine_version` - string
+- ✅ `scoring_config` - object
+- ✅ `overall_band` - number (5.0-9.0)
+- ✅ `criterion_bands` - object with 4 criteria
+- ✅ `confidence` - object
+- ✅ `descriptors` - object
+- ✅ `criterion_descriptors` - object
+- ✅ `statistics` - object
+- ✅ `normalized_metrics` - object
+- ✅ `llm_analysis` - object (may be null in fast mode)
+- ✅ `speech_quality` - object
+
+**Present When detail="feedback" or "full":**
+
+- ℹ️ `transcript` - string | null
+- ℹ️ `grammar_errors` - object | null
+- ℹ️ `word_choice_errors` - object | null
+- ℹ️ `examiner_descriptors` - array | null
+- ℹ️ `fluency_notes` - string | null
+- ℹ️ `feedback` - object | null
+
+**Present When detail="full":**
+
+- 📊 `word_timestamps` - array | null
+- 📊 `content_words` - array | null
+- 📊 `segment_timestamps` - array | null
+- 📊 `filler_events` - array | null
+- 📊 `opinions` - object | null (always null)
+- 📊 `benchmarking` - object | null (always null)
+- 📊 `confidence_multipliers` - object | null
+- 📊 `timestamped_feedback` - object | null
+
+### Common Validation Patterns
+
+```javascript
+// Validate band score
+function isBandScoreValid(band) {
+  const validBands = [5.0, 5.5, 6.0, 6.5, 7.0, 7.5, 8.0, 8.5, 9.0];
+  return validBands.includes(band);
+}
+
+// Validate confidence
+function isConfidenceValid(confidence) {
+  return typeof confidence === "number" && confidence >= 0 && confidence <= 1;
+}
+
+// Validate response completeness
+function isResponseComplete(response) {
+  return (
+    response.status === "completed" &&
+    response.overall_band !== null &&
+    response.criterion_bands !== null
+  );
+}
+
+// Check for fast mode limitations
+function hasFastModeLimitations(response) {
+  return response.llm_analysis === null || response.feedback === null;
+}
+```
+
+### Safe Field Access Patterns
+
+```javascript
+// Always null-check feedback-tier fields
+const feedback = response.feedback || {};
+const grammarErrors = response.grammar_errors || { count: 0 };
+
+// Check for LLM analysis availability
+const hasLLMAnalysis =
+  response.llm_analysis && Object.keys(response.llm_analysis).length > 0;
+
+// Safely access nested objects
+const fluencyBand = response.criterion_bands?.fluency_coherence ?? 5.0;
+const confidenceScore = response.confidence?.overall_confidence ?? 0;
+
+// Validate array fields exist before iterating
+const wordTimestamps = response.word_timestamps || [];
+wordTimestamps.forEach((word) => {
+  // Safe iteration
+});
+```
+
+---
+
 ## Important Notes
 
 ### Score Calculation Formula
@@ -1249,10 +1917,164 @@ When `status: "error"`, the `error` field contains human-readable error message.
 
 ---
 
+## Error Handling Guide
+
+### Common Error Responses
+
+**Audio File Errors:**
+
+```json
+{
+  "job_id": "uuid",
+  "status": "error",
+  "error": "Audio file not found: [path]"
+}
+```
+
+_Action: Validate file upload, check file permissions_
+
+```json
+{
+  "job_id": "uuid",
+  "status": "error",
+  "error": "Invalid audio format: Only .wav, .mp3, .ogg supported"
+}
+```
+
+_Action: Ask user to convert audio to supported format_
+
+**Audio Content Errors:**
+
+```json
+{
+  "job_id": "uuid",
+  "status": "error",
+  "error": "No speech detected in audio file"
+}
+```
+
+_Action: Suggest recording with clear speech_
+
+```json
+{
+  "job_id": "uuid",
+  "status": "error",
+  "error": "Audio too short: Minimum 10 seconds required"
+}
+```
+
+_Action: Ask user to record longer sample_
+
+```json
+{
+  "job_id": "uuid",
+  "status": "error",
+  "error": "Audio quality too poor for analysis"
+}
+```
+
+_Action: Suggest reducing background noise, speaking clearly_
+
+**Processing Errors:**
+
+```json
+{
+  "job_id": "uuid",
+  "status": "error",
+  "error": "Analysis timeout: Processing took too long"
+}
+```
+
+_Action: Suggest retrying with shorter audio segment_
+
+**Job Not Found:**
+
+```json
+{
+  "status": 404,
+  "detail": "Job {job_id} not found or access denied"
+}
+```
+
+_Action: Job expired or invalid ID - suggest resubmitting_
+
+### Frontend Error Handling Example
+
+```javascript
+async function analyzeWithErrorHandling(file) {
+  try {
+    // Submit analysis
+    const submitResponse = await fetch("/api/direct/v1/analyze", {
+      method: "POST",
+      body: formData,
+    });
+
+    if (!submitResponse.ok) {
+      throw new Error(`Submit failed: ${submitResponse.status}`);
+    }
+
+    const { job_id } = await submitResponse.json();
+
+    // Poll for results
+    let attempts = 0;
+    const maxAttempts = 300; // 5 minutes
+
+    while (attempts < maxAttempts) {
+      const resultResponse = await fetch(`/api/direct/v1/result/${job_id}`);
+
+      if (!resultResponse.ok) {
+        if (resultResponse.status === 404) {
+          throw new Error("Analysis job expired or not found");
+        }
+        throw new Error(`Status check failed: ${resultResponse.status}`);
+      }
+
+      const result = await resultResponse.json();
+
+      if (result.status === "completed") {
+        return { success: true, data: result };
+      }
+
+      if (result.status === "error") {
+        return { success: false, error: result.error };
+      }
+
+      // Still processing
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      attempts++;
+    }
+
+    throw new Error("Analysis timeout after 5 minutes");
+  } catch (error) {
+    return {
+      success: false,
+      error: error.message,
+      action: getRecoveryAction(error.message),
+    };
+  }
+}
+
+function getRecoveryAction(errorMessage) {
+  if (errorMessage.includes("Audio")) {
+    return "upload_new_file";
+  }
+  if (errorMessage.includes("timeout")) {
+    return "use_shorter_audio";
+  }
+  if (errorMessage.includes("not found")) {
+    return "resubmit";
+  }
+  return "retry";
+}
+```
+
+---
+
 ## Version History
 
 | Version | Date       | Changes                                                                                                         |
 | ------- | ---------- | --------------------------------------------------------------------------------------------------------------- |
+| 1.2     | 2026-01-24 | Added `/analyze-fast` endpoint documentation, fast mode response fields, and endpoint comparison table          |
 | 1.1     | 2026-01-24 | Added `feedback` field: structured per-rubric feedback with strengths, weaknesses, and suggestions              |
 | 1.0     | 2026-01-24 | Complete response spec with LLM integration, criterion-specific descriptors, updated statistics always included |
 
