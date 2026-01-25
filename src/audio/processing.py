@@ -4,6 +4,8 @@ import os
 import soundfile as sf
 import pandas as pd
 import numpy as np
+import subprocess
+import tempfile
 from pathlib import Path
 from typing import Tuple, Dict, Set, Any
 from src.utils.config import CORE_FILLERS, FILLER_PATTERNS
@@ -20,6 +22,61 @@ from src.utils.logging_config import logger
 
 
 MIN_AUDIO_DURATION_SEC = 5.0
+
+
+def convert_webm_to_wav(webm_path: str) -> str:
+    """
+    Convert WebM audio to WAV format using ffmpeg.
+    
+    Args:
+        webm_path: Path to WebM file
+        
+    Returns:
+        Path to converted WAV file (temporary)
+        
+    Raises:
+        AudioFormatError: If conversion fails
+    """
+    try:
+        # Create temporary WAV file
+        temp_fd, temp_wav_path = tempfile.mkstemp(suffix=".wav")
+        os.close(temp_fd)
+        
+        # Use ffmpeg to convert
+        cmd = [
+            "ffmpeg",
+            "-i", webm_path,
+            "-acodec", "pcm_s16le",
+            "-ac", "2",  # stereo
+            "-ar", "16000",  # 16kHz sample rate
+            "-y",  # overwrite output file
+            temp_wav_path
+        ]
+        
+        result = subprocess.run(
+            cmd,
+            capture_output=True,
+            text=True,
+            timeout=60
+        )
+        
+        if result.returncode != 0:
+            raise AudioFormatError(
+                f"ffmpeg conversion failed: {result.stderr}",
+                {"source_file": webm_path, "error": result.stderr}
+            )
+        
+        return temp_wav_path
+    except subprocess.TimeoutExpired:
+        raise AudioFormatError(
+            "WebM conversion timeout",
+            {"source_file": webm_path}
+        )
+    except Exception as e:
+        raise AudioFormatError(
+            f"Failed to convert WebM: {str(e)}",
+            {"source_file": webm_path, "error": str(e)}
+        )
 
 
 def load_audio(path: str) -> Tuple[np.ndarray, int]:
@@ -45,9 +102,26 @@ def load_audio(path: str) -> Tuple[np.ndarray, int]:
             {"file_path": str(audio_path)}
         )
     
+    # Convert WebM to WAV if needed
+    actual_path = path
+    temp_wav_path = None
+    if path.lower().endswith('.webm'):
+        try:
+            temp_wav_path = convert_webm_to_wav(path)
+            actual_path = temp_wav_path
+        except AudioFormatError:
+            raise
+    
     try:
-        audio, sr = sf.read(str(audio_path), dtype="float32")
+        audio, sr = sf.read(str(actual_path), dtype="float32")
     except Exception as e:
+        # Clean up temp file if conversion was done
+        if temp_wav_path and os.path.exists(temp_wav_path):
+            try:
+                os.remove(temp_wav_path)
+            except:
+                pass
+        
         raise AudioFormatError(
             f"Failed to read audio file: {str(e)}",
             {"file_path": str(audio_path), "error": str(e)}
@@ -76,10 +150,24 @@ def load_audio(path: str) -> Tuple[np.ndarray, int]:
     # Validate audio duration
     duration = len(audio) / sr
     if duration < MIN_AUDIO_DURATION_SEC:
+        # Clean up temp file if conversion was done
+        if temp_wav_path and os.path.exists(temp_wav_path):
+            try:
+                os.remove(temp_wav_path)
+            except:
+                pass
+        
         raise AudioDurationError(
             f"Audio duration {duration:.2f}s is less than minimum {MIN_AUDIO_DURATION_SEC}s",
             {"duration": duration, "minimum_required": MIN_AUDIO_DURATION_SEC}
         )
+    
+    # Clean up temp file if conversion was done
+    if temp_wav_path and os.path.exists(temp_wav_path):
+        try:
+            os.remove(temp_wav_path)
+        except:
+            pass
     
     logger.info(f"Loaded audio: {duration:.2f}s at {sr}Hz")
     return audio, sr
@@ -120,8 +208,22 @@ def transcribe_with_whisper(
         import whisper
         # Use cache directory from environment or default
         cache_dir = os.getenv("WHISPER_DOWNLOAD_ROOT", None)
-        model = whisper.load_model(model_name, device=device, download_root=cache_dir)
+        
+        # Avoid meta device issues by disabling in_memory optimization
+        os.environ["TORCH_CUDNN_ENABLED"] = "1"
+        
+        model = whisper.load_model(model_name, device=device, download_root=cache_dir, in_memory=False)
         logger.info(f"Loaded Whisper model: {model_name} on {device}")
+    except TypeError:
+        # Older Whisper versions don't support in_memory parameter
+        try:
+            model = whisper.load_model(model_name, device=device, download_root=cache_dir)
+            logger.info(f"Loaded Whisper model: {model_name} on {device}")
+        except Exception as e:
+            raise ModelLoadError(
+                f"Failed to load Whisper model {model_name}: {str(e)}",
+                {"model": model_name, "device": device, "error": str(e)}
+            )
     except Exception as e:
         raise ModelLoadError(
             f"Failed to load Whisper model {model_name}: {str(e)}",
@@ -180,14 +282,22 @@ def transcribe_verbatim_fillers(
         import torch
         # Use cache directory from environment or default
         cache_dir = os.getenv("WHISPER_DOWNLOAD_ROOT", None)
-        # Workaround for meta tensor issue: load on CPU first, then move to target device
+        
+        # Safest approach: always load on CPU first, then move to target device
+        # This avoids the meta tensor issue in certain PyTorch/Whisper versions
         try:
             model = whisper.load_model(model_name, device="cpu", download_root=cache_dir)
             if device != "cpu":
+                # Use to_empty() for meta tensor compatibility
                 model = model.to_empty(device=device)
-        except Exception:
-            # Fallback: try loading directly with device parameter
-            model = whisper.load_model(model_name, device=device, download_root=cache_dir)
+                model = model.to(device)
+        except Exception as e:
+            # Last resort: use in_memory=False if available
+            try:
+                model = whisper.load_model(model_name, device=device, download_root=cache_dir, in_memory=False)
+            except TypeError:
+                # Very old Whisper versions - just try direct load
+                model = whisper.load_model(model_name, device=device, download_root=cache_dir)
     except Exception as e:
         raise ModelLoadError(
             f"Failed to load Whisper model: {str(e)}",

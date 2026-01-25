@@ -260,6 +260,10 @@ def detect_phonemes_wav2vec(audio_path: str) -> pd.DataFrame:
         return_tensors="pt",
     )
     
+    # Ensure model and inputs are on the same device
+    device = next(wav2vec.parameters()).device
+    inputs = {k: v.to(device) if isinstance(v, torch.Tensor) else v for k, v in inputs.items()}
+    
     # Forward pass
     with torch.no_grad():
         logits = wav2vec(**inputs).logits
@@ -482,9 +486,12 @@ def detect_fillers_wav2vec(
                 "type": result["type"],
                 "text": result["text"],
                 "raw_label": result["raw_label"],
+                "word": result["text"],  # Use text as word display
                 "start": row["start"],
                 "end": row["end"],
                 "duration": row["duration"],
+                "style": "subtle",  # Wav2Vec2 detections are subtle
+                "confidence": 0.25,  # Wav2Vec2 confidence
             })
     
     return pd.DataFrame(converted)
@@ -576,13 +583,31 @@ def merge_filler_detections(
         
         if not duplicate:
             entry = row.to_dict()
-            entry["style"] = "subtle"
+            # Ensure all required columns are present
+            if "style" not in entry:
+                entry["style"] = "subtle"
+            if "confidence" not in entry:
+                entry["confidence"] = 0.25
+            if "word" not in entry:
+                entry["word"] = entry.get("text", "")
             final_fillers.append(entry)
     
     df = pd.DataFrame(final_fillers)
     
     if not df.empty:
         df = df.sort_values("start").reset_index(drop=True)
+        # Ensure all required columns exist
+        required_cols = ["type", "word", "text", "start", "end", "duration", "style", "confidence"]
+        for col in required_cols:
+            if col not in df.columns:
+                if col == "confidence":
+                    df[col] = 0.25
+                elif col == "style":
+                    df[col] = "subtle"
+                elif col == "word":
+                    df[col] = df.get("text", "")
+                else:
+                    df[col] = ""
     
     return df
 
@@ -597,6 +622,10 @@ def group_stutters(df_fillers: pd.DataFrame) -> pd.DataFrame:
     Returns:
         DataFrame with stutters grouped by repetition
     """
+    # Handle empty or missing type column
+    if df_fillers.empty or "type" not in df_fillers.columns:
+        return df_fillers
+    
     df_stutters = df_fillers[df_fillers["type"] == "stutter"].copy()
     df_other = df_fillers[df_fillers["type"] != "stutter"].copy()
     
@@ -612,7 +641,7 @@ def group_stutters(df_fillers: pd.DataFrame) -> pd.DataFrame:
             current["count"] = 1
             continue
         
-        same_sound = row["raw_label"] == current["raw_label"]
+        same_sound = row.get("raw_label") == current.get("raw_label")
         close_in_time = row["start"] - current["end"] <= GROUP_GAP_SEC
         
         if same_sound and close_in_time:
