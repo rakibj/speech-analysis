@@ -2,7 +2,7 @@
 """
 Batch Scorer Script - Score all analysis files in /research/analysis
 
-Processes all JSON analysis files and generates fluency scores.
+Processes all JSON analysis files and generates fluency scores using the scoring logic from scorer.py.
 """
 
 import json
@@ -15,8 +15,7 @@ import csv
 # Add parent directory to path
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from src.core.fluency_metrics import calculate_subscores, calculate_fluency_score, detect_issues
-from src.utils.config import CONTEXT_CONFIG
+from scorer import calculate_fluency
 
 
 def remap_score_to_band(score: int) -> float:
@@ -115,36 +114,6 @@ def load_analysis_files(analysis_dir: Path) -> Dict[str, dict]:
             print(f"Warning: Could not load {json_file.name}: {str(e)}")
 
     return analyses
-
-
-def calculate_fluency(analysis_data: dict) -> dict:
-    """Calculate fluency score from analysis data."""
-    metrics = analysis_data.get("input_metrics", {})
-
-    if not metrics:
-        raise ValueError("Missing 'input_metrics' in analysis data")
-
-    # Use conversational context config
-    context_config = CONTEXT_CONFIG.get("conversational", {
-        "pause_tolerance": 1.0,
-        "pause_variability_tolerance": 1.0,
-    })
-
-    # Calculate subscores
-    subscores, _ = calculate_subscores(metrics, context_config)
-
-    # Calculate overall fluency score
-    fluency_score = calculate_fluency_score(subscores, metrics)
-
-    # Detect issues
-    issues = detect_issues(subscores, metrics)
-
-    return {
-        "fluency_score": fluency_score,
-        "subscores": subscores,
-        "issues": issues,
-        "input_metrics": metrics,
-    }
 
 
 def batch_score(analysis_dir: Path) -> dict:
