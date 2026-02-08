@@ -9,6 +9,8 @@ import json
 import sys
 from pathlib import Path
 from typing import Dict, List
+from datetime import datetime
+import csv
 
 # Add parent directory to path
 sys.path.insert(0, str(Path(__file__).parent.parent))
@@ -24,6 +26,77 @@ def remap_score_to_band(score: int) -> float:
     Linear mapping: 0 -> 1, 100 -> 9
     """
     return round((score / 100) * 8 + 1, 1)
+
+
+def get_unique_csv_filename(results_dir: Path) -> Path:
+    """Generate unique CSV filename with date and increment counter."""
+    today = datetime.now().strftime("%Y-%m-%d")
+    base_name = f"batch_scoring_{today}"
+
+    # Check for existing files with same date
+    counter = 1
+    while True:
+        filename = f"{base_name}_{counter:03d}.csv"
+        filepath = results_dir / filename
+        if not filepath.exists():
+            return filepath
+        counter += 1
+
+
+def save_results_to_csv(results: dict, csv_path: Path):
+    """Save batch scoring results to CSV file."""
+    successful = [
+        (fname, r) for fname, r in results["results"].items() if r.get("status") == "success"
+    ]
+    successful.sort(key=lambda x: x[0])
+
+    with open(csv_path, 'w', newline='') as f:
+        writer = csv.writer(f)
+
+        # Write header
+        writer.writerow([
+            'File',
+            'Score (0-100)',
+            'Band (1-9)',
+            'Speech Rate',
+            'Pause Structure',
+            'Filler Dependency',
+            'Rhythmic Stability',
+            'Lexical Quality',
+            'Issues Count'
+        ])
+
+        # Write data rows
+        for filename, result in successful:
+            score = result.get("fluency_score", 0)
+            band = remap_score_to_band(score)
+            subscores = result.get("subscores", {})
+            issues_count = len(result.get("issues", []))
+
+            writer.writerow([
+                filename,
+                score,
+                band,
+                f"{subscores.get('speech_rate', 0):.2f}",
+                f"{subscores.get('pause', 0):.2f}",
+                f"{subscores.get('filler', 0):.2f}",
+                f"{subscores.get('stability', 0):.2f}",
+                f"{subscores.get('lexical', 0):.2f}",
+                issues_count
+            ])
+
+        # Add summary rows
+        if successful:
+            writer.writerow([])  # Empty row for spacing
+            scores = [r.get("fluency_score", 0) for fname, r in successful]
+            avg_score = sum(scores) / len(scores) if scores else 0
+            min_score = min(scores) if scores else 0
+            max_score = max(scores) if scores else 0
+
+            writer.writerow(['SUMMARY', '', '', '', '', '', '', '', ''])
+            writer.writerow([f'Average Score', f"{avg_score:.1f}", f"{remap_score_to_band(int(avg_score)):.1f}"])
+            writer.writerow([f'Min Score', f"{min_score}", f"{remap_score_to_band(int(min_score)):.1f}"])
+            writer.writerow([f'Max Score', f"{max_score}", f"{remap_score_to_band(int(max_score)):.1f}"])
 
 
 def load_analysis_files(analysis_dir: Path) -> Dict[str, dict]:
@@ -198,6 +271,15 @@ def main():
 
         # Print summary
         print_summary(results)
+
+        # Save results to CSV
+        results_dir = Path(__file__).parent / "results"
+        results_dir.mkdir(exist_ok=True)
+
+        csv_path = get_unique_csv_filename(results_dir)
+        save_results_to_csv(results, csv_path)
+
+        print(f"\nResults saved to: {csv_path}")
 
         return 0 if results["failed"] == 0 else 1
 
