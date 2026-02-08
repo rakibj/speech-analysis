@@ -213,10 +213,10 @@ async def analyze_speech(
             "pronunciation": analysis["pronunciation"],
             
             # Timestamped Words (unified timeline: content words + filler events)
-            "word_timestamps": word_timestamps_merged if word_timestamps_merged else [],
+            # "word_timestamps": word_timestamps_merged if word_timestamps_merged else [],
             
             # Timestamped Rubric Feedback (when word-level timestamps available)
-            "timestamped_feedback": timestamped_feedback if timestamped_feedback else {},
+            # "timestamped_feedback": timestamped_feedback if timestamped_feedback else {},
             
             # Raw metrics used for scoring
             "metrics_for_scoring": make_json_safe(metrics_for_scoring),

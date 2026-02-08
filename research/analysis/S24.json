@@ -1,0 +1,2009 @@
+{
+  "metadata": {
+    "filename": "",
+    "duration_seconds": 0,
+    "total_words_transcribed": 110,
+    "content_words": 107,
+    "filler_words_detected": 3,
+    "is_monotone": true
+  },
+  "transcript": "So in a, a big city, there's a man and a woman who walking out of the dress and they suddenly, um, hit each other at a corner of a building. Um, and then they, they continue walking with their suitcase. Um, until they arrive at home, they figure out that all they just mix up their suitcase. They lie the man, get the suitcase of the woman and the woman, get the suitcase of the man. The man figure out that they were dressed in the suitcase, the woman dressed in the suitcase. And the woman found the yellow -cripped carvest or tides of the man in the suitcase.",
+  "input_metrics": {
+    "wpm": 105.56,
+    "long_pauses_per_min": 0.99,
+    "fillers_per_min": 5.33,
+    "pause_variability": 0.0,
+    "speech_rate_variability": 0.349,
+    "vocab_richness": 0.505,
+    "type_token_ratio": 0.505,
+    "repetition_ratio": 0.078,
+    "mean_utterance_length": 13.75,
+    "mean_word_confidence": 0.757
+  },
+  "timestamps": {
+    "words_timestamps_raw": [
+      {
+        "word": "So",
+        "start": 0.0,
+        "end": 0.36,
+        "duration": 0.36,
+        "confidence": 0.5,
+        "is_filler": false
+      },
+      {
+        "word": "in",
+        "start": 0.36,
+        "end": 0.62,
+        "duration": 0.26,
+        "confidence": 0.6498420834541321,
+        "is_filler": false
+      },
+      {
+        "word": "a,",
+        "start": 0.62,
+        "end": 0.82,
+        "duration": 0.19999999999999996,
+        "confidence": 0.8368130922317505,
+        "is_filler": false
+      },
+      {
+        "word": "a",
+        "start": 0.9,
+        "end": 1.48,
+        "duration": 0.58,
+        "confidence": 0.8933550119400024,
+        "is_filler": false
+      },
+      {
+        "word": "big",
+        "start": 1.48,
+        "end": 1.66,
+        "duration": 0.17999999999999994,
+        "confidence": 0.8489484190940857,
+        "is_filler": false
+      },
+      {
+        "word": "city,",
+        "start": 1.66,
+        "end": 2.02,
+        "duration": 0.3600000000000001,
+        "confidence": 0.9985414743423462,
+        "is_filler": false
+      },
+      {
+        "word": "there's",
+        "start": 2.62,
+        "end": 3.12,
+        "duration": 0.5,
+        "confidence": 0.8474458754062653,
+        "is_filler": false
+      },
+      {
+        "word": "a",
+        "start": 3.12,
+        "end": 3.22,
+        "duration": 0.10000000000000009,
+        "confidence": 0.9873833060264587,
+        "is_filler": false
+      },
+      {
+        "word": "man",
+        "start": 3.22,
+        "end": 3.5,
+        "duration": 0.2799999999999998,
+        "confidence": 0.9975544810295105,
+        "is_filler": false
+      },
+      {
+        "word": "and",
+        "start": 3.5,
+        "end": 3.74,
+        "duration": 0.2400000000000002,
+        "confidence": 0.917115330696106,
+        "is_filler": false
+      },
+      {
+        "word": "a",
+        "start": 3.74,
+        "end": 3.86,
+        "duration": 0.11999999999999966,
+        "confidence": 0.9203398823738098,
+        "is_filler": false
+      },
+      {
+        "word": "woman",
+        "start": 3.86,
+        "end": 4.16,
+        "duration": 0.30000000000000027,
+        "confidence": 0.5,
+        "is_filler": false
+      },
+      {
+        "word": "who",
+        "start": 4.16,
+        "end": 4.42,
+        "duration": 0.2599999999999998,
+        "confidence": 0.9205289483070374,
+        "is_filler": false
+      },
+      {
+        "word": "walking",
+        "start": 4.42,
+        "end": 4.78,
+        "duration": 0.3600000000000003,
+        "confidence": 0.2553403675556183,
+        "is_filler": false
+      },
+      {
+        "word": "out",
+        "start": 4.78,
+        "end": 4.98,
+        "duration": 0.20000000000000018,
+        "confidence": 0.8142291307449341,
+        "is_filler": false
+      },
+      {
+        "word": "of",
+        "start": 4.98,
+        "end": 5.1,
+        "duration": 0.11999999999999922,
+        "confidence": 0.5,
+        "is_filler": false
+      },
+      {
+        "word": "the",
+        "start": 5.1,
+        "end": 5.2,
+        "duration": 0.10000000000000053,
+        "confidence": 0.5903183221817017,
+        "is_filler": false
+      },
+      {
+        "word": "dress",
+        "start": 5.2,
+        "end": 5.32,
+        "duration": 0.1200000000000001,
+        "confidence": 0.5,
+        "is_filler": false
+      },
+      {
+        "word": "and",
+        "start": 5.32,
+        "end": 5.64,
+        "duration": 0.3199999999999994,
+        "confidence": 0.5745312571525574,
+        "is_filler": false
+      },
+      {
+        "word": "they",
+        "start": 5.64,
+        "end": 5.96,
+        "duration": 0.3200000000000003,
+        "confidence": 0.9749594926834106,
+        "is_filler": false
+      },
+      {
+        "word": "suddenly,",
+        "start": 5.96,
+        "end": 7.06,
+        "duration": 1.0999999999999996,
+        "confidence": 0.693268895149231,
+        "is_filler": false
+      },
+      {
+        "word": "um,",
+        "start": 7.76,
+        "end": 8.8,
+        "duration": 1.040000000000001,
+        "confidence": 0.15538834035396576,
+        "is_filler": true
+      },
+      {
+        "word": "hit",
+        "start": 9.24,
+        "end": 9.94,
+        "duration": 0.6999999999999993,
+        "confidence": 0.5,
+        "is_filler": false
+      },
+      {
+        "word": "each",
+        "start": 9.94,
+        "end": 10.24,
+        "duration": 0.3000000000000007,
+        "confidence": 0.8456369638442993,
+        "is_filler": false
+      },
+      {
+        "word": "other",
+        "start": 10.24,
+        "end": 10.5,
+        "duration": 0.2599999999999998,
+        "confidence": 0.973868727684021,
+        "is_filler": false
+      },
+      {
+        "word": "at",
+        "start": 10.5,
+        "end": 10.76,
+        "duration": 0.2599999999999998,
+        "confidence": 0.9753137230873108,
+        "is_filler": false
+      },
+      {
+        "word": "a",
+        "start": 10.76,
+        "end": 10.92,
+        "duration": 0.16000000000000014,
+        "confidence": 0.6269318461418152,
+        "is_filler": false
+      },
+      {
+        "word": "corner",
+        "start": 10.92,
+        "end": 11.22,
+        "duration": 0.3000000000000007,
+        "confidence": 0.9917848110198975,
+        "is_filler": false
+      },
+      {
+        "word": "of",
+        "start": 11.22,
+        "end": 11.96,
+        "duration": 0.7400000000000002,
+        "confidence": 0.9355827569961548,
+        "is_filler": false
+      },
+      {
+        "word": "a",
+        "start": 11.96,
+        "end": 12.08,
+        "duration": 0.11999999999999922,
+        "confidence": 0.8483379483222961,
+        "is_filler": false
+      },
+      {
+        "word": "building.",
+        "start": 12.08,
+        "end": 12.38,
+        "duration": 0.3000000000000007,
+        "confidence": 0.5,
+        "is_filler": false
+      },
+      {
+        "word": "Um,",
+        "start": 13.14,
+        "end": 13.72,
+        "duration": 0.5800000000000001,
+        "confidence": 0.8178427219390869,
+        "is_filler": true
+      },
+      {
+        "word": "and",
+        "start": 14.18,
+        "end": 15.18,
+        "duration": 1.0,
+        "confidence": 0.9703776240348816,
+        "is_filler": false
+      },
+      {
+        "word": "then",
+        "start": 15.18,
+        "end": 15.38,
+        "duration": 0.20000000000000107,
+        "confidence": 0.9399464130401611,
+        "is_filler": false
+      },
+      {
+        "word": "they,",
+        "start": 15.38,
+        "end": 15.9,
+        "duration": 0.5199999999999996,
+        "confidence": 0.9692149758338928,
+        "is_filler": false
+      },
+      {
+        "word": "they",
+        "start": 16.52,
+        "end": 17.58,
+        "duration": 1.0599999999999987,
+        "confidence": 0.9892807602882385,
+        "is_filler": false
+      },
+      {
+        "word": "continue",
+        "start": 17.58,
+        "end": 18.28,
+        "duration": 0.7000000000000028,
+        "confidence": 0.9364812970161438,
+        "is_filler": false
+      },
+      {
+        "word": "walking",
+        "start": 18.28,
+        "end": 20.2,
+        "duration": 1.9199999999999982,
+        "confidence": 0.9121935963630676,
+        "is_filler": false
+      },
+      {
+        "word": "with",
+        "start": 20.2,
+        "end": 20.6,
+        "duration": 0.40000000000000213,
+        "confidence": 0.9956387877464294,
+        "is_filler": false
+      },
+      {
+        "word": "their",
+        "start": 20.6,
+        "end": 20.94,
+        "duration": 0.33999999999999986,
+        "confidence": 0.9349242448806763,
+        "is_filler": false
+      },
+      {
+        "word": "suitcase.",
+        "start": 20.94,
+        "end": 21.44,
+        "duration": 0.5,
+        "confidence": 0.9654828906059265,
+        "is_filler": false
+      },
+      {
+        "word": "Um,",
+        "start": 22.72,
+        "end": 23.4,
+        "duration": 0.6799999999999997,
+        "confidence": 0.745445191860199,
+        "is_filler": true
+      },
+      {
+        "word": "until",
+        "start": 23.4,
+        "end": 24.34,
+        "duration": 0.9400000000000013,
+        "confidence": 0.5,
+        "is_filler": false
+      },
+      {
+        "word": "they",
+        "start": 24.34,
+        "end": 25.96,
+        "duration": 1.620000000000001,
+        "confidence": 0.9530638456344604,
+        "is_filler": false
+      },
+      {
+        "word": "arrive",
+        "start": 25.96,
+        "end": 27.42,
+        "duration": 1.4600000000000009,
+        "confidence": 0.5474448204040527,
+        "is_filler": false
+      },
+      {
+        "word": "at",
+        "start": 27.42,
+        "end": 27.8,
+        "duration": 0.379999999999999,
+        "confidence": 0.7244361639022827,
+        "is_filler": false
+      },
+      {
+        "word": "home,",
+        "start": 27.8,
+        "end": 28.1,
+        "duration": 0.3000000000000007,
+        "confidence": 0.914151132106781,
+        "is_filler": false
+      },
+      {
+        "word": "they",
+        "start": 28.1,
+        "end": 28.38,
+        "duration": 0.2799999999999976,
+        "confidence": 0.9614682793617249,
+        "is_filler": false
+      },
+      {
+        "word": "figure",
+        "start": 28.38,
+        "end": 28.66,
+        "duration": 0.28000000000000114,
+        "confidence": 0.8555020093917847,
+        "is_filler": false
+      },
+      {
+        "word": "out",
+        "start": 28.66,
+        "end": 28.9,
+        "duration": 0.23999999999999844,
+        "confidence": 0.9661110639572144,
+        "is_filler": false
+      },
+      {
+        "word": "that",
+        "start": 28.9,
+        "end": 29.1,
+        "duration": 0.20000000000000284,
+        "confidence": 0.8281679749488831,
+        "is_filler": false
+      },
+      {
+        "word": "all",
+        "start": 29.1,
+        "end": 29.46,
+        "duration": 0.35999999999999943,
+        "confidence": 0.33606067299842834,
+        "is_filler": false
+      },
+      {
+        "word": "they",
+        "start": 29.46,
+        "end": 29.66,
+        "duration": 0.1999999999999993,
+        "confidence": 0.7966224551200867,
+        "is_filler": false
+      },
+      {
+        "word": "just",
+        "start": 29.66,
+        "end": 30.1,
+        "duration": 0.4400000000000013,
+        "confidence": 0.8643460273742676,
+        "is_filler": false
+      },
+      {
+        "word": "mix",
+        "start": 30.1,
+        "end": 33.08,
+        "duration": 2.979999999999997,
+        "confidence": 0.7937018871307373,
+        "is_filler": false
+      },
+      {
+        "word": "up",
+        "start": 33.08,
+        "end": 33.4,
+        "duration": 0.3200000000000003,
+        "confidence": 0.9880965948104858,
+        "is_filler": false
+      },
+      {
+        "word": "their",
+        "start": 33.4,
+        "end": 33.64,
+        "duration": 0.240000000000002,
+        "confidence": 0.5220177173614502,
+        "is_filler": false
+      },
+      {
+        "word": "suitcase.",
+        "start": 33.64,
+        "end": 34.02,
+        "duration": 0.38000000000000256,
+        "confidence": 0.8362553715705872,
+        "is_filler": false
+      },
+      {
+        "word": "They",
+        "start": 34.4,
+        "end": 34.4,
+        "duration": 0.0,
+        "confidence": 0.5,
+        "is_filler": false
+      },
+      {
+        "word": "lie",
+        "start": 34.4,
+        "end": 37.6,
+        "duration": 3.200000000000003,
+        "confidence": 0.5,
+        "is_filler": false
+      },
+      {
+        "word": "the",
+        "start": 37.6,
+        "end": 37.8,
+        "duration": 0.19999999999999574,
+        "confidence": 0.6126318573951721,
+        "is_filler": false
+      },
+      {
+        "word": "man,",
+        "start": 37.8,
+        "end": 38.12,
+        "duration": 0.3200000000000003,
+        "confidence": 0.8883957862854004,
+        "is_filler": false
+      },
+      {
+        "word": "get",
+        "start": 38.46,
+        "end": 38.74,
+        "duration": 0.28000000000000114,
+        "confidence": 0.9415650367736816,
+        "is_filler": false
+      },
+      {
+        "word": "the",
+        "start": 38.74,
+        "end": 38.92,
+        "duration": 0.17999999999999972,
+        "confidence": 0.8240089416503906,
+        "is_filler": false
+      },
+      {
+        "word": "suitcase",
+        "start": 38.92,
+        "end": 39.1,
+        "duration": 0.17999999999999972,
+        "confidence": 0.9850667715072632,
+        "is_filler": false
+      },
+      {
+        "word": "of",
+        "start": 39.1,
+        "end": 39.38,
+        "duration": 0.28000000000000114,
+        "confidence": 0.8461640477180481,
+        "is_filler": false
+      },
+      {
+        "word": "the",
+        "start": 39.38,
+        "end": 39.48,
+        "duration": 0.09999999999999432,
+        "confidence": 0.9698159098625183,
+        "is_filler": false
+      },
+      {
+        "word": "woman",
+        "start": 39.48,
+        "end": 39.78,
+        "duration": 0.30000000000000426,
+        "confidence": 0.9700818061828613,
+        "is_filler": false
+      },
+      {
+        "word": "and",
+        "start": 39.78,
+        "end": 40.04,
+        "duration": 0.259999999999998,
+        "confidence": 0.4836606979370117,
+        "is_filler": false
+      },
+      {
+        "word": "the",
+        "start": 40.04,
+        "end": 40.14,
+        "duration": 0.10000000000000142,
+        "confidence": 0.5,
+        "is_filler": false
+      },
+      {
+        "word": "woman,",
+        "start": 40.14,
+        "end": 40.42,
+        "duration": 0.28000000000000114,
+        "confidence": 0.5,
+        "is_filler": false
+      },
+      {
+        "word": "get",
+        "start": 40.62,
+        "end": 40.68,
+        "duration": 0.060000000000002274,
+        "confidence": 0.5,
+        "is_filler": false
+      },
+      {
+        "word": "the",
+        "start": 40.68,
+        "end": 40.8,
+        "duration": 0.11999999999999744,
+        "confidence": 0.8924939632415771,
+        "is_filler": false
+      },
+      {
+        "word": "suitcase",
+        "start": 40.8,
+        "end": 41.04,
+        "duration": 0.240000000000002,
+        "confidence": 0.5,
+        "is_filler": false
+      },
+      {
+        "word": "of",
+        "start": 41.04,
+        "end": 41.32,
+        "duration": 0.28000000000000114,
+        "confidence": 0.9696942567825317,
+        "is_filler": false
+      },
+      {
+        "word": "the",
+        "start": 41.32,
+        "end": 41.4,
+        "duration": 0.0799999999999983,
+        "confidence": 0.9861927628517151,
+        "is_filler": false
+      },
+      {
+        "word": "man.",
+        "start": 41.4,
+        "end": 41.74,
+        "duration": 0.3400000000000034,
+        "confidence": 0.9868215918540955,
+        "is_filler": false
+      },
+      {
+        "word": "The",
+        "start": 42.7,
+        "end": 43.26,
+        "duration": 0.5599999999999952,
+        "confidence": 0.5,
+        "is_filler": false
+      },
+      {
+        "word": "man",
+        "start": 43.26,
+        "end": 43.44,
+        "duration": 0.17999999999999972,
+        "confidence": 0.8567715883255005,
+        "is_filler": false
+      },
+      {
+        "word": "figure",
+        "start": 43.44,
+        "end": 43.66,
+        "duration": 0.21999999999999886,
+        "confidence": 0.935766875743866,
+        "is_filler": false
+      },
+      {
+        "word": "out",
+        "start": 43.66,
+        "end": 43.9,
+        "duration": 0.240000000000002,
+        "confidence": 0.9030703902244568,
+        "is_filler": false
+      },
+      {
+        "word": "that",
+        "start": 43.9,
+        "end": 44.0,
+        "duration": 0.10000000000000142,
+        "confidence": 0.5,
+        "is_filler": false
+      },
+      {
+        "word": "they",
+        "start": 44.0,
+        "end": 44.18,
+        "duration": 0.17999999999999972,
+        "confidence": 0.8418956398963928,
+        "is_filler": false
+      },
+      {
+        "word": "were",
+        "start": 44.18,
+        "end": 44.38,
+        "duration": 0.20000000000000284,
+        "confidence": 0.657352864742279,
+        "is_filler": false
+      },
+      {
+        "word": "dressed",
+        "start": 44.38,
+        "end": 45.9,
+        "duration": 1.519999999999996,
+        "confidence": 0.46854329109191895,
+        "is_filler": false
+      },
+      {
+        "word": "in",
+        "start": 45.9,
+        "end": 47.32,
+        "duration": 1.4200000000000017,
+        "confidence": 0.7425398826599121,
+        "is_filler": false
+      },
+      {
+        "word": "the",
+        "start": 47.32,
+        "end": 47.54,
+        "duration": 0.21999999999999886,
+        "confidence": 0.923940896987915,
+        "is_filler": false
+      },
+      {
+        "word": "suitcase,",
+        "start": 47.54,
+        "end": 48.02,
+        "duration": 0.480000000000004,
+        "confidence": 0.9990056157112122,
+        "is_filler": false
+      },
+      {
+        "word": "the",
+        "start": 49.06,
+        "end": 50.98,
+        "duration": 1.9199999999999946,
+        "confidence": 0.8430423140525818,
+        "is_filler": false
+      },
+      {
+        "word": "woman",
+        "start": 50.98,
+        "end": 51.66,
+        "duration": 0.6799999999999997,
+        "confidence": 0.5,
+        "is_filler": false
+      },
+      {
+        "word": "dressed",
+        "start": 51.66,
+        "end": 51.88,
+        "duration": 0.22000000000000597,
+        "confidence": 0.702881932258606,
+        "is_filler": false
+      },
+      {
+        "word": "in",
+        "start": 51.88,
+        "end": 52.08,
+        "duration": 0.19999999999999574,
+        "confidence": 0.9830410480499268,
+        "is_filler": false
+      },
+      {
+        "word": "the",
+        "start": 52.08,
+        "end": 52.14,
+        "duration": 0.060000000000002274,
+        "confidence": 0.7422195672988892,
+        "is_filler": false
+      },
+      {
+        "word": "suitcase.",
+        "start": 52.14,
+        "end": 52.38,
+        "duration": 0.240000000000002,
+        "confidence": 0.5,
+        "is_filler": false
+      },
+      {
+        "word": "And",
+        "start": 52.38,
+        "end": 52.68,
+        "duration": 0.29999999999999716,
+        "confidence": 0.5,
+        "is_filler": false
+      },
+      {
+        "word": "the",
+        "start": 52.68,
+        "end": 53.12,
+        "duration": 0.4399999999999977,
+        "confidence": 0.8592056632041931,
+        "is_filler": false
+      },
+      {
+        "word": "woman",
+        "start": 53.12,
+        "end": 53.5,
+        "duration": 0.38000000000000256,
+        "confidence": 0.8239147663116455,
+        "is_filler": false
+      },
+      {
+        "word": "found",
+        "start": 53.5,
+        "end": 54.0,
+        "duration": 0.5,
+        "confidence": 0.562140166759491,
+        "is_filler": false
+      },
+      {
+        "word": "the",
+        "start": 54.0,
+        "end": 55.1,
+        "duration": 1.1000000000000014,
+        "confidence": 0.6496363878250122,
+        "is_filler": false
+      },
+      {
+        "word": "yellow",
+        "start": 55.1,
+        "end": 56.86,
+        "duration": 1.759999999999998,
+        "confidence": 0.994707465171814,
+        "is_filler": false
+      },
+      {
+        "word": "-cripped",
+        "start": 56.86,
+        "end": 57.46,
+        "duration": 0.6000000000000014,
+        "confidence": 0.37269096821546555,
+        "is_filler": false
+      },
+      {
+        "word": "carvest",
+        "start": 57.46,
+        "end": 58.36,
+        "duration": 0.8999999999999986,
+        "confidence": 0.5491859316825867,
+        "is_filler": false
+      },
+      {
+        "word": "or",
+        "start": 58.36,
+        "end": 58.7,
+        "duration": 0.3400000000000034,
+        "confidence": 0.6514759659767151,
+        "is_filler": false
+      },
+      {
+        "word": "tides",
+        "start": 58.7,
+        "end": 59.24,
+        "duration": 0.5399999999999991,
+        "confidence": 0.6018482148647308,
+        "is_filler": false
+      },
+      {
+        "word": "of",
+        "start": 59.24,
+        "end": 59.44,
+        "duration": 0.19999999999999574,
+        "confidence": 0.9799109697341919,
+        "is_filler": false
+      },
+      {
+        "word": "the",
+        "start": 59.44,
+        "end": 59.58,
+        "duration": 0.14000000000000057,
+        "confidence": 0.5,
+        "is_filler": false
+      },
+      {
+        "word": "man",
+        "start": 59.58,
+        "end": 59.74,
+        "duration": 0.1600000000000037,
+        "confidence": 0.5125834345817566,
+        "is_filler": false
+      },
+      {
+        "word": "in",
+        "start": 59.74,
+        "end": 60.34,
+        "duration": 0.6000000000000014,
+        "confidence": 0.982833981513977,
+        "is_filler": false
+      },
+      {
+        "word": "the",
+        "start": 60.34,
+        "end": 60.5,
+        "duration": 0.1599999999999966,
+        "confidence": 0.6215111613273621,
+        "is_filler": false
+      },
+      {
+        "word": "suitcase.",
+        "start": 60.5,
+        "end": 60.82,
+        "duration": 0.3200000000000003,
+        "confidence": 0.5,
+        "is_filler": false
+      }
+    ],
+    "words_timestamps_cleaned": [
+      {
+        "word": "So",
+        "start": 0.0,
+        "end": 0.36,
+        "duration": 0.36,
+        "confidence": 0.38506758213043213,
+        "is_filler": false
+      },
+      {
+        "word": "in",
+        "start": 0.36,
+        "end": 0.62,
+        "duration": 0.26,
+        "confidence": 0.6498420834541321,
+        "is_filler": false
+      },
+      {
+        "word": "a,",
+        "start": 0.62,
+        "end": 0.82,
+        "duration": 0.19999999999999996,
+        "confidence": 0.8368130922317505,
+        "is_filler": false
+      },
+      {
+        "word": "a",
+        "start": 0.9,
+        "end": 1.48,
+        "duration": 0.58,
+        "confidence": 0.8933550119400024,
+        "is_filler": false
+      },
+      {
+        "word": "big",
+        "start": 1.48,
+        "end": 1.66,
+        "duration": 0.17999999999999994,
+        "confidence": 0.8489484190940857,
+        "is_filler": false
+      },
+      {
+        "word": "city,",
+        "start": 1.66,
+        "end": 2.02,
+        "duration": 0.3600000000000001,
+        "confidence": 0.9985414743423462,
+        "is_filler": false
+      },
+      {
+        "word": "there's",
+        "start": 2.62,
+        "end": 3.12,
+        "duration": 0.5,
+        "confidence": 0.8474458754062653,
+        "is_filler": false
+      },
+      {
+        "word": "a",
+        "start": 3.12,
+        "end": 3.22,
+        "duration": 0.10000000000000009,
+        "confidence": 0.9873833060264587,
+        "is_filler": false
+      },
+      {
+        "word": "man",
+        "start": 3.22,
+        "end": 3.5,
+        "duration": 0.2799999999999998,
+        "confidence": 0.9975544810295105,
+        "is_filler": false
+      },
+      {
+        "word": "and",
+        "start": 3.5,
+        "end": 3.74,
+        "duration": 0.2400000000000002,
+        "confidence": 0.917115330696106,
+        "is_filler": false
+      },
+      {
+        "word": "a",
+        "start": 3.74,
+        "end": 3.86,
+        "duration": 0.11999999999999966,
+        "confidence": 0.9203398823738098,
+        "is_filler": false
+      },
+      {
+        "word": "woman",
+        "start": 3.86,
+        "end": 4.16,
+        "duration": 0.30000000000000027,
+        "confidence": 0.9969459176063538,
+        "is_filler": false
+      },
+      {
+        "word": "who",
+        "start": 4.16,
+        "end": 4.42,
+        "duration": 0.2599999999999998,
+        "confidence": 0.9205289483070374,
+        "is_filler": false
+      },
+      {
+        "word": "walking",
+        "start": 4.42,
+        "end": 4.78,
+        "duration": 0.3600000000000003,
+        "confidence": 0.2553403675556183,
+        "is_filler": false
+      },
+      {
+        "word": "out",
+        "start": 4.78,
+        "end": 4.98,
+        "duration": 0.20000000000000018,
+        "confidence": 0.8142291307449341,
+        "is_filler": false
+      },
+      {
+        "word": "of",
+        "start": 4.98,
+        "end": 5.1,
+        "duration": 0.11999999999999922,
+        "confidence": 0.6574710011482239,
+        "is_filler": false
+      },
+      {
+        "word": "the",
+        "start": 5.1,
+        "end": 5.2,
+        "duration": 0.10000000000000053,
+        "confidence": 0.5903183221817017,
+        "is_filler": false
+      },
+      {
+        "word": "dress",
+        "start": 5.2,
+        "end": 5.32,
+        "duration": 0.1200000000000001,
+        "confidence": 0.1182846873998642,
+        "is_filler": false
+      },
+      {
+        "word": "and",
+        "start": 5.32,
+        "end": 5.64,
+        "duration": 0.3199999999999994,
+        "confidence": 0.5745312571525574,
+        "is_filler": false
+      },
+      {
+        "word": "they",
+        "start": 5.64,
+        "end": 5.96,
+        "duration": 0.3200000000000003,
+        "confidence": 0.9749594926834106,
+        "is_filler": false
+      },
+      {
+        "word": "suddenly,",
+        "start": 5.96,
+        "end": 7.06,
+        "duration": 1.0999999999999996,
+        "confidence": 0.693268895149231,
+        "is_filler": false
+      },
+      {
+        "word": "hit",
+        "start": 9.24,
+        "end": 9.94,
+        "duration": 0.6999999999999993,
+        "confidence": 0.7053778767585754,
+        "is_filler": false
+      },
+      {
+        "word": "each",
+        "start": 9.94,
+        "end": 10.24,
+        "duration": 0.3000000000000007,
+        "confidence": 0.8456369638442993,
+        "is_filler": false
+      },
+      {
+        "word": "other",
+        "start": 10.24,
+        "end": 10.5,
+        "duration": 0.2599999999999998,
+        "confidence": 0.973868727684021,
+        "is_filler": false
+      },
+      {
+        "word": "at",
+        "start": 10.5,
+        "end": 10.76,
+        "duration": 0.2599999999999998,
+        "confidence": 0.9753137230873108,
+        "is_filler": false
+      },
+      {
+        "word": "a",
+        "start": 10.76,
+        "end": 10.92,
+        "duration": 0.16000000000000014,
+        "confidence": 0.6269318461418152,
+        "is_filler": false
+      },
+      {
+        "word": "corner",
+        "start": 10.92,
+        "end": 11.22,
+        "duration": 0.3000000000000007,
+        "confidence": 0.9917848110198975,
+        "is_filler": false
+      },
+      {
+        "word": "of",
+        "start": 11.22,
+        "end": 11.96,
+        "duration": 0.7400000000000002,
+        "confidence": 0.9355827569961548,
+        "is_filler": false
+      },
+      {
+        "word": "a",
+        "start": 11.96,
+        "end": 12.08,
+        "duration": 0.11999999999999922,
+        "confidence": 0.8483379483222961,
+        "is_filler": false
+      },
+      {
+        "word": "building.",
+        "start": 12.08,
+        "end": 12.38,
+        "duration": 0.3000000000000007,
+        "confidence": 0.995925784111023,
+        "is_filler": false
+      },
+      {
+        "word": "and",
+        "start": 14.18,
+        "end": 15.18,
+        "duration": 1.0,
+        "confidence": 0.9703776240348816,
+        "is_filler": false
+      },
+      {
+        "word": "then",
+        "start": 15.18,
+        "end": 15.38,
+        "duration": 0.20000000000000107,
+        "confidence": 0.9399464130401611,
+        "is_filler": false
+      },
+      {
+        "word": "they,",
+        "start": 15.38,
+        "end": 15.9,
+        "duration": 0.5199999999999996,
+        "confidence": 0.9692149758338928,
+        "is_filler": false
+      },
+      {
+        "word": "they",
+        "start": 16.52,
+        "end": 17.58,
+        "duration": 1.0599999999999987,
+        "confidence": 0.9892807602882385,
+        "is_filler": false
+      },
+      {
+        "word": "continue",
+        "start": 17.58,
+        "end": 18.28,
+        "duration": 0.7000000000000028,
+        "confidence": 0.9364812970161438,
+        "is_filler": false
+      },
+      {
+        "word": "walking",
+        "start": 18.28,
+        "end": 20.2,
+        "duration": 1.9199999999999982,
+        "confidence": 0.9121935963630676,
+        "is_filler": false
+      },
+      {
+        "word": "with",
+        "start": 20.2,
+        "end": 20.6,
+        "duration": 0.40000000000000213,
+        "confidence": 0.9956387877464294,
+        "is_filler": false
+      },
+      {
+        "word": "their",
+        "start": 20.6,
+        "end": 20.94,
+        "duration": 0.33999999999999986,
+        "confidence": 0.9349242448806763,
+        "is_filler": false
+      },
+      {
+        "word": "suitcase.",
+        "start": 20.94,
+        "end": 21.44,
+        "duration": 0.5,
+        "confidence": 0.9654828906059265,
+        "is_filler": false
+      },
+      {
+        "word": "until",
+        "start": 23.4,
+        "end": 24.34,
+        "duration": 0.9400000000000013,
+        "confidence": 0.5719123482704163,
+        "is_filler": false
+      },
+      {
+        "word": "they",
+        "start": 24.34,
+        "end": 25.96,
+        "duration": 1.620000000000001,
+        "confidence": 0.9530638456344604,
+        "is_filler": false
+      },
+      {
+        "word": "arrive",
+        "start": 25.96,
+        "end": 27.42,
+        "duration": 1.4600000000000009,
+        "confidence": 0.5474448204040527,
+        "is_filler": false
+      },
+      {
+        "word": "at",
+        "start": 27.42,
+        "end": 27.8,
+        "duration": 0.379999999999999,
+        "confidence": 0.7244361639022827,
+        "is_filler": false
+      },
+      {
+        "word": "home,",
+        "start": 27.8,
+        "end": 28.1,
+        "duration": 0.3000000000000007,
+        "confidence": 0.914151132106781,
+        "is_filler": false
+      },
+      {
+        "word": "they",
+        "start": 28.1,
+        "end": 28.38,
+        "duration": 0.2799999999999976,
+        "confidence": 0.9614682793617249,
+        "is_filler": false
+      },
+      {
+        "word": "figure",
+        "start": 28.38,
+        "end": 28.66,
+        "duration": 0.28000000000000114,
+        "confidence": 0.8555020093917847,
+        "is_filler": false
+      },
+      {
+        "word": "out",
+        "start": 28.66,
+        "end": 28.9,
+        "duration": 0.23999999999999844,
+        "confidence": 0.9661110639572144,
+        "is_filler": false
+      },
+      {
+        "word": "that",
+        "start": 28.9,
+        "end": 29.1,
+        "duration": 0.20000000000000284,
+        "confidence": 0.8281679749488831,
+        "is_filler": false
+      },
+      {
+        "word": "all",
+        "start": 29.1,
+        "end": 29.46,
+        "duration": 0.35999999999999943,
+        "confidence": 0.33606067299842834,
+        "is_filler": false
+      },
+      {
+        "word": "they",
+        "start": 29.46,
+        "end": 29.66,
+        "duration": 0.1999999999999993,
+        "confidence": 0.7966224551200867,
+        "is_filler": false
+      },
+      {
+        "word": "just",
+        "start": 29.66,
+        "end": 30.1,
+        "duration": 0.4400000000000013,
+        "confidence": 0.8643460273742676,
+        "is_filler": false
+      },
+      {
+        "word": "mix",
+        "start": 30.1,
+        "end": 33.08,
+        "duration": 2.979999999999997,
+        "confidence": 0.7937018871307373,
+        "is_filler": false
+      },
+      {
+        "word": "up",
+        "start": 33.08,
+        "end": 33.4,
+        "duration": 0.3200000000000003,
+        "confidence": 0.9880965948104858,
+        "is_filler": false
+      },
+      {
+        "word": "their",
+        "start": 33.4,
+        "end": 33.64,
+        "duration": 0.240000000000002,
+        "confidence": 0.5220177173614502,
+        "is_filler": false
+      },
+      {
+        "word": "suitcase.",
+        "start": 33.64,
+        "end": 34.02,
+        "duration": 0.38000000000000256,
+        "confidence": 0.8362553715705872,
+        "is_filler": false
+      },
+      {
+        "word": "They",
+        "start": 34.4,
+        "end": 34.4,
+        "duration": 0.0,
+        "confidence": 0.5114386081695557,
+        "is_filler": false
+      },
+      {
+        "word": "lie",
+        "start": 34.4,
+        "end": 37.6,
+        "duration": 3.200000000000003,
+        "confidence": 0.32364147901535034,
+        "is_filler": false
+      },
+      {
+        "word": "the",
+        "start": 37.6,
+        "end": 37.8,
+        "duration": 0.19999999999999574,
+        "confidence": 0.6126318573951721,
+        "is_filler": false
+      },
+      {
+        "word": "man,",
+        "start": 37.8,
+        "end": 38.12,
+        "duration": 0.3200000000000003,
+        "confidence": 0.8883957862854004,
+        "is_filler": false
+      },
+      {
+        "word": "get",
+        "start": 38.46,
+        "end": 38.74,
+        "duration": 0.28000000000000114,
+        "confidence": 0.9415650367736816,
+        "is_filler": false
+      },
+      {
+        "word": "the",
+        "start": 38.74,
+        "end": 38.92,
+        "duration": 0.17999999999999972,
+        "confidence": 0.8240089416503906,
+        "is_filler": false
+      },
+      {
+        "word": "suitcase",
+        "start": 38.92,
+        "end": 39.1,
+        "duration": 0.17999999999999972,
+        "confidence": 0.9850667715072632,
+        "is_filler": false
+      },
+      {
+        "word": "of",
+        "start": 39.1,
+        "end": 39.38,
+        "duration": 0.28000000000000114,
+        "confidence": 0.8461640477180481,
+        "is_filler": false
+      },
+      {
+        "word": "the",
+        "start": 39.38,
+        "end": 39.48,
+        "duration": 0.09999999999999432,
+        "confidence": 0.9698159098625183,
+        "is_filler": false
+      },
+      {
+        "word": "woman",
+        "start": 39.48,
+        "end": 39.78,
+        "duration": 0.30000000000000426,
+        "confidence": 0.9700818061828613,
+        "is_filler": false
+      },
+      {
+        "word": "and",
+        "start": 39.78,
+        "end": 40.04,
+        "duration": 0.259999999999998,
+        "confidence": 0.4836606979370117,
+        "is_filler": false
+      },
+      {
+        "word": "the",
+        "start": 40.04,
+        "end": 40.14,
+        "duration": 0.10000000000000142,
+        "confidence": 0.8705391883850098,
+        "is_filler": false
+      },
+      {
+        "word": "woman,",
+        "start": 40.14,
+        "end": 40.42,
+        "duration": 0.28000000000000114,
+        "confidence": 0.9732131958007812,
+        "is_filler": false
+      },
+      {
+        "word": "get",
+        "start": 40.62,
+        "end": 40.68,
+        "duration": 0.060000000000002274,
+        "confidence": 0.9213759303092957,
+        "is_filler": false
+      },
+      {
+        "word": "the",
+        "start": 40.68,
+        "end": 40.8,
+        "duration": 0.11999999999999744,
+        "confidence": 0.8924939632415771,
+        "is_filler": false
+      },
+      {
+        "word": "suitcase",
+        "start": 40.8,
+        "end": 41.04,
+        "duration": 0.240000000000002,
+        "confidence": 0.9814713597297668,
+        "is_filler": false
+      },
+      {
+        "word": "of",
+        "start": 41.04,
+        "end": 41.32,
+        "duration": 0.28000000000000114,
+        "confidence": 0.9696942567825317,
+        "is_filler": false
+      },
+      {
+        "word": "the",
+        "start": 41.32,
+        "end": 41.4,
+        "duration": 0.0799999999999983,
+        "confidence": 0.9861927628517151,
+        "is_filler": false
+      },
+      {
+        "word": "man.",
+        "start": 41.4,
+        "end": 41.74,
+        "duration": 0.3400000000000034,
+        "confidence": 0.9868215918540955,
+        "is_filler": false
+      },
+      {
+        "word": "The",
+        "start": 42.7,
+        "end": 43.26,
+        "duration": 0.5599999999999952,
+        "confidence": 0.9352368712425232,
+        "is_filler": false
+      },
+      {
+        "word": "man",
+        "start": 43.26,
+        "end": 43.44,
+        "duration": 0.17999999999999972,
+        "confidence": 0.8567715883255005,
+        "is_filler": false
+      },
+      {
+        "word": "figure",
+        "start": 43.44,
+        "end": 43.66,
+        "duration": 0.21999999999999886,
+        "confidence": 0.935766875743866,
+        "is_filler": false
+      },
+      {
+        "word": "out",
+        "start": 43.66,
+        "end": 43.9,
+        "duration": 0.240000000000002,
+        "confidence": 0.9030703902244568,
+        "is_filler": false
+      },
+      {
+        "word": "that",
+        "start": 43.9,
+        "end": 44.0,
+        "duration": 0.10000000000000142,
+        "confidence": 0.97008216381073,
+        "is_filler": false
+      },
+      {
+        "word": "they",
+        "start": 44.0,
+        "end": 44.18,
+        "duration": 0.17999999999999972,
+        "confidence": 0.8418956398963928,
+        "is_filler": false
+      },
+      {
+        "word": "were",
+        "start": 44.18,
+        "end": 44.38,
+        "duration": 0.20000000000000284,
+        "confidence": 0.657352864742279,
+        "is_filler": false
+      },
+      {
+        "word": "dressed",
+        "start": 44.38,
+        "end": 45.9,
+        "duration": 1.519999999999996,
+        "confidence": 0.46854329109191895,
+        "is_filler": false
+      },
+      {
+        "word": "in",
+        "start": 45.9,
+        "end": 47.32,
+        "duration": 1.4200000000000017,
+        "confidence": 0.7425398826599121,
+        "is_filler": false
+      },
+      {
+        "word": "the",
+        "start": 47.32,
+        "end": 47.54,
+        "duration": 0.21999999999999886,
+        "confidence": 0.923940896987915,
+        "is_filler": false
+      },
+      {
+        "word": "suitcase,",
+        "start": 47.54,
+        "end": 48.02,
+        "duration": 0.480000000000004,
+        "confidence": 0.9990056157112122,
+        "is_filler": false
+      },
+      {
+        "word": "the",
+        "start": 49.06,
+        "end": 50.98,
+        "duration": 1.9199999999999946,
+        "confidence": 0.8430423140525818,
+        "is_filler": false
+      },
+      {
+        "word": "woman",
+        "start": 50.98,
+        "end": 51.66,
+        "duration": 0.6799999999999997,
+        "confidence": 0.9602533578872681,
+        "is_filler": false
+      },
+      {
+        "word": "dressed",
+        "start": 51.66,
+        "end": 51.88,
+        "duration": 0.22000000000000597,
+        "confidence": 0.702881932258606,
+        "is_filler": false
+      },
+      {
+        "word": "in",
+        "start": 51.88,
+        "end": 52.08,
+        "duration": 0.19999999999999574,
+        "confidence": 0.9830410480499268,
+        "is_filler": false
+      },
+      {
+        "word": "the",
+        "start": 52.08,
+        "end": 52.14,
+        "duration": 0.060000000000002274,
+        "confidence": 0.7422195672988892,
+        "is_filler": false
+      },
+      {
+        "word": "suitcase.",
+        "start": 52.14,
+        "end": 52.38,
+        "duration": 0.240000000000002,
+        "confidence": 0.997011661529541,
+        "is_filler": false
+      },
+      {
+        "word": "And",
+        "start": 52.38,
+        "end": 52.68,
+        "duration": 0.29999999999999716,
+        "confidence": 0.31456226110458374,
+        "is_filler": false
+      },
+      {
+        "word": "the",
+        "start": 52.68,
+        "end": 53.12,
+        "duration": 0.4399999999999977,
+        "confidence": 0.8592056632041931,
+        "is_filler": false
+      },
+      {
+        "word": "woman",
+        "start": 53.12,
+        "end": 53.5,
+        "duration": 0.38000000000000256,
+        "confidence": 0.8239147663116455,
+        "is_filler": false
+      },
+      {
+        "word": "found",
+        "start": 53.5,
+        "end": 54.0,
+        "duration": 0.5,
+        "confidence": 0.562140166759491,
+        "is_filler": false
+      },
+      {
+        "word": "the",
+        "start": 54.0,
+        "end": 55.1,
+        "duration": 1.1000000000000014,
+        "confidence": 0.6496363878250122,
+        "is_filler": false
+      },
+      {
+        "word": "yellow",
+        "start": 55.1,
+        "end": 56.86,
+        "duration": 1.759999999999998,
+        "confidence": 0.994707465171814,
+        "is_filler": false
+      },
+      {
+        "word": "-cripped",
+        "start": 56.86,
+        "end": 57.46,
+        "duration": 0.6000000000000014,
+        "confidence": 0.37269096821546555,
+        "is_filler": false
+      },
+      {
+        "word": "carvest",
+        "start": 57.46,
+        "end": 58.36,
+        "duration": 0.8999999999999986,
+        "confidence": 0.5491859316825867,
+        "is_filler": false
+      },
+      {
+        "word": "or",
+        "start": 58.36,
+        "end": 58.7,
+        "duration": 0.3400000000000034,
+        "confidence": 0.6514759659767151,
+        "is_filler": false
+      },
+      {
+        "word": "tides",
+        "start": 58.7,
+        "end": 59.24,
+        "duration": 0.5399999999999991,
+        "confidence": 0.6018482148647308,
+        "is_filler": false
+      },
+      {
+        "word": "of",
+        "start": 59.24,
+        "end": 59.44,
+        "duration": 0.19999999999999574,
+        "confidence": 0.9799109697341919,
+        "is_filler": false
+      },
+      {
+        "word": "the",
+        "start": 59.44,
+        "end": 59.58,
+        "duration": 0.14000000000000057,
+        "confidence": 0.9680545330047607,
+        "is_filler": false
+      },
+      {
+        "word": "man",
+        "start": 59.58,
+        "end": 59.74,
+        "duration": 0.1600000000000037,
+        "confidence": 0.5125834345817566,
+        "is_filler": false
+      },
+      {
+        "word": "in",
+        "start": 59.74,
+        "end": 60.34,
+        "duration": 0.6000000000000014,
+        "confidence": 0.982833981513977,
+        "is_filler": false
+      },
+      {
+        "word": "the",
+        "start": 60.34,
+        "end": 60.5,
+        "duration": 0.1599999999999966,
+        "confidence": 0.6215111613273621,
+        "is_filler": false
+      },
+      {
+        "word": "suitcase.",
+        "start": 60.5,
+        "end": 60.82,
+        "duration": 0.3200000000000003,
+        "confidence": 0.5654518604278564,
+        "is_filler": false
+      }
+    ],
+    "segment_timestamps": [
+      {
+        "text": "So in a, a big city, there's a man and a woman who walking out of the dress and they suddenly, um,",
+        "start": 0.0,
+        "end": 8.8,
+        "duration": 8.8,
+        "avg_word_confidence": 0.7288033135912635,
+        "contains_filler": true
+      },
+      {
+        "text": "hit each other at a corner of a building. Um, and then they, they continue walking with their suitcase. Um,",
+        "start": 9.24,
+        "end": 23.4,
+        "duration": 14.159999999999998,
+        "avg_word_confidence": 0.9037794470787048,
+        "contains_filler": true
+      },
+      {
+        "text": "until they arrive at home, they figure out that all they just mix up their suitcase.",
+        "start": 23.4,
+        "end": 34.02,
+        "duration": 10.620000000000005,
+        "avg_word_confidence": 0.7787098977714777,
+        "contains_filler": false
+      },
+      {
+        "text": "They lie the man, get the suitcase of the woman and the woman, get the suitcase of the man.",
+        "start": 34.4,
+        "end": 41.74,
+        "duration": 7.340000000000003,
+        "avg_word_confidence": 0.8388564837606329,
+        "contains_filler": false
+      },
+      {
+        "text": "The man figure out that they were dressed in the suitcase, the woman dressed in the suitcase.",
+        "start": 42.7,
+        "end": 52.38,
+        "duration": 9.68,
+        "avg_word_confidence": 0.8507444683243247,
+        "contains_filler": false
+      },
+      {
+        "text": "And the woman found the yellow-cripped carvest or tides of the man in the suitcase.",
+        "start": 52.38,
+        "end": 60.82,
+        "duration": 8.439999999999998,
+        "avg_word_confidence": 0.6881071082316339,
+        "contains_filler": false
+      }
+    ],
+    "filler_timestamps": [
+      {
+        "word": "uh",
+        "type": "filler",
+        "text": "uh",
+        "start": 0.52,
+        "end": 0.54,
+        "duration": 0.020000000000000018,
+        "style": "subtle",
+        "confidence": 0.25,
+        "raw_label": "I",
+        "count": NaN
+      },
+      {
+        "word": "uh",
+        "type": "filler",
+        "text": "uh",
+        "start": 1.42,
+        "end": 1.44,
+        "duration": 0.020000000000000018,
+        "style": "subtle",
+        "confidence": 0.25,
+        "raw_label": "A",
+        "count": NaN
+      },
+      {
+        "word": "uh",
+        "type": "filler",
+        "text": "uh",
+        "start": 3.18,
+        "end": 3.2,
+        "duration": 0.020000000000000018,
+        "style": "subtle",
+        "confidence": 0.25,
+        "raw_label": "A",
+        "count": NaN
+      },
+      {
+        "word": "uh",
+        "type": "filler",
+        "text": "uh",
+        "start": 5.78,
+        "end": 5.82,
+        "duration": 0.040000000000000036,
+        "style": "subtle",
+        "confidence": 0.25,
+        "raw_label": "H",
+        "count": NaN
+      },
+      {
+        "word": "um,",
+        "type": "filler",
+        "text": "um,",
+        "start": 7.76,
+        "end": 8.8,
+        "duration": 1.040000000000001,
+        "style": "clear",
+        "confidence": 0.15538834035396576,
+        "raw_label": NaN,
+        "count": NaN
+      },
+      {
+        "word": "Um,",
+        "type": "filler",
+        "text": "um,",
+        "start": 13.14,
+        "end": 13.72,
+        "duration": 0.5800000000000001,
+        "style": "clear",
+        "confidence": 0.8178427219390869,
+        "raw_label": NaN,
+        "count": NaN
+      },
+      {
+        "word": "Um,",
+        "type": "filler",
+        "text": "um,",
+        "start": 22.72,
+        "end": 23.4,
+        "duration": 0.6799999999999997,
+        "style": "clear",
+        "confidence": 0.745445191860199,
+        "raw_label": NaN,
+        "count": NaN
+      },
+      {
+        "word": "uh",
+        "type": "filler",
+        "text": "uh",
+        "start": 25.38,
+        "end": 25.400000000000002,
+        "duration": 0.020000000000003126,
+        "style": "subtle",
+        "confidence": 0.25,
+        "raw_label": "U",
+        "count": NaN
+      },
+      {
+        "word": "uh",
+        "type": "filler",
+        "text": "uh",
+        "start": 29.38,
+        "end": 29.400000000000002,
+        "duration": 0.020000000000003126,
+        "style": "subtle",
+        "confidence": 0.25,
+        "raw_label": "O",
+        "count": NaN
+      },
+      {
+        "word": "um",
+        "type": "filler",
+        "text": "um",
+        "start": 35.54,
+        "end": 35.58,
+        "duration": 0.03999999999999915,
+        "style": "subtle",
+        "confidence": 0.25,
+        "raw_label": "M",
+        "count": NaN
+      },
+      {
+        "word": "uh",
+        "type": "filler",
+        "text": "uh",
+        "start": 42.64,
+        "end": 42.660000000000004,
+        "duration": 0.020000000000003126,
+        "style": "subtle",
+        "confidence": 0.25,
+        "raw_label": "I",
+        "count": NaN
+      },
+      {
+        "word": "uh",
+        "type": "filler",
+        "text": "uh",
+        "start": 49.160000000000004,
+        "end": 49.2,
+        "duration": 0.03999999999999915,
+        "style": "subtle",
+        "confidence": 0.25,
+        "raw_label": "I",
+        "count": NaN
+      },
+      {
+        "word": "uh",
+        "type": "filler",
+        "text": "uh",
+        "start": 49.58,
+        "end": 49.6,
+        "duration": 0.020000000000003126,
+        "style": "subtle",
+        "confidence": 0.25,
+        "raw_label": "A",
+        "count": NaN
+      },
+      {
+        "word": "t",
+        "type": "stutter",
+        "text": "t",
+        "start": 53.02,
+        "end": 53.2,
+        "duration": 0.17999999999999972,
+        "style": "subtle",
+        "confidence": 0.25,
+        "raw_label": "T",
+        "count": 2.0
+      },
+      {
+        "word": "uh",
+        "type": "filler",
+        "text": "uh",
+        "start": 60.28,
+        "end": 60.300000000000004,
+        "duration": 0.020000000000003126,
+        "style": "subtle",
+        "confidence": 0.25,
+        "raw_label": "I",
+        "count": NaN
+      },
+      {
+        "word": "uh",
+        "type": "filler",
+        "text": "uh",
+        "start": 60.9,
+        "end": 60.92,
+        "duration": 0.020000000000003126,
+        "style": "subtle",
+        "confidence": 0.25,
+        "raw_label": "A",
+        "count": NaN
+      }
+    ]
+  }
+}

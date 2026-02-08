@@ -1,0 +1,2593 @@
+{
+  "metadata": {
+    "filename": "",
+    "duration_seconds": 0,
+    "total_words_transcribed": 136,
+    "content_words": 135,
+    "filler_words_detected": 1,
+    "is_monotone": true
+  },
+  "transcript": "Um, okay, in the city, I think there are many skyscrapers and the many cars, not so many cars on the road. And in the corner of the building, the two people are walking into the same directions, and they're carrying the same carrier, I think. I mean, the suitcase, I think. because they did not see each other, they just bumped into each other and especially for the man he dropped to his classes. After bumping into each other, they seem to have a headache because there is the stars going around their head. And after that they said to just the I'm sorry to each other and pick up their on suitcases but and they just the when to their on -draft I mean the destinations but after that when just the open their",
+  "input_metrics": {
+    "wpm": 109.28,
+    "long_pauses_per_min": 1.62,
+    "fillers_per_min": 5.18,
+    "pause_variability": 0.583,
+    "speech_rate_variability": 0.259,
+    "vocab_richness": 0.548,
+    "type_token_ratio": 0.548,
+    "repetition_ratio": 0.077,
+    "mean_utterance_length": 15.11,
+    "mean_word_confidence": 0.84
+  },
+  "timestamps": {
+    "words_timestamps_raw": [
+      {
+        "word": "Um,",
+        "start": 0.0,
+        "end": 0.68,
+        "duration": 0.68,
+        "confidence": 0.5,
+        "is_filler": true
+      },
+      {
+        "word": "okay,",
+        "start": 1.56,
+        "end": 2.28,
+        "duration": 0.7199999999999998,
+        "confidence": 0.49544429779052734,
+        "is_filler": false
+      },
+      {
+        "word": "in",
+        "start": 2.56,
+        "end": 2.64,
+        "duration": 0.08000000000000007,
+        "confidence": 0.965099036693573,
+        "is_filler": false
+      },
+      {
+        "word": "the",
+        "start": 2.64,
+        "end": 2.74,
+        "duration": 0.10000000000000009,
+        "confidence": 0.9512729048728943,
+        "is_filler": false
+      },
+      {
+        "word": "city,",
+        "start": 2.74,
+        "end": 3.04,
+        "duration": 0.2999999999999998,
+        "confidence": 0.9846951365470886,
+        "is_filler": false
+      },
+      {
+        "word": "I",
+        "start": 3.42,
+        "end": 3.5,
+        "duration": 0.08000000000000007,
+        "confidence": 0.9848394989967346,
+        "is_filler": false
+      },
+      {
+        "word": "think",
+        "start": 3.5,
+        "end": 3.72,
+        "duration": 0.2200000000000002,
+        "confidence": 0.9980146884918213,
+        "is_filler": false
+      },
+      {
+        "word": "there",
+        "start": 3.72,
+        "end": 4.34,
+        "duration": 0.6199999999999997,
+        "confidence": 0.7533241510391235,
+        "is_filler": false
+      },
+      {
+        "word": "are",
+        "start": 4.34,
+        "end": 4.6,
+        "duration": 0.2599999999999998,
+        "confidence": 0.9888585805892944,
+        "is_filler": false
+      },
+      {
+        "word": "many",
+        "start": 4.6,
+        "end": 4.9,
+        "duration": 0.3000000000000007,
+        "confidence": 0.9877696633338928,
+        "is_filler": false
+      },
+      {
+        "word": "skyscrapers",
+        "start": 4.9,
+        "end": 6.14,
+        "duration": 1.2399999999999993,
+        "confidence": 0.9680913090705872,
+        "is_filler": false
+      },
+      {
+        "word": "and",
+        "start": 6.14,
+        "end": 6.42,
+        "duration": 0.28000000000000025,
+        "confidence": 0.7738503813743591,
+        "is_filler": false
+      },
+      {
+        "word": "the",
+        "start": 6.42,
+        "end": 6.92,
+        "duration": 0.5,
+        "confidence": 0.578108012676239,
+        "is_filler": false
+      },
+      {
+        "word": "many",
+        "start": 6.92,
+        "end": 7.58,
+        "duration": 0.6600000000000001,
+        "confidence": 0.29727691411972046,
+        "is_filler": false
+      },
+      {
+        "word": "cars,",
+        "start": 7.58,
+        "end": 7.98,
+        "duration": 0.40000000000000036,
+        "confidence": 0.9721419215202332,
+        "is_filler": false
+      },
+      {
+        "word": "not",
+        "start": 8.32,
+        "end": 8.58,
+        "duration": 0.2599999999999998,
+        "confidence": 0.8375605940818787,
+        "is_filler": false
+      },
+      {
+        "word": "so",
+        "start": 8.58,
+        "end": 9.12,
+        "duration": 0.5399999999999991,
+        "confidence": 0.8072320818901062,
+        "is_filler": false
+      },
+      {
+        "word": "many",
+        "start": 9.12,
+        "end": 9.32,
+        "duration": 0.20000000000000107,
+        "confidence": 0.9991087317466736,
+        "is_filler": false
+      },
+      {
+        "word": "cars",
+        "start": 9.32,
+        "end": 9.62,
+        "duration": 0.29999999999999893,
+        "confidence": 0.9979100823402405,
+        "is_filler": false
+      },
+      {
+        "word": "on",
+        "start": 9.62,
+        "end": 9.82,
+        "duration": 0.20000000000000107,
+        "confidence": 0.9258421659469604,
+        "is_filler": false
+      },
+      {
+        "word": "the",
+        "start": 9.82,
+        "end": 9.96,
+        "duration": 0.14000000000000057,
+        "confidence": 0.9978131055831909,
+        "is_filler": false
+      },
+      {
+        "word": "road.",
+        "start": 9.96,
+        "end": 10.26,
+        "duration": 0.29999999999999893,
+        "confidence": 0.9919663667678833,
+        "is_filler": false
+      },
+      {
+        "word": "And",
+        "start": 11.02,
+        "end": 11.44,
+        "duration": 0.41999999999999993,
+        "confidence": 0.5,
+        "is_filler": false
+      },
+      {
+        "word": "in",
+        "start": 11.44,
+        "end": 11.94,
+        "duration": 0.5,
+        "confidence": 0.9056050777435303,
+        "is_filler": false
+      },
+      {
+        "word": "the",
+        "start": 11.94,
+        "end": 12.04,
+        "duration": 0.09999999999999964,
+        "confidence": 0.9981539845466614,
+        "is_filler": false
+      },
+      {
+        "word": "corner",
+        "start": 12.04,
+        "end": 12.3,
+        "duration": 0.26000000000000156,
+        "confidence": 0.9952740669250488,
+        "is_filler": false
+      },
+      {
+        "word": "of",
+        "start": 12.3,
+        "end": 12.48,
+        "duration": 0.17999999999999972,
+        "confidence": 0.997566819190979,
+        "is_filler": false
+      },
+      {
+        "word": "the",
+        "start": 12.48,
+        "end": 12.56,
+        "duration": 0.08000000000000007,
+        "confidence": 0.9894906878471375,
+        "is_filler": false
+      },
+      {
+        "word": "building,",
+        "start": 12.56,
+        "end": 13.08,
+        "duration": 0.5199999999999996,
+        "confidence": 0.9964781403541565,
+        "is_filler": false
+      },
+      {
+        "word": "the",
+        "start": 13.62,
+        "end": 14.26,
+        "duration": 0.6400000000000006,
+        "confidence": 0.9682059288024902,
+        "is_filler": false
+      },
+      {
+        "word": "two",
+        "start": 14.26,
+        "end": 14.6,
+        "duration": 0.33999999999999986,
+        "confidence": 0.9572780132293701,
+        "is_filler": false
+      },
+      {
+        "word": "people",
+        "start": 14.6,
+        "end": 14.96,
+        "duration": 0.3600000000000012,
+        "confidence": 0.9961691498756409,
+        "is_filler": false
+      },
+      {
+        "word": "are",
+        "start": 14.96,
+        "end": 15.52,
+        "duration": 0.5599999999999987,
+        "confidence": 0.9942256808280945,
+        "is_filler": false
+      },
+      {
+        "word": "walking",
+        "start": 15.52,
+        "end": 15.94,
+        "duration": 0.41999999999999993,
+        "confidence": 0.5,
+        "is_filler": false
+      },
+      {
+        "word": "into",
+        "start": 15.94,
+        "end": 16.28,
+        "duration": 0.34000000000000163,
+        "confidence": 0.9408321380615234,
+        "is_filler": false
+      },
+      {
+        "word": "the",
+        "start": 16.28,
+        "end": 16.46,
+        "duration": 0.17999999999999972,
+        "confidence": 0.9918941855430603,
+        "is_filler": false
+      },
+      {
+        "word": "same",
+        "start": 16.46,
+        "end": 16.72,
+        "duration": 0.259999999999998,
+        "confidence": 0.9995368719100952,
+        "is_filler": false
+      },
+      {
+        "word": "directions,",
+        "start": 16.72,
+        "end": 17.28,
+        "duration": 0.5600000000000023,
+        "confidence": 0.8896908760070801,
+        "is_filler": false
+      },
+      {
+        "word": "and",
+        "start": 18.18,
+        "end": 18.98,
+        "duration": 0.8000000000000007,
+        "confidence": 0.9856044054031372,
+        "is_filler": false
+      },
+      {
+        "word": "they're",
+        "start": 18.98,
+        "end": 19.32,
+        "duration": 0.33999999999999986,
+        "confidence": 0.8868750035762787,
+        "is_filler": false
+      },
+      {
+        "word": "carrying",
+        "start": 19.32,
+        "end": 19.6,
+        "duration": 0.28000000000000114,
+        "confidence": 0.9421358704566956,
+        "is_filler": false
+      },
+      {
+        "word": "the",
+        "start": 19.6,
+        "end": 19.8,
+        "duration": 0.1999999999999993,
+        "confidence": 0.9947218894958496,
+        "is_filler": false
+      },
+      {
+        "word": "same",
+        "start": 19.8,
+        "end": 20.68,
+        "duration": 0.879999999999999,
+        "confidence": 0.9992356300354004,
+        "is_filler": false
+      },
+      {
+        "word": "carrier,",
+        "start": 20.68,
+        "end": 21.68,
+        "duration": 1.0,
+        "confidence": 0.8886480331420898,
+        "is_filler": false
+      },
+      {
+        "word": "I",
+        "start": 21.68,
+        "end": 22.04,
+        "duration": 0.35999999999999943,
+        "confidence": 0.9977391958236694,
+        "is_filler": false
+      },
+      {
+        "word": "think.",
+        "start": 22.04,
+        "end": 22.3,
+        "duration": 0.26000000000000156,
+        "confidence": 0.5,
+        "is_filler": false
+      },
+      {
+        "word": "I",
+        "start": 22.48,
+        "end": 22.54,
+        "duration": 0.05999999999999872,
+        "confidence": 0.9885239005088806,
+        "is_filler": false
+      },
+      {
+        "word": "mean,",
+        "start": 22.54,
+        "end": 22.72,
+        "duration": 0.17999999999999972,
+        "confidence": 0.9923323392868042,
+        "is_filler": false
+      },
+      {
+        "word": "the",
+        "start": 22.86,
+        "end": 22.94,
+        "duration": 0.08000000000000185,
+        "confidence": 0.972524106502533,
+        "is_filler": false
+      },
+      {
+        "word": "suitcase,",
+        "start": 22.94,
+        "end": 23.28,
+        "duration": 0.33999999999999986,
+        "confidence": 0.9873490333557129,
+        "is_filler": false
+      },
+      {
+        "word": "I",
+        "start": 23.94,
+        "end": 24.08,
+        "duration": 0.13999999999999702,
+        "confidence": 0.9982787370681763,
+        "is_filler": false
+      },
+      {
+        "word": "think.",
+        "start": 24.08,
+        "end": 24.52,
+        "duration": 0.4400000000000013,
+        "confidence": 0.9990224838256836,
+        "is_filler": false
+      },
+      {
+        "word": "because",
+        "start": 26.68,
+        "end": 27.4,
+        "duration": 0.7199999999999989,
+        "confidence": 0.5,
+        "is_filler": false
+      },
+      {
+        "word": "they",
+        "start": 27.4,
+        "end": 27.88,
+        "duration": 0.4800000000000004,
+        "confidence": 0.951682984828949,
+        "is_filler": false
+      },
+      {
+        "word": "did",
+        "start": 27.88,
+        "end": 28.22,
+        "duration": 0.33999999999999986,
+        "confidence": 0.8086175322532654,
+        "is_filler": false
+      },
+      {
+        "word": "not",
+        "start": 28.22,
+        "end": 28.48,
+        "duration": 0.26000000000000156,
+        "confidence": 0.9959839582443237,
+        "is_filler": false
+      },
+      {
+        "word": "see",
+        "start": 28.48,
+        "end": 29.16,
+        "duration": 0.6799999999999997,
+        "confidence": 0.9889025092124939,
+        "is_filler": false
+      },
+      {
+        "word": "each",
+        "start": 29.16,
+        "end": 29.7,
+        "duration": 0.5399999999999991,
+        "confidence": 0.9943711161613464,
+        "is_filler": false
+      },
+      {
+        "word": "other,",
+        "start": 29.7,
+        "end": 30.06,
+        "duration": 0.35999999999999943,
+        "confidence": 0.9946503043174744,
+        "is_filler": false
+      },
+      {
+        "word": "they",
+        "start": 30.42,
+        "end": 31.0,
+        "duration": 0.5799999999999983,
+        "confidence": 0.9293881058692932,
+        "is_filler": false
+      },
+      {
+        "word": "just",
+        "start": 31.0,
+        "end": 31.24,
+        "duration": 0.23999999999999844,
+        "confidence": 0.9689532518386841,
+        "is_filler": false
+      },
+      {
+        "word": "bumped",
+        "start": 31.24,
+        "end": 31.62,
+        "duration": 0.38000000000000256,
+        "confidence": 0.8304792046546936,
+        "is_filler": false
+      },
+      {
+        "word": "into",
+        "start": 31.62,
+        "end": 31.96,
+        "duration": 0.33999999999999986,
+        "confidence": 0.9868749976158142,
+        "is_filler": false
+      },
+      {
+        "word": "each",
+        "start": 31.96,
+        "end": 32.16,
+        "duration": 0.19999999999999574,
+        "confidence": 0.9986509680747986,
+        "is_filler": false
+      },
+      {
+        "word": "other",
+        "start": 32.16,
+        "end": 32.52,
+        "duration": 0.36000000000000654,
+        "confidence": 0.9929914474487305,
+        "is_filler": false
+      },
+      {
+        "word": "and",
+        "start": 32.52,
+        "end": 33.06,
+        "duration": 0.5399999999999991,
+        "confidence": 0.6079256534576416,
+        "is_filler": false
+      },
+      {
+        "word": "especially",
+        "start": 33.06,
+        "end": 35.24,
+        "duration": 2.1799999999999997,
+        "confidence": 0.8214412927627563,
+        "is_filler": false
+      },
+      {
+        "word": "for",
+        "start": 35.24,
+        "end": 35.62,
+        "duration": 0.37999999999999545,
+        "confidence": 0.9675469398498535,
+        "is_filler": false
+      },
+      {
+        "word": "the",
+        "start": 35.62,
+        "end": 35.76,
+        "duration": 0.14000000000000057,
+        "confidence": 0.9826956987380981,
+        "is_filler": false
+      },
+      {
+        "word": "man",
+        "start": 35.76,
+        "end": 36.02,
+        "duration": 0.2600000000000051,
+        "confidence": 0.5,
+        "is_filler": false
+      },
+      {
+        "word": "he",
+        "start": 36.02,
+        "end": 36.4,
+        "duration": 0.37999999999999545,
+        "confidence": 0.40238654613494873,
+        "is_filler": false
+      },
+      {
+        "word": "dropped",
+        "start": 36.4,
+        "end": 36.64,
+        "duration": 0.240000000000002,
+        "confidence": 0.9865149855613708,
+        "is_filler": false
+      },
+      {
+        "word": "to",
+        "start": 36.64,
+        "end": 36.92,
+        "duration": 0.28000000000000114,
+        "confidence": 0.713549017906189,
+        "is_filler": false
+      },
+      {
+        "word": "his",
+        "start": 36.92,
+        "end": 37.16,
+        "duration": 0.23999999999999488,
+        "confidence": 0.9805721044540405,
+        "is_filler": false
+      },
+      {
+        "word": "classes.",
+        "start": 37.16,
+        "end": 37.8,
+        "duration": 0.6400000000000006,
+        "confidence": 0.9157265424728394,
+        "is_filler": false
+      },
+      {
+        "word": "After",
+        "start": 40.300000000000004,
+        "end": 41.02,
+        "duration": 0.7199999999999989,
+        "confidence": 0.5,
+        "is_filler": false
+      },
+      {
+        "word": "bumping",
+        "start": 41.02,
+        "end": 41.52,
+        "duration": 0.5,
+        "confidence": 0.9215875566005707,
+        "is_filler": false
+      },
+      {
+        "word": "into",
+        "start": 41.52,
+        "end": 41.86,
+        "duration": 0.3399999999999963,
+        "confidence": 0.9768962264060974,
+        "is_filler": false
+      },
+      {
+        "word": "each",
+        "start": 41.86,
+        "end": 42.12,
+        "duration": 0.259999999999998,
+        "confidence": 0.9956732392311096,
+        "is_filler": false
+      },
+      {
+        "word": "other,",
+        "start": 42.12,
+        "end": 42.5,
+        "duration": 0.38000000000000256,
+        "confidence": 0.9920735955238342,
+        "is_filler": false
+      },
+      {
+        "word": "they",
+        "start": 43.74,
+        "end": 45.48,
+        "duration": 1.7399999999999949,
+        "confidence": 0.9750455021858215,
+        "is_filler": false
+      },
+      {
+        "word": "seem",
+        "start": 45.48,
+        "end": 45.72,
+        "duration": 0.240000000000002,
+        "confidence": 0.5026553273200989,
+        "is_filler": false
+      },
+      {
+        "word": "to",
+        "start": 45.72,
+        "end": 45.88,
+        "duration": 0.1600000000000037,
+        "confidence": 0.9987027645111084,
+        "is_filler": false
+      },
+      {
+        "word": "have",
+        "start": 45.88,
+        "end": 46.08,
+        "duration": 0.19999999999999574,
+        "confidence": 0.9988191723823547,
+        "is_filler": false
+      },
+      {
+        "word": "a",
+        "start": 46.08,
+        "end": 46.28,
+        "duration": 0.20000000000000284,
+        "confidence": 0.9671288728713989,
+        "is_filler": false
+      },
+      {
+        "word": "headache",
+        "start": 46.28,
+        "end": 46.66,
+        "duration": 0.37999999999999545,
+        "confidence": 0.891643226146698,
+        "is_filler": false
+      },
+      {
+        "word": "because",
+        "start": 46.66,
+        "end": 47.52,
+        "duration": 0.8600000000000065,
+        "confidence": 0.6968892216682434,
+        "is_filler": false
+      },
+      {
+        "word": "there",
+        "start": 47.52,
+        "end": 48.42,
+        "duration": 0.8999999999999986,
+        "confidence": 0.9767246842384338,
+        "is_filler": false
+      },
+      {
+        "word": "is",
+        "start": 48.42,
+        "end": 48.64,
+        "duration": 0.21999999999999886,
+        "confidence": 0.7705690860748291,
+        "is_filler": false
+      },
+      {
+        "word": "the",
+        "start": 48.64,
+        "end": 48.88,
+        "duration": 0.240000000000002,
+        "confidence": 0.9521861672401428,
+        "is_filler": false
+      },
+      {
+        "word": "stars",
+        "start": 48.88,
+        "end": 49.76,
+        "duration": 0.8799999999999955,
+        "confidence": 0.9860866069793701,
+        "is_filler": false
+      },
+      {
+        "word": "going",
+        "start": 49.76,
+        "end": 50.18,
+        "duration": 0.4200000000000017,
+        "confidence": 0.9476261138916016,
+        "is_filler": false
+      },
+      {
+        "word": "around",
+        "start": 50.18,
+        "end": 50.54,
+        "duration": 0.35999999999999943,
+        "confidence": 0.960634708404541,
+        "is_filler": false
+      },
+      {
+        "word": "their",
+        "start": 50.54,
+        "end": 50.82,
+        "duration": 0.28000000000000114,
+        "confidence": 0.562980055809021,
+        "is_filler": false
+      },
+      {
+        "word": "head.",
+        "start": 50.82,
+        "end": 51.7,
+        "duration": 0.8800000000000026,
+        "confidence": 0.2863486707210541,
+        "is_filler": false
+      },
+      {
+        "word": "And",
+        "start": 51.7,
+        "end": 52.82,
+        "duration": 1.1199999999999974,
+        "confidence": 0.5,
+        "is_filler": false
+      },
+      {
+        "word": "after",
+        "start": 52.82,
+        "end": 53.1,
+        "duration": 0.28000000000000114,
+        "confidence": 0.9332237243652344,
+        "is_filler": false
+      },
+      {
+        "word": "that",
+        "start": 53.1,
+        "end": 53.5,
+        "duration": 0.3999999999999986,
+        "confidence": 0.965985894203186,
+        "is_filler": false
+      },
+      {
+        "word": "they",
+        "start": 53.5,
+        "end": 53.94,
+        "duration": 0.4399999999999977,
+        "confidence": 0.6109926104545593,
+        "is_filler": false
+      },
+      {
+        "word": "said",
+        "start": 53.94,
+        "end": 54.24,
+        "duration": 0.30000000000000426,
+        "confidence": 0.8316388726234436,
+        "is_filler": false
+      },
+      {
+        "word": "to",
+        "start": 54.24,
+        "end": 54.58,
+        "duration": 0.3399999999999963,
+        "confidence": 0.8970245122909546,
+        "is_filler": false
+      },
+      {
+        "word": "just",
+        "start": 54.58,
+        "end": 56.08,
+        "duration": 1.5,
+        "confidence": 0.5279032588005066,
+        "is_filler": false
+      },
+      {
+        "word": "the",
+        "start": 56.08,
+        "end": 56.42,
+        "duration": 0.3400000000000034,
+        "confidence": 0.7559617161750793,
+        "is_filler": false
+      },
+      {
+        "word": "I'm",
+        "start": 56.42,
+        "end": 56.84,
+        "duration": 0.4200000000000017,
+        "confidence": 0.6230753660202026,
+        "is_filler": false
+      },
+      {
+        "word": "sorry",
+        "start": 56.84,
+        "end": 57.08,
+        "duration": 0.23999999999999488,
+        "confidence": 0.995087206363678,
+        "is_filler": false
+      },
+      {
+        "word": "to",
+        "start": 57.08,
+        "end": 57.34,
+        "duration": 0.2600000000000051,
+        "confidence": 0.9889243245124817,
+        "is_filler": false
+      },
+      {
+        "word": "each",
+        "start": 57.34,
+        "end": 57.56,
+        "duration": 0.21999999999999886,
+        "confidence": 0.9970405697822571,
+        "is_filler": false
+      },
+      {
+        "word": "other",
+        "start": 57.56,
+        "end": 57.9,
+        "duration": 0.3399999999999963,
+        "confidence": 0.9846470355987549,
+        "is_filler": false
+      },
+      {
+        "word": "and",
+        "start": 57.9,
+        "end": 58.9,
+        "duration": 1.0,
+        "confidence": 0.8948258757591248,
+        "is_filler": false
+      },
+      {
+        "word": "pick",
+        "start": 58.9,
+        "end": 59.52,
+        "duration": 0.6200000000000045,
+        "confidence": 0.8294082880020142,
+        "is_filler": false
+      },
+      {
+        "word": "up",
+        "start": 59.52,
+        "end": 59.76,
+        "duration": 0.23999999999999488,
+        "confidence": 0.8654812574386597,
+        "is_filler": false
+      },
+      {
+        "word": "their",
+        "start": 59.76,
+        "end": 60.08,
+        "duration": 0.3200000000000003,
+        "confidence": 0.7742452621459961,
+        "is_filler": false
+      },
+      {
+        "word": "on",
+        "start": 60.08,
+        "end": 61.12,
+        "duration": 1.0399999999999991,
+        "confidence": 0.3244158923625946,
+        "is_filler": false
+      },
+      {
+        "word": "suitcases",
+        "start": 61.12,
+        "end": 61.94,
+        "duration": 0.8200000000000003,
+        "confidence": 0.5,
+        "is_filler": false
+      },
+      {
+        "word": "but",
+        "start": 61.94,
+        "end": 62.36,
+        "duration": 0.4200000000000017,
+        "confidence": 0.5469521284103394,
+        "is_filler": false
+      },
+      {
+        "word": "and",
+        "start": 62.36,
+        "end": 63.62,
+        "duration": 1.259999999999998,
+        "confidence": 0.6803960800170898,
+        "is_filler": false
+      },
+      {
+        "word": "they",
+        "start": 63.62,
+        "end": 63.8,
+        "duration": 0.17999999999999972,
+        "confidence": 0.987684965133667,
+        "is_filler": false
+      },
+      {
+        "word": "just",
+        "start": 63.8,
+        "end": 64.06,
+        "duration": 0.2600000000000051,
+        "confidence": 0.9960492253303528,
+        "is_filler": false
+      },
+      {
+        "word": "the",
+        "start": 64.06,
+        "end": 64.44,
+        "duration": 0.37999999999999545,
+        "confidence": 0.8090237379074097,
+        "is_filler": false
+      },
+      {
+        "word": "when",
+        "start": 64.44,
+        "end": 66.34,
+        "duration": 1.9000000000000057,
+        "confidence": 0.2779010236263275,
+        "is_filler": false
+      },
+      {
+        "word": "to",
+        "start": 66.34,
+        "end": 66.68,
+        "duration": 0.3400000000000034,
+        "confidence": 0.9435745477676392,
+        "is_filler": false
+      },
+      {
+        "word": "their",
+        "start": 66.68,
+        "end": 67.34,
+        "duration": 0.6599999999999966,
+        "confidence": 0.8319658637046814,
+        "is_filler": false
+      },
+      {
+        "word": "on",
+        "start": 67.34,
+        "end": 67.66,
+        "duration": 0.3199999999999932,
+        "confidence": 0.6843109726905823,
+        "is_filler": false
+      },
+      {
+        "word": "-draft",
+        "start": 67.66,
+        "end": 67.94,
+        "duration": 0.28000000000000114,
+        "confidence": 0.2033450206120809,
+        "is_filler": false
+      },
+      {
+        "word": "I",
+        "start": 67.94,
+        "end": 68.26,
+        "duration": 0.3200000000000074,
+        "confidence": 0.7313870787620544,
+        "is_filler": false
+      },
+      {
+        "word": "mean",
+        "start": 68.26,
+        "end": 68.38,
+        "duration": 0.11999999999999034,
+        "confidence": 0.9927307963371277,
+        "is_filler": false
+      },
+      {
+        "word": "the",
+        "start": 68.38,
+        "end": 68.56,
+        "duration": 0.18000000000000682,
+        "confidence": 0.8948535919189453,
+        "is_filler": false
+      },
+      {
+        "word": "destinations",
+        "start": 68.56,
+        "end": 69.2,
+        "duration": 0.6400000000000006,
+        "confidence": 0.5,
+        "is_filler": false
+      },
+      {
+        "word": "but",
+        "start": 69.2,
+        "end": 70.72,
+        "duration": 1.519999999999996,
+        "confidence": 0.526617705821991,
+        "is_filler": false
+      },
+      {
+        "word": "after",
+        "start": 70.72,
+        "end": 71.14,
+        "duration": 0.4200000000000017,
+        "confidence": 0.9909815192222595,
+        "is_filler": false
+      },
+      {
+        "word": "that",
+        "start": 71.14,
+        "end": 71.5,
+        "duration": 0.35999999999999943,
+        "confidence": 0.9950478076934814,
+        "is_filler": false
+      },
+      {
+        "word": "when",
+        "start": 71.5,
+        "end": 72.38,
+        "duration": 0.8799999999999955,
+        "confidence": 0.9667385816574097,
+        "is_filler": false
+      },
+      {
+        "word": "just",
+        "start": 72.38,
+        "end": 73.26,
+        "duration": 0.8800000000000097,
+        "confidence": 0.9723986387252808,
+        "is_filler": false
+      },
+      {
+        "word": "the",
+        "start": 73.26,
+        "end": 73.46,
+        "duration": 0.19999999999998863,
+        "confidence": 0.962493360042572,
+        "is_filler": false
+      },
+      {
+        "word": "open",
+        "start": 73.46,
+        "end": 73.78,
+        "duration": 0.3200000000000074,
+        "confidence": 0.5,
+        "is_filler": false
+      },
+      {
+        "word": "their",
+        "start": 73.78,
+        "end": 74.12,
+        "duration": 0.3400000000000034,
+        "confidence": 0.24191135168075562,
+        "is_filler": false
+      }
+    ],
+    "words_timestamps_cleaned": [
+      {
+        "word": "okay,",
+        "start": 1.56,
+        "end": 2.28,
+        "duration": 0.7199999999999998,
+        "confidence": 0.49544429779052734,
+        "is_filler": false
+      },
+      {
+        "word": "in",
+        "start": 2.56,
+        "end": 2.64,
+        "duration": 0.08000000000000007,
+        "confidence": 0.965099036693573,
+        "is_filler": false
+      },
+      {
+        "word": "the",
+        "start": 2.64,
+        "end": 2.74,
+        "duration": 0.10000000000000009,
+        "confidence": 0.9512729048728943,
+        "is_filler": false
+      },
+      {
+        "word": "city,",
+        "start": 2.74,
+        "end": 3.04,
+        "duration": 0.2999999999999998,
+        "confidence": 0.9846951365470886,
+        "is_filler": false
+      },
+      {
+        "word": "I",
+        "start": 3.42,
+        "end": 3.5,
+        "duration": 0.08000000000000007,
+        "confidence": 0.9848394989967346,
+        "is_filler": false
+      },
+      {
+        "word": "think",
+        "start": 3.5,
+        "end": 3.72,
+        "duration": 0.2200000000000002,
+        "confidence": 0.9980146884918213,
+        "is_filler": false
+      },
+      {
+        "word": "there",
+        "start": 3.72,
+        "end": 4.34,
+        "duration": 0.6199999999999997,
+        "confidence": 0.7533241510391235,
+        "is_filler": false
+      },
+      {
+        "word": "are",
+        "start": 4.34,
+        "end": 4.6,
+        "duration": 0.2599999999999998,
+        "confidence": 0.9888585805892944,
+        "is_filler": false
+      },
+      {
+        "word": "many",
+        "start": 4.6,
+        "end": 4.9,
+        "duration": 0.3000000000000007,
+        "confidence": 0.9877696633338928,
+        "is_filler": false
+      },
+      {
+        "word": "skyscrapers",
+        "start": 4.9,
+        "end": 6.14,
+        "duration": 1.2399999999999993,
+        "confidence": 0.9680913090705872,
+        "is_filler": false
+      },
+      {
+        "word": "and",
+        "start": 6.14,
+        "end": 6.42,
+        "duration": 0.28000000000000025,
+        "confidence": 0.7738503813743591,
+        "is_filler": false
+      },
+      {
+        "word": "the",
+        "start": 6.42,
+        "end": 6.92,
+        "duration": 0.5,
+        "confidence": 0.578108012676239,
+        "is_filler": false
+      },
+      {
+        "word": "many",
+        "start": 6.92,
+        "end": 7.58,
+        "duration": 0.6600000000000001,
+        "confidence": 0.29727691411972046,
+        "is_filler": false
+      },
+      {
+        "word": "cars,",
+        "start": 7.58,
+        "end": 7.98,
+        "duration": 0.40000000000000036,
+        "confidence": 0.9721419215202332,
+        "is_filler": false
+      },
+      {
+        "word": "not",
+        "start": 8.32,
+        "end": 8.58,
+        "duration": 0.2599999999999998,
+        "confidence": 0.8375605940818787,
+        "is_filler": false
+      },
+      {
+        "word": "so",
+        "start": 8.58,
+        "end": 9.12,
+        "duration": 0.5399999999999991,
+        "confidence": 0.8072320818901062,
+        "is_filler": false
+      },
+      {
+        "word": "many",
+        "start": 9.12,
+        "end": 9.32,
+        "duration": 0.20000000000000107,
+        "confidence": 0.9991087317466736,
+        "is_filler": false
+      },
+      {
+        "word": "cars",
+        "start": 9.32,
+        "end": 9.62,
+        "duration": 0.29999999999999893,
+        "confidence": 0.9979100823402405,
+        "is_filler": false
+      },
+      {
+        "word": "on",
+        "start": 9.62,
+        "end": 9.82,
+        "duration": 0.20000000000000107,
+        "confidence": 0.9258421659469604,
+        "is_filler": false
+      },
+      {
+        "word": "the",
+        "start": 9.82,
+        "end": 9.96,
+        "duration": 0.14000000000000057,
+        "confidence": 0.9978131055831909,
+        "is_filler": false
+      },
+      {
+        "word": "road.",
+        "start": 9.96,
+        "end": 10.26,
+        "duration": 0.29999999999999893,
+        "confidence": 0.9919663667678833,
+        "is_filler": false
+      },
+      {
+        "word": "And",
+        "start": 11.02,
+        "end": 11.44,
+        "duration": 0.41999999999999993,
+        "confidence": 0.9494722485542297,
+        "is_filler": false
+      },
+      {
+        "word": "in",
+        "start": 11.44,
+        "end": 11.94,
+        "duration": 0.5,
+        "confidence": 0.9056050777435303,
+        "is_filler": false
+      },
+      {
+        "word": "the",
+        "start": 11.94,
+        "end": 12.04,
+        "duration": 0.09999999999999964,
+        "confidence": 0.9981539845466614,
+        "is_filler": false
+      },
+      {
+        "word": "corner",
+        "start": 12.04,
+        "end": 12.3,
+        "duration": 0.26000000000000156,
+        "confidence": 0.9952740669250488,
+        "is_filler": false
+      },
+      {
+        "word": "of",
+        "start": 12.3,
+        "end": 12.48,
+        "duration": 0.17999999999999972,
+        "confidence": 0.997566819190979,
+        "is_filler": false
+      },
+      {
+        "word": "the",
+        "start": 12.48,
+        "end": 12.56,
+        "duration": 0.08000000000000007,
+        "confidence": 0.9894906878471375,
+        "is_filler": false
+      },
+      {
+        "word": "building,",
+        "start": 12.56,
+        "end": 13.08,
+        "duration": 0.5199999999999996,
+        "confidence": 0.9964781403541565,
+        "is_filler": false
+      },
+      {
+        "word": "the",
+        "start": 13.62,
+        "end": 14.26,
+        "duration": 0.6400000000000006,
+        "confidence": 0.9682059288024902,
+        "is_filler": false
+      },
+      {
+        "word": "two",
+        "start": 14.26,
+        "end": 14.6,
+        "duration": 0.33999999999999986,
+        "confidence": 0.9572780132293701,
+        "is_filler": false
+      },
+      {
+        "word": "people",
+        "start": 14.6,
+        "end": 14.96,
+        "duration": 0.3600000000000012,
+        "confidence": 0.9961691498756409,
+        "is_filler": false
+      },
+      {
+        "word": "are",
+        "start": 14.96,
+        "end": 15.52,
+        "duration": 0.5599999999999987,
+        "confidence": 0.9942256808280945,
+        "is_filler": false
+      },
+      {
+        "word": "walking",
+        "start": 15.52,
+        "end": 15.94,
+        "duration": 0.41999999999999993,
+        "confidence": 0.8890625238418579,
+        "is_filler": false
+      },
+      {
+        "word": "into",
+        "start": 15.94,
+        "end": 16.28,
+        "duration": 0.34000000000000163,
+        "confidence": 0.9408321380615234,
+        "is_filler": false
+      },
+      {
+        "word": "the",
+        "start": 16.28,
+        "end": 16.46,
+        "duration": 0.17999999999999972,
+        "confidence": 0.9918941855430603,
+        "is_filler": false
+      },
+      {
+        "word": "same",
+        "start": 16.46,
+        "end": 16.72,
+        "duration": 0.259999999999998,
+        "confidence": 0.9995368719100952,
+        "is_filler": false
+      },
+      {
+        "word": "directions,",
+        "start": 16.72,
+        "end": 17.28,
+        "duration": 0.5600000000000023,
+        "confidence": 0.8896908760070801,
+        "is_filler": false
+      },
+      {
+        "word": "and",
+        "start": 18.18,
+        "end": 18.98,
+        "duration": 0.8000000000000007,
+        "confidence": 0.9856044054031372,
+        "is_filler": false
+      },
+      {
+        "word": "they're",
+        "start": 18.98,
+        "end": 19.32,
+        "duration": 0.33999999999999986,
+        "confidence": 0.8868750035762787,
+        "is_filler": false
+      },
+      {
+        "word": "carrying",
+        "start": 19.32,
+        "end": 19.6,
+        "duration": 0.28000000000000114,
+        "confidence": 0.9421358704566956,
+        "is_filler": false
+      },
+      {
+        "word": "the",
+        "start": 19.6,
+        "end": 19.8,
+        "duration": 0.1999999999999993,
+        "confidence": 0.9947218894958496,
+        "is_filler": false
+      },
+      {
+        "word": "same",
+        "start": 19.8,
+        "end": 20.68,
+        "duration": 0.879999999999999,
+        "confidence": 0.9992356300354004,
+        "is_filler": false
+      },
+      {
+        "word": "carrier,",
+        "start": 20.68,
+        "end": 21.68,
+        "duration": 1.0,
+        "confidence": 0.8886480331420898,
+        "is_filler": false
+      },
+      {
+        "word": "I",
+        "start": 21.68,
+        "end": 22.04,
+        "duration": 0.35999999999999943,
+        "confidence": 0.9977391958236694,
+        "is_filler": false
+      },
+      {
+        "word": "think.",
+        "start": 22.04,
+        "end": 22.3,
+        "duration": 0.26000000000000156,
+        "confidence": 0.9847249388694763,
+        "is_filler": false
+      },
+      {
+        "word": "I",
+        "start": 22.48,
+        "end": 22.54,
+        "duration": 0.05999999999999872,
+        "confidence": 0.9885239005088806,
+        "is_filler": false
+      },
+      {
+        "word": "mean,",
+        "start": 22.54,
+        "end": 22.72,
+        "duration": 0.17999999999999972,
+        "confidence": 0.9923323392868042,
+        "is_filler": false
+      },
+      {
+        "word": "the",
+        "start": 22.86,
+        "end": 22.94,
+        "duration": 0.08000000000000185,
+        "confidence": 0.972524106502533,
+        "is_filler": false
+      },
+      {
+        "word": "suitcase,",
+        "start": 22.94,
+        "end": 23.28,
+        "duration": 0.33999999999999986,
+        "confidence": 0.9873490333557129,
+        "is_filler": false
+      },
+      {
+        "word": "I",
+        "start": 23.94,
+        "end": 24.08,
+        "duration": 0.13999999999999702,
+        "confidence": 0.9982787370681763,
+        "is_filler": false
+      },
+      {
+        "word": "think.",
+        "start": 24.08,
+        "end": 24.52,
+        "duration": 0.4400000000000013,
+        "confidence": 0.9990224838256836,
+        "is_filler": false
+      },
+      {
+        "word": "because",
+        "start": 26.68,
+        "end": 27.4,
+        "duration": 0.7199999999999989,
+        "confidence": 0.14957521855831146,
+        "is_filler": false
+      },
+      {
+        "word": "they",
+        "start": 27.4,
+        "end": 27.88,
+        "duration": 0.4800000000000004,
+        "confidence": 0.951682984828949,
+        "is_filler": false
+      },
+      {
+        "word": "did",
+        "start": 27.88,
+        "end": 28.22,
+        "duration": 0.33999999999999986,
+        "confidence": 0.8086175322532654,
+        "is_filler": false
+      },
+      {
+        "word": "not",
+        "start": 28.22,
+        "end": 28.48,
+        "duration": 0.26000000000000156,
+        "confidence": 0.9959839582443237,
+        "is_filler": false
+      },
+      {
+        "word": "see",
+        "start": 28.48,
+        "end": 29.16,
+        "duration": 0.6799999999999997,
+        "confidence": 0.9889025092124939,
+        "is_filler": false
+      },
+      {
+        "word": "each",
+        "start": 29.16,
+        "end": 29.7,
+        "duration": 0.5399999999999991,
+        "confidence": 0.9943711161613464,
+        "is_filler": false
+      },
+      {
+        "word": "other,",
+        "start": 29.7,
+        "end": 30.06,
+        "duration": 0.35999999999999943,
+        "confidence": 0.9946503043174744,
+        "is_filler": false
+      },
+      {
+        "word": "they",
+        "start": 30.42,
+        "end": 31.0,
+        "duration": 0.5799999999999983,
+        "confidence": 0.9293881058692932,
+        "is_filler": false
+      },
+      {
+        "word": "just",
+        "start": 31.0,
+        "end": 31.24,
+        "duration": 0.23999999999999844,
+        "confidence": 0.9689532518386841,
+        "is_filler": false
+      },
+      {
+        "word": "bumped",
+        "start": 31.24,
+        "end": 31.62,
+        "duration": 0.38000000000000256,
+        "confidence": 0.8304792046546936,
+        "is_filler": false
+      },
+      {
+        "word": "into",
+        "start": 31.62,
+        "end": 31.96,
+        "duration": 0.33999999999999986,
+        "confidence": 0.9868749976158142,
+        "is_filler": false
+      },
+      {
+        "word": "each",
+        "start": 31.96,
+        "end": 32.16,
+        "duration": 0.19999999999999574,
+        "confidence": 0.9986509680747986,
+        "is_filler": false
+      },
+      {
+        "word": "other",
+        "start": 32.16,
+        "end": 32.52,
+        "duration": 0.36000000000000654,
+        "confidence": 0.9929914474487305,
+        "is_filler": false
+      },
+      {
+        "word": "and",
+        "start": 32.52,
+        "end": 33.06,
+        "duration": 0.5399999999999991,
+        "confidence": 0.6079256534576416,
+        "is_filler": false
+      },
+      {
+        "word": "especially",
+        "start": 33.06,
+        "end": 35.24,
+        "duration": 2.1799999999999997,
+        "confidence": 0.8214412927627563,
+        "is_filler": false
+      },
+      {
+        "word": "for",
+        "start": 35.24,
+        "end": 35.62,
+        "duration": 0.37999999999999545,
+        "confidence": 0.9675469398498535,
+        "is_filler": false
+      },
+      {
+        "word": "the",
+        "start": 35.62,
+        "end": 35.76,
+        "duration": 0.14000000000000057,
+        "confidence": 0.9826956987380981,
+        "is_filler": false
+      },
+      {
+        "word": "man",
+        "start": 35.76,
+        "end": 36.02,
+        "duration": 0.2600000000000051,
+        "confidence": 0.8730918765068054,
+        "is_filler": false
+      },
+      {
+        "word": "he",
+        "start": 36.02,
+        "end": 36.4,
+        "duration": 0.37999999999999545,
+        "confidence": 0.40238654613494873,
+        "is_filler": false
+      },
+      {
+        "word": "dropped",
+        "start": 36.4,
+        "end": 36.64,
+        "duration": 0.240000000000002,
+        "confidence": 0.9865149855613708,
+        "is_filler": false
+      },
+      {
+        "word": "to",
+        "start": 36.64,
+        "end": 36.92,
+        "duration": 0.28000000000000114,
+        "confidence": 0.713549017906189,
+        "is_filler": false
+      },
+      {
+        "word": "his",
+        "start": 36.92,
+        "end": 37.16,
+        "duration": 0.23999999999999488,
+        "confidence": 0.9805721044540405,
+        "is_filler": false
+      },
+      {
+        "word": "classes.",
+        "start": 37.16,
+        "end": 37.8,
+        "duration": 0.6400000000000006,
+        "confidence": 0.9157265424728394,
+        "is_filler": false
+      },
+      {
+        "word": "After",
+        "start": 40.300000000000004,
+        "end": 41.02,
+        "duration": 0.7199999999999989,
+        "confidence": 0.8909319639205933,
+        "is_filler": false
+      },
+      {
+        "word": "bumping",
+        "start": 41.02,
+        "end": 41.52,
+        "duration": 0.5,
+        "confidence": 0.9215875566005707,
+        "is_filler": false
+      },
+      {
+        "word": "into",
+        "start": 41.52,
+        "end": 41.86,
+        "duration": 0.3399999999999963,
+        "confidence": 0.9768962264060974,
+        "is_filler": false
+      },
+      {
+        "word": "each",
+        "start": 41.86,
+        "end": 42.12,
+        "duration": 0.259999999999998,
+        "confidence": 0.9956732392311096,
+        "is_filler": false
+      },
+      {
+        "word": "other,",
+        "start": 42.12,
+        "end": 42.5,
+        "duration": 0.38000000000000256,
+        "confidence": 0.9920735955238342,
+        "is_filler": false
+      },
+      {
+        "word": "they",
+        "start": 43.74,
+        "end": 45.48,
+        "duration": 1.7399999999999949,
+        "confidence": 0.9750455021858215,
+        "is_filler": false
+      },
+      {
+        "word": "seem",
+        "start": 45.48,
+        "end": 45.72,
+        "duration": 0.240000000000002,
+        "confidence": 0.5026553273200989,
+        "is_filler": false
+      },
+      {
+        "word": "to",
+        "start": 45.72,
+        "end": 45.88,
+        "duration": 0.1600000000000037,
+        "confidence": 0.9987027645111084,
+        "is_filler": false
+      },
+      {
+        "word": "have",
+        "start": 45.88,
+        "end": 46.08,
+        "duration": 0.19999999999999574,
+        "confidence": 0.9988191723823547,
+        "is_filler": false
+      },
+      {
+        "word": "a",
+        "start": 46.08,
+        "end": 46.28,
+        "duration": 0.20000000000000284,
+        "confidence": 0.9671288728713989,
+        "is_filler": false
+      },
+      {
+        "word": "headache",
+        "start": 46.28,
+        "end": 46.66,
+        "duration": 0.37999999999999545,
+        "confidence": 0.891643226146698,
+        "is_filler": false
+      },
+      {
+        "word": "because",
+        "start": 46.66,
+        "end": 47.52,
+        "duration": 0.8600000000000065,
+        "confidence": 0.6968892216682434,
+        "is_filler": false
+      },
+      {
+        "word": "there",
+        "start": 47.52,
+        "end": 48.42,
+        "duration": 0.8999999999999986,
+        "confidence": 0.9767246842384338,
+        "is_filler": false
+      },
+      {
+        "word": "is",
+        "start": 48.42,
+        "end": 48.64,
+        "duration": 0.21999999999999886,
+        "confidence": 0.7705690860748291,
+        "is_filler": false
+      },
+      {
+        "word": "the",
+        "start": 48.64,
+        "end": 48.88,
+        "duration": 0.240000000000002,
+        "confidence": 0.9521861672401428,
+        "is_filler": false
+      },
+      {
+        "word": "stars",
+        "start": 48.88,
+        "end": 49.76,
+        "duration": 0.8799999999999955,
+        "confidence": 0.9860866069793701,
+        "is_filler": false
+      },
+      {
+        "word": "going",
+        "start": 49.76,
+        "end": 50.18,
+        "duration": 0.4200000000000017,
+        "confidence": 0.9476261138916016,
+        "is_filler": false
+      },
+      {
+        "word": "around",
+        "start": 50.18,
+        "end": 50.54,
+        "duration": 0.35999999999999943,
+        "confidence": 0.960634708404541,
+        "is_filler": false
+      },
+      {
+        "word": "their",
+        "start": 50.54,
+        "end": 50.82,
+        "duration": 0.28000000000000114,
+        "confidence": 0.562980055809021,
+        "is_filler": false
+      },
+      {
+        "word": "head.",
+        "start": 50.82,
+        "end": 51.7,
+        "duration": 0.8800000000000026,
+        "confidence": 0.2863486707210541,
+        "is_filler": false
+      },
+      {
+        "word": "And",
+        "start": 51.7,
+        "end": 52.82,
+        "duration": 1.1199999999999974,
+        "confidence": 0.3499099612236023,
+        "is_filler": false
+      },
+      {
+        "word": "after",
+        "start": 52.82,
+        "end": 53.1,
+        "duration": 0.28000000000000114,
+        "confidence": 0.9332237243652344,
+        "is_filler": false
+      },
+      {
+        "word": "that",
+        "start": 53.1,
+        "end": 53.5,
+        "duration": 0.3999999999999986,
+        "confidence": 0.965985894203186,
+        "is_filler": false
+      },
+      {
+        "word": "they",
+        "start": 53.5,
+        "end": 53.94,
+        "duration": 0.4399999999999977,
+        "confidence": 0.6109926104545593,
+        "is_filler": false
+      },
+      {
+        "word": "said",
+        "start": 53.94,
+        "end": 54.24,
+        "duration": 0.30000000000000426,
+        "confidence": 0.8316388726234436,
+        "is_filler": false
+      },
+      {
+        "word": "to",
+        "start": 54.24,
+        "end": 54.58,
+        "duration": 0.3399999999999963,
+        "confidence": 0.8970245122909546,
+        "is_filler": false
+      },
+      {
+        "word": "just",
+        "start": 54.58,
+        "end": 56.08,
+        "duration": 1.5,
+        "confidence": 0.5279032588005066,
+        "is_filler": false
+      },
+      {
+        "word": "the",
+        "start": 56.08,
+        "end": 56.42,
+        "duration": 0.3400000000000034,
+        "confidence": 0.7559617161750793,
+        "is_filler": false
+      },
+      {
+        "word": "I'm",
+        "start": 56.42,
+        "end": 56.84,
+        "duration": 0.4200000000000017,
+        "confidence": 0.6230753660202026,
+        "is_filler": false
+      },
+      {
+        "word": "sorry",
+        "start": 56.84,
+        "end": 57.08,
+        "duration": 0.23999999999999488,
+        "confidence": 0.995087206363678,
+        "is_filler": false
+      },
+      {
+        "word": "to",
+        "start": 57.08,
+        "end": 57.34,
+        "duration": 0.2600000000000051,
+        "confidence": 0.9889243245124817,
+        "is_filler": false
+      },
+      {
+        "word": "each",
+        "start": 57.34,
+        "end": 57.56,
+        "duration": 0.21999999999999886,
+        "confidence": 0.9970405697822571,
+        "is_filler": false
+      },
+      {
+        "word": "other",
+        "start": 57.56,
+        "end": 57.9,
+        "duration": 0.3399999999999963,
+        "confidence": 0.9846470355987549,
+        "is_filler": false
+      },
+      {
+        "word": "and",
+        "start": 57.9,
+        "end": 58.9,
+        "duration": 1.0,
+        "confidence": 0.8948258757591248,
+        "is_filler": false
+      },
+      {
+        "word": "pick",
+        "start": 58.9,
+        "end": 59.52,
+        "duration": 0.6200000000000045,
+        "confidence": 0.8294082880020142,
+        "is_filler": false
+      },
+      {
+        "word": "up",
+        "start": 59.52,
+        "end": 59.76,
+        "duration": 0.23999999999999488,
+        "confidence": 0.8654812574386597,
+        "is_filler": false
+      },
+      {
+        "word": "their",
+        "start": 59.76,
+        "end": 60.08,
+        "duration": 0.3200000000000003,
+        "confidence": 0.7742452621459961,
+        "is_filler": false
+      },
+      {
+        "word": "on",
+        "start": 60.08,
+        "end": 61.12,
+        "duration": 1.0399999999999991,
+        "confidence": 0.3244158923625946,
+        "is_filler": false
+      },
+      {
+        "word": "suitcases",
+        "start": 61.12,
+        "end": 61.94,
+        "duration": 0.8200000000000003,
+        "confidence": 0.863550454378128,
+        "is_filler": false
+      },
+      {
+        "word": "but",
+        "start": 61.94,
+        "end": 62.36,
+        "duration": 0.4200000000000017,
+        "confidence": 0.5469521284103394,
+        "is_filler": false
+      },
+      {
+        "word": "and",
+        "start": 62.36,
+        "end": 63.62,
+        "duration": 1.259999999999998,
+        "confidence": 0.6803960800170898,
+        "is_filler": false
+      },
+      {
+        "word": "they",
+        "start": 63.62,
+        "end": 63.8,
+        "duration": 0.17999999999999972,
+        "confidence": 0.987684965133667,
+        "is_filler": false
+      },
+      {
+        "word": "just",
+        "start": 63.8,
+        "end": 64.06,
+        "duration": 0.2600000000000051,
+        "confidence": 0.9960492253303528,
+        "is_filler": false
+      },
+      {
+        "word": "the",
+        "start": 64.06,
+        "end": 64.44,
+        "duration": 0.37999999999999545,
+        "confidence": 0.8090237379074097,
+        "is_filler": false
+      },
+      {
+        "word": "when",
+        "start": 64.44,
+        "end": 66.34,
+        "duration": 1.9000000000000057,
+        "confidence": 0.2779010236263275,
+        "is_filler": false
+      },
+      {
+        "word": "to",
+        "start": 66.34,
+        "end": 66.68,
+        "duration": 0.3400000000000034,
+        "confidence": 0.9435745477676392,
+        "is_filler": false
+      },
+      {
+        "word": "their",
+        "start": 66.68,
+        "end": 67.34,
+        "duration": 0.6599999999999966,
+        "confidence": 0.8319658637046814,
+        "is_filler": false
+      },
+      {
+        "word": "on",
+        "start": 67.34,
+        "end": 67.66,
+        "duration": 0.3199999999999932,
+        "confidence": 0.6843109726905823,
+        "is_filler": false
+      },
+      {
+        "word": "-draft",
+        "start": 67.66,
+        "end": 67.94,
+        "duration": 0.28000000000000114,
+        "confidence": 0.2033450206120809,
+        "is_filler": false
+      },
+      {
+        "word": "I",
+        "start": 67.94,
+        "end": 68.26,
+        "duration": 0.3200000000000074,
+        "confidence": 0.7313870787620544,
+        "is_filler": false
+      },
+      {
+        "word": "mean",
+        "start": 68.26,
+        "end": 68.38,
+        "duration": 0.11999999999999034,
+        "confidence": 0.9927307963371277,
+        "is_filler": false
+      },
+      {
+        "word": "the",
+        "start": 68.38,
+        "end": 68.56,
+        "duration": 0.18000000000000682,
+        "confidence": 0.8948535919189453,
+        "is_filler": false
+      },
+      {
+        "word": "destinations",
+        "start": 68.56,
+        "end": 69.2,
+        "duration": 0.6400000000000006,
+        "confidence": 0.9709699153900146,
+        "is_filler": false
+      },
+      {
+        "word": "but",
+        "start": 69.2,
+        "end": 70.72,
+        "duration": 1.519999999999996,
+        "confidence": 0.526617705821991,
+        "is_filler": false
+      },
+      {
+        "word": "after",
+        "start": 70.72,
+        "end": 71.14,
+        "duration": 0.4200000000000017,
+        "confidence": 0.9909815192222595,
+        "is_filler": false
+      },
+      {
+        "word": "that",
+        "start": 71.14,
+        "end": 71.5,
+        "duration": 0.35999999999999943,
+        "confidence": 0.9950478076934814,
+        "is_filler": false
+      },
+      {
+        "word": "when",
+        "start": 71.5,
+        "end": 72.38,
+        "duration": 0.8799999999999955,
+        "confidence": 0.9667385816574097,
+        "is_filler": false
+      },
+      {
+        "word": "just",
+        "start": 72.38,
+        "end": 73.26,
+        "duration": 0.8800000000000097,
+        "confidence": 0.9723986387252808,
+        "is_filler": false
+      },
+      {
+        "word": "the",
+        "start": 73.26,
+        "end": 73.46,
+        "duration": 0.19999999999998863,
+        "confidence": 0.962493360042572,
+        "is_filler": false
+      },
+      {
+        "word": "open",
+        "start": 73.46,
+        "end": 73.78,
+        "duration": 0.3200000000000074,
+        "confidence": 0.9268755316734314,
+        "is_filler": false
+      },
+      {
+        "word": "their",
+        "start": 73.78,
+        "end": 74.12,
+        "duration": 0.3400000000000034,
+        "confidence": 0.24191135168075562,
+        "is_filler": false
+      }
+    ],
+    "segment_timestamps": [
+      {
+        "text": "Um, okay, in the city, I think there are many skyscrapers and the many cars, not so many cars on the road.",
+        "start": 0.0,
+        "end": 10.26,
+        "duration": 10.26,
+        "avg_word_confidence": 0.8305914177643982,
+        "contains_filler": true
+      },
+      {
+        "text": "And in the corner of the building, the two people are walking into the same directions, and they're carrying the same carrier, I think. I mean, the suitcase, I think.",
+        "start": 11.02,
+        "end": 24.52,
+        "duration": 13.5,
+        "avg_word_confidence": 0.9692217320203781,
+        "contains_filler": false
+      },
+      {
+        "text": "because they did not see each other, they just bumped into each other and especially for the man he dropped to his classes.",
+        "start": 26.68,
+        "end": 37.8,
+        "duration": 11.119999999999997,
+        "avg_word_confidence": 0.8627205329096835,
+        "contains_filler": false
+      },
+      {
+        "text": "After bumping into each other, they seem to have a headache because there is the stars going around their head.",
+        "start": 40.300000000000004,
+        "end": 51.7,
+        "duration": 11.399999999999999,
+        "avg_word_confidence": 0.8625601381063461,
+        "contains_filler": false
+      },
+      {
+        "text": "And after that they said to just the I'm sorry to each other and pick up their on",
+        "start": 51.7,
+        "end": 61.12,
+        "duration": 9.419999999999995,
+        "avg_word_confidence": 0.786099534895685,
+        "contains_filler": false
+      },
+      {
+        "text": "suitcases but and they just the when to their on-draft I mean the",
+        "start": 61.12,
+        "end": 68.56,
+        "duration": 7.440000000000005,
+        "avg_word_confidence": 0.7459803918997446,
+        "contains_filler": false
+      },
+      {
+        "text": "destinations but after that when just the open their",
+        "start": 68.56,
+        "end": 74.12,
+        "duration": 5.560000000000002,
+        "avg_word_confidence": 0.8393371568785774,
+        "contains_filler": false
+      }
+    ],
+    "filler_timestamps": [
+      {
+        "word": "Um,",
+        "type": "filler",
+        "text": "um,",
+        "start": 0.0,
+        "end": 0.68,
+        "duration": 0.68,
+        "style": "clear",
+        "confidence": 0.5,
+        "raw_label": NaN,
+        "count": NaN
+      },
+      {
+        "word": "uh",
+        "type": "filler",
+        "text": "uh",
+        "start": 2.02,
+        "end": 2.04,
+        "duration": 0.020000000000000018,
+        "style": "subtle",
+        "confidence": 0.25,
+        "raw_label": "O",
+        "count": NaN
+      },
+      {
+        "word": "uh",
+        "type": "filler",
+        "text": "uh",
+        "start": 2.56,
+        "end": 2.58,
+        "duration": 0.020000000000000018,
+        "style": "subtle",
+        "confidence": 0.25,
+        "raw_label": "I",
+        "count": NaN
+      },
+      {
+        "word": "uh",
+        "type": "filler",
+        "text": "uh",
+        "start": 3.86,
+        "end": 3.88,
+        "duration": 0.020000000000000018,
+        "style": "subtle",
+        "confidence": 0.25,
+        "raw_label": "E",
+        "count": NaN
+      },
+      {
+        "word": "um",
+        "type": "filler",
+        "text": "um",
+        "start": 4.04,
+        "end": 4.0600000000000005,
+        "duration": 0.020000000000000462,
+        "style": "subtle",
+        "confidence": 0.25,
+        "raw_label": "M",
+        "count": NaN
+      },
+      {
+        "word": "uh",
+        "type": "filler",
+        "text": "uh",
+        "start": 9.78,
+        "end": 9.8,
+        "duration": 0.02000000000000135,
+        "style": "subtle",
+        "confidence": 0.25,
+        "raw_label": "O",
+        "count": NaN
+      },
+      {
+        "word": "um",
+        "type": "filler",
+        "text": "um",
+        "start": 11.9,
+        "end": 11.94,
+        "duration": 0.03999999999999915,
+        "style": "subtle",
+        "confidence": 0.25,
+        "raw_label": "N",
+        "count": NaN
+      },
+      {
+        "word": "uh",
+        "type": "filler",
+        "text": "uh",
+        "start": 18.88,
+        "end": 18.900000000000002,
+        "duration": 0.020000000000003126,
+        "style": "subtle",
+        "confidence": 0.25,
+        "raw_label": "A",
+        "count": NaN
+      },
+      {
+        "word": "uh",
+        "type": "filler",
+        "text": "uh",
+        "start": 21.96,
+        "end": 22.0,
+        "duration": 0.03999999999999915,
+        "style": "subtle",
+        "confidence": 0.25,
+        "raw_label": "I",
+        "count": NaN
+      },
+      {
+        "word": "uh",
+        "type": "filler",
+        "text": "uh",
+        "start": 24.02,
+        "end": 24.060000000000002,
+        "duration": 0.0400000000000027,
+        "style": "subtle",
+        "confidence": 0.25,
+        "raw_label": "I",
+        "count": NaN
+      },
+      {
+        "word": "uh",
+        "type": "filler",
+        "text": "uh",
+        "start": 32.9,
+        "end": 32.92,
+        "duration": 0.020000000000003126,
+        "style": "subtle",
+        "confidence": 0.25,
+        "raw_label": "A",
+        "count": NaN
+      },
+      {
+        "word": "uh",
+        "type": "filler",
+        "text": "uh",
+        "start": 33.18,
+        "end": 33.2,
+        "duration": 0.020000000000003126,
+        "style": "subtle",
+        "confidence": 0.25,
+        "raw_label": "E",
+        "count": NaN
+      },
+      {
+        "word": "um",
+        "type": "filler",
+        "text": "um",
+        "start": 33.36,
+        "end": 33.4,
+        "duration": 0.03999999999999915,
+        "style": "subtle",
+        "confidence": 0.25,
+        "raw_label": "M",
+        "count": NaN
+      },
+      {
+        "word": "uh",
+        "type": "filler",
+        "text": "uh",
+        "start": 36.300000000000004,
+        "end": 36.34,
+        "duration": 0.03999999999999915,
+        "style": "subtle",
+        "confidence": 0.25,
+        "raw_label": "H",
+        "count": NaN
+      },
+      {
+        "word": "uh",
+        "type": "filler",
+        "text": "uh",
+        "start": 39.480000000000004,
+        "end": 39.52,
+        "duration": 0.03999999999999915,
+        "style": "subtle",
+        "confidence": 0.25,
+        "raw_label": "U",
+        "count": NaN
+      },
+      {
+        "word": "um",
+        "type": "filler",
+        "text": "um",
+        "start": 39.82,
+        "end": 39.84,
+        "duration": 0.020000000000003126,
+        "style": "subtle",
+        "confidence": 0.25,
+        "raw_label": "M",
+        "count": NaN
+      },
+      {
+        "word": "uh",
+        "type": "filler",
+        "text": "uh",
+        "start": 41.64,
+        "end": 41.660000000000004,
+        "duration": 0.020000000000003126,
+        "style": "subtle",
+        "confidence": 0.25,
+        "raw_label": "I",
+        "count": NaN
+      },
+      {
+        "word": "um",
+        "type": "filler",
+        "text": "um",
+        "start": 44.22,
+        "end": 44.26,
+        "duration": 0.03999999999999915,
+        "style": "subtle",
+        "confidence": 0.25,
+        "raw_label": "M",
+        "count": NaN
+      },
+      {
+        "word": "uh",
+        "type": "filler",
+        "text": "uh",
+        "start": 46.18,
+        "end": 46.2,
+        "duration": 0.020000000000003126,
+        "style": "subtle",
+        "confidence": 0.25,
+        "raw_label": "A",
+        "count": NaN
+      },
+      {
+        "word": "uh",
+        "type": "filler",
+        "text": "uh",
+        "start": 52.94,
+        "end": 52.96,
+        "duration": 0.020000000000003126,
+        "style": "subtle",
+        "confidence": 0.25,
+        "raw_label": "A",
+        "count": NaN
+      },
+      {
+        "word": "uh",
+        "type": "filler",
+        "text": "uh",
+        "start": 58.76,
+        "end": 58.800000000000004,
+        "duration": 0.04000000000000625,
+        "style": "subtle",
+        "confidence": 0.25,
+        "raw_label": "A",
+        "count": NaN
+      },
+      {
+        "word": "uh",
+        "type": "filler",
+        "text": "uh",
+        "start": 59.04,
+        "end": 59.06,
+        "duration": 0.020000000000003126,
+        "style": "subtle",
+        "confidence": 0.25,
+        "raw_label": "E",
+        "count": NaN
+      },
+      {
+        "word": "um",
+        "type": "filler",
+        "text": "um",
+        "start": 59.22,
+        "end": 59.24,
+        "duration": 0.020000000000003126,
+        "style": "subtle",
+        "confidence": 0.25,
+        "raw_label": "M",
+        "count": NaN
+      },
+      {
+        "word": "uh",
+        "type": "filler",
+        "text": "uh",
+        "start": 63.5,
+        "end": 63.52,
+        "duration": 0.020000000000003126,
+        "style": "subtle",
+        "confidence": 0.25,
+        "raw_label": "A",
+        "count": NaN
+      },
+      {
+        "word": "uh",
+        "type": "filler",
+        "text": "uh",
+        "start": 65.74,
+        "end": 65.76,
+        "duration": 0.020000000000010232,
+        "style": "subtle",
+        "confidence": 0.25,
+        "raw_label": "U",
+        "count": NaN
+      },
+      {
+        "word": "um",
+        "type": "filler",
+        "text": "um",
+        "start": 65.94,
+        "end": 65.96000000000001,
+        "duration": 0.020000000000010232,
+        "style": "subtle",
+        "confidence": 0.25,
+        "raw_label": "M",
+        "count": NaN
+      },
+      {
+        "word": "uh",
+        "type": "filler",
+        "text": "uh",
+        "start": 74.66,
+        "end": 74.68,
+        "duration": 0.020000000000010232,
+        "style": "subtle",
+        "confidence": 0.25,
+        "raw_label": "U",
+        "count": NaN
+      },
+      {
+        "word": "um",
+        "type": "filler",
+        "text": "um",
+        "start": 74.8,
+        "end": 74.84,
+        "duration": 0.04000000000000625,
+        "style": "subtle",
+        "confidence": 0.25,
+        "raw_label": "M",
+        "count": NaN
+      }
+    ]
+  }
+}

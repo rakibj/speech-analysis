@@ -1,0 +1,5201 @@
+{
+  "metadata": {
+    "filename": "",
+    "duration_seconds": 0,
+    "total_words_transcribed": 299,
+    "content_words": 296,
+    "filler_words_detected": 3,
+    "is_monotone": true
+  },
+  "transcript": "Okay, so I think technology in these days nowadays is nothing less than a blessing. And technology is something which is bought as so many appliances, which is making our lives easier on every level I would say. Here I would like to talk about a device which I use regularly and bi -regularily I mean it's not daily, it is used on an hourly basis I would say. And that's Amazon Alexa. And what's special about device, about this device is that it's totally based on artificial intelligence. So there are very few buttons and there's no touchscreen because a lot of us are right now habitual of touching our phones and because of this corona virus we were not allowed to touch each other or we were very cautious and sanitizing our hands but this device even at that time there was no problem in using this because it is totally controlled by the voice and it as it is based on artificial intelligence you know you don't use your own intelligence and you just let it do it works. And the thing is, I first, earlier I used to have a clock next to my bed and it used to ring and wake me up, but when the battery was low, it would be a nightmare for me, I would say, because I was not able to get up on time and reach where I wanted to. But since this, I just tell Alexa, hey, Alexa, wake me up at 5 a .m. in the morning. And I don't have to do anything else. I just have to sit and relax. And at five AM, there is a very notorious alarm which is run so that I can wake up and you won't believe the other.",
+  "input_metrics": {
+    "wpm": 197.38,
+    "long_pauses_per_min": 0.0,
+    "fillers_per_min": 3.2,
+    "pause_variability": 0.151,
+    "speech_rate_variability": 0.225,
+    "vocab_richness": 0.537,
+    "type_token_ratio": 0.537,
+    "repetition_ratio": 0.024,
+    "mean_utterance_length": 42.71,
+    "mean_word_confidence": 0.84
+  },
+  "timestamps": {
+    "words_timestamps_raw": [
+      {
+        "word": "Okay,",
+        "start": 0.7800000000000002,
+        "end": 1.3,
+        "duration": 0.5199999999999998,
+        "confidence": 0.5,
+        "is_filler": false
+      },
+      {
+        "word": "so",
+        "start": 1.56,
+        "end": 1.68,
+        "duration": 0.11999999999999988,
+        "confidence": 0.5,
+        "is_filler": false
+      },
+      {
+        "word": "I",
+        "start": 1.68,
+        "end": 1.9,
+        "duration": 0.21999999999999997,
+        "confidence": 0.9380265474319458,
+        "is_filler": false
+      },
+      {
+        "word": "think",
+        "start": 1.9,
+        "end": 2.12,
+        "duration": 0.2200000000000002,
+        "confidence": 0.9965026378631592,
+        "is_filler": false
+      },
+      {
+        "word": "technology",
+        "start": 2.12,
+        "end": 2.86,
+        "duration": 0.7399999999999998,
+        "confidence": 0.8898977041244507,
+        "is_filler": false
+      },
+      {
+        "word": "in",
+        "start": 2.86,
+        "end": 3.22,
+        "duration": 0.3600000000000003,
+        "confidence": 0.9091677665710449,
+        "is_filler": false
+      },
+      {
+        "word": "these",
+        "start": 3.22,
+        "end": 3.42,
+        "duration": 0.19999999999999973,
+        "confidence": 0.9925209283828735,
+        "is_filler": false
+      },
+      {
+        "word": "days",
+        "start": 3.42,
+        "end": 3.72,
+        "duration": 0.30000000000000027,
+        "confidence": 0.9986044764518738,
+        "is_filler": false
+      },
+      {
+        "word": "nowadays",
+        "start": 3.72,
+        "end": 4.36,
+        "duration": 0.6400000000000001,
+        "confidence": 0.5587297677993774,
+        "is_filler": false
+      },
+      {
+        "word": "is",
+        "start": 4.36,
+        "end": 4.9,
+        "duration": 0.54,
+        "confidence": 0.9418935775756836,
+        "is_filler": false
+      },
+      {
+        "word": "nothing",
+        "start": 4.9,
+        "end": 5.2,
+        "duration": 0.2999999999999998,
+        "confidence": 0.9852480888366699,
+        "is_filler": false
+      },
+      {
+        "word": "less",
+        "start": 5.2,
+        "end": 5.46,
+        "duration": 0.2599999999999998,
+        "confidence": 0.2811277210712433,
+        "is_filler": false
+      },
+      {
+        "word": "than",
+        "start": 5.46,
+        "end": 5.66,
+        "duration": 0.20000000000000018,
+        "confidence": 0.9953262805938721,
+        "is_filler": false
+      },
+      {
+        "word": "a",
+        "start": 5.66,
+        "end": 5.76,
+        "duration": 0.09999999999999964,
+        "confidence": 0.9174229502677917,
+        "is_filler": false
+      },
+      {
+        "word": "blessing.",
+        "start": 5.76,
+        "end": 6.0,
+        "duration": 0.2400000000000002,
+        "confidence": 0.5,
+        "is_filler": false
+      },
+      {
+        "word": "And",
+        "start": 6.66,
+        "end": 6.74,
+        "duration": 0.08000000000000007,
+        "confidence": 0.9726958870887756,
+        "is_filler": false
+      },
+      {
+        "word": "technology",
+        "start": 6.74,
+        "end": 7.08,
+        "duration": 0.33999999999999986,
+        "confidence": 0.9848107099533081,
+        "is_filler": false
+      },
+      {
+        "word": "is",
+        "start": 7.08,
+        "end": 7.56,
+        "duration": 0.47999999999999954,
+        "confidence": 0.5,
+        "is_filler": false
+      },
+      {
+        "word": "something",
+        "start": 7.56,
+        "end": 7.84,
+        "duration": 0.28000000000000025,
+        "confidence": 0.9960386753082275,
+        "is_filler": false
+      },
+      {
+        "word": "which",
+        "start": 7.84,
+        "end": 8.08,
+        "duration": 0.2400000000000002,
+        "confidence": 0.9841700792312622,
+        "is_filler": false
+      },
+      {
+        "word": "is",
+        "start": 8.08,
+        "end": 8.28,
+        "duration": 0.1999999999999993,
+        "confidence": 0.7578557729721069,
+        "is_filler": false
+      },
+      {
+        "word": "bought",
+        "start": 8.28,
+        "end": 8.48,
+        "duration": 0.20000000000000107,
+        "confidence": 0.8939953446388245,
+        "is_filler": false
+      },
+      {
+        "word": "as",
+        "start": 8.48,
+        "end": 8.68,
+        "duration": 0.1999999999999993,
+        "confidence": 0.7002310752868652,
+        "is_filler": false
+      },
+      {
+        "word": "so",
+        "start": 8.68,
+        "end": 8.84,
+        "duration": 0.16000000000000014,
+        "confidence": 0.9396098852157593,
+        "is_filler": false
+      },
+      {
+        "word": "many",
+        "start": 8.84,
+        "end": 9.04,
+        "duration": 0.1999999999999993,
+        "confidence": 0.9990498423576355,
+        "is_filler": false
+      },
+      {
+        "word": "appliances,",
+        "start": 9.04,
+        "end": 9.46,
+        "duration": 0.4200000000000017,
+        "confidence": 0.9860060214996338,
+        "is_filler": false
+      },
+      {
+        "word": "which",
+        "start": 9.84,
+        "end": 10.06,
+        "duration": 0.22000000000000064,
+        "confidence": 0.9898266792297363,
+        "is_filler": false
+      },
+      {
+        "word": "is",
+        "start": 10.06,
+        "end": 10.3,
+        "duration": 0.2400000000000002,
+        "confidence": 0.9891696572303772,
+        "is_filler": false
+      },
+      {
+        "word": "making",
+        "start": 10.3,
+        "end": 10.74,
+        "duration": 0.4399999999999995,
+        "confidence": 0.996253252029419,
+        "is_filler": false
+      },
+      {
+        "word": "our",
+        "start": 10.74,
+        "end": 11.08,
+        "duration": 0.33999999999999986,
+        "confidence": 0.9396117925643921,
+        "is_filler": false
+      },
+      {
+        "word": "lives",
+        "start": 11.08,
+        "end": 11.36,
+        "duration": 0.27999999999999936,
+        "confidence": 0.9516618251800537,
+        "is_filler": false
+      },
+      {
+        "word": "easier",
+        "start": 11.36,
+        "end": 11.74,
+        "duration": 0.3800000000000008,
+        "confidence": 0.9964520931243896,
+        "is_filler": false
+      },
+      {
+        "word": "on",
+        "start": 11.74,
+        "end": 11.94,
+        "duration": 0.1999999999999993,
+        "confidence": 0.962027907371521,
+        "is_filler": false
+      },
+      {
+        "word": "every",
+        "start": 11.94,
+        "end": 12.36,
+        "duration": 0.41999999999999993,
+        "confidence": 0.5,
+        "is_filler": false
+      },
+      {
+        "word": "level",
+        "start": 12.36,
+        "end": 12.66,
+        "duration": 0.3000000000000007,
+        "confidence": 0.5,
+        "is_filler": false
+      },
+      {
+        "word": "I",
+        "start": 12.66,
+        "end": 12.84,
+        "duration": 0.17999999999999972,
+        "confidence": 0.6840343475341797,
+        "is_filler": false
+      },
+      {
+        "word": "would",
+        "start": 12.84,
+        "end": 12.96,
+        "duration": 0.120000000000001,
+        "confidence": 0.9954246878623962,
+        "is_filler": false
+      },
+      {
+        "word": "say.",
+        "start": 12.96,
+        "end": 13.16,
+        "duration": 0.1999999999999993,
+        "confidence": 0.9444566369056702,
+        "is_filler": false
+      },
+      {
+        "word": "Here",
+        "start": 13.48,
+        "end": 13.66,
+        "duration": 0.17999999999999972,
+        "confidence": 0.9850754737854004,
+        "is_filler": false
+      },
+      {
+        "word": "I",
+        "start": 13.66,
+        "end": 13.78,
+        "duration": 0.11999999999999922,
+        "confidence": 0.7850751280784607,
+        "is_filler": false
+      },
+      {
+        "word": "would",
+        "start": 13.78,
+        "end": 13.86,
+        "duration": 0.08000000000000007,
+        "confidence": 0.9962252378463745,
+        "is_filler": false
+      },
+      {
+        "word": "like",
+        "start": 13.86,
+        "end": 14.0,
+        "duration": 0.14000000000000057,
+        "confidence": 0.9961712956428528,
+        "is_filler": false
+      },
+      {
+        "word": "to",
+        "start": 14.0,
+        "end": 14.14,
+        "duration": 0.14000000000000057,
+        "confidence": 0.9986567497253418,
+        "is_filler": false
+      },
+      {
+        "word": "talk",
+        "start": 14.14,
+        "end": 14.3,
+        "duration": 0.16000000000000014,
+        "confidence": 0.9974086880683899,
+        "is_filler": false
+      },
+      {
+        "word": "about",
+        "start": 14.3,
+        "end": 14.54,
+        "duration": 0.23999999999999844,
+        "confidence": 0.9981372356414795,
+        "is_filler": false
+      },
+      {
+        "word": "a",
+        "start": 14.54,
+        "end": 14.64,
+        "duration": 0.10000000000000142,
+        "confidence": 0.775501549243927,
+        "is_filler": false
+      },
+      {
+        "word": "device",
+        "start": 14.64,
+        "end": 14.94,
+        "duration": 0.29999999999999893,
+        "confidence": 0.999193012714386,
+        "is_filler": false
+      },
+      {
+        "word": "which",
+        "start": 14.94,
+        "end": 15.28,
+        "duration": 0.33999999999999986,
+        "confidence": 0.843540608882904,
+        "is_filler": false
+      },
+      {
+        "word": "I",
+        "start": 15.28,
+        "end": 15.44,
+        "duration": 0.16000000000000014,
+        "confidence": 0.9747483134269714,
+        "is_filler": false
+      },
+      {
+        "word": "use",
+        "start": 15.44,
+        "end": 15.72,
+        "duration": 0.28000000000000114,
+        "confidence": 0.9777101278305054,
+        "is_filler": false
+      },
+      {
+        "word": "regularly",
+        "start": 15.72,
+        "end": 16.18,
+        "duration": 0.4599999999999991,
+        "confidence": 0.9955257773399353,
+        "is_filler": false
+      },
+      {
+        "word": "and",
+        "start": 16.18,
+        "end": 16.82,
+        "duration": 0.6400000000000006,
+        "confidence": 0.6407220363616943,
+        "is_filler": false
+      },
+      {
+        "word": "bi",
+        "start": 16.82,
+        "end": 17.08,
+        "duration": 0.259999999999998,
+        "confidence": 0.5,
+        "is_filler": false
+      },
+      {
+        "word": "-regularily",
+        "start": 17.08,
+        "end": 17.48,
+        "duration": 0.40000000000000213,
+        "confidence": 0.5605573207139969,
+        "is_filler": false
+      },
+      {
+        "word": "I",
+        "start": 17.48,
+        "end": 17.62,
+        "duration": 0.14000000000000057,
+        "confidence": 0.3972413241863251,
+        "is_filler": false
+      },
+      {
+        "word": "mean",
+        "start": 17.62,
+        "end": 17.82,
+        "duration": 0.1999999999999993,
+        "confidence": 0.5,
+        "is_filler": false
+      },
+      {
+        "word": "it's",
+        "start": 17.82,
+        "end": 18.04,
+        "duration": 0.21999999999999886,
+        "confidence": 0.7485691606998444,
+        "is_filler": false
+      },
+      {
+        "word": "not",
+        "start": 18.04,
+        "end": 18.14,
+        "duration": 0.10000000000000142,
+        "confidence": 0.9902769327163696,
+        "is_filler": false
+      },
+      {
+        "word": "daily,",
+        "start": 18.14,
+        "end": 18.54,
+        "duration": 0.3999999999999986,
+        "confidence": 0.9967306852340698,
+        "is_filler": false
+      },
+      {
+        "word": "it",
+        "start": 18.88,
+        "end": 19.04,
+        "duration": 0.16000000000000014,
+        "confidence": 0.9577627182006836,
+        "is_filler": false
+      },
+      {
+        "word": "is",
+        "start": 19.04,
+        "end": 19.5,
+        "duration": 0.46000000000000085,
+        "confidence": 0.7807853817939758,
+        "is_filler": false
+      },
+      {
+        "word": "used",
+        "start": 19.5,
+        "end": 19.74,
+        "duration": 0.23999999999999844,
+        "confidence": 0.9921005368232727,
+        "is_filler": false
+      },
+      {
+        "word": "on",
+        "start": 19.74,
+        "end": 19.94,
+        "duration": 0.20000000000000284,
+        "confidence": 0.991070032119751,
+        "is_filler": false
+      },
+      {
+        "word": "an",
+        "start": 19.94,
+        "end": 20.14,
+        "duration": 0.1999999999999993,
+        "confidence": 0.5,
+        "is_filler": false
+      },
+      {
+        "word": "hourly",
+        "start": 20.14,
+        "end": 20.76,
+        "duration": 0.620000000000001,
+        "confidence": 0.9944968819618225,
+        "is_filler": false
+      },
+      {
+        "word": "basis",
+        "start": 20.76,
+        "end": 21.12,
+        "duration": 0.35999999999999943,
+        "confidence": 0.9991136193275452,
+        "is_filler": false
+      },
+      {
+        "word": "I",
+        "start": 21.12,
+        "end": 21.34,
+        "duration": 0.21999999999999886,
+        "confidence": 0.7344266772270203,
+        "is_filler": false
+      },
+      {
+        "word": "would",
+        "start": 21.34,
+        "end": 21.46,
+        "duration": 0.120000000000001,
+        "confidence": 0.9917200803756714,
+        "is_filler": false
+      },
+      {
+        "word": "say.",
+        "start": 21.46,
+        "end": 21.64,
+        "duration": 0.17999999999999972,
+        "confidence": 0.9966092109680176,
+        "is_filler": false
+      },
+      {
+        "word": "And",
+        "start": 21.86,
+        "end": 22.08,
+        "duration": 0.21999999999999886,
+        "confidence": 0.9831595420837402,
+        "is_filler": false
+      },
+      {
+        "word": "that's",
+        "start": 22.08,
+        "end": 22.4,
+        "duration": 0.3200000000000003,
+        "confidence": 0.5,
+        "is_filler": false
+      },
+      {
+        "word": "Amazon",
+        "start": 22.4,
+        "end": 22.8,
+        "duration": 0.40000000000000213,
+        "confidence": 0.5,
+        "is_filler": false
+      },
+      {
+        "word": "Alexa.",
+        "start": 22.8,
+        "end": 23.12,
+        "duration": 0.3200000000000003,
+        "confidence": 0.8279249668121338,
+        "is_filler": false
+      },
+      {
+        "word": "And",
+        "start": 23.82,
+        "end": 24.2,
+        "duration": 0.379999999999999,
+        "confidence": 0.968792200088501,
+        "is_filler": false
+      },
+      {
+        "word": "what's",
+        "start": 24.2,
+        "end": 24.72,
+        "duration": 0.5199999999999996,
+        "confidence": 0.9786454141139984,
+        "is_filler": false
+      },
+      {
+        "word": "special",
+        "start": 24.72,
+        "end": 25.02,
+        "duration": 0.3000000000000007,
+        "confidence": 0.9969639182090759,
+        "is_filler": false
+      },
+      {
+        "word": "about",
+        "start": 25.02,
+        "end": 25.22,
+        "duration": 0.1999999999999993,
+        "confidence": 0.997961163520813,
+        "is_filler": false
+      },
+      {
+        "word": "device,",
+        "start": 25.22,
+        "end": 25.54,
+        "duration": 0.3200000000000003,
+        "confidence": 0.39566799998283386,
+        "is_filler": false
+      },
+      {
+        "word": "about",
+        "start": 25.8,
+        "end": 25.98,
+        "duration": 0.17999999999999972,
+        "confidence": 0.71158766746521,
+        "is_filler": false
+      },
+      {
+        "word": "this",
+        "start": 25.98,
+        "end": 26.74,
+        "duration": 0.759999999999998,
+        "confidence": 0.8830544948577881,
+        "is_filler": false
+      },
+      {
+        "word": "device",
+        "start": 26.74,
+        "end": 27.06,
+        "duration": 0.3200000000000003,
+        "confidence": 0.7724589705467224,
+        "is_filler": false
+      },
+      {
+        "word": "is",
+        "start": 27.06,
+        "end": 27.4,
+        "duration": 0.33999999999999986,
+        "confidence": 0.9175379276275635,
+        "is_filler": false
+      },
+      {
+        "word": "that",
+        "start": 27.4,
+        "end": 27.6,
+        "duration": 0.20000000000000284,
+        "confidence": 0.9362199902534485,
+        "is_filler": false
+      },
+      {
+        "word": "it's",
+        "start": 27.6,
+        "end": 27.96,
+        "duration": 0.35999999999999943,
+        "confidence": 0.9415400624275208,
+        "is_filler": false
+      },
+      {
+        "word": "totally",
+        "start": 27.96,
+        "end": 28.48,
+        "duration": 0.5199999999999996,
+        "confidence": 0.9945566654205322,
+        "is_filler": false
+      },
+      {
+        "word": "based",
+        "start": 28.48,
+        "end": 28.82,
+        "duration": 0.33999999999999986,
+        "confidence": 0.9960220456123352,
+        "is_filler": false
+      },
+      {
+        "word": "on",
+        "start": 28.82,
+        "end": 29.06,
+        "duration": 0.23999999999999844,
+        "confidence": 0.5,
+        "is_filler": false
+      },
+      {
+        "word": "artificial",
+        "start": 29.06,
+        "end": 29.28,
+        "duration": 0.22000000000000242,
+        "confidence": 0.6717790365219116,
+        "is_filler": false
+      },
+      {
+        "word": "intelligence.",
+        "start": 29.28,
+        "end": 29.86,
+        "duration": 0.5799999999999983,
+        "confidence": 0.9976052045822144,
+        "is_filler": false
+      },
+      {
+        "word": "So",
+        "start": 30.48,
+        "end": 30.56,
+        "duration": 0.0799999999999983,
+        "confidence": 0.8937602043151855,
+        "is_filler": false
+      },
+      {
+        "word": "there",
+        "start": 30.56,
+        "end": 30.7,
+        "duration": 0.14000000000000057,
+        "confidence": 0.49355098605155945,
+        "is_filler": false
+      },
+      {
+        "word": "are",
+        "start": 30.7,
+        "end": 30.82,
+        "duration": 0.120000000000001,
+        "confidence": 0.9898320436477661,
+        "is_filler": false
+      },
+      {
+        "word": "very",
+        "start": 30.82,
+        "end": 31.04,
+        "duration": 0.21999999999999886,
+        "confidence": 0.5,
+        "is_filler": false
+      },
+      {
+        "word": "few",
+        "start": 31.04,
+        "end": 31.22,
+        "duration": 0.17999999999999972,
+        "confidence": 0.9993399977684021,
+        "is_filler": false
+      },
+      {
+        "word": "buttons",
+        "start": 31.22,
+        "end": 31.54,
+        "duration": 0.3200000000000003,
+        "confidence": 0.9911139607429504,
+        "is_filler": false
+      },
+      {
+        "word": "and",
+        "start": 31.54,
+        "end": 32.32,
+        "duration": 0.7800000000000011,
+        "confidence": 0.8126722574234009,
+        "is_filler": false
+      },
+      {
+        "word": "there's",
+        "start": 32.32,
+        "end": 32.66,
+        "duration": 0.3399999999999963,
+        "confidence": 0.5,
+        "is_filler": false
+      },
+      {
+        "word": "no",
+        "start": 32.66,
+        "end": 32.78,
+        "duration": 0.12000000000000455,
+        "confidence": 0.9881674647331238,
+        "is_filler": false
+      },
+      {
+        "word": "touchscreen",
+        "start": 32.78,
+        "end": 33.2,
+        "duration": 0.4200000000000017,
+        "confidence": 0.44724711775779724,
+        "is_filler": false
+      },
+      {
+        "word": "because",
+        "start": 33.2,
+        "end": 33.86,
+        "duration": 0.6599999999999966,
+        "confidence": 0.7727078795433044,
+        "is_filler": false
+      },
+      {
+        "word": "a",
+        "start": 33.86,
+        "end": 34.04,
+        "duration": 0.17999999999999972,
+        "confidence": 0.5,
+        "is_filler": false
+      },
+      {
+        "word": "lot",
+        "start": 34.04,
+        "end": 34.12,
+        "duration": 0.0799999999999983,
+        "confidence": 0.9995311498641968,
+        "is_filler": false
+      },
+      {
+        "word": "of",
+        "start": 34.12,
+        "end": 34.38,
+        "duration": 0.2600000000000051,
+        "confidence": 0.9940698146820068,
+        "is_filler": false
+      },
+      {
+        "word": "us",
+        "start": 34.38,
+        "end": 34.72,
+        "duration": 0.3399999999999963,
+        "confidence": 0.9914054870605469,
+        "is_filler": false
+      },
+      {
+        "word": "are",
+        "start": 34.72,
+        "end": 34.84,
+        "duration": 0.12000000000000455,
+        "confidence": 0.9732850790023804,
+        "is_filler": false
+      },
+      {
+        "word": "right",
+        "start": 34.84,
+        "end": 35.0,
+        "duration": 0.1599999999999966,
+        "confidence": 0.9520071148872375,
+        "is_filler": false
+      },
+      {
+        "word": "now",
+        "start": 35.0,
+        "end": 35.24,
+        "duration": 0.240000000000002,
+        "confidence": 0.996177077293396,
+        "is_filler": false
+      },
+      {
+        "word": "habitual",
+        "start": 35.24,
+        "end": 35.84,
+        "duration": 0.6000000000000014,
+        "confidence": 0.7841858863830566,
+        "is_filler": false
+      },
+      {
+        "word": "of",
+        "start": 35.84,
+        "end": 36.06,
+        "duration": 0.21999999999999886,
+        "confidence": 0.9874299168586731,
+        "is_filler": false
+      },
+      {
+        "word": "touching",
+        "start": 36.06,
+        "end": 36.3,
+        "duration": 0.23999999999999488,
+        "confidence": 0.9976533055305481,
+        "is_filler": false
+      },
+      {
+        "word": "our",
+        "start": 36.3,
+        "end": 36.5,
+        "duration": 0.20000000000000284,
+        "confidence": 0.9611964225769043,
+        "is_filler": false
+      },
+      {
+        "word": "phones",
+        "start": 36.5,
+        "end": 36.84,
+        "duration": 0.3400000000000034,
+        "confidence": 0.5,
+        "is_filler": false
+      },
+      {
+        "word": "and",
+        "start": 36.84,
+        "end": 37.42,
+        "duration": 0.5799999999999983,
+        "confidence": 0.5955206155776978,
+        "is_filler": false
+      },
+      {
+        "word": "because",
+        "start": 37.42,
+        "end": 37.64,
+        "duration": 0.21999999999999886,
+        "confidence": 0.9933700561523438,
+        "is_filler": false
+      },
+      {
+        "word": "of",
+        "start": 37.64,
+        "end": 37.82,
+        "duration": 0.17999999999999972,
+        "confidence": 0.9964206218719482,
+        "is_filler": false
+      },
+      {
+        "word": "this",
+        "start": 37.82,
+        "end": 37.98,
+        "duration": 0.1599999999999966,
+        "confidence": 0.5,
+        "is_filler": false
+      },
+      {
+        "word": "corona",
+        "start": 37.98,
+        "end": 38.18,
+        "duration": 0.20000000000000284,
+        "confidence": 0.3434964120388031,
+        "is_filler": false
+      },
+      {
+        "word": "virus",
+        "start": 38.18,
+        "end": 38.54,
+        "duration": 0.35999999999999943,
+        "confidence": 0.9894019961357117,
+        "is_filler": false
+      },
+      {
+        "word": "we",
+        "start": 38.54,
+        "end": 39.0,
+        "duration": 0.46000000000000085,
+        "confidence": 0.7196578979492188,
+        "is_filler": false
+      },
+      {
+        "word": "were",
+        "start": 39.0,
+        "end": 39.28,
+        "duration": 0.28000000000000114,
+        "confidence": 0.9932403564453125,
+        "is_filler": false
+      },
+      {
+        "word": "not",
+        "start": 39.28,
+        "end": 39.5,
+        "duration": 0.21999999999999886,
+        "confidence": 0.5,
+        "is_filler": false
+      },
+      {
+        "word": "allowed",
+        "start": 39.5,
+        "end": 39.74,
+        "duration": 0.240000000000002,
+        "confidence": 0.9984731078147888,
+        "is_filler": false
+      },
+      {
+        "word": "to",
+        "start": 39.74,
+        "end": 39.94,
+        "duration": 0.19999999999999574,
+        "confidence": 0.9986262321472168,
+        "is_filler": false
+      },
+      {
+        "word": "touch",
+        "start": 39.94,
+        "end": 40.18,
+        "duration": 0.240000000000002,
+        "confidence": 0.9968621730804443,
+        "is_filler": false
+      },
+      {
+        "word": "each",
+        "start": 40.18,
+        "end": 40.34,
+        "duration": 0.1600000000000037,
+        "confidence": 0.4425406754016876,
+        "is_filler": false
+      },
+      {
+        "word": "other",
+        "start": 40.34,
+        "end": 40.68,
+        "duration": 0.3399999999999963,
+        "confidence": 0.9958086013793945,
+        "is_filler": false
+      },
+      {
+        "word": "or",
+        "start": 40.68,
+        "end": 41.0,
+        "duration": 0.3200000000000003,
+        "confidence": 0.8810046315193176,
+        "is_filler": false
+      },
+      {
+        "word": "we",
+        "start": 41.0,
+        "end": 41.2,
+        "duration": 0.20000000000000284,
+        "confidence": 0.5,
+        "is_filler": false
+      },
+      {
+        "word": "were",
+        "start": 41.2,
+        "end": 41.34,
+        "duration": 0.14000000000000057,
+        "confidence": 0.9963787198066711,
+        "is_filler": false
+      },
+      {
+        "word": "very",
+        "start": 41.34,
+        "end": 41.52,
+        "duration": 0.17999999999999972,
+        "confidence": 0.5,
+        "is_filler": false
+      },
+      {
+        "word": "cautious",
+        "start": 41.52,
+        "end": 41.84,
+        "duration": 0.3200000000000003,
+        "confidence": 0.9947060942649841,
+        "is_filler": false
+      },
+      {
+        "word": "and",
+        "start": 41.84,
+        "end": 42.14,
+        "duration": 0.29999999999999716,
+        "confidence": 0.8379741311073303,
+        "is_filler": false
+      },
+      {
+        "word": "sanitizing",
+        "start": 42.14,
+        "end": 42.64,
+        "duration": 0.5,
+        "confidence": 0.9607380628585815,
+        "is_filler": false
+      },
+      {
+        "word": "our",
+        "start": 42.64,
+        "end": 42.82,
+        "duration": 0.17999999999999972,
+        "confidence": 0.9934826493263245,
+        "is_filler": false
+      },
+      {
+        "word": "hands",
+        "start": 42.82,
+        "end": 43.08,
+        "duration": 0.259999999999998,
+        "confidence": 0.9983396530151367,
+        "is_filler": false
+      },
+      {
+        "word": "but",
+        "start": 43.08,
+        "end": 43.56,
+        "duration": 0.480000000000004,
+        "confidence": 0.36367636919021606,
+        "is_filler": false
+      },
+      {
+        "word": "this",
+        "start": 43.56,
+        "end": 43.82,
+        "duration": 0.259999999999998,
+        "confidence": 0.962498128414154,
+        "is_filler": false
+      },
+      {
+        "word": "device",
+        "start": 43.82,
+        "end": 44.08,
+        "duration": 0.259999999999998,
+        "confidence": 0.9974254965782166,
+        "is_filler": false
+      },
+      {
+        "word": "even",
+        "start": 44.08,
+        "end": 44.64,
+        "duration": 0.5600000000000023,
+        "confidence": 0.5,
+        "is_filler": false
+      },
+      {
+        "word": "at",
+        "start": 44.64,
+        "end": 44.98,
+        "duration": 0.3399999999999963,
+        "confidence": 0.9601960778236389,
+        "is_filler": false
+      },
+      {
+        "word": "that",
+        "start": 44.98,
+        "end": 45.2,
+        "duration": 0.22000000000000597,
+        "confidence": 0.5,
+        "is_filler": false
+      },
+      {
+        "word": "time",
+        "start": 45.2,
+        "end": 45.56,
+        "duration": 0.35999999999999943,
+        "confidence": 0.9989006519317627,
+        "is_filler": false
+      },
+      {
+        "word": "there",
+        "start": 45.56,
+        "end": 45.74,
+        "duration": 0.17999999999999972,
+        "confidence": 0.9049227833747864,
+        "is_filler": false
+      },
+      {
+        "word": "was",
+        "start": 45.74,
+        "end": 45.88,
+        "duration": 0.14000000000000057,
+        "confidence": 0.9850860834121704,
+        "is_filler": false
+      },
+      {
+        "word": "no",
+        "start": 45.88,
+        "end": 46.02,
+        "duration": 0.14000000000000057,
+        "confidence": 0.9747732281684875,
+        "is_filler": false
+      },
+      {
+        "word": "problem",
+        "start": 46.02,
+        "end": 46.36,
+        "duration": 0.3399999999999963,
+        "confidence": 0.9942240118980408,
+        "is_filler": false
+      },
+      {
+        "word": "in",
+        "start": 46.36,
+        "end": 46.52,
+        "duration": 0.1600000000000037,
+        "confidence": 0.8479949831962585,
+        "is_filler": false
+      },
+      {
+        "word": "using",
+        "start": 46.52,
+        "end": 46.74,
+        "duration": 0.21999999999999886,
+        "confidence": 0.9972936511039734,
+        "is_filler": false
+      },
+      {
+        "word": "this",
+        "start": 46.74,
+        "end": 46.98,
+        "duration": 0.23999999999999488,
+        "confidence": 0.9965204000473022,
+        "is_filler": false
+      },
+      {
+        "word": "because",
+        "start": 46.98,
+        "end": 47.28,
+        "duration": 0.30000000000000426,
+        "confidence": 0.9734753966331482,
+        "is_filler": false
+      },
+      {
+        "word": "it",
+        "start": 47.28,
+        "end": 47.5,
+        "duration": 0.21999999999999886,
+        "confidence": 0.992883563041687,
+        "is_filler": false
+      },
+      {
+        "word": "is",
+        "start": 47.5,
+        "end": 47.64,
+        "duration": 0.14000000000000057,
+        "confidence": 0.9929371476173401,
+        "is_filler": false
+      },
+      {
+        "word": "totally",
+        "start": 47.64,
+        "end": 48.04,
+        "duration": 0.3999999999999986,
+        "confidence": 0.9966134428977966,
+        "is_filler": false
+      },
+      {
+        "word": "controlled",
+        "start": 48.04,
+        "end": 48.44,
+        "duration": 0.3999999999999986,
+        "confidence": 0.9946849346160889,
+        "is_filler": false
+      },
+      {
+        "word": "by",
+        "start": 48.44,
+        "end": 48.66,
+        "duration": 0.21999999999999886,
+        "confidence": 0.9972251653671265,
+        "is_filler": false
+      },
+      {
+        "word": "the",
+        "start": 48.66,
+        "end": 48.82,
+        "duration": 0.1600000000000037,
+        "confidence": 0.992976725101471,
+        "is_filler": false
+      },
+      {
+        "word": "voice",
+        "start": 48.82,
+        "end": 49.1,
+        "duration": 0.28000000000000114,
+        "confidence": 0.9535436630249023,
+        "is_filler": false
+      },
+      {
+        "word": "and",
+        "start": 49.1,
+        "end": 50.0,
+        "duration": 0.8999999999999986,
+        "confidence": 0.5,
+        "is_filler": false
+      },
+      {
+        "word": "it",
+        "start": 50.0,
+        "end": 50.98,
+        "duration": 0.9799999999999969,
+        "confidence": 0.5450819730758667,
+        "is_filler": false
+      },
+      {
+        "word": "as",
+        "start": 50.98,
+        "end": 51.22,
+        "duration": 0.240000000000002,
+        "confidence": 0.8485192656517029,
+        "is_filler": false
+      },
+      {
+        "word": "it",
+        "start": 51.22,
+        "end": 51.32,
+        "duration": 0.10000000000000142,
+        "confidence": 0.9769026041030884,
+        "is_filler": false
+      },
+      {
+        "word": "is",
+        "start": 51.32,
+        "end": 51.44,
+        "duration": 0.11999999999999744,
+        "confidence": 0.9954314231872559,
+        "is_filler": false
+      },
+      {
+        "word": "based",
+        "start": 51.44,
+        "end": 51.58,
+        "duration": 0.14000000000000057,
+        "confidence": 0.9920839071273804,
+        "is_filler": false
+      },
+      {
+        "word": "on",
+        "start": 51.58,
+        "end": 51.76,
+        "duration": 0.17999999999999972,
+        "confidence": 0.9921797513961792,
+        "is_filler": false
+      },
+      {
+        "word": "artificial",
+        "start": 51.76,
+        "end": 52.06,
+        "duration": 0.30000000000000426,
+        "confidence": 0.5,
+        "is_filler": false
+      },
+      {
+        "word": "intelligence",
+        "start": 52.06,
+        "end": 52.66,
+        "duration": 0.5999999999999943,
+        "confidence": 0.9977841973304749,
+        "is_filler": false
+      },
+      {
+        "word": "you",
+        "start": 52.66,
+        "end": 52.86,
+        "duration": 0.20000000000000284,
+        "confidence": 0.6611971259117126,
+        "is_filler": false
+      },
+      {
+        "word": "know",
+        "start": 52.86,
+        "end": 52.94,
+        "duration": 0.0799999999999983,
+        "confidence": 0.9643644690513611,
+        "is_filler": false
+      },
+      {
+        "word": "you",
+        "start": 52.94,
+        "end": 53.08,
+        "duration": 0.14000000000000057,
+        "confidence": 0.9127808213233948,
+        "is_filler": false
+      },
+      {
+        "word": "don't",
+        "start": 53.08,
+        "end": 53.5,
+        "duration": 0.4200000000000017,
+        "confidence": 0.9346486032009125,
+        "is_filler": false
+      },
+      {
+        "word": "use",
+        "start": 53.5,
+        "end": 54.14,
+        "duration": 0.6400000000000006,
+        "confidence": 0.9966159462928772,
+        "is_filler": false
+      },
+      {
+        "word": "your",
+        "start": 54.14,
+        "end": 54.4,
+        "duration": 0.259999999999998,
+        "confidence": 0.9971358776092529,
+        "is_filler": false
+      },
+      {
+        "word": "own",
+        "start": 54.4,
+        "end": 54.54,
+        "duration": 0.14000000000000057,
+        "confidence": 0.9980353713035583,
+        "is_filler": false
+      },
+      {
+        "word": "intelligence",
+        "start": 54.54,
+        "end": 54.98,
+        "duration": 0.4399999999999977,
+        "confidence": 0.9974143505096436,
+        "is_filler": false
+      },
+      {
+        "word": "and",
+        "start": 54.98,
+        "end": 55.3,
+        "duration": 0.3200000000000003,
+        "confidence": 0.5,
+        "is_filler": false
+      },
+      {
+        "word": "you",
+        "start": 55.3,
+        "end": 55.42,
+        "duration": 0.12000000000000455,
+        "confidence": 0.7091561555862427,
+        "is_filler": false
+      },
+      {
+        "word": "just",
+        "start": 55.42,
+        "end": 55.6,
+        "duration": 0.17999999999999972,
+        "confidence": 0.9571468234062195,
+        "is_filler": false
+      },
+      {
+        "word": "let",
+        "start": 55.6,
+        "end": 55.8,
+        "duration": 0.19999999999999574,
+        "confidence": 0.9563391208648682,
+        "is_filler": false
+      },
+      {
+        "word": "it",
+        "start": 55.8,
+        "end": 55.96,
+        "duration": 0.1600000000000037,
+        "confidence": 0.9873107671737671,
+        "is_filler": false
+      },
+      {
+        "word": "do",
+        "start": 55.96,
+        "end": 56.72,
+        "duration": 0.759999999999998,
+        "confidence": 0.9367783069610596,
+        "is_filler": false
+      },
+      {
+        "word": "it",
+        "start": 56.72,
+        "end": 56.96,
+        "duration": 0.240000000000002,
+        "confidence": 0.7646290063858032,
+        "is_filler": false
+      },
+      {
+        "word": "works.",
+        "start": 56.96,
+        "end": 57.56,
+        "duration": 0.6000000000000014,
+        "confidence": 0.8326245546340942,
+        "is_filler": false
+      },
+      {
+        "word": "And",
+        "start": 58.1,
+        "end": 58.24,
+        "duration": 0.14000000000000057,
+        "confidence": 0.5,
+        "is_filler": false
+      },
+      {
+        "word": "the",
+        "start": 58.24,
+        "end": 58.82,
+        "duration": 0.5799999999999983,
+        "confidence": 0.9372959733009338,
+        "is_filler": false
+      },
+      {
+        "word": "thing",
+        "start": 58.82,
+        "end": 58.98,
+        "duration": 0.1599999999999966,
+        "confidence": 0.9963386058807373,
+        "is_filler": false
+      },
+      {
+        "word": "is,",
+        "start": 58.98,
+        "end": 59.26,
+        "duration": 0.28000000000000114,
+        "confidence": 0.996434211730957,
+        "is_filler": false
+      },
+      {
+        "word": "I",
+        "start": 59.58,
+        "end": 59.58,
+        "duration": 0.0,
+        "confidence": 0.6052204370498657,
+        "is_filler": false
+      },
+      {
+        "word": "first,",
+        "start": 59.58,
+        "end": 60.16,
+        "duration": 0.5799999999999983,
+        "confidence": 0.48929518461227417,
+        "is_filler": false
+      },
+      {
+        "word": "earlier",
+        "start": 60.5,
+        "end": 60.94,
+        "duration": 0.4399999999999977,
+        "confidence": 0.5,
+        "is_filler": false
+      },
+      {
+        "word": "I",
+        "start": 60.94,
+        "end": 61.14,
+        "duration": 0.20000000000000284,
+        "confidence": 0.6846649050712585,
+        "is_filler": false
+      },
+      {
+        "word": "used",
+        "start": 61.14,
+        "end": 61.32,
+        "duration": 0.17999999999999972,
+        "confidence": 0.98829585313797,
+        "is_filler": false
+      },
+      {
+        "word": "to",
+        "start": 61.32,
+        "end": 61.44,
+        "duration": 0.11999999999999744,
+        "confidence": 0.9986388087272644,
+        "is_filler": false
+      },
+      {
+        "word": "have",
+        "start": 61.44,
+        "end": 61.58,
+        "duration": 0.14000000000000057,
+        "confidence": 0.9976741671562195,
+        "is_filler": false
+      },
+      {
+        "word": "a",
+        "start": 61.58,
+        "end": 61.68,
+        "duration": 0.10000000000000142,
+        "confidence": 0.9766187071800232,
+        "is_filler": false
+      },
+      {
+        "word": "clock",
+        "start": 61.68,
+        "end": 61.86,
+        "duration": 0.17999999999999972,
+        "confidence": 0.5,
+        "is_filler": false
+      },
+      {
+        "word": "next",
+        "start": 61.86,
+        "end": 62.36,
+        "duration": 0.5,
+        "confidence": 0.9419455528259277,
+        "is_filler": false
+      },
+      {
+        "word": "to",
+        "start": 62.36,
+        "end": 62.56,
+        "duration": 0.20000000000000284,
+        "confidence": 0.9988654851913452,
+        "is_filler": false
+      },
+      {
+        "word": "my",
+        "start": 62.56,
+        "end": 62.7,
+        "duration": 0.14000000000000057,
+        "confidence": 0.9964331388473511,
+        "is_filler": false
+      },
+      {
+        "word": "bed",
+        "start": 62.7,
+        "end": 62.9,
+        "duration": 0.19999999999999574,
+        "confidence": 0.9984015822410583,
+        "is_filler": false
+      },
+      {
+        "word": "and",
+        "start": 62.9,
+        "end": 63.52,
+        "duration": 0.6200000000000045,
+        "confidence": 0.5,
+        "is_filler": false
+      },
+      {
+        "word": "it",
+        "start": 63.52,
+        "end": 63.68,
+        "duration": 0.1599999999999966,
+        "confidence": 0.9681398272514343,
+        "is_filler": false
+      },
+      {
+        "word": "used",
+        "start": 63.68,
+        "end": 64.0,
+        "duration": 0.3200000000000003,
+        "confidence": 0.5,
+        "is_filler": false
+      },
+      {
+        "word": "to",
+        "start": 64.0,
+        "end": 64.2,
+        "duration": 0.20000000000000284,
+        "confidence": 0.9994779229164124,
+        "is_filler": false
+      },
+      {
+        "word": "ring",
+        "start": 64.2,
+        "end": 64.34,
+        "duration": 0.14000000000000057,
+        "confidence": 0.9432675838470459,
+        "is_filler": false
+      },
+      {
+        "word": "and",
+        "start": 64.34,
+        "end": 64.72,
+        "duration": 0.37999999999999545,
+        "confidence": 0.9772974252700806,
+        "is_filler": false
+      },
+      {
+        "word": "wake",
+        "start": 64.72,
+        "end": 64.88,
+        "duration": 0.1599999999999966,
+        "confidence": 0.9948252439498901,
+        "is_filler": false
+      },
+      {
+        "word": "me",
+        "start": 64.88,
+        "end": 65.1,
+        "duration": 0.21999999999999886,
+        "confidence": 0.9969668984413147,
+        "is_filler": true
+      },
+      {
+        "word": "up,",
+        "start": 65.1,
+        "end": 65.28,
+        "duration": 0.18000000000000682,
+        "confidence": 0.9993759989738464,
+        "is_filler": false
+      },
+      {
+        "word": "but",
+        "start": 65.44,
+        "end": 65.68,
+        "duration": 0.2400000000000091,
+        "confidence": 0.5,
+        "is_filler": false
+      },
+      {
+        "word": "when",
+        "start": 65.68,
+        "end": 65.96,
+        "duration": 0.2799999999999869,
+        "confidence": 0.979591429233551,
+        "is_filler": false
+      },
+      {
+        "word": "the",
+        "start": 65.96,
+        "end": 66.1,
+        "duration": 0.14000000000000057,
+        "confidence": 0.9889249205589294,
+        "is_filler": false
+      },
+      {
+        "word": "battery",
+        "start": 66.1,
+        "end": 66.44,
+        "duration": 0.3400000000000034,
+        "confidence": 0.9945449829101562,
+        "is_filler": false
+      },
+      {
+        "word": "was",
+        "start": 66.44,
+        "end": 66.7,
+        "duration": 0.2600000000000051,
+        "confidence": 0.9979792237281799,
+        "is_filler": false
+      },
+      {
+        "word": "low,",
+        "start": 66.7,
+        "end": 66.94,
+        "duration": 0.23999999999999488,
+        "confidence": 0.9995336532592773,
+        "is_filler": false
+      },
+      {
+        "word": "it",
+        "start": 67.6,
+        "end": 67.76,
+        "duration": 0.1600000000000108,
+        "confidence": 0.5,
+        "is_filler": false
+      },
+      {
+        "word": "would",
+        "start": 67.76,
+        "end": 67.96,
+        "duration": 0.19999999999998863,
+        "confidence": 0.9972814321517944,
+        "is_filler": false
+      },
+      {
+        "word": "be",
+        "start": 67.96,
+        "end": 68.34,
+        "duration": 0.38000000000000966,
+        "confidence": 0.9924334287643433,
+        "is_filler": false
+      },
+      {
+        "word": "a",
+        "start": 68.34,
+        "end": 68.6,
+        "duration": 0.2599999999999909,
+        "confidence": 0.9670984148979187,
+        "is_filler": false
+      },
+      {
+        "word": "nightmare",
+        "start": 68.6,
+        "end": 68.84,
+        "duration": 0.2400000000000091,
+        "confidence": 0.9903967380523682,
+        "is_filler": false
+      },
+      {
+        "word": "for",
+        "start": 68.84,
+        "end": 69.16,
+        "duration": 0.3199999999999932,
+        "confidence": 0.9985622763633728,
+        "is_filler": false
+      },
+      {
+        "word": "me,",
+        "start": 69.16,
+        "end": 69.32,
+        "duration": 0.1599999999999966,
+        "confidence": 0.9996610879898071,
+        "is_filler": true
+      },
+      {
+        "word": "I",
+        "start": 69.42,
+        "end": 69.48,
+        "duration": 0.060000000000002274,
+        "confidence": 0.9405864477157593,
+        "is_filler": false
+      },
+      {
+        "word": "would",
+        "start": 69.48,
+        "end": 69.6,
+        "duration": 0.11999999999999034,
+        "confidence": 0.5,
+        "is_filler": false
+      },
+      {
+        "word": "say,",
+        "start": 69.6,
+        "end": 69.8,
+        "duration": 0.20000000000000284,
+        "confidence": 0.9946827292442322,
+        "is_filler": false
+      },
+      {
+        "word": "because",
+        "start": 69.88,
+        "end": 70.06,
+        "duration": 0.18000000000000682,
+        "confidence": 0.5,
+        "is_filler": false
+      },
+      {
+        "word": "I",
+        "start": 70.06,
+        "end": 70.22,
+        "duration": 0.1599999999999966,
+        "confidence": 0.9935321807861328,
+        "is_filler": false
+      },
+      {
+        "word": "was",
+        "start": 70.22,
+        "end": 70.38,
+        "duration": 0.1599999999999966,
+        "confidence": 0.9511799216270447,
+        "is_filler": false
+      },
+      {
+        "word": "not",
+        "start": 70.38,
+        "end": 70.52,
+        "duration": 0.14000000000000057,
+        "confidence": 0.5943635702133179,
+        "is_filler": false
+      },
+      {
+        "word": "able",
+        "start": 70.52,
+        "end": 70.66,
+        "duration": 0.14000000000000057,
+        "confidence": 0.9834043383598328,
+        "is_filler": false
+      },
+      {
+        "word": "to",
+        "start": 70.66,
+        "end": 70.78,
+        "duration": 0.12000000000000455,
+        "confidence": 0.9946808218955994,
+        "is_filler": false
+      },
+      {
+        "word": "get",
+        "start": 70.78,
+        "end": 70.9,
+        "duration": 0.12000000000000455,
+        "confidence": 0.5,
+        "is_filler": false
+      },
+      {
+        "word": "up",
+        "start": 70.9,
+        "end": 71.04,
+        "duration": 0.14000000000000057,
+        "confidence": 0.9940947890281677,
+        "is_filler": false
+      },
+      {
+        "word": "on",
+        "start": 71.04,
+        "end": 71.14,
+        "duration": 0.09999999999999432,
+        "confidence": 0.5,
+        "is_filler": false
+      },
+      {
+        "word": "time",
+        "start": 71.14,
+        "end": 71.4,
+        "duration": 0.2600000000000051,
+        "confidence": 0.5,
+        "is_filler": false
+      },
+      {
+        "word": "and",
+        "start": 71.4,
+        "end": 71.64,
+        "duration": 0.23999999999999488,
+        "confidence": 0.5,
+        "is_filler": false
+      },
+      {
+        "word": "reach",
+        "start": 71.64,
+        "end": 71.94,
+        "duration": 0.29999999999999716,
+        "confidence": 0.9955260157585144,
+        "is_filler": false
+      },
+      {
+        "word": "where",
+        "start": 71.94,
+        "end": 72.18,
+        "duration": 0.2400000000000091,
+        "confidence": 0.9611667990684509,
+        "is_filler": false
+      },
+      {
+        "word": "I",
+        "start": 72.18,
+        "end": 72.3,
+        "duration": 0.11999999999999034,
+        "confidence": 0.9970570802688599,
+        "is_filler": false
+      },
+      {
+        "word": "wanted",
+        "start": 72.3,
+        "end": 72.56,
+        "duration": 0.2600000000000051,
+        "confidence": 0.5,
+        "is_filler": false
+      },
+      {
+        "word": "to.",
+        "start": 72.56,
+        "end": 72.8,
+        "duration": 0.23999999999999488,
+        "confidence": 0.996185839176178,
+        "is_filler": false
+      },
+      {
+        "word": "But",
+        "start": 73.04,
+        "end": 73.28,
+        "duration": 0.23999999999999488,
+        "confidence": 0.5,
+        "is_filler": false
+      },
+      {
+        "word": "since",
+        "start": 73.28,
+        "end": 73.54,
+        "duration": 0.2600000000000051,
+        "confidence": 0.9788368344306946,
+        "is_filler": false
+      },
+      {
+        "word": "this,",
+        "start": 73.54,
+        "end": 73.84,
+        "duration": 0.29999999999999716,
+        "confidence": 0.9814717769622803,
+        "is_filler": false
+      },
+      {
+        "word": "I",
+        "start": 74.42,
+        "end": 74.54,
+        "duration": 0.12000000000000455,
+        "confidence": 0.9931864738464355,
+        "is_filler": false
+      },
+      {
+        "word": "just",
+        "start": 74.54,
+        "end": 74.84,
+        "duration": 0.29999999999999716,
+        "confidence": 0.5,
+        "is_filler": false
+      },
+      {
+        "word": "tell",
+        "start": 74.84,
+        "end": 75.22,
+        "duration": 0.37999999999999545,
+        "confidence": 0.9680182337760925,
+        "is_filler": false
+      },
+      {
+        "word": "Alexa,",
+        "start": 75.22,
+        "end": 75.5,
+        "duration": 0.28000000000000114,
+        "confidence": 0.6475830078125,
+        "is_filler": false
+      },
+      {
+        "word": "hey,",
+        "start": 75.72,
+        "end": 75.82,
+        "duration": 0.09999999999999432,
+        "confidence": 0.5,
+        "is_filler": false
+      },
+      {
+        "word": "Alexa,",
+        "start": 75.96,
+        "end": 76.08,
+        "duration": 0.12000000000000455,
+        "confidence": 0.9936396479606628,
+        "is_filler": false
+      },
+      {
+        "word": "wake",
+        "start": 76.4,
+        "end": 76.54,
+        "duration": 0.14000000000000057,
+        "confidence": 0.9958035349845886,
+        "is_filler": false
+      },
+      {
+        "word": "me",
+        "start": 76.54,
+        "end": 76.74,
+        "duration": 0.19999999999998863,
+        "confidence": 0.9985151886940002,
+        "is_filler": true
+      },
+      {
+        "word": "up",
+        "start": 76.74,
+        "end": 76.84,
+        "duration": 0.10000000000000853,
+        "confidence": 0.9996442794799805,
+        "is_filler": false
+      },
+      {
+        "word": "at",
+        "start": 76.84,
+        "end": 76.98,
+        "duration": 0.14000000000000057,
+        "confidence": 0.9970561265945435,
+        "is_filler": false
+      },
+      {
+        "word": "5",
+        "start": 76.98,
+        "end": 77.18,
+        "duration": 0.20000000000000284,
+        "confidence": 0.8551965355873108,
+        "is_filler": false
+      },
+      {
+        "word": "a",
+        "start": 77.18,
+        "end": 77.34,
+        "duration": 0.1599999999999966,
+        "confidence": 0.41267451643943787,
+        "is_filler": false
+      },
+      {
+        "word": ".m.",
+        "start": 77.34,
+        "end": 77.44,
+        "duration": 0.09999999999999432,
+        "confidence": 0.9950416684150696,
+        "is_filler": false
+      },
+      {
+        "word": "in",
+        "start": 77.48,
+        "end": 77.52,
+        "duration": 0.03999999999999204,
+        "confidence": 0.9790021181106567,
+        "is_filler": false
+      },
+      {
+        "word": "the",
+        "start": 77.52,
+        "end": 77.6,
+        "duration": 0.0799999999999983,
+        "confidence": 0.9991387128829956,
+        "is_filler": false
+      },
+      {
+        "word": "morning.",
+        "start": 77.6,
+        "end": 77.82,
+        "duration": 0.21999999999999886,
+        "confidence": 0.5,
+        "is_filler": false
+      },
+      {
+        "word": "And",
+        "start": 78.26,
+        "end": 78.58,
+        "duration": 0.3199999999999932,
+        "confidence": 0.5,
+        "is_filler": false
+      },
+      {
+        "word": "I",
+        "start": 78.58,
+        "end": 78.86,
+        "duration": 0.28000000000000114,
+        "confidence": 0.991521954536438,
+        "is_filler": false
+      },
+      {
+        "word": "don't",
+        "start": 78.86,
+        "end": 79.1,
+        "duration": 0.23999999999999488,
+        "confidence": 0.9923320412635803,
+        "is_filler": false
+      },
+      {
+        "word": "have",
+        "start": 79.1,
+        "end": 79.26,
+        "duration": 0.1600000000000108,
+        "confidence": 0.9978179931640625,
+        "is_filler": false
+      },
+      {
+        "word": "to",
+        "start": 79.26,
+        "end": 79.4,
+        "duration": 0.14000000000000057,
+        "confidence": 0.998634397983551,
+        "is_filler": false
+      },
+      {
+        "word": "do",
+        "start": 79.4,
+        "end": 79.54,
+        "duration": 0.14000000000000057,
+        "confidence": 0.9970749616622925,
+        "is_filler": false
+      },
+      {
+        "word": "anything",
+        "start": 79.54,
+        "end": 79.84,
+        "duration": 0.29999999999999716,
+        "confidence": 0.9987711310386658,
+        "is_filler": false
+      },
+      {
+        "word": "else.",
+        "start": 79.84,
+        "end": 80.22,
+        "duration": 0.37999999999999545,
+        "confidence": 0.9985437393188477,
+        "is_filler": false
+      },
+      {
+        "word": "I",
+        "start": 80.4,
+        "end": 80.56,
+        "duration": 0.1599999999999966,
+        "confidence": 0.5,
+        "is_filler": false
+      },
+      {
+        "word": "just",
+        "start": 80.56,
+        "end": 80.76,
+        "duration": 0.20000000000000284,
+        "confidence": 0.9985020160675049,
+        "is_filler": false
+      },
+      {
+        "word": "have",
+        "start": 80.76,
+        "end": 80.88,
+        "duration": 0.11999999999999034,
+        "confidence": 0.995455265045166,
+        "is_filler": false
+      },
+      {
+        "word": "to",
+        "start": 80.88,
+        "end": 81.04,
+        "duration": 0.1600000000000108,
+        "confidence": 0.9985986351966858,
+        "is_filler": false
+      },
+      {
+        "word": "sit",
+        "start": 81.04,
+        "end": 81.42,
+        "duration": 0.37999999999999545,
+        "confidence": 0.9836351871490479,
+        "is_filler": false
+      },
+      {
+        "word": "and",
+        "start": 81.42,
+        "end": 81.72,
+        "duration": 0.29999999999999716,
+        "confidence": 0.6721797585487366,
+        "is_filler": false
+      },
+      {
+        "word": "relax.",
+        "start": 81.72,
+        "end": 81.96,
+        "duration": 0.23999999999999488,
+        "confidence": 0.9972440004348755,
+        "is_filler": false
+      },
+      {
+        "word": "And",
+        "start": 81.96,
+        "end": 82.62,
+        "duration": 0.6600000000000108,
+        "confidence": 0.5,
+        "is_filler": false
+      },
+      {
+        "word": "at",
+        "start": 82.62,
+        "end": 82.82,
+        "duration": 0.19999999999998863,
+        "confidence": 0.8778386116027832,
+        "is_filler": false
+      },
+      {
+        "word": "five",
+        "start": 82.82,
+        "end": 83.02,
+        "duration": 0.20000000000000284,
+        "confidence": 0.49823901057243347,
+        "is_filler": false
+      },
+      {
+        "word": "AM,",
+        "start": 83.02,
+        "end": 83.28,
+        "duration": 0.2600000000000051,
+        "confidence": 0.22414490580558777,
+        "is_filler": false
+      },
+      {
+        "word": "there",
+        "start": 83.6,
+        "end": 83.76,
+        "duration": 0.1600000000000108,
+        "confidence": 0.6820245385169983,
+        "is_filler": false
+      },
+      {
+        "word": "is",
+        "start": 83.76,
+        "end": 83.84,
+        "duration": 0.0799999999999983,
+        "confidence": 0.7633118033409119,
+        "is_filler": false
+      },
+      {
+        "word": "a",
+        "start": 83.84,
+        "end": 83.94,
+        "duration": 0.09999999999999432,
+        "confidence": 0.5,
+        "is_filler": false
+      },
+      {
+        "word": "very",
+        "start": 83.94,
+        "end": 84.18,
+        "duration": 0.2400000000000091,
+        "confidence": 0.988821268081665,
+        "is_filler": false
+      },
+      {
+        "word": "notorious",
+        "start": 84.18,
+        "end": 85.62,
+        "duration": 1.4399999999999977,
+        "confidence": 0.8425505757331848,
+        "is_filler": false
+      },
+      {
+        "word": "alarm",
+        "start": 85.62,
+        "end": 86.02,
+        "duration": 0.3999999999999915,
+        "confidence": 0.6465756893157959,
+        "is_filler": false
+      },
+      {
+        "word": "which",
+        "start": 86.02,
+        "end": 86.46,
+        "duration": 0.4399999999999977,
+        "confidence": 0.7055778503417969,
+        "is_filler": false
+      },
+      {
+        "word": "is",
+        "start": 86.46,
+        "end": 86.66,
+        "duration": 0.20000000000000284,
+        "confidence": 0.9926707744598389,
+        "is_filler": false
+      },
+      {
+        "word": "run",
+        "start": 86.66,
+        "end": 86.84,
+        "duration": 0.18000000000000682,
+        "confidence": 0.6088197827339172,
+        "is_filler": false
+      },
+      {
+        "word": "so",
+        "start": 86.84,
+        "end": 87.22,
+        "duration": 0.37999999999999545,
+        "confidence": 0.7825280427932739,
+        "is_filler": false
+      },
+      {
+        "word": "that",
+        "start": 87.22,
+        "end": 87.36,
+        "duration": 0.14000000000000057,
+        "confidence": 0.9912949204444885,
+        "is_filler": false
+      },
+      {
+        "word": "I",
+        "start": 87.36,
+        "end": 87.52,
+        "duration": 0.1599999999999966,
+        "confidence": 0.9762241244316101,
+        "is_filler": false
+      },
+      {
+        "word": "can",
+        "start": 87.52,
+        "end": 87.68,
+        "duration": 0.1600000000000108,
+        "confidence": 0.5,
+        "is_filler": false
+      },
+      {
+        "word": "wake",
+        "start": 87.68,
+        "end": 87.84,
+        "duration": 0.1599999999999966,
+        "confidence": 0.9933920502662659,
+        "is_filler": false
+      },
+      {
+        "word": "up",
+        "start": 87.84,
+        "end": 88.08,
+        "duration": 0.23999999999999488,
+        "confidence": 0.9943693280220032,
+        "is_filler": false
+      },
+      {
+        "word": "and",
+        "start": 88.08,
+        "end": 88.64,
+        "duration": 0.5600000000000023,
+        "confidence": 0.5328139662742615,
+        "is_filler": false
+      },
+      {
+        "word": "you",
+        "start": 88.64,
+        "end": 88.78,
+        "duration": 0.14000000000000057,
+        "confidence": 0.9960285425186157,
+        "is_filler": false
+      },
+      {
+        "word": "won't",
+        "start": 88.78,
+        "end": 88.98,
+        "duration": 0.20000000000000284,
+        "confidence": 0.5,
+        "is_filler": false
+      },
+      {
+        "word": "believe",
+        "start": 88.98,
+        "end": 89.2,
+        "duration": 0.21999999999999886,
+        "confidence": 0.9836071729660034,
+        "is_filler": false
+      },
+      {
+        "word": "the",
+        "start": 89.2,
+        "end": 89.86,
+        "duration": 0.6599999999999966,
+        "confidence": 0.7631334662437439,
+        "is_filler": false
+      },
+      {
+        "word": "other.",
+        "start": 89.86,
+        "end": 89.98,
+        "duration": 0.12000000000000455,
+        "confidence": 0.8796659708023071,
+        "is_filler": false
+      }
+    ],
+    "words_timestamps_cleaned": [
+      {
+        "word": "Okay,",
+        "start": 0.7800000000000002,
+        "end": 1.3,
+        "duration": 0.5199999999999998,
+        "confidence": 0.3859197199344635,
+        "is_filler": false
+      },
+      {
+        "word": "so",
+        "start": 1.56,
+        "end": 1.68,
+        "duration": 0.11999999999999988,
+        "confidence": 0.9675818085670471,
+        "is_filler": false
+      },
+      {
+        "word": "I",
+        "start": 1.68,
+        "end": 1.9,
+        "duration": 0.21999999999999997,
+        "confidence": 0.9380265474319458,
+        "is_filler": false
+      },
+      {
+        "word": "think",
+        "start": 1.9,
+        "end": 2.12,
+        "duration": 0.2200000000000002,
+        "confidence": 0.9965026378631592,
+        "is_filler": false
+      },
+      {
+        "word": "technology",
+        "start": 2.12,
+        "end": 2.86,
+        "duration": 0.7399999999999998,
+        "confidence": 0.8898977041244507,
+        "is_filler": false
+      },
+      {
+        "word": "in",
+        "start": 2.86,
+        "end": 3.22,
+        "duration": 0.3600000000000003,
+        "confidence": 0.9091677665710449,
+        "is_filler": false
+      },
+      {
+        "word": "these",
+        "start": 3.22,
+        "end": 3.42,
+        "duration": 0.19999999999999973,
+        "confidence": 0.9925209283828735,
+        "is_filler": false
+      },
+      {
+        "word": "days",
+        "start": 3.42,
+        "end": 3.72,
+        "duration": 0.30000000000000027,
+        "confidence": 0.9986044764518738,
+        "is_filler": false
+      },
+      {
+        "word": "nowadays",
+        "start": 3.72,
+        "end": 4.36,
+        "duration": 0.6400000000000001,
+        "confidence": 0.5587297677993774,
+        "is_filler": false
+      },
+      {
+        "word": "is",
+        "start": 4.36,
+        "end": 4.9,
+        "duration": 0.54,
+        "confidence": 0.9418935775756836,
+        "is_filler": false
+      },
+      {
+        "word": "nothing",
+        "start": 4.9,
+        "end": 5.2,
+        "duration": 0.2999999999999998,
+        "confidence": 0.9852480888366699,
+        "is_filler": false
+      },
+      {
+        "word": "less",
+        "start": 5.2,
+        "end": 5.46,
+        "duration": 0.2599999999999998,
+        "confidence": 0.2811277210712433,
+        "is_filler": false
+      },
+      {
+        "word": "than",
+        "start": 5.46,
+        "end": 5.66,
+        "duration": 0.20000000000000018,
+        "confidence": 0.9953262805938721,
+        "is_filler": false
+      },
+      {
+        "word": "a",
+        "start": 5.66,
+        "end": 5.76,
+        "duration": 0.09999999999999964,
+        "confidence": 0.9174229502677917,
+        "is_filler": false
+      },
+      {
+        "word": "blessing.",
+        "start": 5.76,
+        "end": 6.0,
+        "duration": 0.2400000000000002,
+        "confidence": 0.9656534194946289,
+        "is_filler": false
+      },
+      {
+        "word": "And",
+        "start": 6.66,
+        "end": 6.74,
+        "duration": 0.08000000000000007,
+        "confidence": 0.9726958870887756,
+        "is_filler": false
+      },
+      {
+        "word": "technology",
+        "start": 6.74,
+        "end": 7.08,
+        "duration": 0.33999999999999986,
+        "confidence": 0.9848107099533081,
+        "is_filler": false
+      },
+      {
+        "word": "is",
+        "start": 7.08,
+        "end": 7.56,
+        "duration": 0.47999999999999954,
+        "confidence": 0.988709032535553,
+        "is_filler": false
+      },
+      {
+        "word": "something",
+        "start": 7.56,
+        "end": 7.84,
+        "duration": 0.28000000000000025,
+        "confidence": 0.9960386753082275,
+        "is_filler": false
+      },
+      {
+        "word": "which",
+        "start": 7.84,
+        "end": 8.08,
+        "duration": 0.2400000000000002,
+        "confidence": 0.9841700792312622,
+        "is_filler": false
+      },
+      {
+        "word": "is",
+        "start": 8.08,
+        "end": 8.28,
+        "duration": 0.1999999999999993,
+        "confidence": 0.7578557729721069,
+        "is_filler": false
+      },
+      {
+        "word": "bought",
+        "start": 8.28,
+        "end": 8.48,
+        "duration": 0.20000000000000107,
+        "confidence": 0.8939953446388245,
+        "is_filler": false
+      },
+      {
+        "word": "as",
+        "start": 8.48,
+        "end": 8.68,
+        "duration": 0.1999999999999993,
+        "confidence": 0.7002310752868652,
+        "is_filler": false
+      },
+      {
+        "word": "so",
+        "start": 8.68,
+        "end": 8.84,
+        "duration": 0.16000000000000014,
+        "confidence": 0.9396098852157593,
+        "is_filler": false
+      },
+      {
+        "word": "many",
+        "start": 8.84,
+        "end": 9.04,
+        "duration": 0.1999999999999993,
+        "confidence": 0.9990498423576355,
+        "is_filler": false
+      },
+      {
+        "word": "appliances,",
+        "start": 9.04,
+        "end": 9.46,
+        "duration": 0.4200000000000017,
+        "confidence": 0.9860060214996338,
+        "is_filler": false
+      },
+      {
+        "word": "which",
+        "start": 9.84,
+        "end": 10.06,
+        "duration": 0.22000000000000064,
+        "confidence": 0.9898266792297363,
+        "is_filler": false
+      },
+      {
+        "word": "is",
+        "start": 10.06,
+        "end": 10.3,
+        "duration": 0.2400000000000002,
+        "confidence": 0.9891696572303772,
+        "is_filler": false
+      },
+      {
+        "word": "making",
+        "start": 10.3,
+        "end": 10.74,
+        "duration": 0.4399999999999995,
+        "confidence": 0.996253252029419,
+        "is_filler": false
+      },
+      {
+        "word": "our",
+        "start": 10.74,
+        "end": 11.08,
+        "duration": 0.33999999999999986,
+        "confidence": 0.9396117925643921,
+        "is_filler": false
+      },
+      {
+        "word": "lives",
+        "start": 11.08,
+        "end": 11.36,
+        "duration": 0.27999999999999936,
+        "confidence": 0.9516618251800537,
+        "is_filler": false
+      },
+      {
+        "word": "easier",
+        "start": 11.36,
+        "end": 11.74,
+        "duration": 0.3800000000000008,
+        "confidence": 0.9964520931243896,
+        "is_filler": false
+      },
+      {
+        "word": "on",
+        "start": 11.74,
+        "end": 11.94,
+        "duration": 0.1999999999999993,
+        "confidence": 0.962027907371521,
+        "is_filler": false
+      },
+      {
+        "word": "every",
+        "start": 11.94,
+        "end": 12.36,
+        "duration": 0.41999999999999993,
+        "confidence": 0.9974156618118286,
+        "is_filler": false
+      },
+      {
+        "word": "level",
+        "start": 12.36,
+        "end": 12.66,
+        "duration": 0.3000000000000007,
+        "confidence": 0.9947878122329712,
+        "is_filler": false
+      },
+      {
+        "word": "I",
+        "start": 12.66,
+        "end": 12.84,
+        "duration": 0.17999999999999972,
+        "confidence": 0.6840343475341797,
+        "is_filler": false
+      },
+      {
+        "word": "would",
+        "start": 12.84,
+        "end": 12.96,
+        "duration": 0.120000000000001,
+        "confidence": 0.9954246878623962,
+        "is_filler": false
+      },
+      {
+        "word": "say.",
+        "start": 12.96,
+        "end": 13.16,
+        "duration": 0.1999999999999993,
+        "confidence": 0.9444566369056702,
+        "is_filler": false
+      },
+      {
+        "word": "Here",
+        "start": 13.48,
+        "end": 13.66,
+        "duration": 0.17999999999999972,
+        "confidence": 0.9850754737854004,
+        "is_filler": false
+      },
+      {
+        "word": "I",
+        "start": 13.66,
+        "end": 13.78,
+        "duration": 0.11999999999999922,
+        "confidence": 0.7850751280784607,
+        "is_filler": false
+      },
+      {
+        "word": "would",
+        "start": 13.78,
+        "end": 13.86,
+        "duration": 0.08000000000000007,
+        "confidence": 0.9962252378463745,
+        "is_filler": false
+      },
+      {
+        "word": "like",
+        "start": 13.86,
+        "end": 14.0,
+        "duration": 0.14000000000000057,
+        "confidence": 0.9961712956428528,
+        "is_filler": false
+      },
+      {
+        "word": "to",
+        "start": 14.0,
+        "end": 14.14,
+        "duration": 0.14000000000000057,
+        "confidence": 0.9986567497253418,
+        "is_filler": false
+      },
+      {
+        "word": "talk",
+        "start": 14.14,
+        "end": 14.3,
+        "duration": 0.16000000000000014,
+        "confidence": 0.9974086880683899,
+        "is_filler": false
+      },
+      {
+        "word": "about",
+        "start": 14.3,
+        "end": 14.54,
+        "duration": 0.23999999999999844,
+        "confidence": 0.9981372356414795,
+        "is_filler": false
+      },
+      {
+        "word": "a",
+        "start": 14.54,
+        "end": 14.64,
+        "duration": 0.10000000000000142,
+        "confidence": 0.775501549243927,
+        "is_filler": false
+      },
+      {
+        "word": "device",
+        "start": 14.64,
+        "end": 14.94,
+        "duration": 0.29999999999999893,
+        "confidence": 0.999193012714386,
+        "is_filler": false
+      },
+      {
+        "word": "which",
+        "start": 14.94,
+        "end": 15.28,
+        "duration": 0.33999999999999986,
+        "confidence": 0.843540608882904,
+        "is_filler": false
+      },
+      {
+        "word": "I",
+        "start": 15.28,
+        "end": 15.44,
+        "duration": 0.16000000000000014,
+        "confidence": 0.9747483134269714,
+        "is_filler": false
+      },
+      {
+        "word": "use",
+        "start": 15.44,
+        "end": 15.72,
+        "duration": 0.28000000000000114,
+        "confidence": 0.9777101278305054,
+        "is_filler": false
+      },
+      {
+        "word": "regularly",
+        "start": 15.72,
+        "end": 16.18,
+        "duration": 0.4599999999999991,
+        "confidence": 0.9955257773399353,
+        "is_filler": false
+      },
+      {
+        "word": "and",
+        "start": 16.18,
+        "end": 16.82,
+        "duration": 0.6400000000000006,
+        "confidence": 0.6407220363616943,
+        "is_filler": false
+      },
+      {
+        "word": "bi",
+        "start": 16.82,
+        "end": 17.08,
+        "duration": 0.259999999999998,
+        "confidence": 0.46709752082824707,
+        "is_filler": false
+      },
+      {
+        "word": "-regularily",
+        "start": 17.08,
+        "end": 17.48,
+        "duration": 0.40000000000000213,
+        "confidence": 0.5605573207139969,
+        "is_filler": false
+      },
+      {
+        "word": "I",
+        "start": 17.48,
+        "end": 17.62,
+        "duration": 0.14000000000000057,
+        "confidence": 0.3972413241863251,
+        "is_filler": false
+      },
+      {
+        "word": "mean",
+        "start": 17.62,
+        "end": 17.82,
+        "duration": 0.1999999999999993,
+        "confidence": 0.778558611869812,
+        "is_filler": false
+      },
+      {
+        "word": "it's",
+        "start": 17.82,
+        "end": 18.04,
+        "duration": 0.21999999999999886,
+        "confidence": 0.7485691606998444,
+        "is_filler": false
+      },
+      {
+        "word": "not",
+        "start": 18.04,
+        "end": 18.14,
+        "duration": 0.10000000000000142,
+        "confidence": 0.9902769327163696,
+        "is_filler": false
+      },
+      {
+        "word": "daily,",
+        "start": 18.14,
+        "end": 18.54,
+        "duration": 0.3999999999999986,
+        "confidence": 0.9967306852340698,
+        "is_filler": false
+      },
+      {
+        "word": "it",
+        "start": 18.88,
+        "end": 19.04,
+        "duration": 0.16000000000000014,
+        "confidence": 0.9577627182006836,
+        "is_filler": false
+      },
+      {
+        "word": "is",
+        "start": 19.04,
+        "end": 19.5,
+        "duration": 0.46000000000000085,
+        "confidence": 0.7807853817939758,
+        "is_filler": false
+      },
+      {
+        "word": "used",
+        "start": 19.5,
+        "end": 19.74,
+        "duration": 0.23999999999999844,
+        "confidence": 0.9921005368232727,
+        "is_filler": false
+      },
+      {
+        "word": "on",
+        "start": 19.74,
+        "end": 19.94,
+        "duration": 0.20000000000000284,
+        "confidence": 0.991070032119751,
+        "is_filler": false
+      },
+      {
+        "word": "an",
+        "start": 19.94,
+        "end": 20.14,
+        "duration": 0.1999999999999993,
+        "confidence": 0.849204421043396,
+        "is_filler": false
+      },
+      {
+        "word": "hourly",
+        "start": 20.14,
+        "end": 20.76,
+        "duration": 0.620000000000001,
+        "confidence": 0.9944968819618225,
+        "is_filler": false
+      },
+      {
+        "word": "basis",
+        "start": 20.76,
+        "end": 21.12,
+        "duration": 0.35999999999999943,
+        "confidence": 0.9991136193275452,
+        "is_filler": false
+      },
+      {
+        "word": "I",
+        "start": 21.12,
+        "end": 21.34,
+        "duration": 0.21999999999999886,
+        "confidence": 0.7344266772270203,
+        "is_filler": false
+      },
+      {
+        "word": "would",
+        "start": 21.34,
+        "end": 21.46,
+        "duration": 0.120000000000001,
+        "confidence": 0.9917200803756714,
+        "is_filler": false
+      },
+      {
+        "word": "say.",
+        "start": 21.46,
+        "end": 21.64,
+        "duration": 0.17999999999999972,
+        "confidence": 0.9966092109680176,
+        "is_filler": false
+      },
+      {
+        "word": "And",
+        "start": 21.86,
+        "end": 22.08,
+        "duration": 0.21999999999999886,
+        "confidence": 0.9831595420837402,
+        "is_filler": false
+      },
+      {
+        "word": "that's",
+        "start": 22.08,
+        "end": 22.4,
+        "duration": 0.3200000000000003,
+        "confidence": 0.9854387938976288,
+        "is_filler": false
+      },
+      {
+        "word": "Amazon",
+        "start": 22.4,
+        "end": 22.8,
+        "duration": 0.40000000000000213,
+        "confidence": 0.9804794788360596,
+        "is_filler": false
+      },
+      {
+        "word": "Alexa.",
+        "start": 22.8,
+        "end": 23.12,
+        "duration": 0.3200000000000003,
+        "confidence": 0.8279249668121338,
+        "is_filler": false
+      },
+      {
+        "word": "And",
+        "start": 23.82,
+        "end": 24.2,
+        "duration": 0.379999999999999,
+        "confidence": 0.968792200088501,
+        "is_filler": false
+      },
+      {
+        "word": "what's",
+        "start": 24.2,
+        "end": 24.72,
+        "duration": 0.5199999999999996,
+        "confidence": 0.9786454141139984,
+        "is_filler": false
+      },
+      {
+        "word": "special",
+        "start": 24.72,
+        "end": 25.02,
+        "duration": 0.3000000000000007,
+        "confidence": 0.9969639182090759,
+        "is_filler": false
+      },
+      {
+        "word": "about",
+        "start": 25.02,
+        "end": 25.22,
+        "duration": 0.1999999999999993,
+        "confidence": 0.997961163520813,
+        "is_filler": false
+      },
+      {
+        "word": "device,",
+        "start": 25.22,
+        "end": 25.54,
+        "duration": 0.3200000000000003,
+        "confidence": 0.39566799998283386,
+        "is_filler": false
+      },
+      {
+        "word": "about",
+        "start": 25.8,
+        "end": 25.98,
+        "duration": 0.17999999999999972,
+        "confidence": 0.71158766746521,
+        "is_filler": false
+      },
+      {
+        "word": "this",
+        "start": 25.98,
+        "end": 26.74,
+        "duration": 0.759999999999998,
+        "confidence": 0.8830544948577881,
+        "is_filler": false
+      },
+      {
+        "word": "device",
+        "start": 26.74,
+        "end": 27.06,
+        "duration": 0.3200000000000003,
+        "confidence": 0.7724589705467224,
+        "is_filler": false
+      },
+      {
+        "word": "is",
+        "start": 27.06,
+        "end": 27.4,
+        "duration": 0.33999999999999986,
+        "confidence": 0.9175379276275635,
+        "is_filler": false
+      },
+      {
+        "word": "that",
+        "start": 27.4,
+        "end": 27.6,
+        "duration": 0.20000000000000284,
+        "confidence": 0.9362199902534485,
+        "is_filler": false
+      },
+      {
+        "word": "it's",
+        "start": 27.6,
+        "end": 27.96,
+        "duration": 0.35999999999999943,
+        "confidence": 0.9415400624275208,
+        "is_filler": false
+      },
+      {
+        "word": "totally",
+        "start": 27.96,
+        "end": 28.48,
+        "duration": 0.5199999999999996,
+        "confidence": 0.9945566654205322,
+        "is_filler": false
+      },
+      {
+        "word": "based",
+        "start": 28.48,
+        "end": 28.82,
+        "duration": 0.33999999999999986,
+        "confidence": 0.9960220456123352,
+        "is_filler": false
+      },
+      {
+        "word": "on",
+        "start": 28.82,
+        "end": 29.06,
+        "duration": 0.23999999999999844,
+        "confidence": 0.43426498770713806,
+        "is_filler": false
+      },
+      {
+        "word": "artificial",
+        "start": 29.06,
+        "end": 29.28,
+        "duration": 0.22000000000000242,
+        "confidence": 0.6717790365219116,
+        "is_filler": false
+      },
+      {
+        "word": "intelligence.",
+        "start": 29.28,
+        "end": 29.86,
+        "duration": 0.5799999999999983,
+        "confidence": 0.9976052045822144,
+        "is_filler": false
+      },
+      {
+        "word": "So",
+        "start": 30.48,
+        "end": 30.56,
+        "duration": 0.0799999999999983,
+        "confidence": 0.8937602043151855,
+        "is_filler": false
+      },
+      {
+        "word": "there",
+        "start": 30.56,
+        "end": 30.7,
+        "duration": 0.14000000000000057,
+        "confidence": 0.49355098605155945,
+        "is_filler": false
+      },
+      {
+        "word": "are",
+        "start": 30.7,
+        "end": 30.82,
+        "duration": 0.120000000000001,
+        "confidence": 0.9898320436477661,
+        "is_filler": false
+      },
+      {
+        "word": "very",
+        "start": 30.82,
+        "end": 31.04,
+        "duration": 0.21999999999999886,
+        "confidence": 0.9363362193107605,
+        "is_filler": false
+      },
+      {
+        "word": "few",
+        "start": 31.04,
+        "end": 31.22,
+        "duration": 0.17999999999999972,
+        "confidence": 0.9993399977684021,
+        "is_filler": false
+      },
+      {
+        "word": "buttons",
+        "start": 31.22,
+        "end": 31.54,
+        "duration": 0.3200000000000003,
+        "confidence": 0.9911139607429504,
+        "is_filler": false
+      },
+      {
+        "word": "and",
+        "start": 31.54,
+        "end": 32.32,
+        "duration": 0.7800000000000011,
+        "confidence": 0.8126722574234009,
+        "is_filler": false
+      },
+      {
+        "word": "there's",
+        "start": 32.32,
+        "end": 32.66,
+        "duration": 0.3399999999999963,
+        "confidence": 0.696340024471283,
+        "is_filler": false
+      },
+      {
+        "word": "no",
+        "start": 32.66,
+        "end": 32.78,
+        "duration": 0.12000000000000455,
+        "confidence": 0.9881674647331238,
+        "is_filler": false
+      },
+      {
+        "word": "touchscreen",
+        "start": 32.78,
+        "end": 33.2,
+        "duration": 0.4200000000000017,
+        "confidence": 0.44724711775779724,
+        "is_filler": false
+      },
+      {
+        "word": "because",
+        "start": 33.2,
+        "end": 33.86,
+        "duration": 0.6599999999999966,
+        "confidence": 0.7727078795433044,
+        "is_filler": false
+      },
+      {
+        "word": "a",
+        "start": 33.86,
+        "end": 34.04,
+        "duration": 0.17999999999999972,
+        "confidence": 0.9677000045776367,
+        "is_filler": false
+      },
+      {
+        "word": "lot",
+        "start": 34.04,
+        "end": 34.12,
+        "duration": 0.0799999999999983,
+        "confidence": 0.9995311498641968,
+        "is_filler": false
+      },
+      {
+        "word": "of",
+        "start": 34.12,
+        "end": 34.38,
+        "duration": 0.2600000000000051,
+        "confidence": 0.9940698146820068,
+        "is_filler": false
+      },
+      {
+        "word": "us",
+        "start": 34.38,
+        "end": 34.72,
+        "duration": 0.3399999999999963,
+        "confidence": 0.9914054870605469,
+        "is_filler": false
+      },
+      {
+        "word": "are",
+        "start": 34.72,
+        "end": 34.84,
+        "duration": 0.12000000000000455,
+        "confidence": 0.9732850790023804,
+        "is_filler": false
+      },
+      {
+        "word": "right",
+        "start": 34.84,
+        "end": 35.0,
+        "duration": 0.1599999999999966,
+        "confidence": 0.9520071148872375,
+        "is_filler": false
+      },
+      {
+        "word": "now",
+        "start": 35.0,
+        "end": 35.24,
+        "duration": 0.240000000000002,
+        "confidence": 0.996177077293396,
+        "is_filler": false
+      },
+      {
+        "word": "habitual",
+        "start": 35.24,
+        "end": 35.84,
+        "duration": 0.6000000000000014,
+        "confidence": 0.7841858863830566,
+        "is_filler": false
+      },
+      {
+        "word": "of",
+        "start": 35.84,
+        "end": 36.06,
+        "duration": 0.21999999999999886,
+        "confidence": 0.9874299168586731,
+        "is_filler": false
+      },
+      {
+        "word": "touching",
+        "start": 36.06,
+        "end": 36.3,
+        "duration": 0.23999999999999488,
+        "confidence": 0.9976533055305481,
+        "is_filler": false
+      },
+      {
+        "word": "our",
+        "start": 36.3,
+        "end": 36.5,
+        "duration": 0.20000000000000284,
+        "confidence": 0.9611964225769043,
+        "is_filler": false
+      },
+      {
+        "word": "phones",
+        "start": 36.5,
+        "end": 36.84,
+        "duration": 0.3400000000000034,
+        "confidence": 0.9965613484382629,
+        "is_filler": false
+      },
+      {
+        "word": "and",
+        "start": 36.84,
+        "end": 37.42,
+        "duration": 0.5799999999999983,
+        "confidence": 0.5955206155776978,
+        "is_filler": false
+      },
+      {
+        "word": "because",
+        "start": 37.42,
+        "end": 37.64,
+        "duration": 0.21999999999999886,
+        "confidence": 0.9933700561523438,
+        "is_filler": false
+      },
+      {
+        "word": "of",
+        "start": 37.64,
+        "end": 37.82,
+        "duration": 0.17999999999999972,
+        "confidence": 0.9964206218719482,
+        "is_filler": false
+      },
+      {
+        "word": "this",
+        "start": 37.82,
+        "end": 37.98,
+        "duration": 0.1599999999999966,
+        "confidence": 0.9745714068412781,
+        "is_filler": false
+      },
+      {
+        "word": "corona",
+        "start": 37.98,
+        "end": 38.18,
+        "duration": 0.20000000000000284,
+        "confidence": 0.3434964120388031,
+        "is_filler": false
+      },
+      {
+        "word": "virus",
+        "start": 38.18,
+        "end": 38.54,
+        "duration": 0.35999999999999943,
+        "confidence": 0.9894019961357117,
+        "is_filler": false
+      },
+      {
+        "word": "we",
+        "start": 38.54,
+        "end": 39.0,
+        "duration": 0.46000000000000085,
+        "confidence": 0.7196578979492188,
+        "is_filler": false
+      },
+      {
+        "word": "were",
+        "start": 39.0,
+        "end": 39.28,
+        "duration": 0.28000000000000114,
+        "confidence": 0.9932403564453125,
+        "is_filler": false
+      },
+      {
+        "word": "not",
+        "start": 39.28,
+        "end": 39.5,
+        "duration": 0.21999999999999886,
+        "confidence": 0.9980680346488953,
+        "is_filler": false
+      },
+      {
+        "word": "allowed",
+        "start": 39.5,
+        "end": 39.74,
+        "duration": 0.240000000000002,
+        "confidence": 0.9984731078147888,
+        "is_filler": false
+      },
+      {
+        "word": "to",
+        "start": 39.74,
+        "end": 39.94,
+        "duration": 0.19999999999999574,
+        "confidence": 0.9986262321472168,
+        "is_filler": false
+      },
+      {
+        "word": "touch",
+        "start": 39.94,
+        "end": 40.18,
+        "duration": 0.240000000000002,
+        "confidence": 0.9968621730804443,
+        "is_filler": false
+      },
+      {
+        "word": "each",
+        "start": 40.18,
+        "end": 40.34,
+        "duration": 0.1600000000000037,
+        "confidence": 0.4425406754016876,
+        "is_filler": false
+      },
+      {
+        "word": "other",
+        "start": 40.34,
+        "end": 40.68,
+        "duration": 0.3399999999999963,
+        "confidence": 0.9958086013793945,
+        "is_filler": false
+      },
+      {
+        "word": "or",
+        "start": 40.68,
+        "end": 41.0,
+        "duration": 0.3200000000000003,
+        "confidence": 0.8810046315193176,
+        "is_filler": false
+      },
+      {
+        "word": "we",
+        "start": 41.0,
+        "end": 41.2,
+        "duration": 0.20000000000000284,
+        "confidence": 0.9449681639671326,
+        "is_filler": false
+      },
+      {
+        "word": "were",
+        "start": 41.2,
+        "end": 41.34,
+        "duration": 0.14000000000000057,
+        "confidence": 0.9963787198066711,
+        "is_filler": false
+      },
+      {
+        "word": "very",
+        "start": 41.34,
+        "end": 41.52,
+        "duration": 0.17999999999999972,
+        "confidence": 0.9869433641433716,
+        "is_filler": false
+      },
+      {
+        "word": "cautious",
+        "start": 41.52,
+        "end": 41.84,
+        "duration": 0.3200000000000003,
+        "confidence": 0.9947060942649841,
+        "is_filler": false
+      },
+      {
+        "word": "and",
+        "start": 41.84,
+        "end": 42.14,
+        "duration": 0.29999999999999716,
+        "confidence": 0.8379741311073303,
+        "is_filler": false
+      },
+      {
+        "word": "sanitizing",
+        "start": 42.14,
+        "end": 42.64,
+        "duration": 0.5,
+        "confidence": 0.9607380628585815,
+        "is_filler": false
+      },
+      {
+        "word": "our",
+        "start": 42.64,
+        "end": 42.82,
+        "duration": 0.17999999999999972,
+        "confidence": 0.9934826493263245,
+        "is_filler": false
+      },
+      {
+        "word": "hands",
+        "start": 42.82,
+        "end": 43.08,
+        "duration": 0.259999999999998,
+        "confidence": 0.9983396530151367,
+        "is_filler": false
+      },
+      {
+        "word": "but",
+        "start": 43.08,
+        "end": 43.56,
+        "duration": 0.480000000000004,
+        "confidence": 0.36367636919021606,
+        "is_filler": false
+      },
+      {
+        "word": "this",
+        "start": 43.56,
+        "end": 43.82,
+        "duration": 0.259999999999998,
+        "confidence": 0.962498128414154,
+        "is_filler": false
+      },
+      {
+        "word": "device",
+        "start": 43.82,
+        "end": 44.08,
+        "duration": 0.259999999999998,
+        "confidence": 0.9974254965782166,
+        "is_filler": false
+      },
+      {
+        "word": "even",
+        "start": 44.08,
+        "end": 44.64,
+        "duration": 0.5600000000000023,
+        "confidence": 0.8076001405715942,
+        "is_filler": false
+      },
+      {
+        "word": "at",
+        "start": 44.64,
+        "end": 44.98,
+        "duration": 0.3399999999999963,
+        "confidence": 0.9601960778236389,
+        "is_filler": false
+      },
+      {
+        "word": "that",
+        "start": 44.98,
+        "end": 45.2,
+        "duration": 0.22000000000000597,
+        "confidence": 0.9933638572692871,
+        "is_filler": false
+      },
+      {
+        "word": "time",
+        "start": 45.2,
+        "end": 45.56,
+        "duration": 0.35999999999999943,
+        "confidence": 0.9989006519317627,
+        "is_filler": false
+      },
+      {
+        "word": "there",
+        "start": 45.56,
+        "end": 45.74,
+        "duration": 0.17999999999999972,
+        "confidence": 0.9049227833747864,
+        "is_filler": false
+      },
+      {
+        "word": "was",
+        "start": 45.74,
+        "end": 45.88,
+        "duration": 0.14000000000000057,
+        "confidence": 0.9850860834121704,
+        "is_filler": false
+      },
+      {
+        "word": "no",
+        "start": 45.88,
+        "end": 46.02,
+        "duration": 0.14000000000000057,
+        "confidence": 0.9747732281684875,
+        "is_filler": false
+      },
+      {
+        "word": "problem",
+        "start": 46.02,
+        "end": 46.36,
+        "duration": 0.3399999999999963,
+        "confidence": 0.9942240118980408,
+        "is_filler": false
+      },
+      {
+        "word": "in",
+        "start": 46.36,
+        "end": 46.52,
+        "duration": 0.1600000000000037,
+        "confidence": 0.8479949831962585,
+        "is_filler": false
+      },
+      {
+        "word": "using",
+        "start": 46.52,
+        "end": 46.74,
+        "duration": 0.21999999999999886,
+        "confidence": 0.9972936511039734,
+        "is_filler": false
+      },
+      {
+        "word": "this",
+        "start": 46.74,
+        "end": 46.98,
+        "duration": 0.23999999999999488,
+        "confidence": 0.9965204000473022,
+        "is_filler": false
+      },
+      {
+        "word": "because",
+        "start": 46.98,
+        "end": 47.28,
+        "duration": 0.30000000000000426,
+        "confidence": 0.9734753966331482,
+        "is_filler": false
+      },
+      {
+        "word": "it",
+        "start": 47.28,
+        "end": 47.5,
+        "duration": 0.21999999999999886,
+        "confidence": 0.992883563041687,
+        "is_filler": false
+      },
+      {
+        "word": "is",
+        "start": 47.5,
+        "end": 47.64,
+        "duration": 0.14000000000000057,
+        "confidence": 0.9929371476173401,
+        "is_filler": false
+      },
+      {
+        "word": "totally",
+        "start": 47.64,
+        "end": 48.04,
+        "duration": 0.3999999999999986,
+        "confidence": 0.9966134428977966,
+        "is_filler": false
+      },
+      {
+        "word": "controlled",
+        "start": 48.04,
+        "end": 48.44,
+        "duration": 0.3999999999999986,
+        "confidence": 0.9946849346160889,
+        "is_filler": false
+      },
+      {
+        "word": "by",
+        "start": 48.44,
+        "end": 48.66,
+        "duration": 0.21999999999999886,
+        "confidence": 0.9972251653671265,
+        "is_filler": false
+      },
+      {
+        "word": "the",
+        "start": 48.66,
+        "end": 48.82,
+        "duration": 0.1600000000000037,
+        "confidence": 0.992976725101471,
+        "is_filler": false
+      },
+      {
+        "word": "voice",
+        "start": 48.82,
+        "end": 49.1,
+        "duration": 0.28000000000000114,
+        "confidence": 0.9535436630249023,
+        "is_filler": false
+      },
+      {
+        "word": "and",
+        "start": 49.1,
+        "end": 50.0,
+        "duration": 0.8999999999999986,
+        "confidence": 0.9235365390777588,
+        "is_filler": false
+      },
+      {
+        "word": "it",
+        "start": 50.0,
+        "end": 50.98,
+        "duration": 0.9799999999999969,
+        "confidence": 0.5450819730758667,
+        "is_filler": false
+      },
+      {
+        "word": "as",
+        "start": 50.98,
+        "end": 51.22,
+        "duration": 0.240000000000002,
+        "confidence": 0.8485192656517029,
+        "is_filler": false
+      },
+      {
+        "word": "it",
+        "start": 51.22,
+        "end": 51.32,
+        "duration": 0.10000000000000142,
+        "confidence": 0.9769026041030884,
+        "is_filler": false
+      },
+      {
+        "word": "is",
+        "start": 51.32,
+        "end": 51.44,
+        "duration": 0.11999999999999744,
+        "confidence": 0.9954314231872559,
+        "is_filler": false
+      },
+      {
+        "word": "based",
+        "start": 51.44,
+        "end": 51.58,
+        "duration": 0.14000000000000057,
+        "confidence": 0.9920839071273804,
+        "is_filler": false
+      },
+      {
+        "word": "on",
+        "start": 51.58,
+        "end": 51.76,
+        "duration": 0.17999999999999972,
+        "confidence": 0.9921797513961792,
+        "is_filler": false
+      },
+      {
+        "word": "artificial",
+        "start": 51.76,
+        "end": 52.06,
+        "duration": 0.30000000000000426,
+        "confidence": 0.9968229532241821,
+        "is_filler": false
+      },
+      {
+        "word": "intelligence",
+        "start": 52.06,
+        "end": 52.66,
+        "duration": 0.5999999999999943,
+        "confidence": 0.9977841973304749,
+        "is_filler": false
+      },
+      {
+        "word": "you",
+        "start": 52.66,
+        "end": 52.86,
+        "duration": 0.20000000000000284,
+        "confidence": 0.6611971259117126,
+        "is_filler": false
+      },
+      {
+        "word": "know",
+        "start": 52.86,
+        "end": 52.94,
+        "duration": 0.0799999999999983,
+        "confidence": 0.9643644690513611,
+        "is_filler": false
+      },
+      {
+        "word": "you",
+        "start": 52.94,
+        "end": 53.08,
+        "duration": 0.14000000000000057,
+        "confidence": 0.9127808213233948,
+        "is_filler": false
+      },
+      {
+        "word": "don't",
+        "start": 53.08,
+        "end": 53.5,
+        "duration": 0.4200000000000017,
+        "confidence": 0.9346486032009125,
+        "is_filler": false
+      },
+      {
+        "word": "use",
+        "start": 53.5,
+        "end": 54.14,
+        "duration": 0.6400000000000006,
+        "confidence": 0.9966159462928772,
+        "is_filler": false
+      },
+      {
+        "word": "your",
+        "start": 54.14,
+        "end": 54.4,
+        "duration": 0.259999999999998,
+        "confidence": 0.9971358776092529,
+        "is_filler": false
+      },
+      {
+        "word": "own",
+        "start": 54.4,
+        "end": 54.54,
+        "duration": 0.14000000000000057,
+        "confidence": 0.9980353713035583,
+        "is_filler": false
+      },
+      {
+        "word": "intelligence",
+        "start": 54.54,
+        "end": 54.98,
+        "duration": 0.4399999999999977,
+        "confidence": 0.9974143505096436,
+        "is_filler": false
+      },
+      {
+        "word": "and",
+        "start": 54.98,
+        "end": 55.3,
+        "duration": 0.3200000000000003,
+        "confidence": 0.30133625864982605,
+        "is_filler": false
+      },
+      {
+        "word": "you",
+        "start": 55.3,
+        "end": 55.42,
+        "duration": 0.12000000000000455,
+        "confidence": 0.7091561555862427,
+        "is_filler": false
+      },
+      {
+        "word": "just",
+        "start": 55.42,
+        "end": 55.6,
+        "duration": 0.17999999999999972,
+        "confidence": 0.9571468234062195,
+        "is_filler": false
+      },
+      {
+        "word": "let",
+        "start": 55.6,
+        "end": 55.8,
+        "duration": 0.19999999999999574,
+        "confidence": 0.9563391208648682,
+        "is_filler": false
+      },
+      {
+        "word": "it",
+        "start": 55.8,
+        "end": 55.96,
+        "duration": 0.1600000000000037,
+        "confidence": 0.9873107671737671,
+        "is_filler": false
+      },
+      {
+        "word": "do",
+        "start": 55.96,
+        "end": 56.72,
+        "duration": 0.759999999999998,
+        "confidence": 0.9367783069610596,
+        "is_filler": false
+      },
+      {
+        "word": "it",
+        "start": 56.72,
+        "end": 56.96,
+        "duration": 0.240000000000002,
+        "confidence": 0.7646290063858032,
+        "is_filler": false
+      },
+      {
+        "word": "works.",
+        "start": 56.96,
+        "end": 57.56,
+        "duration": 0.6000000000000014,
+        "confidence": 0.8326245546340942,
+        "is_filler": false
+      },
+      {
+        "word": "And",
+        "start": 58.1,
+        "end": 58.24,
+        "duration": 0.14000000000000057,
+        "confidence": 0.7470378875732422,
+        "is_filler": false
+      },
+      {
+        "word": "the",
+        "start": 58.24,
+        "end": 58.82,
+        "duration": 0.5799999999999983,
+        "confidence": 0.9372959733009338,
+        "is_filler": false
+      },
+      {
+        "word": "thing",
+        "start": 58.82,
+        "end": 58.98,
+        "duration": 0.1599999999999966,
+        "confidence": 0.9963386058807373,
+        "is_filler": false
+      },
+      {
+        "word": "is,",
+        "start": 58.98,
+        "end": 59.26,
+        "duration": 0.28000000000000114,
+        "confidence": 0.996434211730957,
+        "is_filler": false
+      },
+      {
+        "word": "I",
+        "start": 59.58,
+        "end": 59.58,
+        "duration": 0.0,
+        "confidence": 0.6052204370498657,
+        "is_filler": false
+      },
+      {
+        "word": "first,",
+        "start": 59.58,
+        "end": 60.16,
+        "duration": 0.5799999999999983,
+        "confidence": 0.48929518461227417,
+        "is_filler": false
+      },
+      {
+        "word": "earlier",
+        "start": 60.5,
+        "end": 60.94,
+        "duration": 0.4399999999999977,
+        "confidence": 0.5352026224136353,
+        "is_filler": false
+      },
+      {
+        "word": "I",
+        "start": 60.94,
+        "end": 61.14,
+        "duration": 0.20000000000000284,
+        "confidence": 0.6846649050712585,
+        "is_filler": false
+      },
+      {
+        "word": "used",
+        "start": 61.14,
+        "end": 61.32,
+        "duration": 0.17999999999999972,
+        "confidence": 0.98829585313797,
+        "is_filler": false
+      },
+      {
+        "word": "to",
+        "start": 61.32,
+        "end": 61.44,
+        "duration": 0.11999999999999744,
+        "confidence": 0.9986388087272644,
+        "is_filler": false
+      },
+      {
+        "word": "have",
+        "start": 61.44,
+        "end": 61.58,
+        "duration": 0.14000000000000057,
+        "confidence": 0.9976741671562195,
+        "is_filler": false
+      },
+      {
+        "word": "a",
+        "start": 61.58,
+        "end": 61.68,
+        "duration": 0.10000000000000142,
+        "confidence": 0.9766187071800232,
+        "is_filler": false
+      },
+      {
+        "word": "clock",
+        "start": 61.68,
+        "end": 61.86,
+        "duration": 0.17999999999999972,
+        "confidence": 0.9907922744750977,
+        "is_filler": false
+      },
+      {
+        "word": "next",
+        "start": 61.86,
+        "end": 62.36,
+        "duration": 0.5,
+        "confidence": 0.9419455528259277,
+        "is_filler": false
+      },
+      {
+        "word": "to",
+        "start": 62.36,
+        "end": 62.56,
+        "duration": 0.20000000000000284,
+        "confidence": 0.9988654851913452,
+        "is_filler": false
+      },
+      {
+        "word": "my",
+        "start": 62.56,
+        "end": 62.7,
+        "duration": 0.14000000000000057,
+        "confidence": 0.9964331388473511,
+        "is_filler": false
+      },
+      {
+        "word": "bed",
+        "start": 62.7,
+        "end": 62.9,
+        "duration": 0.19999999999999574,
+        "confidence": 0.9984015822410583,
+        "is_filler": false
+      },
+      {
+        "word": "and",
+        "start": 62.9,
+        "end": 63.52,
+        "duration": 0.6200000000000045,
+        "confidence": 0.6407127380371094,
+        "is_filler": false
+      },
+      {
+        "word": "it",
+        "start": 63.52,
+        "end": 63.68,
+        "duration": 0.1599999999999966,
+        "confidence": 0.9681398272514343,
+        "is_filler": false
+      },
+      {
+        "word": "used",
+        "start": 63.68,
+        "end": 64.0,
+        "duration": 0.3200000000000003,
+        "confidence": 0.9881560802459717,
+        "is_filler": false
+      },
+      {
+        "word": "to",
+        "start": 64.0,
+        "end": 64.2,
+        "duration": 0.20000000000000284,
+        "confidence": 0.9994779229164124,
+        "is_filler": false
+      },
+      {
+        "word": "ring",
+        "start": 64.2,
+        "end": 64.34,
+        "duration": 0.14000000000000057,
+        "confidence": 0.9432675838470459,
+        "is_filler": false
+      },
+      {
+        "word": "and",
+        "start": 64.34,
+        "end": 64.72,
+        "duration": 0.37999999999999545,
+        "confidence": 0.9772974252700806,
+        "is_filler": false
+      },
+      {
+        "word": "wake",
+        "start": 64.72,
+        "end": 64.88,
+        "duration": 0.1599999999999966,
+        "confidence": 0.9948252439498901,
+        "is_filler": false
+      },
+      {
+        "word": "up,",
+        "start": 65.1,
+        "end": 65.28,
+        "duration": 0.18000000000000682,
+        "confidence": 0.9993759989738464,
+        "is_filler": false
+      },
+      {
+        "word": "but",
+        "start": 65.44,
+        "end": 65.68,
+        "duration": 0.2400000000000091,
+        "confidence": 0.9935645461082458,
+        "is_filler": false
+      },
+      {
+        "word": "when",
+        "start": 65.68,
+        "end": 65.96,
+        "duration": 0.2799999999999869,
+        "confidence": 0.979591429233551,
+        "is_filler": false
+      },
+      {
+        "word": "the",
+        "start": 65.96,
+        "end": 66.1,
+        "duration": 0.14000000000000057,
+        "confidence": 0.9889249205589294,
+        "is_filler": false
+      },
+      {
+        "word": "battery",
+        "start": 66.1,
+        "end": 66.44,
+        "duration": 0.3400000000000034,
+        "confidence": 0.9945449829101562,
+        "is_filler": false
+      },
+      {
+        "word": "was",
+        "start": 66.44,
+        "end": 66.7,
+        "duration": 0.2600000000000051,
+        "confidence": 0.9979792237281799,
+        "is_filler": false
+      },
+      {
+        "word": "low,",
+        "start": 66.7,
+        "end": 66.94,
+        "duration": 0.23999999999999488,
+        "confidence": 0.9995336532592773,
+        "is_filler": false
+      },
+      {
+        "word": "it",
+        "start": 67.6,
+        "end": 67.76,
+        "duration": 0.1600000000000108,
+        "confidence": 0.9890633225440979,
+        "is_filler": false
+      },
+      {
+        "word": "would",
+        "start": 67.76,
+        "end": 67.96,
+        "duration": 0.19999999999998863,
+        "confidence": 0.9972814321517944,
+        "is_filler": false
+      },
+      {
+        "word": "be",
+        "start": 67.96,
+        "end": 68.34,
+        "duration": 0.38000000000000966,
+        "confidence": 0.9924334287643433,
+        "is_filler": false
+      },
+      {
+        "word": "a",
+        "start": 68.34,
+        "end": 68.6,
+        "duration": 0.2599999999999909,
+        "confidence": 0.9670984148979187,
+        "is_filler": false
+      },
+      {
+        "word": "nightmare",
+        "start": 68.6,
+        "end": 68.84,
+        "duration": 0.2400000000000091,
+        "confidence": 0.9903967380523682,
+        "is_filler": false
+      },
+      {
+        "word": "for",
+        "start": 68.84,
+        "end": 69.16,
+        "duration": 0.3199999999999932,
+        "confidence": 0.9985622763633728,
+        "is_filler": false
+      },
+      {
+        "word": "I",
+        "start": 69.42,
+        "end": 69.48,
+        "duration": 0.060000000000002274,
+        "confidence": 0.9405864477157593,
+        "is_filler": false
+      },
+      {
+        "word": "would",
+        "start": 69.48,
+        "end": 69.6,
+        "duration": 0.11999999999999034,
+        "confidence": 0.9918730854988098,
+        "is_filler": false
+      },
+      {
+        "word": "say,",
+        "start": 69.6,
+        "end": 69.8,
+        "duration": 0.20000000000000284,
+        "confidence": 0.9946827292442322,
+        "is_filler": false
+      },
+      {
+        "word": "because",
+        "start": 69.88,
+        "end": 70.06,
+        "duration": 0.18000000000000682,
+        "confidence": 0.9857009649276733,
+        "is_filler": false
+      },
+      {
+        "word": "I",
+        "start": 70.06,
+        "end": 70.22,
+        "duration": 0.1599999999999966,
+        "confidence": 0.9935321807861328,
+        "is_filler": false
+      },
+      {
+        "word": "was",
+        "start": 70.22,
+        "end": 70.38,
+        "duration": 0.1599999999999966,
+        "confidence": 0.9511799216270447,
+        "is_filler": false
+      },
+      {
+        "word": "not",
+        "start": 70.38,
+        "end": 70.52,
+        "duration": 0.14000000000000057,
+        "confidence": 0.5943635702133179,
+        "is_filler": false
+      },
+      {
+        "word": "able",
+        "start": 70.52,
+        "end": 70.66,
+        "duration": 0.14000000000000057,
+        "confidence": 0.9834043383598328,
+        "is_filler": false
+      },
+      {
+        "word": "to",
+        "start": 70.66,
+        "end": 70.78,
+        "duration": 0.12000000000000455,
+        "confidence": 0.9946808218955994,
+        "is_filler": false
+      },
+      {
+        "word": "get",
+        "start": 70.78,
+        "end": 70.9,
+        "duration": 0.12000000000000455,
+        "confidence": 0.9979376792907715,
+        "is_filler": false
+      },
+      {
+        "word": "up",
+        "start": 70.9,
+        "end": 71.04,
+        "duration": 0.14000000000000057,
+        "confidence": 0.9940947890281677,
+        "is_filler": false
+      },
+      {
+        "word": "on",
+        "start": 71.04,
+        "end": 71.14,
+        "duration": 0.09999999999999432,
+        "confidence": 0.7910800576210022,
+        "is_filler": false
+      },
+      {
+        "word": "time",
+        "start": 71.14,
+        "end": 71.4,
+        "duration": 0.2600000000000051,
+        "confidence": 0.9950492978096008,
+        "is_filler": false
+      },
+      {
+        "word": "and",
+        "start": 71.4,
+        "end": 71.64,
+        "duration": 0.23999999999999488,
+        "confidence": 0.9842438697814941,
+        "is_filler": false
+      },
+      {
+        "word": "reach",
+        "start": 71.64,
+        "end": 71.94,
+        "duration": 0.29999999999999716,
+        "confidence": 0.9955260157585144,
+        "is_filler": false
+      },
+      {
+        "word": "where",
+        "start": 71.94,
+        "end": 72.18,
+        "duration": 0.2400000000000091,
+        "confidence": 0.9611667990684509,
+        "is_filler": false
+      },
+      {
+        "word": "I",
+        "start": 72.18,
+        "end": 72.3,
+        "duration": 0.11999999999999034,
+        "confidence": 0.9970570802688599,
+        "is_filler": false
+      },
+      {
+        "word": "wanted",
+        "start": 72.3,
+        "end": 72.56,
+        "duration": 0.2600000000000051,
+        "confidence": 0.994637668132782,
+        "is_filler": false
+      },
+      {
+        "word": "to.",
+        "start": 72.56,
+        "end": 72.8,
+        "duration": 0.23999999999999488,
+        "confidence": 0.996185839176178,
+        "is_filler": false
+      },
+      {
+        "word": "But",
+        "start": 73.04,
+        "end": 73.28,
+        "duration": 0.23999999999999488,
+        "confidence": 0.993313729763031,
+        "is_filler": false
+      },
+      {
+        "word": "since",
+        "start": 73.28,
+        "end": 73.54,
+        "duration": 0.2600000000000051,
+        "confidence": 0.9788368344306946,
+        "is_filler": false
+      },
+      {
+        "word": "this,",
+        "start": 73.54,
+        "end": 73.84,
+        "duration": 0.29999999999999716,
+        "confidence": 0.9814717769622803,
+        "is_filler": false
+      },
+      {
+        "word": "I",
+        "start": 74.42,
+        "end": 74.54,
+        "duration": 0.12000000000000455,
+        "confidence": 0.9931864738464355,
+        "is_filler": false
+      },
+      {
+        "word": "just",
+        "start": 74.54,
+        "end": 74.84,
+        "duration": 0.29999999999999716,
+        "confidence": 0.9830180406570435,
+        "is_filler": false
+      },
+      {
+        "word": "tell",
+        "start": 74.84,
+        "end": 75.22,
+        "duration": 0.37999999999999545,
+        "confidence": 0.9680182337760925,
+        "is_filler": false
+      },
+      {
+        "word": "Alexa,",
+        "start": 75.22,
+        "end": 75.5,
+        "duration": 0.28000000000000114,
+        "confidence": 0.6475830078125,
+        "is_filler": false
+      },
+      {
+        "word": "hey,",
+        "start": 75.72,
+        "end": 75.82,
+        "duration": 0.09999999999999432,
+        "confidence": 0.27689945697784424,
+        "is_filler": false
+      },
+      {
+        "word": "Alexa,",
+        "start": 75.96,
+        "end": 76.08,
+        "duration": 0.12000000000000455,
+        "confidence": 0.9936396479606628,
+        "is_filler": false
+      },
+      {
+        "word": "wake",
+        "start": 76.4,
+        "end": 76.54,
+        "duration": 0.14000000000000057,
+        "confidence": 0.9958035349845886,
+        "is_filler": false
+      },
+      {
+        "word": "up",
+        "start": 76.74,
+        "end": 76.84,
+        "duration": 0.10000000000000853,
+        "confidence": 0.9996442794799805,
+        "is_filler": false
+      },
+      {
+        "word": "at",
+        "start": 76.84,
+        "end": 76.98,
+        "duration": 0.14000000000000057,
+        "confidence": 0.9970561265945435,
+        "is_filler": false
+      },
+      {
+        "word": "5",
+        "start": 76.98,
+        "end": 77.18,
+        "duration": 0.20000000000000284,
+        "confidence": 0.8551965355873108,
+        "is_filler": false
+      },
+      {
+        "word": "a",
+        "start": 77.18,
+        "end": 77.34,
+        "duration": 0.1599999999999966,
+        "confidence": 0.41267451643943787,
+        "is_filler": false
+      },
+      {
+        "word": ".m.",
+        "start": 77.34,
+        "end": 77.44,
+        "duration": 0.09999999999999432,
+        "confidence": 0.9950416684150696,
+        "is_filler": false
+      },
+      {
+        "word": "in",
+        "start": 77.48,
+        "end": 77.52,
+        "duration": 0.03999999999999204,
+        "confidence": 0.9790021181106567,
+        "is_filler": false
+      },
+      {
+        "word": "the",
+        "start": 77.52,
+        "end": 77.6,
+        "duration": 0.0799999999999983,
+        "confidence": 0.9991387128829956,
+        "is_filler": false
+      },
+      {
+        "word": "morning.",
+        "start": 77.6,
+        "end": 77.82,
+        "duration": 0.21999999999999886,
+        "confidence": 0.999164342880249,
+        "is_filler": false
+      },
+      {
+        "word": "And",
+        "start": 78.26,
+        "end": 78.58,
+        "duration": 0.3199999999999932,
+        "confidence": 0.9765448570251465,
+        "is_filler": false
+      },
+      {
+        "word": "I",
+        "start": 78.58,
+        "end": 78.86,
+        "duration": 0.28000000000000114,
+        "confidence": 0.991521954536438,
+        "is_filler": false
+      },
+      {
+        "word": "don't",
+        "start": 78.86,
+        "end": 79.1,
+        "duration": 0.23999999999999488,
+        "confidence": 0.9923320412635803,
+        "is_filler": false
+      },
+      {
+        "word": "have",
+        "start": 79.1,
+        "end": 79.26,
+        "duration": 0.1600000000000108,
+        "confidence": 0.9978179931640625,
+        "is_filler": false
+      },
+      {
+        "word": "to",
+        "start": 79.26,
+        "end": 79.4,
+        "duration": 0.14000000000000057,
+        "confidence": 0.998634397983551,
+        "is_filler": false
+      },
+      {
+        "word": "do",
+        "start": 79.4,
+        "end": 79.54,
+        "duration": 0.14000000000000057,
+        "confidence": 0.9970749616622925,
+        "is_filler": false
+      },
+      {
+        "word": "anything",
+        "start": 79.54,
+        "end": 79.84,
+        "duration": 0.29999999999999716,
+        "confidence": 0.9987711310386658,
+        "is_filler": false
+      },
+      {
+        "word": "else.",
+        "start": 79.84,
+        "end": 80.22,
+        "duration": 0.37999999999999545,
+        "confidence": 0.9985437393188477,
+        "is_filler": false
+      },
+      {
+        "word": "I",
+        "start": 80.4,
+        "end": 80.56,
+        "duration": 0.1599999999999966,
+        "confidence": 0.9981542229652405,
+        "is_filler": false
+      },
+      {
+        "word": "just",
+        "start": 80.56,
+        "end": 80.76,
+        "duration": 0.20000000000000284,
+        "confidence": 0.9985020160675049,
+        "is_filler": false
+      },
+      {
+        "word": "have",
+        "start": 80.76,
+        "end": 80.88,
+        "duration": 0.11999999999999034,
+        "confidence": 0.995455265045166,
+        "is_filler": false
+      },
+      {
+        "word": "to",
+        "start": 80.88,
+        "end": 81.04,
+        "duration": 0.1600000000000108,
+        "confidence": 0.9985986351966858,
+        "is_filler": false
+      },
+      {
+        "word": "sit",
+        "start": 81.04,
+        "end": 81.42,
+        "duration": 0.37999999999999545,
+        "confidence": 0.9836351871490479,
+        "is_filler": false
+      },
+      {
+        "word": "and",
+        "start": 81.42,
+        "end": 81.72,
+        "duration": 0.29999999999999716,
+        "confidence": 0.6721797585487366,
+        "is_filler": false
+      },
+      {
+        "word": "relax.",
+        "start": 81.72,
+        "end": 81.96,
+        "duration": 0.23999999999999488,
+        "confidence": 0.9972440004348755,
+        "is_filler": false
+      },
+      {
+        "word": "And",
+        "start": 81.96,
+        "end": 82.62,
+        "duration": 0.6600000000000108,
+        "confidence": 0.201971173286438,
+        "is_filler": false
+      },
+      {
+        "word": "at",
+        "start": 82.62,
+        "end": 82.82,
+        "duration": 0.19999999999998863,
+        "confidence": 0.8778386116027832,
+        "is_filler": false
+      },
+      {
+        "word": "five",
+        "start": 82.82,
+        "end": 83.02,
+        "duration": 0.20000000000000284,
+        "confidence": 0.49823901057243347,
+        "is_filler": false
+      },
+      {
+        "word": "AM,",
+        "start": 83.02,
+        "end": 83.28,
+        "duration": 0.2600000000000051,
+        "confidence": 0.22414490580558777,
+        "is_filler": false
+      },
+      {
+        "word": "there",
+        "start": 83.6,
+        "end": 83.76,
+        "duration": 0.1600000000000108,
+        "confidence": 0.6820245385169983,
+        "is_filler": false
+      },
+      {
+        "word": "is",
+        "start": 83.76,
+        "end": 83.84,
+        "duration": 0.0799999999999983,
+        "confidence": 0.7633118033409119,
+        "is_filler": false
+      },
+      {
+        "word": "a",
+        "start": 83.84,
+        "end": 83.94,
+        "duration": 0.09999999999999432,
+        "confidence": 0.9447656273841858,
+        "is_filler": false
+      },
+      {
+        "word": "very",
+        "start": 83.94,
+        "end": 84.18,
+        "duration": 0.2400000000000091,
+        "confidence": 0.988821268081665,
+        "is_filler": false
+      },
+      {
+        "word": "notorious",
+        "start": 84.18,
+        "end": 85.62,
+        "duration": 1.4399999999999977,
+        "confidence": 0.8425505757331848,
+        "is_filler": false
+      },
+      {
+        "word": "alarm",
+        "start": 85.62,
+        "end": 86.02,
+        "duration": 0.3999999999999915,
+        "confidence": 0.6465756893157959,
+        "is_filler": false
+      },
+      {
+        "word": "which",
+        "start": 86.02,
+        "end": 86.46,
+        "duration": 0.4399999999999977,
+        "confidence": 0.7055778503417969,
+        "is_filler": false
+      },
+      {
+        "word": "is",
+        "start": 86.46,
+        "end": 86.66,
+        "duration": 0.20000000000000284,
+        "confidence": 0.9926707744598389,
+        "is_filler": false
+      },
+      {
+        "word": "run",
+        "start": 86.66,
+        "end": 86.84,
+        "duration": 0.18000000000000682,
+        "confidence": 0.6088197827339172,
+        "is_filler": false
+      },
+      {
+        "word": "so",
+        "start": 86.84,
+        "end": 87.22,
+        "duration": 0.37999999999999545,
+        "confidence": 0.7825280427932739,
+        "is_filler": false
+      },
+      {
+        "word": "that",
+        "start": 87.22,
+        "end": 87.36,
+        "duration": 0.14000000000000057,
+        "confidence": 0.9912949204444885,
+        "is_filler": false
+      },
+      {
+        "word": "I",
+        "start": 87.36,
+        "end": 87.52,
+        "duration": 0.1599999999999966,
+        "confidence": 0.9762241244316101,
+        "is_filler": false
+      },
+      {
+        "word": "can",
+        "start": 87.52,
+        "end": 87.68,
+        "duration": 0.1600000000000108,
+        "confidence": 0.9964878559112549,
+        "is_filler": false
+      },
+      {
+        "word": "wake",
+        "start": 87.68,
+        "end": 87.84,
+        "duration": 0.1599999999999966,
+        "confidence": 0.9933920502662659,
+        "is_filler": false
+      },
+      {
+        "word": "up",
+        "start": 87.84,
+        "end": 88.08,
+        "duration": 0.23999999999999488,
+        "confidence": 0.9943693280220032,
+        "is_filler": false
+      },
+      {
+        "word": "and",
+        "start": 88.08,
+        "end": 88.64,
+        "duration": 0.5600000000000023,
+        "confidence": 0.5328139662742615,
+        "is_filler": false
+      },
+      {
+        "word": "you",
+        "start": 88.64,
+        "end": 88.78,
+        "duration": 0.14000000000000057,
+        "confidence": 0.9960285425186157,
+        "is_filler": false
+      },
+      {
+        "word": "won't",
+        "start": 88.78,
+        "end": 88.98,
+        "duration": 0.20000000000000284,
+        "confidence": 0.922081857919693,
+        "is_filler": false
+      },
+      {
+        "word": "believe",
+        "start": 88.98,
+        "end": 89.2,
+        "duration": 0.21999999999999886,
+        "confidence": 0.9836071729660034,
+        "is_filler": false
+      },
+      {
+        "word": "the",
+        "start": 89.2,
+        "end": 89.86,
+        "duration": 0.6599999999999966,
+        "confidence": 0.7631334662437439,
+        "is_filler": false
+      },
+      {
+        "word": "other.",
+        "start": 89.86,
+        "end": 89.98,
+        "duration": 0.12000000000000455,
+        "confidence": 0.8796659708023071,
+        "is_filler": false
+      }
+    ],
+    "segment_timestamps": [
+      {
+        "text": "Okay, so I think technology in these days nowadays is nothing less than a blessing. And technology",
+        "start": 0.7800000000000002,
+        "end": 7.08,
+        "duration": 6.3,
+        "avg_word_confidence": 0.8635958818828359,
+        "contains_filler": false
+      },
+      {
+        "text": "is something which is bought as so many appliances, which is making our lives easier on every",
+        "start": 7.08,
+        "end": 12.36,
+        "duration": 5.279999999999999,
+        "avg_word_confidence": 0.9451814469169167,
+        "contains_filler": false
+      },
+      {
+        "text": "level I would say. Here I would like to talk about a device which I use regularly and",
+        "start": 12.36,
+        "end": 16.82,
+        "duration": 4.460000000000001,
+        "avg_word_confidence": 0.9212441510624356,
+        "contains_filler": false
+      },
+      {
+        "text": "bi-regularily I mean it's not daily, it is used on an hourly basis I would say. And that's",
+        "start": 16.82,
+        "end": 22.4,
+        "duration": 5.579999999999998,
+        "avg_word_confidence": 0.8523641816879574,
+        "contains_filler": false
+      },
+      {
+        "text": "Amazon Alexa. And what's special about device, about this device is that it's totally based",
+        "start": 22.4,
+        "end": 28.82,
+        "duration": 6.420000000000002,
+        "avg_word_confidence": 0.8866275310516357,
+        "contains_filler": false
+      },
+      {
+        "text": "on artificial intelligence. So there are very few buttons and there's no touchscreen because",
+        "start": 28.82,
+        "end": 33.86,
+        "duration": 5.039999999999999,
+        "avg_word_confidence": 0.7946226703269141,
+        "contains_filler": false
+      },
+      {
+        "text": "a lot of us are right now habitual of touching our phones and because of this corona virus we were",
+        "start": 33.86,
+        "end": 39.28,
+        "duration": 5.420000000000002,
+        "avg_word_confidence": 0.910344098508358,
+        "contains_filler": false
+      },
+      {
+        "text": "not allowed to touch each other or we were very cautious and sanitizing our hands but this device",
+        "start": 39.28,
+        "end": 44.08,
+        "duration": 4.799999999999997,
+        "avg_word_confidence": 0.9082507938146591,
+        "contains_filler": false
+      },
+      {
+        "text": "even at that time there was no problem in using this because it is totally controlled by the voice",
+        "start": 44.08,
+        "end": 49.1,
+        "duration": 5.020000000000003,
+        "avg_word_confidence": 0.9660639951103612,
+        "contains_filler": false
+      },
+      {
+        "text": "and it as it is based on artificial intelligence you know you don't use your own intelligence",
+        "start": 49.1,
+        "end": 54.98,
+        "duration": 5.8799999999999955,
+        "avg_word_confidence": 0.9253255987868589,
+        "contains_filler": false
+      },
+      {
+        "text": "and you just let it do it works.",
+        "start": 54.98,
+        "end": 57.56,
+        "duration": 2.5800000000000054,
+        "avg_word_confidence": 0.8056651242077351,
+        "contains_filler": false
+      },
+      {
+        "text": "And the thing is, I first,",
+        "start": 58.1,
+        "end": 60.16,
+        "duration": 2.059999999999995,
+        "avg_word_confidence": 0.7952703833580017,
+        "contains_filler": false
+      },
+      {
+        "text": "earlier I used to have a clock next to my bed",
+        "start": 60.5,
+        "end": 62.9,
+        "duration": 2.3999999999999986,
+        "avg_word_confidence": 0.9188666452061046,
+        "contains_filler": false
+      },
+      {
+        "text": "and it used to ring and wake me up,",
+        "start": 62.9,
+        "end": 65.28,
+        "duration": 2.3800000000000026,
+        "avg_word_confidence": 0.9453577465481229,
+        "contains_filler": true
+      },
+      {
+        "text": "but when the battery was low,",
+        "start": 65.44,
+        "end": 66.94,
+        "duration": 1.5,
+        "avg_word_confidence": 0.9923564592997233,
+        "contains_filler": false
+      },
+      {
+        "text": "it would be a nightmare for me, I would say,",
+        "start": 67.6,
+        "end": 69.8,
+        "duration": 2.200000000000003,
+        "avg_word_confidence": 0.9861638963222503,
+        "contains_filler": true
+      },
+      {
+        "text": "because I was not able to get up on time",
+        "start": 69.88,
+        "end": 71.4,
+        "duration": 1.5200000000000102,
+        "avg_word_confidence": 0.9281023621559144,
+        "contains_filler": false
+      },
+      {
+        "text": "and reach where I wanted to.",
+        "start": 71.4,
+        "end": 72.8,
+        "duration": 1.3999999999999915,
+        "avg_word_confidence": 0.9881362120310465,
+        "contains_filler": false
+      },
+      {
+        "text": "But since this, I just tell Alexa,",
+        "start": 73.04,
+        "end": 75.5,
+        "duration": 2.4599999999999937,
+        "avg_word_confidence": 0.9350611567497253,
+        "contains_filler": false
+      },
+      {
+        "text": "hey, Alexa, wake me up at 5 a.m. in the morning.",
+        "start": 75.72,
+        "end": 77.82,
+        "duration": 2.0999999999999943,
+        "avg_word_confidence": 0.8751480107506117,
+        "contains_filler": true
+      },
+      {
+        "text": "And I don't have to do anything else.",
+        "start": 78.26,
+        "end": 80.22,
+        "duration": 1.9599999999999937,
+        "avg_word_confidence": 0.993905134499073,
+        "contains_filler": false
+      },
+      {
+        "text": "I just have to sit and relax.",
+        "start": 80.4,
+        "end": 81.96,
+        "duration": 1.559999999999988,
+        "avg_word_confidence": 0.9491098693438939,
+        "contains_filler": false
+      },
+      {
+        "text": "And at five AM, there is a very notorious alarm which is run so that I can wake up and you",
+        "start": 81.96,
+        "end": 88.78,
+        "duration": 6.820000000000007,
+        "avg_word_confidence": 0.7733547829446339,
+        "contains_filler": false
+      },
+      {
+        "text": "won't believe the other.",
+        "start": 88.78,
+        "end": 89.98,
+        "duration": 1.2000000000000028,
+        "avg_word_confidence": 0.8871221169829369,
+        "contains_filler": false
+      }
+    ],
+    "filler_timestamps": [
+      {
+        "word": "uh",
+        "type": "filler",
+        "text": "uh",
+        "start": 10.18,
+        "end": 10.200000000000001,
+        "duration": 0.02000000000000135,
+        "style": "subtle",
+        "confidence": 0.25,
+        "raw_label": "I",
+        "count": NaN
+      },
+      {
+        "word": "uh",
+        "type": "filler",
+        "text": "uh",
+        "start": 12.18,
+        "end": 12.200000000000001,
+        "duration": 0.02000000000000135,
+        "style": "subtle",
+        "confidence": 0.25,
+        "raw_label": "E",
+        "count": NaN
+      },
+      {
+        "word": "uh",
+        "type": "filler",
+        "text": "uh",
+        "start": 32.08,
+        "end": 32.1,
+        "duration": 0.020000000000003126,
+        "style": "subtle",
+        "confidence": 0.25,
+        "raw_label": "A",
+        "count": NaN
+      },
+      {
+        "word": "uh",
+        "type": "filler",
+        "text": "uh",
+        "start": 34.0,
+        "end": 34.02,
+        "duration": 0.020000000000003126,
+        "style": "subtle",
+        "confidence": 0.25,
+        "raw_label": "A",
+        "count": NaN
+      },
+      {
+        "word": "uh",
+        "type": "filler",
+        "text": "uh",
+        "start": 34.54,
+        "end": 34.56,
+        "duration": 0.020000000000003126,
+        "style": "subtle",
+        "confidence": 0.25,
+        "raw_label": "U",
+        "count": NaN
+      },
+      {
+        "word": "uh",
+        "type": "filler",
+        "text": "uh",
+        "start": 36.44,
+        "end": 36.46,
+        "duration": 0.020000000000003126,
+        "style": "subtle",
+        "confidence": 0.25,
+        "raw_label": "O",
+        "count": NaN
+      },
+      {
+        "word": "uh",
+        "type": "filler",
+        "text": "uh",
+        "start": 37.36,
+        "end": 37.38,
+        "duration": 0.020000000000003126,
+        "style": "subtle",
+        "confidence": 0.25,
+        "raw_label": "A",
+        "count": NaN
+      },
+      {
+        "word": "uh",
+        "type": "filler",
+        "text": "uh",
+        "start": 42.76,
+        "end": 42.78,
+        "duration": 0.020000000000003126,
+        "style": "subtle",
+        "confidence": 0.25,
+        "raw_label": "U",
+        "count": NaN
+      },
+      {
+        "word": "uh",
+        "type": "filler",
+        "text": "uh",
+        "start": 50.9,
+        "end": 50.92,
+        "duration": 0.020000000000003126,
+        "style": "subtle",
+        "confidence": 0.25,
+        "raw_label": "I",
+        "count": NaN
+      },
+      {
+        "word": "uh",
+        "type": "filler",
+        "text": "uh",
+        "start": 51.14,
+        "end": 51.160000000000004,
+        "duration": 0.020000000000003126,
+        "style": "subtle",
+        "confidence": 0.25,
+        "raw_label": "A",
+        "count": NaN
+      },
+      {
+        "word": "uh",
+        "type": "filler",
+        "text": "uh",
+        "start": 54.08,
+        "end": 54.120000000000005,
+        "duration": 0.04000000000000625,
+        "style": "subtle",
+        "confidence": 0.25,
+        "raw_label": "U",
+        "count": NaN
+      },
+      {
+        "word": "uh",
+        "type": "filler",
+        "text": "uh",
+        "start": 55.22,
+        "end": 55.24,
+        "duration": 0.020000000000003126,
+        "style": "subtle",
+        "confidence": 0.25,
+        "raw_label": "A",
+        "count": NaN
+      },
+      {
+        "word": "uh",
+        "type": "filler",
+        "text": "uh",
+        "start": 59.54,
+        "end": 59.56,
+        "duration": 0.020000000000003126,
+        "style": "subtle",
+        "confidence": 0.25,
+        "raw_label": "I",
+        "count": NaN
+      },
+      {
+        "word": "me",
+        "type": "filler",
+        "text": "me",
+        "start": 64.88,
+        "end": 65.1,
+        "duration": 0.21999999999999886,
+        "style": "clear",
+        "confidence": 0.9969668984413147,
+        "raw_label": NaN,
+        "count": NaN
+      },
+      {
+        "word": "me,",
+        "type": "filler",
+        "text": "me,",
+        "start": 69.16,
+        "end": 69.32,
+        "duration": 0.1599999999999966,
+        "style": "clear",
+        "confidence": 0.9996610879898071,
+        "raw_label": NaN,
+        "count": NaN
+      },
+      {
+        "word": "uh",
+        "type": "filler",
+        "text": "uh",
+        "start": 75.58,
+        "end": 75.60000000000001,
+        "duration": 0.020000000000010232,
+        "style": "subtle",
+        "confidence": 0.25,
+        "raw_label": "E",
+        "count": NaN
+      },
+      {
+        "word": "me",
+        "type": "filler",
+        "text": "me",
+        "start": 76.54,
+        "end": 76.74,
+        "duration": 0.19999999999998863,
+        "style": "clear",
+        "confidence": 0.9985151886940002,
+        "raw_label": NaN,
+        "count": NaN
+      },
+      {
+        "word": "uh",
+        "type": "filler",
+        "text": "uh",
+        "start": 88.54,
+        "end": 88.58,
+        "duration": 0.03999999999999204,
+        "style": "subtle",
+        "confidence": 0.25,
+        "raw_label": "A",
+        "count": NaN
+      }
+    ]
+  }
+}
