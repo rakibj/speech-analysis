@@ -54,3 +54,5 @@ outputs/
 # Database
 *.db
 *.sqlite
+
+tmpclaude*

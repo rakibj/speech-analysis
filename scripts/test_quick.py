@@ -7,6 +7,10 @@ import asyncio
 import json
 import sys
 from pathlib import Path
+
+# Add parent directory to path to ensure src module can be imported
+sys.path.insert(0, str(Path(__file__).parent.parent))
+
 from src.core.engine_runner import run_engine
 
 # Enable UTF-8 output on Windows
@@ -27,7 +31,8 @@ def safe_print(text):
 async def main():
     # Find sample audio
     # audio_file = Path("data/l2arctic_spontaneous/L2A_001.wav")
-    audio_file = Path("data/ielts_part_2/ielts7.wav")
+    # audio_file = Path("data/ielts_part_2/ielts-9-v2.mp3")
+    audio_file = Path("data/samples/whatsapp-1.ogg")
     # audio_file = Path("samples/sample6.flac")
 
     if not audio_file.exists():
