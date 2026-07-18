@@ -1147,32 +1147,35 @@ class IELTSBandScorer:
 # ===============================================
 
 def score_ielts_speaking(
-    metrics: Dict, transcript: str = "", use_llm: bool = False
+    metrics: Dict, transcript: str = "", use_llm: bool = False, llm_metrics: Optional[Dict] = None
 ) -> Dict:
     """
     Score IELTS speaking from metrics (and optionally LLM analysis).
-    
+
     Args:
         metrics: dict with acoustic/linguistic metrics
-        transcript: raw transcript (required if use_llm=True)
-        use_llm: whether to use LLM for semantic evaluation
-    
+        transcript: raw transcript (required if use_llm=True and llm_metrics not provided)
+        use_llm: whether to fetch LLM annotations internally for semantic evaluation.
+            Ignored if llm_metrics is already provided.
+        llm_metrics: pre-computed aggregated LLM metrics (output of aggregate_llm_metrics).
+            Pass this when the caller has already extracted LLM annotations elsewhere
+            (e.g. for feedback spans) to avoid a second, duplicate LLM call here.
+
     Returns:
         dict with overall_band, criterion_bands, descriptors, and feedback
-        
+
     Notes:
         LLM failures degrade gracefully - metrics-only scoring is used as fallback
     """
     from src.utils.logging_config import logger
     from src.utils.exceptions import LLMProcessingError
-    
-    scorer = IELTSBandScorer()
-    llm_metrics = None
 
-    if use_llm and transcript:
+    scorer = IELTSBandScorer()
+
+    if llm_metrics is None and use_llm and transcript:
         try:
             from .llm_processing import extract_llm_annotations, aggregate_llm_metrics
-            
+
             llm_annotations = extract_llm_annotations(transcript)
             llm_metrics = aggregate_llm_metrics(llm_annotations)
             logger.info("LLM scoring successful")

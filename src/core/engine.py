@@ -189,25 +189,21 @@ async def analyze_speech(
         metrics_for_scoring = analysis["metrics_for_scoring"]
         
         # =============================================
-        # STAGE 3: BAND SCORING (WITH OPTIONAL LLM)
+        # STAGE 3: LLM ANNOTATIONS (OPTIONAL - single call, reused for scoring below)
         # =============================================
-        logger.info("Stage 3: Scoring IELTS bands...")
-        band_scores = score_ielts_speaking(
-            metrics=metrics_for_scoring,
-            transcript=transcript,
-            use_llm=use_llm
-        )
-        
-        # =============================================
-        # STAGE 4: LLM ANNOTATIONS (OPTIONAL)
-        # =============================================
+        # One extract_llm_annotations() call serves both the band scorer's semantic
+        # metrics and the feedback span/timestamp mapping - previously these were two
+        # separate LLM round-trips (one context-less, one context-aware) for the same
+        # transcript. Running the (blocking) OpenAI call via asyncio.to_thread keeps
+        # this coroutine from blocking the event loop for other concurrent requests.
         llm_analysis = None
         llm_annotations = None
         if use_llm and transcript:
             try:
-                logger.info("Stage 4: Running LLM annotation analysis...")
-                llm_annotations = extract_llm_annotations(
-                    transcript, 
+                logger.info("Stage 3: Running LLM annotation analysis...")
+                llm_annotations = await asyncio.to_thread(
+                    extract_llm_annotations,
+                    transcript,
                     speech_context=base_context,
                     context_metadata=context_metadata
                 )
@@ -217,6 +213,17 @@ async def analyze_speech(
                 logger.warning(f"LLM analysis failed (continuing): {str(e)}")
                 llm_analysis = None
                 llm_annotations = None
+
+        # =============================================
+        # STAGE 4: BAND SCORING (reuses Stage 3's LLM annotations - no duplicate call)
+        # =============================================
+        logger.info("Stage 4: Scoring IELTS bands...")
+        band_scores = score_ielts_speaking(
+            metrics=metrics_for_scoring,
+            transcript=transcript,
+            use_llm=False,
+            llm_metrics=llm_analysis
+        )
         
         # =============================================
         # BUILD FINAL REPORT (WITH CONFIDENCE & TIMESTAMPS)

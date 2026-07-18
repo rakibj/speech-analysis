@@ -19,6 +19,7 @@ from src.utils.exceptions import (
     DeviceError,
 )
 from src.utils.logging_config import logger
+from src.audio.model_cache import get_cached_model
 
 
 MIN_AUDIO_DURATION_SEC = 5.0
@@ -203,27 +204,24 @@ def transcribe_with_whisper(
     except Exception:
         device = "cpu"
     
-    # Load model
+    # Load model (cached across calls - see src/audio/model_cache.py)
     try:
         import whisper
         # Use cache directory from environment or default
         cache_dir = os.getenv("WHISPER_DOWNLOAD_ROOT", None)
-        
+
         # Avoid meta device issues by disabling in_memory optimization
         os.environ["TORCH_CUDNN_ENABLED"] = "1"
-        
-        model = whisper.load_model(model_name, device=device, download_root=cache_dir, in_memory=False)
+
+        def _load_model():
+            try:
+                return whisper.load_model(model_name, device=device, download_root=cache_dir, in_memory=False)
+            except TypeError:
+                # Older Whisper versions don't support in_memory parameter
+                return whisper.load_model(model_name, device=device, download_root=cache_dir)
+
+        model = get_cached_model(("whisper_plain", model_name, device), _load_model)
         logger.info(f"Loaded Whisper model: {model_name} on {device}")
-    except TypeError:
-        # Older Whisper versions don't support in_memory parameter
-        try:
-            model = whisper.load_model(model_name, device=device, download_root=cache_dir)
-            logger.info(f"Loaded Whisper model: {model_name} on {device}")
-        except Exception as e:
-            raise ModelLoadError(
-                f"Failed to load Whisper model {model_name}: {str(e)}",
-                {"model": model_name, "device": device, "error": str(e)}
-            )
     except Exception as e:
         raise ModelLoadError(
             f"Failed to load Whisper model {model_name}: {str(e)}",
@@ -282,22 +280,28 @@ def transcribe_verbatim_fillers(
         import torch
         # Use cache directory from environment or default
         cache_dir = os.getenv("WHISPER_DOWNLOAD_ROOT", None)
-        
-        # Safest approach: always load on CPU first, then move to target device
-        # This avoids the meta tensor issue in certain PyTorch/Whisper versions
-        try:
-            model = whisper.load_model(model_name, device="cpu", download_root=cache_dir)
-            if device != "cpu":
-                # Use to_empty() for meta tensor compatibility
-                model = model.to_empty(device=device)
-                model = model.to(device)
-        except Exception as e:
-            # Last resort: use in_memory=False if available
+
+        def _load_model():
+            # Safest approach: always load on CPU first, then move to target device
+            # This avoids the meta tensor issue in certain PyTorch/Whisper versions
             try:
-                model = whisper.load_model(model_name, device=device, download_root=cache_dir, in_memory=False)
-            except TypeError:
-                # Very old Whisper versions - just try direct load
-                model = whisper.load_model(model_name, device=device, download_root=cache_dir)
+                m = whisper.load_model(model_name, device="cpu", download_root=cache_dir)
+                if device != "cpu":
+                    # Use to_empty() for meta tensor compatibility
+                    m = m.to_empty(device=device)
+                    m = m.to(device)
+                return m
+            except Exception:
+                # Last resort: use in_memory=False if available
+                try:
+                    return whisper.load_model(model_name, device=device, download_root=cache_dir, in_memory=False)
+                except TypeError:
+                    # Very old Whisper versions - just try direct load
+                    return whisper.load_model(model_name, device=device, download_root=cache_dir)
+
+        # Cached separately from transcribe_with_whisper's model (different load
+        # strategy - always-CPU-first vs in_memory=False), same underlying weights.
+        model = get_cached_model(("whisper_verbatim", model_name, device), _load_model)
     except Exception as e:
         raise ModelLoadError(
             f"Failed to load Whisper model: {str(e)}",
@@ -365,9 +369,12 @@ def align_words_whisperx(
     
     try:
         import whisperx
-        align_model, metadata = whisperx.load_align_model(
-            language_code=language_code,
-            device=device
+
+        def _load_align_model():
+            return whisperx.load_align_model(language_code=language_code, device=device)
+
+        align_model, metadata = get_cached_model(
+            ("whisperx_align", language_code, device), _load_align_model
         )
         logger.info(f"Loaded WhisperX alignment model for {language_code}")
     except Exception as e:

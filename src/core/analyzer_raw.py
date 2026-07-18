@@ -21,7 +21,6 @@ from src.audio.filler_detection import (
     mark_filler_segments,
     mark_filler_words,
     detect_fillers_wav2vec,
-    detect_phonemes_wav2vec,
     detect_fillers_whisper,
     merge_filler_detections,
     group_stutters,
@@ -120,12 +119,14 @@ async def analyze_speech(
     print("\n[1/5] Transcribing with Whisper (verbatim)...")
     transcribe_verbatim_fillers_task = asyncio.to_thread(transcribe_verbatim_fillers, str(audio_path), device=device)
     is_monotone_speech_task = asyncio.to_thread(is_monotone_speech, audio_path)
-    detect_phonemes_wav2vec_task = asyncio.to_thread(detect_phonemes_wav2vec, audio_path)
 
-    verbatim_result, is_monotone, df_wav2vec = await asyncio.gather(
+    # Note: Wav2Vec2 phoneme detection is NOT run here - detect_fillers_wav2vec()
+    # (Step 4 below) runs its own detect_phonemes_wav2vec() pass once it has aligned
+    # word timestamps to filter against. Running it here too would be a second,
+    # redundant Wav2Vec2 forward pass over the same audio.
+    verbatim_result, is_monotone = await asyncio.gather(
         transcribe_verbatim_fillers_task,
-        is_monotone_speech_task,    
-        detect_phonemes_wav2vec_task
+        is_monotone_speech_task,
     )
 
     # Extract words and segments

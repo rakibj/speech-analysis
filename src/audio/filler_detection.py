@@ -16,6 +16,7 @@ from src.utils.config import (
     GROUP_GAP_SEC,
     FRAME_SEC,
 )
+from src.audio.model_cache import get_cached_model
 
 
 # ==============================
@@ -235,7 +236,9 @@ def detect_phonemes_wav2vec(audio_path: str) -> pd.DataFrame:
             else:
                 raise
     
-    processor, wav2vec = load_wav2vec_models()
+    processor, wav2vec = get_cached_model(
+        ("wav2vec2_phoneme", "facebook/wav2vec2-large-960h"), load_wav2vec_models
+    )
     
     # Load audio
     waveform, sr = sf.read(audio_path, dtype="float32")
