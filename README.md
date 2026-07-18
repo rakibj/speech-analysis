@@ -1,495 +1,102 @@
-# Speech Analysis - IELTS Band Scoring System
+# Speech Analysis - IELTS Band Scoring API
 
-A comprehensive speech analysis and IELTS band scoring system that combines acoustic/linguistic metrics with LLM-based semantic evaluation for accurate speaking proficiency assessment.
+A FastAPI backend that scores IELTS Speaking practice recordings: upload audio, get back an IELTS band score (5.0–9.0) across all four official criteria plus structured, data-driven feedback.
+
+> **For architecture, request flow, and module map, see [`CLAUDE.md`](CLAUDE.md).** This README covers setup and day-to-day usage.
 
 ## Features
 
-- **Audio Transcription**: Verbatim transcription with filler word detection using Whisper
-- **Speech Analysis**: Metrics for fluency, pronunciation, lexical quality, and grammar
-- **Filler Detection**: Multi-method detection using Whisper and Wav2Vec2
-- **LLM Annotation**: OpenAI-powered semantic analysis (coherence, topic relevance, register)
-- **IELTS Band Scoring**: Hybrid scoring combining metrics + LLM insights
-- **Structured Logging**: Comprehensive logging for production debugging
-- **Error Handling**: Custom exceptions with detailed context
-- **Type Safety**: Full type hints on core functions
+- **Transcription**: Verbatim Whisper transcription with word-level timestamps and confidence
+- **Filler/disfluency detection**: Wav2Vec2-based (full mode) or Whisper-heuristic (fast mode)
+- **LLM semantic analysis**: OpenAI-powered coherence, grammar, and vocabulary evaluation
+- **IELTS band scoring**: Hybrid acoustic-metrics + LLM scoring across Fluency & Coherence, Pronunciation, Lexical Resource, and Grammatical Range & Accuracy
+- **Two speeds**: `/analyze` (full, 20-40s/min of audio) and `/analyze-fast` (metrics-only, 5-10s/min)
+- **Two auth surfaces**: direct API key access and a RapidAPI-gateway-trusted route
 
-## Quick Start
-
-### Prerequisites
+## Prerequisites
 
 - Python 3.11+
-- CUDA 11.8+ (optional, for GPU acceleration)
-- OpenAI API key
+- [uv](https://docs.astral.sh/uv/) for dependency management
+- An OpenAI API key (required for full-mode LLM analysis; fast mode works without it)
+- CUDA (optional, for GPU acceleration — set `AUDIO_DEVICE=cuda`)
 
-### Installation
+## Installation
 
 ```bash
-# Clone repository
+git clone <repo-url>
 cd speech-analysis
-
-# Install dependencies
 uv sync
-
-# Copy environment template
 cp .env.example .env
-
-# Fill in OpenAI API key
-# Edit .env and add your OPENAI_API_KEY
+# edit .env and set OPENAI_API_KEY (and RAPIDAPI_SECRET if serving the RapidAPI route)
 ```
 
-### Basic Usage
+## Running locally
 
-```python
-import asyncio
-from src.analyzer_raw import analyze_speech
-from src.analyze_band import analyze_band_from_analysis
-
-async def analyze_audio_sample():
-    # Analyze speech from audio file
-    result = await analyze_speech("path/to/audio.wav")
-
-    # Get IELTS band scoring
-    band_result = await analyze_band_from_analysis(result)
-
-    print(f"Overall Band: {band_result['band_scores']['overall_band']}")
-    print(f"Fluency: {band_result['band_scores']['criterion_bands']['fluency_coherence']}")
-    print(f"Pronunciation: {band_result['band_scores']['criterion_bands']['pronunciation']}")
-    print(f"Lexical: {band_result['band_scores']['criterion_bands']['lexical_resource']}")
-    print(f"Grammar: {band_result['band_scores']['criterion_bands']['grammatical_range_accuracy']}")
-
-asyncio.run(analyze_audio_sample())
+```bash
+uv run python app.py
+# → http://localhost:8000, interactive docs at /docs
 ```
+
+### Basic request
+
+```bash
+curl -X POST http://localhost:8000/api/direct/v1/analyze \
+  -H "X-API-Key: <your-key>" \
+  -F "file=@sample.wav" \
+  -F "speech_context=conversational"
+# → {"job_id": "...", "status": "queued"}
+
+curl "http://localhost:8000/api/direct/v1/result/<job_id>?detail=feedback" \
+  -H "X-API-Key: <your-key>"
+```
+
+Dev API keys are managed by hand in `src/auth/key_manager.py::VALID_KEYS`. Generate one with:
+
+```bash
+uv run python scripts/generate_test_keys.py
+```
+
+See `docs/API_RESPONSE_DOCUMENTATION.md` for the full response schema and `docs/ANALYZE_ENDPOINT_GUIDE.md` for a plain-English walkthrough of what each stage does.
 
 ## Configuration
 
-### Environment Variables
+`.env` (see `.env.example`):
 
-Create `.env` file from `.env.example`:
+| Variable | Purpose |
+|---|---|
+| `OPENAI_API_KEY` | Required for LLM semantic analysis (full mode) |
+| `RAPIDAPI_SECRET` | Verifies RapidAPI gateway signatures |
+| `AUDIO_DEVICE` | `cpu` or `cuda` |
+| `WHISPER_MODEL` | `tiny` / `base` / `small` / `medium` / `large` |
+| `MIN_AUDIO_DURATION_SEC` | Minimum accepted audio length (default 5s) |
 
-```bash
-# OpenAI Configuration
-OPENAI_API_KEY=sk-...  # Your OpenAI API key
+Scoring thresholds and weights (WPM ranges, pause tolerances, filler penalties, per-context tolerances) live in `src/utils/config.py`. That file is product policy — changing a value there changes the band a user gets, so treat edits accordingly.
 
-# Audio Processing
-AUDIO_DEVICE=cpu       # cpu or cuda
-WHISPER_MODEL=base     # tiny, base, small, medium, large
+## Deployment
 
-# Validation
-MIN_AUDIO_DURATION_SEC=5
-
-# Logging
-LOG_LEVEL=INFO         # DEBUG, INFO, WARNING, ERROR, CRITICAL
-LOG_FILE=              # Leave empty for console only, or specify path
-
-# Caching
-CACHE_MODELS=true      # Cache loaded models
-```
-
-### Thresholds & Weights
-
-Edit `src/config.py` for:
-
-- **Filler patterns**: Detection rules for um, uh, er, etc.
-- **Pause thresholds**: Long pause detection (400ms default)
-- **Scoring weights**: WEIGHT_PAUSE, WEIGHT_FILLER, WEIGHT_STABILITY, etc.
-- **Context-specific tolerances**: Conversational vs. presentation settings
-
-## API Reference
-
-### Core Functions
-
-#### `analyze_speech(audio_path, speech_context, device)`
-
-Comprehensive speech analysis from audio file.
-
-**Parameters:**
-
-- `audio_path` (str): Path to audio file (.wav, .flac, .mp3, etc.)
-- `speech_context` (str): One of "conversational", "narrative", "presentation", "interview"
-- `device` (str): "cpu" or "cuda" for GPU acceleration
-
-**Returns:**
-
-```python
-{
-    "raw_transcript": "Full verbatim transcription",
-    "fluency_analysis": {...},  # Fluency metrics
-    "wpm": 120,                  # Words per minute
-    "long_pauses_per_min": 1.5,  # Pause frequency
-    "pause_variability": 0.65,   # Pause rhythm stability
-    "statistics": {
-        "total_words_transcribed": 229,
-        "content_words": 200,
-        "filler_words_detected": 5,
-        "filler_percentage": 2.2,
-        "is_monotone": false
-    },
-    "timestamps": {
-        "words_timestamps_raw": [...],      # Word-level timing
-        "words_timestamps_cleaned": [...],  # Content words only
-        "segment_timestamps": [...],
-        "filler_timestamps": [...]
-    }
-}
-```
-
-**Raises:**
-
-- `AudioNotFoundError`: File doesn't exist
-- `AudioFormatError`: Cannot read file
-- `AudioDurationError`: Too short (< 5 seconds)
-- `TranscriptionError`: Whisper transcription failed
-- `ModelLoadError`: Model failed to load
-- `NoSpeechDetectedError`: No speech in audio
-
-**Example:**
-
-```python
-import asyncio
-from src.analyzer_raw import analyze_speech
-
-result = asyncio.run(analyze_speech("speaker.wav", "conversational"))
-print(f"WPM: {result['wpm']}")
-print(f"Fillers: {result['statistics']['filler_percentage']}%")
-```
-
-#### `score_ielts_speaking(metrics, transcript, use_llm)`
-
-IELTS band scoring from metrics.
-
-**Parameters:**
-
-- `metrics` (dict): Metrics dictionary from analyzer
-- `transcript` (str): Full transcription text
-- `use_llm` (bool): Enable OpenAI semantic evaluation (default: False)
-
-**Returns:**
-
-```python
-{
-    "overall_band": 6.5,
-    "criterion_bands": {
-        "fluency_coherence": 6.5,
-        "pronunciation": 6.5,
-        "lexical_resource": 6.0,
-        "grammatical_range_accuracy": 6.5
-    },
-    "descriptors": {...},  # IELTS band descriptors
-    "feedback": {
-        "fluency_coherence": "Adequate fluency...",
-        "pronunciation": "Clear pronunciation...",
-        "lexical_resource": "Good vocabulary...",
-        "grammatical_range_accuracy": "Good control...",
-        "overall_recommendation": "..."
-    }
-}
-```
-
-**Raises:**
-
-- `LLMAPIError`: OpenAI API call failed (degrades to metrics-only)
-- `ConfigurationError`: Missing OpenAI API key (with LLM enabled)
-
-**Example:**
-
-```python
-from src.ielts_band_scorer import score_ielts_speaking
-
-result = score_ielts_speaking(
-    metrics=analysis_result,
-    transcript=transcription,
-    use_llm=True
-)
-print(f"Band: {result['overall_band']}")
-for criterion, score in result['criterion_bands'].items():
-    print(f"  {criterion}: {score}")
-```
-
-### Exception Handling
-
-All errors inherit from `SpeechAnalysisError` with structured context:
-
-```python
-from src.exceptions import (
-    AudioProcessingError,
-    TranscriptionError,
-    LLMProcessingError,
-)
-from src.logging_config import logger
-
-try:
-    result = await analyze_speech(audio_path)
-except AudioProcessingError as e:
-    logger.error(f"Error: {e.message}")
-    logger.error(f"Details: {e.details}")
-except TranscriptionError as e:
-    # Handle transcription-specific issues
-    pass
-except LLMProcessingError as e:
-    # LLM failures degrade gracefully
-    pass
-```
-
-## Logging
-
-View real-time analysis progress:
-
-```python
-from src.logging_config import setup_logging
-
-# Configure logging
-logger = setup_logging(
-    level="INFO",           # DEBUG for verbose output
-    log_file="analysis.log" # Optional file output
-)
-
-# Logs include:
-# - Model loading progress
-# - Transcription completion
-# - Alignment status
-# - LLM annotation extraction
-# - Band scoring results
-```
-
-**Log Levels:**
-
-- `DEBUG`: Detailed model and processing info
-- `INFO`: Stage completion and results
-- `WARNING`: Non-critical issues (missing API key, model warnings)
-- `ERROR`: Critical failures with context
-- `CRITICAL`: System failures
-
-## Scripts
-
-### Batch Analysis
-
-Analyze multiple audio files and score them:
+`modal_app.py` deploys the same routers as `app.py` to [Modal](https://modal.com) as a serverless ASGI app, with a persistent volume for model caching and a `modal.Dict` for distributed job state across containers:
 
 ```bash
-uv run python scripts/batch_band_analysis.py
-```
-
-Processes:
-
-1. All `.wav` files in `data/ielts_part_2/`
-2. Saves analysis to `outputs/audio_analysis/`
-3. Scores with IELTS bands to `outputs/band_results/`
-
-Configure limits in script:
-
-```python
-await run_analysis(limit=5)  # Process first 5 files
+uv run modal deploy modal_app.py
 ```
 
 ## Testing
 
-Run comprehensive test suite:
-
 ```bash
-# All tests
-uv run python -m pytest tests/ -v
-
-# Specific test file
-uv run python -m pytest tests/test_audio_processing.py -v
-
-# With coverage
-uv run python -m pytest tests/ --cov=src
-
-# End-to-end test
-uv run python test_e2e.py
+uv run pytest tests/ -v          # full suite
+uv run pytest tests/ --cov=src   # with coverage (also the pytest default, see pyproject.toml)
 ```
 
-**Test Coverage:**
+## Project layout
 
-- Exception handling (4 tests)
-- Audio processing utilities (6 tests)
-- LLM integration (3 tests)
-- IELTS scoring logic (4 tests)
-- **Total: 17 tests** ✓
+See [`CLAUDE.md`](CLAUDE.md#directory-map) for the full directory map. Highlights:
 
-## Performance
-
-Typical analysis times (single audio file, base model):
-
-| Operation                 | Duration | Notes               |
-| ------------------------- | -------- | ------------------- |
-| Audio loading             | 0.1s     | File I/O            |
-| Whisper transcription     | 15-30s   | GPU 2-3x faster     |
-| WhisperX alignment        | 5-10s    | For 2 min audio     |
-| Wav2Vec2 filler detection | 10-20s   | GPU recommended     |
-| LLM annotation            | 10-15s   | OpenAI API call     |
-| IELTS scoring             | < 1s     | Metrics calculation |
-| **Total (with LLM)**      | ~50-90s  | ~30-50s on GPU      |
-
-## Metrics Explained
-
-### Fluency & Coherence
-
-- **WPM (Words Per Minute)**: Speaking rate (optimal: 100-130)
-- **Long Pauses Per Minute**: Hesitation frequency (optimal: ≤ 2.0)
-- **Pause Variability**: Rhythm consistency (lower is better)
-- **Repetition Ratio**: Word/phrase repetition (optimal: ≤ 0.065)
-
-### Pronunciation
-
-- **Mean Word Confidence**: Model confidence on word recognition (0.85+)
-- **Low Confidence Ratio**: % of words with low confidence (≤ 20%)
-- **Monotone Detection**: Lack of prosodic variation
-
-### Lexical Resource
-
-- **Vocabulary Richness**: Ratio of unique to total words (0.50+)
-- **Lexical Density**: Content words as % of total words (0.45+)
-- **Advanced Vocabulary Count**: From LLM analysis
-- **Word Choice Errors**: Inappropriate word usage
-
-### Grammatical Accuracy
-
-- **Mean Utterance Length**: Complexity indicator (20+ words)
-- **Speech Rate Variability**: Pacing consistency
-- **Grammar Error Count**: From LLM analysis
-- **Complex Structure Accuracy**: Successful vs. attempted complex sentences
-
-## Known Limitations
-
-### v0 Release Constraints
-
-| Limitation                                  | Impact                                      | Workaround                                       | Future                              |
-| ------------------------------------------- | ------------------------------------------- | ------------------------------------------------ | ----------------------------------- |
-| **Min audio duration: 5 seconds**           | Very short clips rejected                   | Use longer recordings                            | May support shorter clips in v0.2   |
-| **Sequential analysis** (if limit exceeded) | Batch processing may be slow                | Use `run_analysis(limit=N)` to process in chunks | GPU acceleration planned for v0.3   |
-| **Single speaker only**                     | Multi-speaker detection not supported       | Ensure single speaker throughout                 | Multi-speaker support in v1.0       |
-| **English only**                            | Non-English audio may fail                  | Transcribe to English first                      | Multi-language support planned v1.0 |
-| **Whisper accuracy**                        | May misidentify some words                  | Use larger model (`large`)                       | Fine-tuning on IELTS data v0.3      |
-| **LLM dependency**                          | OpenAI API required for semantic analysis   | System works metrics-only if API unavailable     | Local LLM option in v1.0            |
-| **IELTS-specific**                          | Scoring calibrated for IELTS only           | Not suitable for other proficiency tests         | CEFR/TOEFL support planned          |
-| **No accent normalization**                 | Accent-specific features may affect scoring | Model is accent-aware but not adaptive           | Accent-normalized variant in v0.4   |
-
-### Accuracy Notes
-
-- **Band accuracy**: ±0.5 band (calibrated on IELTS samples)
-- **Metric variability**: ~5-10% depending on audio quality and background noise
-- **LLM annotations**: Depend on GPT-4 availability and token limits
-- **Filler detection**: ~95% precision, ~90% recall on clean audio
-
-### Audio Quality Requirements
-
-- **Format**: WAV, MP3, FLAC, OGG, M4A
-- **Sample rate**: 16 kHz recommended (auto-resampled)
-- **Mono/Stereo**: Both supported
-- **Background noise**: < -30dB relative to speech
-- **Duration**: ≥ 5 seconds, ≤ 10 minutes recommended
-
-### Performance Constraints
-
-- **Model size**: Whisper "medium" is default (1.5GB VRAM)
-  - Use "tiny" (39MB) for CPU-only or minimal resources
-  - Use "large" (3GB) for highest accuracy (requires GPU)
-- **Batch processing**: Up to ~8 files in parallel with LLM rate limiting
-- **GPU memory**: 4-6GB recommended for full pipeline
-
-### Known Issues
-
-- **Issue**: Audio files with heavy background noise may produce inaccurate metrics
-
-  - **Workaround**: Pre-process audio or use denoising tool
-  - **Status**: Will improve in v0.2 with noise detection
-
-- **Issue**: Filler detection may double-count speech hesitations
-
-  - **Workaround**: Use confidence thresholds (see config.py)
-  - **Status**: Being refined in v0.2
-
-- **Issue**: Very fast speakers (>180 WPM) may see band capping at 8.0
-  - **Workaround**: Use metrics-only scoring without LLM boost
-  - **Status**: Will calibrate in v0.3
-
-## Troubleshooting
-
-### "No speech detected in audio"
-
-- Ensure audio is at least 5 seconds
-- Check audio quality (clear speech, not background noise)
-- Try with a different model size (larger models more tolerant)
-
-### "CUDA out of memory"
-
-- Use `AUDIO_DEVICE=cpu` in `.env`
-- Use smaller model: `WHISPER_MODEL=base` or `tiny`
-- Process fewer files in batch
-
-### "LLM annotation extraction successful but scoring uses metrics-only"
-
-- OpenAI API call failed or returned invalid schema
-- Check `LOG_LEVEL=DEBUG` for details
-- Verify `OPENAI_API_KEY` is correct
-- System gracefully falls back to metrics-only scoring
-
-### "Type errors with pandas DataFrames"
-
-- Ensure columns exist before filtering: `mark_filler_words()` before `get_content_words()`
-- Check DataFrame structure matches expected schema
-
-## Architecture
-
-```
-speech-analysis/
-├── src/
-│   ├── analyzer_raw.py           # Main analysis orchestrator
-│   ├── audio_processing.py       # Audio I/O + transcription
-│   ├── fluency_metrics.py        # Metrics calculation
-│   ├── disfluency_detection.py   # Filler/stutter detection
-│   ├── llm_processing.py         # OpenAI integration
-│   ├── ielts_band_scorer.py      # Band scoring logic
-│   ├── config.py                 # Thresholds & weights
-│   ├── exceptions.py             # Error definitions
-│   ├── logging_config.py         # Logging setup
-│   └── ...
-├── scripts/
-│   ├── batch_band_analysis.py    # Batch processing
-│   └── ...
-├── tests/
-│   ├── test_exceptions.py
-│   ├── test_audio_processing.py
-│   ├── test_llm_processing.py
-│   └── test_ielts_band_scorer.py
-├── .env.example                  # Configuration template
-├── pyproject.toml               # Dependencies
-└── README.md
-```
-
-## Contributing
-
-To extend the system:
-
-1. **Add new metrics**: Edit `src/fluency_metrics.py`
-2. **Modify scoring logic**: Edit `src/ielts_band_scorer.py`
-3. **Adjust thresholds**: Edit `src/config.py`
-4. **Add tests**: Create test file in `tests/`
-
-All changes should:
-
-- Include type hints
-- Have error handling with custom exceptions
-- Add logging at key points
-- Include docstrings
-- Pass all existing tests
-
-## Support
-
-For issues or questions:
-
-1. Check logs: `LOG_LEVEL=DEBUG` for verbose output
-2. Run tests: Verify system integrity
-3. Check documentation above
-4. Review exception messages for context
+- `src/api/` — FastAPI routes (`v1.py` RapidAPI, `direct.py` direct-access)
+- `src/core/` — analysis engine, band scorer, job queue
+- `src/audio/` — transcription/filler-detection used by the full pipeline
+- `research/` — a separate, actively-evolving standalone fluency-scoring research track (not part of the API)
+- `archive/` — retired one-off scripts and dead code, kept for reference (see `archive/README.md`)
 
 ## License
 
-[Add your license here]
-
-## Authors
-
-- Speech Analysis Team
-- Version: 0.1.0
-- Last Updated: January 18, 2026
+MIT — see `LICENSE`.
