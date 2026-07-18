@@ -1,0 +1,160 @@
+{
+  "all_results": [
+    {
+      "hypothesis": "WPM 90% + Disfluency-Fluency 10%",
+      "r": 0.786304255072164,
+      "r_squared": 0.6182743815445907,
+      "p_value": 4.2801699306017273e-07,
+      "percent_variance": 61.82743815445907
+    },
+    {
+      "hypothesis": "WPM 85% + Disfluency-Fluency 15%",
+      "r": 0.7778945838949216,
+      "r_squared": 0.6051199836530532,
+      "p_value": 6.827914734659523e-07,
+      "percent_variance": 60.51199836530532
+    },
+    {
+      "hypothesis": "WPM 90% + Composite 10%",
+      "r": 0.7759158377355704,
+      "r_squared": 0.602045387248892,
+      "p_value": 7.598933213220495e-07,
+      "percent_variance": 60.204538724889204
+    },
+    {
+      "hypothesis": "WPM Baseline",
+      "r": 0.7741844348461381,
+      "r_squared": 0.5993615391580343,
+      "p_value": 8.337378543203133e-07,
+      "percent_variance": 59.93615391580342
+    },
+    {
+      "hypothesis": "WPM 80% + Composite 20%",
+      "r": 0.7722056886867871,
+      "r_squared": 0.5963016256402351,
+      "p_value": 9.260482490072053e-07,
+      "percent_variance": 59.630162564023514
+    },
+    {
+      "hypothesis": "WPM 80% + Disfluency-Fluency 20%",
+      "r": 0.7573650924916534,
+      "r_squared": 0.5736018833248907,
+      "p_value": 1.9719759417103974e-06,
+      "percent_variance": 57.360188332489074
+    },
+    {
+      "hypothesis": "WPM * Composite",
+      "r": 0.7553863463323023,
+      "r_squared": 0.570608532225265,
+      "p_value": 2.1723492077098587e-06,
+      "percent_variance": 57.0608532225265
+    },
+    {
+      "hypothesis": "WPM 70% + Composite 30%",
+      "r": 0.7551390030623832,
+      "r_squared": 0.5702349139460501,
+      "p_value": 2.198647812372885e-06,
+      "percent_variance": 57.02349139460501
+    },
+    {
+      "hypothesis": "WPM 75% + Disfluency-Fluency 25%",
+      "r": 0.7501921376640055,
+      "r_squared": 0.5627882434128901,
+      "p_value": 2.788806419865297e-06,
+      "percent_variance": 56.27882434128901
+    },
+    {
+      "hypothesis": "WPM 60% + Composite 40%",
+      "r": 0.7383196607078985,
+      "r_squared": 0.5451159213878263,
+      "p_value": 4.829456766299995e-06,
+      "percent_variance": 54.511592138782625
+    },
+    {
+      "hypothesis": "WPM 70% + Disfluency-Fluency 30%",
+      "r": 0.7311467058802505,
+      "r_squared": 0.5345755055195416,
+      "p_value": 6.636871161901377e-06,
+      "percent_variance": 53.45755055195416
+    },
+    {
+      "hypothesis": "WPM 50% + Composite 50%",
+      "r": 0.725457810672116,
+      "r_squared": 0.5262890350651798,
+      "p_value": 8.480737865921693e-06,
+      "percent_variance": 52.62890350651798
+    },
+    {
+      "hypothesis": "WPM * Disfluency-Fluency",
+      "r": 0.5602325063662948,
+      "r_squared": 0.3138604611894606,
+      "p_value": 0.0015743195835537522,
+      "percent_variance": 31.38604611894606
+    },
+    {
+      "hypothesis": "Composite Fluency (0-100)",
+      "r": 0.5310834612900115,
+      "r_squared": 0.28204964285577916,
+      "p_value": 0.003033797950254654,
+      "percent_variance": 28.204964285577915
+    },
+    {
+      "hypothesis": "Pure Disfluency",
+      "r": 0.42189590767052626,
+      "r_squared": 0.17799615690913723,
+      "p_value": 0.02262859965765081,
+      "percent_variance": 17.799615690913722
+    },
+    {
+      "hypothesis": "Disfluency as Fluency",
+      "r": -0.42189590767052626,
+      "r_squared": 0.17799615690913723,
+      "p_value": 0.02262859965765081,
+      "percent_variance": 17.799615690913722
+    }
+  ],
+  "top_5": [
+    {
+      "hypothesis": "WPM 90% + Disfluency-Fluency 10%",
+      "r": 0.786304255072164,
+      "r_squared": 0.6182743815445907,
+      "p_value": 4.2801699306017273e-07,
+      "percent_variance": 61.82743815445907
+    },
+    {
+      "hypothesis": "WPM 85% + Disfluency-Fluency 15%",
+      "r": 0.7778945838949216,
+      "r_squared": 0.6051199836530532,
+      "p_value": 6.827914734659523e-07,
+      "percent_variance": 60.51199836530532
+    },
+    {
+      "hypothesis": "WPM 90% + Composite 10%",
+      "r": 0.7759158377355704,
+      "r_squared": 0.602045387248892,
+      "p_value": 7.598933213220495e-07,
+      "percent_variance": 60.204538724889204
+    },
+    {
+      "hypothesis": "WPM Baseline",
+      "r": 0.7741844348461381,
+      "r_squared": 0.5993615391580343,
+      "p_value": 8.337378543203133e-07,
+      "percent_variance": 59.93615391580342
+    },
+    {
+      "hypothesis": "WPM 80% + Composite 20%",
+      "r": 0.7722056886867871,
+      "r_squared": 0.5963016256402351,
+      "p_value": 9.260482490072053e-07,
+      "percent_variance": 59.630162564023514
+    }
+  ],
+  "winner": {
+    "hypothesis": "WPM 90% + Disfluency-Fluency 10%",
+    "r": 0.786304255072164,
+    "r_squared": 0.6182743815445907,
+    "p_value": 4.2801699306017273e-07,
+    "percent_variance": 61.82743815445907
+  }
+}

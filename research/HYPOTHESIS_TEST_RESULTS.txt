@@ -1,0 +1,56 @@
+======================================================================
+PREREGISTERED HYPOTHESIS TEST RESULTS
+======================================================================
+
+PRIMARY HYPOTHESIS:
+Duration-weighted disfluency correlates MORE STRONGLY with human
+fluency judgments than baseline WPM alone.
+
+RESULTS SUMMARY (Four-Way Comparison):
+1. Duration-Weighted Disfluency vs Human: r = 0.4219, p = 0.02263
+2. WPM Baseline vs Human:                r = 0.7742, p = 8.337e-07
+3. Composite Fluency Score vs Human:    r = 0.5311, p = 0.003034
+4. Combined (80% WPM + 20% Comp) vs Human: r = 0.7722, p = 9.26e-07
+
+HYPOTHESIS TEST (Disfluency vs WPM):
+Correlation difference: -0.3523
+Bootstrap 95% CI: [-0.6437, -0.0803]
+
+CONCLUSION: HYPOTHESIS REJECTED
+WPM correlates better than duration-weighted disfluency.
+
+
+ADDITIONAL COMPARISON (Composite vs WPM):
+Correlation difference: -0.2431
+Bootstrap 95% CI: [-0.4629, -0.0495]
+
+RESULT: WPM correlates better than composite score.
+
+
+ADDITIONAL COMPARISON (Composite vs Disfluency):
+Correlation difference: 0.1092
+Bootstrap 95% CI: [-0.1099, 0.3291]
+
+RESULT: Difference not significant.
+
+
+NEW COMPARISON (Combined vs WPM):
+Metric: 80% WPM + 20% Composite Fluency
+Correlation difference: -0.0020
+Bootstrap 95% CI: [-0.0603, 0.0539]
+
+RESULT: Difference not significant.
+
+
+NEW COMPARISON (Combined vs Composite):
+Correlation difference: 0.2411
+Bootstrap 95% CI: [0.0653, 0.4423]
+
+RESULT: Combined metric correlates better than composite alone.
+
+
+NEW COMPARISON (Combined vs Disfluency):
+Correlation difference: 0.3503
+Bootstrap 95% CI: [0.0934, 0.6380]
+
+RESULT: Combined metric correlates better than disfluency.

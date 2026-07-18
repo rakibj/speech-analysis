@@ -114,10 +114,20 @@ def calculate_subscores(
             1 - (wpm - WPM_OPTIMAL_MAX) / WPM_FAST_DECAY_RANGE
         )
 
-    # Pause structure score
+    # =====================================================
+    # IMPROVEMENT 1: Weight pause penalty by variability
+    # If pauses vary a lot, some are likely very long
+    # =====================================================
+    pause_variability = metrics.get("pause_variability", 0)
+    long_pauses = metrics["long_pauses_per_min"]
+
+    # Variability amplifier: high variability = more weight to pause penalty
+    # Range: 1.0 (low variability) to 2.0 (high variability)
+    variability_amplifier = 1.0 + clamp01(pause_variability / BASE_PAUSE_VARIABILITY)
+
     pause_score = clamp01(
         1 - (
-            metrics["long_pauses_per_min"]
+            (long_pauses * variability_amplifier)
             / (MAX_LONG_PAUSES_PER_MIN * context_config["pause_tolerance"])
         )
     )
@@ -127,18 +137,48 @@ def calculate_subscores(
         1 - (metrics["fillers_per_min"] / MAX_FILLERS_PER_MIN)
     )
 
-    # Rhythmic stability score
+    # =====================================================
+    # IMPROVEMENT 2: Integrate speech_rate_variability
+    # Stability = control of both pauses AND speech rate
+    # =====================================================
+    speech_rate_variability = metrics.get("speech_rate_variability", 0)
+
+    # Average the two variability measures
+    # Normalize speech_rate_variability similar to pause_variability
+    combined_variability = (pause_variability + speech_rate_variability) / 2
+
     stability_score = clamp01(
         1 - (
-            metrics["pause_variability"]
+            combined_variability
             / (BASE_PAUSE_VARIABILITY * context_config["pause_variability_tolerance"])
         )
     )
 
-    # Lexical quality score
+    # =====================================================
+    # IMPROVEMENT 3: Better lexical quality scoring
+    # Use both vocab_richness and type_token_ratio
+    # =====================================================
+    vocab_richness = metrics.get("vocab_richness", 0)
+    type_token_ratio = metrics.get("type_token_ratio", 0)
+    repetition_ratio = metrics.get("repetition_ratio", 0)
+    mean_utterance_length = metrics.get("mean_utterance_length", 0)
+
+    # Combine vocab richness and type-token ratio
+    # (they measure similar things, so average them)
+    vocab_score = (vocab_richness + type_token_ratio) / 2
+
+    # Reduce repetition impact
+    no_repetition_score = 1 - repetition_ratio
+
+    # Utterance length indicates syntactic complexity/confidence
+    # 0-20 words = simple/choppy, 40+ words = complex/confident
+    # Score 0.0 at <10 words, 1.0 at ≥40 words
+    utterance_confidence = clamp01((mean_utterance_length - 10) / 30)
+
     lexical_score = clamp01(
-        0.65 * metrics["vocab_richness"]
-        + 0.35 * (1 - metrics["repetition_ratio"])
+        0.50 * vocab_score +           # Vocabulary richness (both measures)
+        0.35 * no_repetition_score +    # Avoid repetition
+        0.15 * utterance_confidence     # Syntactic complexity shows confidence
     )
 
     subscores = {
